@@ -2385,6 +2385,13 @@ Name: price, Length: 150000, dtype: int64</code></pre><figure class="highlight p
 
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pfr = pandas_profiling.ProfileReport(Train_data)</span><br><span class="line">pfr.to_file(<span class="string">"./tianchi/example.html"</span>)</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>数据挖掘</category>
+      </categories>
+      <tags>
+        <tag>DataWhale</tag>
+        <tag>天池</tag>
+      </tags>
   </entry>
   <entry>
     <title>test3</title>
