@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="生活,旅行,思考,代码,博客" />
+   
+  <meta name="description" content="大鱼的考研日记" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     大鱼海棠
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/images/touxiang.jpg" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
+</head>
+
+</html>
+<!-- 样式一（鼠标点击更换样式） -->
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="page-" class="article article-type-page" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>R: A Forward-Pipe Operator for R</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1671.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'PingFang SC'}
+    span.s1 {font: 12.0px 'PingFang SC'}
+    span.s2 {font: 12.0px 'Apple Color Emoji'}
+    span.s3 {font: 12.0px Helvetica}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="baidu-site-verification" content="JAFHu5il3e" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span><span class="s1">越努力越幸运</span><span class="s2">💖</span> |<span class="Apple-converted-space">  </span>Blue</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="generator" content="hexo-theme-yilia-plus"&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="shortcut icon" href="/images/favicon.ico" /&gt;</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1">&lt;link rel="stylesheet" href="/css/style.css"&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1">&lt;script src="/js/pace.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;link rel="alternate" href="/atom.xml" title="Blue" type="application/atom+xml"&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/html&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="app"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;main class="content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="outer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;article id="page-" class="article article-type-page" itemscope</p>
+<p class="p1"><span class="Apple-converted-space">  </span>itemprop="blogPost" data-scroll-reveal&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="article-inner"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header class="article-header"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">       </span></p>
+<p class="p1">&lt;h1 class="article-title sea-center" style="border-left:0" itemprop="name"&gt;</p>
+<p class="p3"><span class="s3"><span class="Apple-converted-space">  </span></span>越努力越幸运<span class="s2">💖</span></p>
+<p class="p1">&lt;/h1&gt;</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="article-entry" itemprop="articleBody"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2 id="<span class="s2">⭐️</span><span class="s1">代码是热爱，写到世界充满爱！</span>"&gt;&lt;a href="#<span class="s2">⭐️</span><span class="s1">代码是热爱，写到世界充满爱！</span>" class="headerlink" title="<span class="s2">⭐️</span><span class="s1">代码是热爱，写到世界充满爱！</span>"&gt;&lt;/a&gt;<span class="s2">⭐️</span><span class="s1">代码是热爱，写到世界充满爱！</span>&lt;/h2&gt;&lt;blockquote&gt;</p>
+<p class="p3"><span class="s3">&lt;p&gt;</span>小小的我，却有着全栈的梦<span class="s3">&lt;/p&gt;</span></p>
+<p class="p1">&lt;/blockquote&gt;</p>
+<p class="p3"><span class="s3">&lt;h3 id="</span><span class="s2">✨</span>建站初衷<span class="s3">"&gt;&lt;a href="#</span><span class="s2">✨</span>建站初衷<span class="s3">" class="headerlink" title="</span><span class="s2">✨</span>建站初衷<span class="s3">"&gt;&lt;/a&gt;</span><span class="s2">✨</span>建站初衷<span class="s3">&lt;/h3&gt;&lt;p&gt;</span>大学主要学的是数学，但是心里一直有个编程的梦<span class="s2">✈️</span>。自己在学校也折腾过，但是没有系统学习的机会。于是乎，在大三参加了培训班，主学<span class="s3">java</span>。至此走上了一条不归路，自己也常戏说：<span class="s3">&lt;strong&gt;</span>一包烟，一壶酒，一个<span class="s3">bug</span>改一天<span class="s3">&lt;/strong&gt;(</span>当然自己是不抽烟的<span class="s3">)</span>。时常很倔强，遇到问题就很头铁，不解决就想着疯狂百度、谷歌，不然心里就沉甸甸的感觉。问题遇到多了就想着能够有个自己的博客，能够记录下自己的学习心得，也能够随时分享点所谓的灵感与诗意。<span class="s3">&lt;/p&gt;</span></p>
+<p class="p1">&lt;h3 id="<span class="s2">✏️</span><span class="s1">学习之路</span>"&gt;&lt;a href="#<span class="s2">✏️</span><span class="s1">学习之路</span>" class="headerlink" title="<span class="s2">✏️</span><span class="s1">学习之路</span>"&gt;&lt;/a&gt;<span class="s2">✏️</span><span class="s1">学习之路</span>&lt;/h3&gt;&lt;p&gt;<span class="s1">初级阶段：从前端基础的</span>&lt;strong&gt;html<span class="s1">、</span>css&lt;/strong&gt;<span class="s1">学起，至此学会了构建简单的静态页面。再后就是系统学习</span>&lt;strong&gt;JavaSE<span class="s1">、</span>j2EE&lt;/strong&gt;<span class="s1">，熟悉</span>java<span class="s1">体系。为能更好的页面数据交互，又学了</span>&lt;strong&gt;JavaScript<span class="s1">、</span>jQuery<span class="s1">、</span>bootstrap&lt;/strong&gt;<span class="s1">框架。后台数据大多需要存入数据库，又学习了</span>&lt;strong&gt;Oracle<span class="s1">、</span>MySQL<span class="s1">、</span>SQL sever&lt;/strong&gt;(<span class="s1">大学学的</span>)<span class="s1">以及</span>&lt;strong&gt;c3p0<span class="s1">连接池</span>&lt;/strong&gt;<span class="s1">。至此我们就可以顺利的做出了初级项目，</span>&lt;a href="http://coderblue.cn/3511959982/"&gt;<span class="s1">知新网在线学习网站</span>&lt;/a&gt;<span class="s1">。</span>&lt;/p&gt;</p>
+<p class="p3"><span class="s3">&lt;p&gt;</span>中级阶段：主要熟悉了<span class="s3">&lt;strong&gt;Maven</span>工程、<span class="s3">Mybatis</span>、<span class="s3">Spring</span>、<span class="s3">SpringMvc</span>、<span class="s3">Springboot&lt;/strong&gt;</span>，然后前端部分又接触了<span class="s3">&lt;strong&gt;Layui&lt;/strong&gt;</span>框架，前后端交互时更加方便，做的页面也更美观了。在使用框架后，最大的感受就是自己的配置相对于初级省了很多时间，我能花更多的时间放在前端页面的数据展示上。至此，深刻体会到，前端也是非常难学的，想要学好体系也很庞大。<span class="s3">&lt;/p&gt;</span></p>
+<p class="p3"><span class="s3">&lt;p&gt;</span>高级阶段：接触的就是<span class="s3">Spring Cloud</span>，目前只是粗俗的了解了下，并没有实用过。<span class="s2">😟</span><span class="s3">&lt;/p&gt;</span></p>
+<p class="p1">&lt;h3 id="<span class="s2">☀️</span><span class="s1">进阶之路</span>"&gt;&lt;a href="#<span class="s2">☀️</span><span class="s1">进阶之路</span>" class="headerlink" title="<span class="s2">☀️</span><span class="s1">进阶之路</span>"&gt;&lt;/a&gt;<span class="s2">☀️</span><span class="s1">进阶之路</span>&lt;/h3&gt;&lt;p&gt;<span class="s1">目前在一家经验丰富的互联网政务的公司实习，里面的业务逻辑确实把我绕晕了</span><span class="s2">😂</span><span class="s1">。不过也是在这我熟知了</span>&lt;strong&gt;Vue&lt;/strong&gt;<span class="s1">，便又踏上了一条不归路，用起来还是真的香。</span>&lt;/p&gt;</p>
+<p class="p1">&lt;h3 id="<span class="s2">😃</span><span class="s1">项目代码</span>"&gt;&lt;a href="#<span class="s2">😃</span><span class="s1">项目代码</span>" class="headerlink" title="<span class="s2">😃</span><span class="s1">项目代码</span>"&gt;&lt;/a&gt;<span class="s2">😃</span><span class="s1">项目代码</span>&lt;/h3&gt;&lt;p&gt;<span class="s1">托管于</span>&lt;a href="https://github.com/onecoderly" target="_blank" rel="noopener"&gt;GitHub&lt;/a&gt;<span class="s1">、</span>&lt;a href="https://gitee.com/ly_blue" target="_blank" rel="noopener"&gt;Gitee<span class="s1">仓库</span>&lt;/a&gt;&lt;/p&gt;</p>
+<p class="p1">&lt;h3 id="<span class="s2">🚄</span><span class="s1">建站之路</span>"&gt;&lt;a href="#<span class="s2">🚄</span><span class="s1">建站之路</span>" class="headerlink" title="<span class="s2">🚄</span><span class="s1">建站之路</span>"&gt;&lt;/a&gt;<span class="s2">🚄</span><span class="s1">建站之路</span>&lt;/h3&gt;&lt;blockquote&gt;</p>
+<p class="p3"><span class="s3">&lt;p&gt;1.</span>参找<span class="s3">B</span>站教程搭建了<span class="s3">yilia</span>主题，发现了好玩的看板娘，但是由于界面不中，遂想更换主题<span class="s3">&lt;br&gt;2.Fork</span>了北宸哥的魔改的主题，自己就踏上了一条不归路，折腾了一星期。熟悉了好多小玩意，比如：旋转立体魔方、巡礼彩虹播放器<span class="s3">…&lt;a href="https://liuyang6blue.github.io/" target="_blank" rel="noopener"&gt;</span>原主题<span class="s3">&lt;/a&gt;&lt;br&gt;3.</span>将<span class="s3">Blog</span>部署到阿里云服务器，绑定域名<span class="s3">&lt;br&gt;4.</span>主题速度优化不明显，便忍痛割爱，重新更换主题，寻求一款简约风格的，最后相中了<span class="s3"> &lt;a href="https://shen-yu.gitee.io/" target="_blank" rel="noopener"&gt;ayer</span>主题<span class="s3">&lt;/a&gt;</span>。<span class="s3">&lt;br&gt;5.</span>对主题界面稍微美化修改，速度相对原主题提升不少，至此。奉劝一句：<span class="s3">&lt;strong&gt;</span>博客优化是个无底洞，要忍住、忍住！！！<span class="s3">&lt;/strong&gt;</span>我就爱折腾这些小名堂，费时间太多了，最后发现依旧只是个小菜鸟<span class="s2">🐦</span>。<span class="s3">&lt;/p&gt;</span></p>
+<p class="p1">&lt;/blockquote&gt;</p>
+<p class="p1">&lt;p&gt;&lt;span id="my_photo"&gt;&lt;img id="my" src="https://exampleblue-1301047842.cos.ap-chengdu.myqcloud.com/cover/<span class="s1">我的头像</span>.png"&gt;&lt;/span&gt;&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- reward --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="reward-btn"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span><span class="s1">打赏</span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- copyright --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="declare"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;ul class="post-copyright"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;i class="ri-copyright-line"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;strong&gt;<span class="s1">版权声明：</span> &lt;/strong s&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span><span class="s1">本博客所有文章除特别声明外，均采用</span> &lt;a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>target="_blank"&gt;Apache License 2.0&lt;/a&gt; <span class="s1">许可协议。转载请注明出处！</span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="article-footer"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1">&lt;div class="share-btn"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span class="share-sns share-outer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;i class="ri-share-forward-line"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span><span class="s1">分享</span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="share-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;i class="arrow"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="share-icons"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="weibo share-sns" href="javascript:;" data-type="weibo"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="ri-weibo-fill"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="ri-wechat-fill"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="qq share-sns" href="javascript:;" data-type="qq"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="ri-qq-fill"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="douban share-sns" href="javascript:;" data-type="douban"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="ri-douban-line"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;!-- &lt;a class="qzone share-sns" href="javascript:;" data-type="qzone"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="icon icon-qzone"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/a&gt; --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="facebook share-sns" href="javascript:;" data-type="facebook"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="ri-facebook-circle-fill"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="twitter share-sns" href="javascript:;" data-type="twitter"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="ri-twitter-fill"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="google share-sns" href="javascript:;" data-type="google"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="ri-google-fill"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="wx-share-modal"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a class="modal-close" href="javascript:;"&gt;&lt;i class="ri-close-circle-line"&gt;&lt;/i&gt;&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;<span class="s1">扫一扫，分享到微信</span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="wx-qrcode"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=http://coderblue.cn/about/" alt="<span class="s1">微信分享二维码</span>"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div id="share-mask"&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1">&lt;!-- valine<span class="s1">评论</span> --&gt;</p>
+<p class="p1">&lt;div id="vcomments-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="vcomments"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>new Valine({</p>
+<p class="p1"><span class="Apple-converted-space">        </span>el: '#vcomments',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>app_id: 'Y6sHmEuePRpPWDd5Yv45nEWL-MdYXbMMI',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>app_key: 'hLz1Wo8jhbxGo5oQFQ59Gp6a',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>path: window.location.pathname,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>notify: 'true',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>verify: 'false',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>avatar: 'mp',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>placeholder: '<span class="s1">给我的文章加点评论吧</span>~',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>recordIP: true</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const infoEle = document.querySelector('#vcomments .info');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (infoEle &amp;&amp; infoEle.childNodes &amp;&amp; infoEle.childNodes.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>infoEle.childNodes.forEach(function (item) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>item.parentNode.removeChild(item);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#vcomments-box {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>padding: 5px 30px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media screen and (max-width: 800px) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#vcomments-box {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 5px 0px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>#vcomments-box #vcomments {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>background-color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.v .vlist .vcard .vh {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>padding-right: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.v .vlist .vcard {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>padding-left: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p2"><br></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/article&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1">&lt;footer class="footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="outer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;ol class="list-inline"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&amp;copy;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>2020</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Liu Yang</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&amp;nbsp|&amp;nbsp&lt;a href="http://www.beian.miit.gov.cn/" target="_blank" rel="noopener" style="text-decoration: none;"&gt;<span class="s1">湘</span>ICP<span class="s1">备</span>20003709<span class="s1">号</span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="days"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;script language="javascript"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function show_date_time() {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>window.setTimeout("show_date_time()", 1000);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>BirthDay = new Date("01/01/2020 00:00:00");</p>
+<p class="p1"><span class="Apple-converted-space">          </span>today = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>timeold = (today.getTime() - BirthDay.getTime());</p>
+<p class="p1"><span class="Apple-converted-space">          </span>sectimeold = timeold / 1000</p>
+<p class="p1"><span class="Apple-converted-space">          </span>secondsold = Math.floor(sectimeold);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>msPerDay = 24 * 60 * 60 * 1000</p>
+<p class="p1"><span class="Apple-converted-space">          </span>e_daysold = timeold / msPerDay</p>
+<p class="p1"><span class="Apple-converted-space">          </span>daysold = Math.floor(e_daysold);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>e_hrsold = (e_daysold - daysold) * 24;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>hrsold = setzero(Math.floor(e_hrsold));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>e_minsold = (e_hrsold - hrsold) * 60;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>minsold = setzero(Math.floor((e_hrsold - hrsold) * 60));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>seconds = setzero(Math.floor((e_minsold - minsold) * 60));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>document.getElementById('days').innerHTML="&lt;style type=\"text/css\"&gt;span {color: #4c618f;}&lt;/style&gt;&lt;span&gt;<span class="s1">我已在此等候你</span>&lt;/span&gt;"+daysold+"&lt;style type=\"text/css\"&gt;span {color: #4c618f;}&lt;/style&gt;&lt;span&gt;<span class="s1">天</span>&lt;/span&gt;"+hrsold+"&lt;style type=\"text/css\"&gt;span {color: #4c618f;}&lt;/style&gt;&lt;span&gt;<span class="s1">时</span>&lt;/span&gt;"+minsold+"&lt;style type=\"text/css\"&gt;span {color: #4c618f;}&lt;/style&gt;&lt;span&gt;<span class="s1">分</span>&lt;/span&gt;"+seconds+"&lt;style type=\"text/css\"&gt;span {color: #4c618f;}&lt;/style&gt;&lt;span&gt;<span class="s1">秒</span>&lt;/span&gt;";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function setzero(i) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (i &lt; 10) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>i = "0" + i</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return i;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>show_date_time();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/ol&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;ul class="list-busuanzi" style="display: block;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;li&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span id="busuanzi_container_site_pv"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span><span class="s1">我的第</span>&lt;span id="busuanzi_value_site_pv" style="color: #1095e6"&gt;&lt;/span&gt;<span class="s1">位朋友</span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/span&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;span id="busuanzi_container_site_uv"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span><span class="s1">，</span> <span class="s1">历经</span>&lt;span id="busuanzi_value_site_uv" style="color: #1095e6;"&gt;&lt;/span&gt;<span class="s1">次回眸才与你相遇</span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/span&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;li style="position: relative; top: -20px;"&gt;&lt;a style="color: #4c618f;" href="http://coderblue.cn/sitemap.xml"&gt;<span class="s1">站点地图</span>&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="to_top"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="totop" id="totop"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;i class="ri-arrow-up-line"&gt;&lt;/i&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;aside class="sidebar"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="navbar-toggle"&gt;&lt;/button&gt;</p>
+<p class="p1">&lt;nav class="navbar"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="logo"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="/"&gt;&lt;img src="/images/dog.jpg" alt="Blue"&gt;&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;ul class="nav nav-main"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;li class="nav-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="nav-item-link" href="/"&gt;<span class="s1">主页</span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/li&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;li class="nav-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="nav-item-link" href="/archives"&gt;<span class="s1">归档</span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/li&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;li class="nav-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="nav-item-link" href="/categories"&gt;<span class="s1">分类</span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/li&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;li class="nav-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="nav-item-link" href="/tags"&gt;<span class="s1">标签</span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/li&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;li class="nav-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="nav-item-link" href="/tags/%E9%9A%8F%E7%AC%94"&gt;<span class="s1">随笔</span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/li&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;li class="nav-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="nav-item-link" href="/check"&gt;<span class="s1">祈愿</span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/li&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;li class="nav-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="nav-item-link" href="/links"&gt;<span class="s1">友链</span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/li&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;li class="nav-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="nav-item-link" href="http://43.226.35.120" target="_blank" rel="noopener"&gt;<span class="s1">项目</span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/li&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;li class="nav-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="nav-item-link" href="/about"&gt;<span class="s1">关于我</span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/li&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/ul&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p1">&lt;nav class="navbar navbar-bottom"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;ul class="nav"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;li class="nav-item"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="nav-item-link nav-item-search"<span class="Apple-converted-space">  </span>title="Search"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;i class="ri-search-line"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/a&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;i class="ri-rss-line"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/a&gt;</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/ul&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p1">&lt;div class="search-form-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="local-search local-search-plugin"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;input type="search" id="local-search-input" class="local-search-input" placeholder="<span class="s1">搜索</span>..."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="local-search-result" class="local-search-result"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/aside&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="mask"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- #reward --&gt;</p>
+<p class="p1">&lt;div id="reward"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;span class="close"&gt;&lt;i class="ri-close-line"&gt;&lt;/i&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;p class="reward-p"&gt;&lt;i class="ri-cup-line"&gt;&lt;/i&gt;<span class="s1">请我喝杯咖啡吧</span>~&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="reward-box"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="reward-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;img class="reward-img" src="/images/alipay.jpg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span class="reward-type"&gt;<span class="s1">支付宝</span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="reward-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;img class="reward-img" src="/images/wechat.jpg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span class="reward-type"&gt;<span class="s1">微信</span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1">&lt;script src="/js/jquery-2.0.3.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script src="/js/jquery.justifiedGallery.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script src="/js/lazyload.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script src="/js/busuanzi-2.3.pure.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script src="/js/share.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script src="/fancybox/jquery.fancybox.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>var typed = new Typed("#subtitle", {</p>
+<p class="p3"><span class="s3"><span class="Apple-converted-space">    </span>strings: ['</span>一花一世界<span class="s3">,</span>一叶一追寻<span class="s3">','</span>面朝大海，春暖花开<span class="s3">','</span>愿你一生努力，一生被爱<span class="s3">'],</span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>startDelay: 0,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>typeSpeed: 200,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>loop: true,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>backSpeed: 100,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>showCursor: true</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} catch (err) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var ayerConfig = {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>mathjax: false</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script src="/js/ayer.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- Root element of PhotoSwipe. Must have class pswp. --&gt;</p>
+<p class="p1">&lt;div class="pswp" tabindex="-1" role="dialog" aria-hidden="true"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Background of PhotoSwipe.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">         </span>It's a separate element as animating opacity is faster than rgba(). --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="pswp__bg"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Slides wrapper with overflow:hidden. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="pswp__scroll-wrap"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Container that holds slides.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>PhotoSwipe keeps only 3 of them in the DOM to save memory.</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Don't modify these 3 pswp__item elements, data is added later on. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pswp__container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pswp__item"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pswp__item"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pswp__item"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pswp__ui pswp__ui--hidden"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pswp__top-bar"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!--<span class="Apple-converted-space">  </span>Controls are self-explanatory. Order can be changed. --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pswp__counter"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="pswp__button pswp__button--close" title="Close (Esc)"&gt;&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="pswp__button pswp__button--share" style="display:none" title="Share"&gt;&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="pswp__button pswp__button--fs" title="Toggle fullscreen"&gt;&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="pswp__button pswp__button--zoom" title="Zoom in/out"&gt;&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- element will get class pswp__preloader--active when preloader is running --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pswp__preloader"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="pswp__preloader__icn"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="pswp__preloader__cut"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="pswp__preloader__donut"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pswp__share-tooltip"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="pswp__caption"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="pswp__caption__center"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"&gt;</p>
+<p class="p1">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"&gt;</p>
+<p class="p1">&lt;script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function viewer_init() {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let pswpElement = document.querySelectorAll('.pswp')[0];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>$imgArr.forEach(($em, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>$em.onclick = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// slider<span class="s1">展开状态</span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// todo: <span class="s1">这样不好，后面改成状态</span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (document.querySelector('.left-col.show')) return</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let items = []</p>
+<p class="p1"><span class="Apple-converted-space">                </span>$imgArr.forEach(($em2, i2) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let img = $em2.getAttribute('data-idx', i2)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let title = $em2.getAttribute('alt')</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// <span class="s1">获得原图尺寸</span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const image = new Image()</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>image.src = src</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>items.push({</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>src: src,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>w: image.width || $em2.width,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>h: image.height || $em2.height,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>title: title</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>})</p>
+<p class="p1"><span class="Apple-converted-space">                </span>})</p>
+<p class="p1"><span class="Apple-converted-space">                </span>var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>index: parseInt(i)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>gallery.init()</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>})</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>viewer_init()</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script type="text/javascript" src="https://js.users.51.la/20544303.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- <span class="s1">代码块复制功能</span> --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script type="text/javascript" src="/js/src/clipboard.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script type="text/javascript" src="/js/src/clipboard-use.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- <span class="s1">页面点击小红心</span> --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script type="text/javascript" src="/js/love-click.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$(document).ready(function() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>$("#hbePass").focus();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- <span class="s1">自动提交百度文章链接</span> --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>(function(){</p>
+<p class="p1"><span class="Apple-converted-space">        </span>var bp = document.createElement('script');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>var curProtocol = window.location.protocol.split(':')[0];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (curProtocol === 'https') {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>else {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bp.src = 'http://push.zhanzhang.baidu.com/push.js';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>var s = document.getElementsByTagName("script")[0];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>s.parentNode.insertBefore(bp, s);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>})();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script type="text/javascript" size="210" alpha='0.3' zIndex="-2" src="/dist/ribbon.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/html&gt;</p>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/about/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+  
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'aDsQwlhzvBv0FMcfBGVHEfBM-gzGzoHsz',
+        app_key: 'Yrj2x3uWtManAhSJbyJw5MMr',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2020
+        Jenny
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/touxiang.jpg" alt="大鱼海棠"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/touxiang.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/touxiang.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['唯爱与梦想不可辜负', '罗马不是一天建成的', '蒲苇韧如丝，磐石无转移'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
