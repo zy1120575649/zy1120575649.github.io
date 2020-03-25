@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-24T01:40:30.408Z</updated>
+  <updated>2020-03-25T07:21:35.248Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test4</title>
+    <link href="http://yoursite.com/2020/03/24/test4/"/>
+    <id>http://yoursite.com/2020/03/24/test4/</id>
+    <published>2020-03-24T01:53:54.000Z</published>
+    <updated>2020-03-25T07:21:35.248Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;二手车交易价格预测&lt;/p&gt;
+&lt;p&gt;大家好，我是一个数据挖掘小白，通过看官方提供的内容我发现很多专业词汇我都没有接触过，我想通过这个平台来锻炼提高自己，感谢大家批评指正。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数据挖掘" scheme="http://yoursite.com/categoriesl/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="天池" scheme="http://yoursite.com/tags/%E5%A4%A9%E6%B1%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>test3</title>
