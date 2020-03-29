@@ -3,7 +3,390 @@
   <entry>
     <title>Datawhale-二手车价格预测Task4</title>
     <url>/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="Task4-建模调参"><a href="#Task4-建模调参" class="headerlink" title="Task4-建模调参"></a>Task4-建模调参</h1><p>这部分的学习目标是：了解常用的机器学习模型，并掌握机器学习模型的建模与调参流程。</p>
+<a id="more"></a>
+<h2 id="1-内容介绍"><a href="#1-内容介绍" class="headerlink" title="1 内容介绍"></a>1 内容介绍</h2><ol>
+<li><p>线性回归模型：<br>线性回归对于特征的要求；<br>处理长尾分布；<br>理解线性回归模型；</p>
+</li>
+<li><p>模型性能验证：<br>评价函数与目标函数；<br>交叉验证方法；<br>留一验证方法；<br>针对时间序列问题的验证；<br>绘制学习率曲线；<br>绘制验证曲线；</p>
+</li>
+<li><p>嵌入式特征选择：<br>Lasso回归；<br>Ridge回归；<br>决策树；</p>
+</li>
+<li><p>模型对比：<br>常用线性模型；<br>常用非线性模型；</p>
+</li>
+<li><p>模型调参：<br>贪心调参方法；<br>网格调参方法；<br>贝叶斯调参方法</p>
+</li>
+</ol>
+<h2 id="2-代码示例"><a href="#2-代码示例" class="headerlink" title="2 代码示例"></a>2 代码示例</h2><h3 id="2-1读取数据"><a href="#2-1读取数据" class="headerlink" title="2.1读取数据"></a>2.1读取数据</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reduce_mem_usage</span><span class="params">(df)</span>:</span></span><br><span class="line">    <span class="string">""" iterate through all the columns of a dataframe and modify the data type</span></span><br><span class="line"><span class="string">        to reduce memory usage.        </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    start_mem = df.memory_usage().sum() </span><br><span class="line">    print(<span class="string">'Memory usage of dataframe is &#123;:.2f&#125; MB'</span>.format(start_mem))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> df.columns:</span><br><span class="line">        col_type = df[col].dtype</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> col_type != object:</span><br><span class="line">            c_min = df[col].min()</span><br><span class="line">            c_max = df[col].max()</span><br><span class="line">            <span class="keyword">if</span> str(col_type)[:<span class="number">3</span>] == <span class="string">'int'</span>:</span><br><span class="line">                <span class="keyword">if</span> c_min &gt; np.iinfo(np.int8).min <span class="keyword">and</span> c_max &lt; np.iinfo(np.int8).max:</span><br><span class="line">                    df[col] = df[col].astype(np.int8)</span><br><span class="line">                <span class="keyword">elif</span> c_min &gt; np.iinfo(np.int16).min <span class="keyword">and</span> c_max &lt; np.iinfo(np.int16).max:</span><br><span class="line">                    df[col] = df[col].astype(np.int16)</span><br><span class="line">                <span class="keyword">elif</span> c_min &gt; np.iinfo(np.int32).min <span class="keyword">and</span> c_max &lt; np.iinfo(np.int32).max:</span><br><span class="line">                    df[col] = df[col].astype(np.int32)</span><br><span class="line">                <span class="keyword">elif</span> c_min &gt; np.iinfo(np.int64).min <span class="keyword">and</span> c_max &lt; np.iinfo(np.int64).max:</span><br><span class="line">                    df[col] = df[col].astype(np.int64)  </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> c_min &gt; np.finfo(np.float16).min <span class="keyword">and</span> c_max &lt; np.finfo(np.float16).max:</span><br><span class="line">                    df[col] = df[col].astype(np.float16)</span><br><span class="line">                <span class="keyword">elif</span> c_min &gt; np.finfo(np.float32).min <span class="keyword">and</span> c_max &lt; np.finfo(np.float32).max:</span><br><span class="line">                    df[col] = df[col].astype(np.float32)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    df[col] = df[col].astype(np.float64)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            df[col] = df[col].astype(<span class="string">'category'</span>)</span><br><span class="line"></span><br><span class="line">    end_mem = df.memory_usage().sum() </span><br><span class="line">    print(<span class="string">'Memory usage after optimization is: &#123;:.2f&#125; MB'</span>.format(end_mem))</span><br><span class="line">    print(<span class="string">'Decreased by &#123;:.1f&#125;%'</span>.format(<span class="number">100</span> * (start_mem - end_mem) / start_mem))</span><br><span class="line">    <span class="keyword">return</span> df</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sample_feature = reduce_mem_usage(pd.read_csv(<span class="string">'data_for_tree.csv'</span>))</span><br></pre></td></tr></table></figure>
+
+<pre><code>Memory usage of dataframe is 62099672.00 MB
+Memory usage after optimization is: 16520303.00 MB
+Decreased by 73.4%</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">continuous_feature_names = [x <span class="keyword">for</span> x <span class="keyword">in</span> sample_feature.columns <span class="keyword">if</span> x <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">'price'</span>,<span class="string">'brand'</span>,<span class="string">'model'</span>,<span class="string">'brand'</span>]]</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2线性回归-amp-五折交叉验证-amp-模拟真实业务情况"><a href="#2-2线性回归-amp-五折交叉验证-amp-模拟真实业务情况" class="headerlink" title="2.2线性回归 &amp; 五折交叉验证 &amp; 模拟真实业务情况"></a>2.2线性回归 &amp; 五折交叉验证 &amp; 模拟真实业务情况</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sample_feature = sample_feature.dropna().replace(<span class="string">'-'</span>, <span class="number">0</span>).reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">sample_feature[<span class="string">'notRepairedDamage'</span>] = sample_feature[<span class="string">'notRepairedDamage'</span>].astype(np.float32)</span><br><span class="line">train = sample_feature[continuous_feature_names + [<span class="string">'price'</span>]]</span><br><span class="line"></span><br><span class="line">train_X = train[continuous_feature_names]</span><br><span class="line">train_y = train[<span class="string">'price'</span>]</span><br></pre></td></tr></table></figure>
+
+<h4 id="简单建模"><a href="#简单建模" class="headerlink" title="简单建模"></a>简单建模</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = LinearRegression(normalize=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = model.fit(train_X, train_y)</span><br></pre></td></tr></table></figure>
+
+<p>查看训练的线性回归模型的截距（intercept）与权重(coef)：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'intercept:'</span>+ str(model.intercept_)</span><br><span class="line"></span><br><span class="line">sorted(dict(zip(continuous_feature_names, model.coef_)).items(), key=<span class="keyword">lambda</span> x:x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[(&apos;v_6&apos;, 3367064.3416419057),
+ (&apos;v_8&apos;, 700675.560939892),
+ (&apos;v_9&apos;, 170630.27723222843),
+ (&apos;v_7&apos;, 32322.661932036997),
+ (&apos;v_12&apos;, 20473.67079699449),
+ (&apos;v_3&apos;, 17868.079541513765),
+ (&apos;v_11&apos;, 11474.938996727224),
+ (&apos;v_13&apos;, 11261.76456002154),
+ (&apos;v_10&apos;, 2683.920090598985),
+ (&apos;gearbox&apos;, 881.822503924978),
+ (&apos;fuelType&apos;, 363.9042507217718),
+ (&apos;bodyType&apos;, 189.6027101206811),
+ (&apos;city&apos;, 44.94975120523234),
+ (&apos;power&apos;, 28.55390161675385),
+ (&apos;brand_price_median&apos;, 0.510372813407827),
+ (&apos;brand_price_std&apos;, 0.4503634709262942),
+ (&apos;brand_amount&apos;, 0.14881120395066458),
+ (&apos;brand_price_max&apos;, 0.0031910186703154246),
+ (&apos;SaleID&apos;, 5.355989919860341e-05),
+ (&apos;offerType&apos;, 1.085083931684494e-05),
+ (&apos;seller&apos;, -1.564621925354004e-07),
+ (&apos;train&apos;, -9.801937267184258e-06),
+ (&apos;brand_price_sum&apos;, -2.1750068681877473e-05),
+ (&apos;name&apos;, -0.00029800127130055304),
+ (&apos;used_time&apos;, -0.002515894332882901),
+ (&apos;brand_price_average&apos;, -0.40490484510106556),
+ (&apos;brand_price_min&apos;, -2.2467753486891016),
+ (&apos;power_bin&apos;, -34.420644117280766),
+ (&apos;v_14&apos;, -274.78411807803394),
+ (&apos;kilometer&apos;, -372.8975266607397),
+ (&apos;notRepairedDamage&apos;, -495.19038446291916),
+ (&apos;v_0&apos;, -2045.0549573549322),
+ (&apos;v_5&apos;, -11022.986240482482),
+ (&apos;v_4&apos;, -15121.731109861388),
+ (&apos;v_2&apos;, -26098.29992056384),
+ (&apos;v_1&apos;, -45556.18929727631)]</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">subsample_index = np.random.randint(low=<span class="number">0</span>, high=len(train_y), size=<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.scatter(train_X[<span class="string">'v_9'</span>][subsample_index], train_y[subsample_index], color=<span class="string">'black'</span>)</span><br><span class="line">plt.scatter(train_X[<span class="string">'v_9'</span>][subsample_index], model.predict(train_X.loc[subsample_index]), color=<span class="string">'blue'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'v_9'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'price'</span>)</span><br><span class="line">plt.legend([<span class="string">'True Price'</span>,<span class="string">'Predicted Price'</span>],loc=<span class="string">'upper right'</span>)</span><br><span class="line">print(<span class="string">'The predicted price is obvious different from true price'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<pre><code>The predicted price is obvious different from true price</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_15_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">print(<span class="string">'It is clear to see the price shows a typical exponential distribution'</span>)</span><br><span class="line">plt.figure(figsize=(<span class="number">15</span>,<span class="number">5</span>))</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">sns.distplot(train_y)</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">sns.distplot(train_y[train_y &lt; np.quantile(train_y, <span class="number">0.9</span>)])</span><br></pre></td></tr></table></figure>
+
+<pre><code>It is clear to see the price shows a typical exponential distribution
+
+
+
+
+
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x1246a9f50&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_16_2.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_y_ln = np.log(train_y + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">print(<span class="string">'The transformed price seems like normal distribution'</span>)</span><br><span class="line">plt.figure(figsize=(<span class="number">15</span>,<span class="number">5</span>))</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">sns.distplot(train_y_ln)</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">sns.distplot(train_y_ln[train_y_ln &lt; np.quantile(train_y_ln, <span class="number">0.9</span>)])</span><br></pre></td></tr></table></figure>
+
+<pre><code>The transformed price seems like normal distribution
+
+
+
+
+
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a2a8ca390&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_18_2.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = model.fit(train_X, train_y_ln)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'intercept:'</span>+ str(model.intercept_))</span><br><span class="line">sorted(dict(zip(continuous_feature_names, model.coef_)).items(), key=<span class="keyword">lambda</span> x:x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>intercept:18.75074946555847
+
+
+
+
+
+[(&apos;v_9&apos;, 8.052409900567731),
+ (&apos;v_5&apos;, 5.764236596654289),
+ (&apos;v_12&apos;, 1.6182081236824377),
+ (&apos;v_1&apos;, 1.4798310582980099),
+ (&apos;v_11&apos;, 1.166901656362573),
+ (&apos;v_13&apos;, 0.9404711296038616),
+ (&apos;v_7&apos;, 0.713727308356608),
+ (&apos;v_3&apos;, 0.6837875771100316),
+ (&apos;v_0&apos;, 0.008500518010162533),
+ (&apos;power_bin&apos;, 0.008497969302895451),
+ (&apos;gearbox&apos;, 0.007922377278326771),
+ (&apos;fuelType&apos;, 0.006684769706822626),
+ (&apos;bodyType&apos;, 0.00452352009270304),
+ (&apos;power&apos;, 0.000716189420535552),
+ (&apos;brand_price_min&apos;, 3.334351114749525e-05),
+ (&apos;brand_amount&apos;, 2.897879704277287e-06),
+ (&apos;brand_price_median&apos;, 1.2571172873067898e-06),
+ (&apos;brand_price_std&apos;, 6.659176363472789e-07),
+ (&apos;brand_price_max&apos;, 6.194956307515058e-07),
+ (&apos;brand_price_average&apos;, 5.999345964992107e-07),
+ (&apos;SaleID&apos;, 2.1194170039649608e-08),
+ (&apos;offerType&apos;, 1.4733814168721437e-10),
+ (&apos;train&apos;, 1.0828671292983927e-11),
+ (&apos;seller&apos;, -6.533440455314121e-11),
+ (&apos;brand_price_sum&apos;, -1.5126504215917122e-10),
+ (&apos;name&apos;, -7.015512588913706e-08),
+ (&apos;used_time&apos;, -4.122479372350841e-06),
+ (&apos;city&apos;, -0.0022187824810423534),
+ (&apos;v_14&apos;, -0.004234223418139086),
+ (&apos;kilometer&apos;, -0.013835866226883525),
+ (&apos;notRepairedDamage&apos;, -0.2702794234984643),
+ (&apos;v_4&apos;, -0.8315701200997693),
+ (&apos;v_2&apos;, -0.9470842241656942),
+ (&apos;v_10&apos;, -1.626146668976213),
+ (&apos;v_8&apos;, -40.34300748761572),
+ (&apos;v_6&apos;, -238.79036385506865)]</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.scatter(train_X[<span class="string">'v_9'</span>][subsample_index], train_y[subsample_index], color=<span class="string">'black'</span>)</span><br><span class="line">plt.scatter(train_X[<span class="string">'v_9'</span>][subsample_index], np.exp(model.predict(train_X.loc[subsample_index])), color=<span class="string">'blue'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'v_9'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'price'</span>)</span><br><span class="line">plt.legend([<span class="string">'True Price'</span>,<span class="string">'Predicted Price'</span>],loc=<span class="string">'upper right'</span>)</span><br><span class="line">print(<span class="string">'The predicted price seems normal after np.log transforming'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<pre><code>The predicted price seems normal after np.log transforming</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_20_1.png" alt="png"></p>
+<h4 id="五折交叉验证"><a href="#五折交叉验证" class="headerlink" title="五折交叉验证"></a>五折交叉验证</h4><p>在使用训练集对参数进行训练的时候，经常会发现人们通常会将一整个训练集分为三个部分（比如mnist手写训练集）。一般分为：训练集（train_set），评估集（valid_set），测试集（test_set）这三个部分。这其实是为了保证训练效果而特意设置的。其中测试集很好理解，其实就是完全不参与训练的数据，仅仅用来观测测试效果的数据。而训练集和评估集则牵涉到下面的知识了。</p>
+<p>因为在实际的训练中，训练的结果对于训练集的拟合程度通常还是挺好的（初始条件敏感），但是对于训练集之外的数据的拟合程度通常就不那么令人满意了。因此我们通常并不会把所有的数据集都拿来训练，而是分出一部分来（这一部分不参加训练）对训练集生成的参数进行测试，相对客观的判断这些参数对训练集之外的数据的符合程度。这种思想就称为交叉验证（Cross Validation）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error,  make_scorer</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log_transfer</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(y, yhat)</span>:</span></span><br><span class="line">        result = func(np.log(y), np.nan_to_num(np.log(yhat)))</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scores = cross_val_score(model, X=train_X, y=train_y, verbose=<span class="number">1</span>, cv = <span class="number">5</span>, scoring=make_scorer(log_transfer(mean_absolute_error)))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[Parallel(n_jobs=1)]: Using backend SequentialBackend with 1 concurrent workers.
+[Parallel(n_jobs=1)]: Done   5 out of   5 | elapsed:    0.8s finished</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(<span class="string">'AVG:'</span>, np.mean(scores))</span><br></pre></td></tr></table></figure>
+
+<pre><code>AVG: 1.3658023920314182</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scores = cross_val_score(model, X=train_X, y=train_y_ln, verbose=<span class="number">1</span>, cv = <span class="number">5</span>, scoring=make_scorer(mean_absolute_error))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[Parallel(n_jobs=1)]: Using backend SequentialBackend with 1 concurrent workers.
+[Parallel(n_jobs=1)]: Done   5 out of   5 | elapsed:    0.8s finished</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(<span class="string">'AVG:'</span>, np.mean(scores))</span><br></pre></td></tr></table></figure>
+
+<pre><code>AVG: 0.19325301837047415</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scores = pd.DataFrame(scores.reshape(<span class="number">1</span>,<span class="number">-1</span>))</span><br><span class="line">scores.columns = [<span class="string">'cv'</span> + str(x) <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">6</span>)]</span><br><span class="line">scores.index = [<span class="string">'MAE'</span>]</span><br><span class="line">scores</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cv1</th>
+      <th>cv2</th>
+      <th>cv3</th>
+      <th>cv4</th>
+      <th>cv5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MAE</th>
+      <td>0.190792</td>
+      <td>0.193758</td>
+      <td>0.194132</td>
+      <td>0.191825</td>
+      <td>0.195758</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h4 id="模拟真实业务情况"><a href="#模拟真实业务情况" class="headerlink" title="模拟真实业务情况"></a>模拟真实业务情况</h4><p>但在事实上，由于我们并不具有预知未来的能力，五折交叉验证在某些与时间相关的数据集上反而反映了不真实的情况。通过2018年的二手车价格预测2017年的二手车价格，这显然是不合理的，因此我们还可以采用时间顺序对数据集进行分隔。在本例中，我们选用靠前时间的4/5样本当作训练集，靠后时间的1/5当作验证集，最终结果与五折交叉验证差距不大。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sample_feature = sample_feature.reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">split_point = len(sample_feature) // <span class="number">5</span> * <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train = sample_feature.loc[:split_point].dropna()</span><br><span class="line">val = sample_feature.loc[split_point:].dropna()</span><br><span class="line"></span><br><span class="line">train_X = train[continuous_feature_names]</span><br><span class="line">train_y_ln = np.log(train[<span class="string">'price'</span>] + <span class="number">1</span>)</span><br><span class="line">val_X = val[continuous_feature_names]</span><br><span class="line">val_y_ln = np.log(val[<span class="string">'price'</span>] + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = model.fit(train_X, train_y_ln)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">mean_absolute_error(val_y_ln, model.predict(val_X))</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0.19577667270300972</code></pre><h4 id="绘制学习率曲线与验证曲线"><a href="#绘制学习率曲线与验证曲线" class="headerlink" title="绘制学习率曲线与验证曲线"></a>绘制学习率曲线与验证曲线</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> learning_curve, validation_curve</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">? learning_curve</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_learning_curve</span><span class="params">(estimator, title, X, y, ylim=None, cv=None,n_jobs=<span class="number">1</span>, train_size=np.linspace<span class="params">(<span class="number">.1</span>, <span class="number">1.0</span>, <span class="number">5</span> )</span>)</span>:</span>  </span><br><span class="line">    plt.figure()  </span><br><span class="line">    plt.title(title)  </span><br><span class="line">    <span class="keyword">if</span> ylim <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:  </span><br><span class="line">        plt.ylim(*ylim)  </span><br><span class="line">    plt.xlabel(<span class="string">'Training example'</span>)  </span><br><span class="line">    plt.ylabel(<span class="string">'score'</span>)  </span><br><span class="line">    train_sizes, train_scores, test_scores = learning_curve(estimator, X, y, cv=cv, n_jobs=n_jobs, train_sizes=train_size, scoring = make_scorer(mean_absolute_error))  </span><br><span class="line">    train_scores_mean = np.mean(train_scores, axis=<span class="number">1</span>)  </span><br><span class="line">    train_scores_std = np.std(train_scores, axis=<span class="number">1</span>)  </span><br><span class="line">    test_scores_mean = np.mean(test_scores, axis=<span class="number">1</span>)  </span><br><span class="line">    test_scores_std = np.std(test_scores, axis=<span class="number">1</span>)  </span><br><span class="line">    plt.grid()<span class="comment">#区域  </span></span><br><span class="line">    plt.fill_between(train_sizes, train_scores_mean - train_scores_std,  </span><br><span class="line">                     train_scores_mean + train_scores_std, alpha=<span class="number">0.1</span>,  </span><br><span class="line">                     color=<span class="string">"r"</span>)  </span><br><span class="line">    plt.fill_between(train_sizes, test_scores_mean - test_scores_std,  </span><br><span class="line">                     test_scores_mean + test_scores_std, alpha=<span class="number">0.1</span>,  </span><br><span class="line">                     color=<span class="string">"g"</span>)  </span><br><span class="line">    plt.plot(train_sizes, train_scores_mean, <span class="string">'o-'</span>, color=<span class="string">'r'</span>,  </span><br><span class="line">             label=<span class="string">"Training score"</span>)  </span><br><span class="line">    plt.plot(train_sizes, test_scores_mean,<span class="string">'o-'</span>,color=<span class="string">"g"</span>,  </span><br><span class="line">             label=<span class="string">"Cross-validation score"</span>)  </span><br><span class="line">    plt.legend(loc=<span class="string">"best"</span>)  </span><br><span class="line">    <span class="keyword">return</span> plt</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plot_learning_curve(LinearRegression(), <span class="string">'Liner_model'</span>, train_X[:<span class="number">1000</span>], train_y_ln[:<span class="number">1000</span>], ylim=(<span class="number">0.0</span>, <span class="number">0.5</span>), cv=<span class="number">5</span>, n_jobs=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;module &apos;matplotlib.pyplot&apos; from &apos;/opt/anaconda3/lib/python3.7/site-packages/matplotlib/pyplot.py&apos;&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_40_1.png" alt="png"></p>
+<h4 id="多种模型对比"><a href="#多种模型对比" class="headerlink" title="多种模型对比"></a>多种模型对比</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train = sample_feature[continuous_feature_names + [<span class="string">'price'</span>]].dropna()</span><br><span class="line"></span><br><span class="line">train_X = train[continuous_feature_names]</span><br><span class="line">train_y = train[<span class="string">'price'</span>]</span><br><span class="line">train_y_ln = np.log(train_y + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h5 id="线性模型-amp-嵌入式特征选择"><a href="#线性模型-amp-嵌入式特征选择" class="headerlink" title="线性模型 &amp; 嵌入式特征选择"></a>线性模型 &amp; 嵌入式特征选择</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Lasso</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">models = [LinearRegression(),</span><br><span class="line">          Ridge(),</span><br><span class="line">          Lasso()]</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result = dict()</span><br><span class="line"><span class="keyword">for</span> model <span class="keyword">in</span> models:</span><br><span class="line">    model_name = str(model).split(<span class="string">'('</span>)[<span class="number">0</span>]</span><br><span class="line">    scores = cross_val_score(model, X=train_X, y=train_y_ln, verbose=<span class="number">0</span>, cv = <span class="number">5</span>, scoring=make_scorer(mean_absolute_error))</span><br><span class="line">    result[model_name] = scores</span><br><span class="line">    print(model_name + <span class="string">' is finished'</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>LinearRegression is finished
+Ridge is finished
+Lasso is finished</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result = pd.DataFrame(result)</span><br><span class="line">result.index = [<span class="string">'cv'</span> + str(x) <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">6</span>)]</span><br><span class="line">result</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LinearRegression</th>
+      <th>Ridge</th>
+      <th>Lasso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>cv1</th>
+      <td>0.190792</td>
+      <td>0.194832</td>
+      <td>0.383899</td>
+    </tr>
+    <tr>
+      <th>cv2</th>
+      <td>0.193758</td>
+      <td>0.197632</td>
+      <td>0.381893</td>
+    </tr>
+    <tr>
+      <th>cv3</th>
+      <td>0.194132</td>
+      <td>0.198123</td>
+      <td>0.384090</td>
+    </tr>
+    <tr>
+      <th>cv4</th>
+      <td>0.191825</td>
+      <td>0.195670</td>
+      <td>0.380526</td>
+    </tr>
+    <tr>
+      <th>cv5</th>
+      <td>0.195758</td>
+      <td>0.199676</td>
+      <td>0.383611</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = LinearRegression().fit(train_X, train_y_ln)</span><br><span class="line">print(<span class="string">'intercept:'</span>+ str(model.intercept_))</span><br><span class="line">sns.barplot(abs(model.coef_), continuous_feature_names)</span><br></pre></td></tr></table></figure>
+
+<pre><code>intercept:18.747877090866396
+
+
+
+
+
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x122af1510&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_48_2.png" alt="png"></p>
+<p>L2正则化在拟合过程中通常都倾向于让权值尽可能小，最后构造一个所有参数都比较小的模型。因为一般认为参数值小的模型比较简单，能适应不同的数据集，也在一定程度上避免了过拟合现象。可以设想一下对于一个线性回归方程，若参数很大，那么只要数据偏移一点点，就会对结果造成很大的影响；但如果参数足够小，数据偏移得多一点也不会对结果造成什么影响，专业一点的说法是『抗扰动能力强』</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = Ridge().fit(train_X, train_y_ln)</span><br><span class="line">print(<span class="string">'intercept:'</span>+ str(model.intercept_))</span><br><span class="line">sns.barplot(abs(model.coef_), continuous_feature_names)</span><br></pre></td></tr></table></figure>
+
+<pre><code>intercept:4.6717097880636445
+
+
+
+
+
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x122afafd0&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_50_2.png" alt="png"></p>
+<p>L1正则化有助于生成一个稀疏权值矩阵，进而可以用于特征选择。如下图，我们发现power与userd_time特征非常重要。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = Lasso().fit(train_X, train_y_ln)</span><br><span class="line">print(<span class="string">'intercept:'</span>+ str(model.intercept_))</span><br><span class="line">sns.barplot(abs(model.coef_), continuous_feature_names)</span><br></pre></td></tr></table></figure>
+
+<pre><code>intercept:8.672182402894254
+
+
+
+
+
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x12483b050&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_52_2.png" alt="png"></p>
+<h5 id="非线性模型"><a href="#非线性模型" class="headerlink" title="非线性模型"></a>非线性模型</h5><h4 id="模型调参"><a href="#模型调参" class="headerlink" title="模型调参"></a>模型调参</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">## LGB的参数集合：</span></span><br><span class="line"></span><br><span class="line">objective = [<span class="string">'regression'</span>, <span class="string">'regression_l1'</span>, <span class="string">'mape'</span>, <span class="string">'huber'</span>, <span class="string">'fair'</span>]</span><br><span class="line"></span><br><span class="line">num_leaves = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">40</span>, <span class="number">55</span>]</span><br><span class="line">max_depth = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">40</span>, <span class="number">55</span>]</span><br><span class="line">bagging_fraction = []</span><br><span class="line">feature_fraction = []</span><br><span class="line">drop_rate = []</span><br></pre></td></tr></table></figure>
+
+<h5 id="贪心调参"><a href="#贪心调参" class="headerlink" title="贪心调参"></a>贪心调参</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">best_obj = dict()</span><br><span class="line"><span class="keyword">for</span> obj <span class="keyword">in</span> objective:</span><br><span class="line">    model = LGBMRegressor(objective=obj)</span><br><span class="line">    score = np.mean(cross_val_score(model, X=train_X, y=train_y_ln, verbose=<span class="number">0</span>, cv = <span class="number">5</span>, scoring=make_scorer(mean_absolute_error)))</span><br><span class="line">    best_obj[obj] = score</span><br><span class="line">    </span><br><span class="line">best_leaves = dict()</span><br><span class="line"><span class="keyword">for</span> leaves <span class="keyword">in</span> num_leaves:</span><br><span class="line">    model = LGBMRegressor(objective=min(best_obj.items(), key=<span class="keyword">lambda</span> x:x[<span class="number">1</span>])[<span class="number">0</span>], num_leaves=leaves)</span><br><span class="line">    score = np.mean(cross_val_score(model, X=train_X, y=train_y_ln, verbose=<span class="number">0</span>, cv = <span class="number">5</span>, scoring=make_scorer(mean_absolute_error)))</span><br><span class="line">    best_leaves[leaves] = score</span><br><span class="line">    </span><br><span class="line">best_depth = dict()</span><br><span class="line"><span class="keyword">for</span> depth <span class="keyword">in</span> max_depth:</span><br><span class="line">    model = LGBMRegressor(objective=min(best_obj.items(), key=<span class="keyword">lambda</span> x:x[<span class="number">1</span>])[<span class="number">0</span>],</span><br><span class="line">                          num_leaves=min(best_leaves.items(), key=<span class="keyword">lambda</span> x:x[<span class="number">1</span>])[<span class="number">0</span>],</span><br><span class="line">                          max_depth=depth)</span><br><span class="line">    score = np.mean(cross_val_score(model, X=train_X, y=train_y_ln, verbose=<span class="number">0</span>, cv = <span class="number">5</span>, scoring=make_scorer(mean_absolute_error)))</span><br><span class="line">    best_depth[depth] = score</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sns.lineplot(x=[<span class="string">'0_initial'</span>,<span class="string">'1_turning_obj'</span>,<span class="string">'2_turning_leaves'</span>,<span class="string">'3_turning_depth'</span>], y=[<span class="number">0.143</span> ,min(best_obj.values()), min(best_leaves.values()), min(best_depth.values())])</span><br></pre></td></tr></table></figure>
+
+<h5 id="Grid-Search-调参"><a href="#Grid-Search-调参" class="headerlink" title="Grid Search 调参"></a>Grid Search 调参</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">parameters = &#123;<span class="string">'objective'</span>: objective , <span class="string">'num_leaves'</span>: num_leaves, <span class="string">'max_depth'</span>: max_depth&#125;</span><br><span class="line">model = LGBMRegressor()</span><br><span class="line">clf = GridSearchCV(model, parameters, cv=<span class="number">5</span>)</span><br><span class="line">clf = clf.fit(train_X, train_y)</span><br><span class="line">clf.best_params_</span><br><span class="line">model = LGBMRegressor(objective=<span class="string">'regression'</span>,</span><br><span class="line">                          num_leaves=<span class="number">55</span>,</span><br><span class="line">                          max_depth=<span class="number">15</span>)</span><br><span class="line">np.mean(cross_val_score(model, X=train_X, y=train_y_ln, verbose=<span class="number">0</span>, cv = <span class="number">5</span>, scoring=make_scorer(mean_absolute_error)))</span><br></pre></td></tr></table></figure>
+
+<h5 id="贝叶斯调参"><a href="#贝叶斯调参" class="headerlink" title="贝叶斯调参"></a>贝叶斯调参</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> bayes_opt <span class="keyword">import</span> BayesianOptimization</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rf_cv</span><span class="params">(num_leaves, max_depth, subsample, min_child_samples)</span>:</span></span><br><span class="line">    val = cross_val_score(</span><br><span class="line">        LGBMRegressor(objective = <span class="string">'regression_l1'</span>,</span><br><span class="line">            num_leaves=int(num_leaves),</span><br><span class="line">            max_depth=int(max_depth),</span><br><span class="line">            subsample = subsample,</span><br><span class="line">            min_child_samples = int(min_child_samples)</span><br><span class="line">        ),</span><br><span class="line">        X=train_X, y=train_y_ln, verbose=<span class="number">0</span>, cv = <span class="number">5</span>, scoring=make_scorer(mean_absolute_error)</span><br><span class="line">    ).mean()</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> - val</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rf_bo = BayesianOptimization(</span><br><span class="line">    rf_cv,</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="string">'num_leaves'</span>: (<span class="number">2</span>, <span class="number">100</span>),</span><br><span class="line">    <span class="string">'max_depth'</span>: (<span class="number">2</span>, <span class="number">100</span>),</span><br><span class="line">    <span class="string">'subsample'</span>: (<span class="number">0.1</span>, <span class="number">1</span>),</span><br><span class="line">    <span class="string">'min_child_samples'</span> : (<span class="number">2</span>, <span class="number">100</span>)</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">rf_bo.maximize()</span><br><span class="line"><span class="number">1</span> - rf_bo.max[<span class="string">'target'</span>]</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据挖掘</category>
+      </categories>
+      <tags>
+        <tag>DataWhale</tag>
+        <tag>天池</tag>
+      </tags>
   </entry>
   <entry>
     <title>FIT5216 Workshop-GraghLabel&amp;PowerGen</title>

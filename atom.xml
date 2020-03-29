@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-29T16:07:17.565Z</updated>
+  <updated>2020-03-29T16:08:38.581Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,13 +21,21 @@
     <link href="http://yoursite.com/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/"/>
     <id>http://yoursite.com/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/</id>
     <published>2020-03-29T16:07:17.000Z</published>
-    <updated>2020-03-29T16:07:17.565Z</updated>
+    <updated>2020-03-29T16:08:38.581Z</updated>
     
     <summary type="html">
+    
+      &lt;h1 id=&quot;Task4-建模调参&quot;&gt;&lt;a href=&quot;#Task4-建模调参&quot; class=&quot;headerlink&quot; title=&quot;Task4-建模调参&quot;&gt;&lt;/a&gt;Task4-建模调参&lt;/h1&gt;&lt;p&gt;这部分的学习目标是：了解常用的机器学习模型，并掌握机器学习模型的建模与调参流程。&lt;/p&gt;
     
     </summary>
     
     
+      <category term="数据挖掘" scheme="http://yoursite.com/categoriesl/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="天池" scheme="http://yoursite.com/tags/%E5%A4%A9%E6%B1%A0/"/>
     
   </entry>
   
