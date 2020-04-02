@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-29T16:12:43.249Z</updated>
+  <updated>2020-04-02T13:30:37.483Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Datawhale 零基础入门数据挖掘-Task5 模型融合</title>
+    <link href="http://yoursite.com/2020/04/02/Datawhale-%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-Task5-%E6%A8%A1%E5%9E%8B%E8%9E%8D%E5%90%88/"/>
+    <id>http://yoursite.com/2020/04/02/Datawhale-%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-Task5-%E6%A8%A1%E5%9E%8B%E8%9E%8D%E5%90%88/</id>
+    <published>2020-04-02T13:28:24.000Z</published>
+    <updated>2020-04-02T13:30:37.483Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Task5-模型融合&quot;&gt;&lt;a href=&quot;#Task5-模型融合&quot; class=&quot;headerlink&quot; title=&quot;Task5 模型融合&quot;&gt;&lt;/a&gt;Task5 模型融合&lt;/h1&gt;&lt;p&gt;Tip:此部分为零基础入门数据挖掘的 Task5 模型融合 部分，带你来了解各种模型结果的融合方式，在比赛的攻坚时刻冲刺Top。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数据挖掘" scheme="http://yoursite.com/categoriesl/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="天池" scheme="http://yoursite.com/tags/%E5%A4%A9%E6%B1%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>Datawhale-二手车价格预测Task4</title>

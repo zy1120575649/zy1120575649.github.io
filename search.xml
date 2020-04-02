@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Datawhale 零基础入门数据挖掘-Task5 模型融合</title>
+    <url>/2020/04/02/Datawhale-%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-Task5-%E6%A8%A1%E5%9E%8B%E8%9E%8D%E5%90%88/</url>
+    <content><![CDATA[<h1 id="Task5-模型融合"><a href="#Task5-模型融合" class="headerlink" title="Task5 模型融合"></a>Task5 模型融合</h1><p>Tip:此部分为零基础入门数据挖掘的 Task5 模型融合 部分，带你来了解各种模型结果的融合方式，在比赛的攻坚时刻冲刺Top。</p>
+<a id="more"></a>
+<h2 id="1-模型融合目标"><a href="#1-模型融合目标" class="headerlink" title="1 模型融合目标"></a>1 模型融合目标</h2><ol>
+<li><p>对于多种调参完成的模型进行模型融合。</p>
+</li>
+<li><p>完成对于多种模型的融合，提交融合结果并打卡。</p>
+</li>
+</ol>
+<h2 id="2-内容介绍"><a href="#2-内容介绍" class="headerlink" title="2 内容介绍"></a>2 内容介绍</h2><p>模型融合是比赛后期一个重要的环节，大体来说有如下的类型方式。</p>
+<ol>
+<li>简单加权融合:<br>回归（分类概率）：算术平均融合（Arithmetic mean），几何平均融合（Geometric mean）；<br>分类：投票（Voting)<br>综合：排序融合(Rank averaging)，log融合</li>
+<li>stacking/blending:<br>构建多层模型，并利用预测结果再拟合预测。</li>
+<li>boosting/bagging（在xgboost，Adaboost,GBDT中已经用到）:<br>多树的提升方法<h2 id="Stacking相关理论介绍"><a href="#Stacking相关理论介绍" class="headerlink" title="Stacking相关理论介绍"></a>Stacking相关理论介绍</h2><h3 id="什么是-stacking"><a href="#什么是-stacking" class="headerlink" title="什么是 stacking"></a>什么是 stacking</h3>简单来说 stacking 就是当用初始训练数据学习出若干个基学习器后，将这几个学习器的预测结果作为新的训练集，来学习一个新的学习器。</li>
+</ol>
+<p>将个体学习器结合在一起的时候使用的方法叫做结合策略。对于分类问题，我们可以使用投票法来选择输出最多的类。对于回归问题，我们可以将分类器输出的结果求平均值。</p>
+<p>上面说的投票法和平均法都是很有效的结合策略，还有一种结合策略是使用另外一个机器学习算法来将个体机器学习器的结果结合在一起，这个方法就是Stacking。</p>
+<p>在stacking方法中，我们把个体学习器叫做初级学习器，用于结合的学习器叫做次级学习器或元学习器（meta-learner），次级学习器用于训练的数据叫做次级训练集。次级训练集是在训练集上用初级学习器得到的。</p>
+]]></content>
+      <categories>
+        <category>数据挖掘</category>
+      </categories>
+      <tags>
+        <tag>DataWhale</tag>
+        <tag>天池</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Datawhale-二手车价格预测Task4</title>
     <url>/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/</url>
     <content><![CDATA[<h1 id="Task4-建模调参"><a href="#Task4-建模调参" class="headerlink" title="Task4-建模调参"></a>Task4-建模调参</h1><p>这部分的学习目标是：了解常用的机器学习模型，并掌握机器学习模型的建模与调参流程。</p>
