@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-20T13:15:06.540Z</updated>
+  <updated>2020-04-21T02:55:42.425Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python爬虫编程实践-Task1</title>
+    <link href="http://yoursite.com/2020/04/21/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task1/"/>
+    <id>http://yoursite.com/2020/04/21/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task1/</id>
+    <published>2020-04-21T02:54:09.000Z</published>
+    <updated>2020-04-21T02:55:42.425Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;HTTP是一个客户端（用户）和服务器端（网站）之间进行请求和应答的标准。通过使用网页浏览器、网络爬虫或者其他工具，客户端可以向服务器上的指定端口（默认端口为80）发起一个HTTP请求。这个客户端成为客户代理（user agent）。应答服务器上存储着一些资源码，比如HTML文件和图像。这个应答服务器成为源服务器（origin server）。在用户代理和源服务器中间可能存在多个“中间层”，比如代理服务器、网关或者隧道（tunnel）。尽管TCP/IP是互联网最流行的协议，但HTTP中并没有规定必须使用它或它支持的层。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Python爬虫编程实践" scheme="http://yoursite.com/categoriesl/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="Python爬虫" scheme="http://yoursite.com/tags/Python%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>Pandas教程-Task1</title>
