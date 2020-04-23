@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-23T07:04:24.425Z</updated>
+  <updated>2020-04-23T11:22:15.320Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python爬虫编程实践-Task2</title>
+    <link href="http://yoursite.com/2020/04/23/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task2/"/>
+    <id>http://yoursite.com/2020/04/23/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task2/</id>
+    <published>2020-04-23T11:21:23.000Z</published>
+    <updated>2020-04-23T11:22:15.320Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Beautiful-Soup库入门&quot;&gt;&lt;a href=&quot;#Beautiful-Soup库入门&quot; class=&quot;headerlink&quot; title=&quot;Beautiful Soup库入门&quot;&gt;&lt;/a&gt;Beautiful
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python爬虫编程实践" scheme="http://yoursite.com/categoriesl/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="Python爬虫" scheme="http://yoursite.com/tags/Python%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>Pandas教程-Task2</title>
