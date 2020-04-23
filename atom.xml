@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-21T02:55:42.425Z</updated>
+  <updated>2020-04-23T07:04:24.425Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Pandas教程-Task2</title>
+    <link href="http://yoursite.com/2020/04/23/Pandas%E6%95%99%E7%A8%8B-Task2/"/>
+    <id>http://yoursite.com/2020/04/23/Pandas%E6%95%99%E7%A8%8B-Task2/</id>
+    <published>2020-04-23T07:03:31.000Z</published>
+    <updated>2020-04-23T07:04:24.425Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Pandas教程" scheme="http://yoursite.com/categoriesl/Pandas%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="Pandas" scheme="http://yoursite.com/tags/Pandas/"/>
+    
+  </entry>
   
   <entry>
     <title>Python爬虫编程实践-Task1</title>

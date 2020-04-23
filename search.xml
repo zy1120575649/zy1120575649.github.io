@@ -1,6 +1,646 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Pandas教程-Task2</title>
+    <url>/2020/04/23/Pandas%E6%95%99%E7%A8%8B-Task2/</url>
+    <content><![CDATA[<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span>,index_col=<span class="string">'ID'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1101</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1102</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>1103</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>1104</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>1105</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="单级索引"><a href="#单级索引" class="headerlink" title="单级索引"></a>单级索引</h2><h3 id="loc方法、iloc方法、-操作符"><a href="#loc方法、iloc方法、-操作符" class="headerlink" title="loc方法、iloc方法、[]操作符"></a>loc方法、iloc方法、[]操作符</h3><p>最常用的索引方法可能就是这三类，其中iloc表示位置索引，loc表示标签索引，[]也具有很大的便利性，各有特点</p>
+<h3 id="布尔索引"><a href="#布尔索引" class="headerlink" title="布尔索引"></a>布尔索引</h3><h3 id="快速标量索引"><a href="#快速标量索引" class="headerlink" title="快速标量索引"></a>快速标量索引</h3><h3 id="区间索引"><a href="#区间索引" class="headerlink" title="区间索引"></a>区间索引</h3><h2 id="多级索引"><a href="#多级索引" class="headerlink" title="多级索引"></a>多级索引</h2><p>1.创建多级索引<br>（a）通过from_tuple或from_arrays</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tuples = [(<span class="string">'A'</span>,<span class="string">'a'</span>),(<span class="string">'A'</span>,<span class="string">'b'</span>),(<span class="string">'B'</span>,<span class="string">'a'</span>),(<span class="string">'B'</span>,<span class="string">'b'</span>)]</span><br><span class="line">mul_index = pd.MultiIndex.from_tuples(tuples, names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">mul_index</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>MultiIndex([(&apos;A&apos;, &apos;a&apos;),
+            (&apos;A&apos;, &apos;b&apos;),
+            (&apos;B&apos;, &apos;a&apos;),
+            (&apos;B&apos;, &apos;b&apos;)],
+           names=[&apos;Upper&apos;, &apos;Lower&apos;])</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pd.DataFrame(&#123;<span class="string">'Score'</span>:[<span class="string">'perfect'</span>,<span class="string">'good'</span>,<span class="string">'fair'</span>,<span class="string">'bad'</span>]&#125;,index=mul_index)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Score</th>
+    </tr>
+    <tr>
+      <th>Upper</th>
+      <th>Lower</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">A</th>
+      <th>a</th>
+      <td>perfect</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">B</th>
+      <th>a</th>
+      <td>fair</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>bad</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">L1 = list(<span class="string">'AABB'</span>)</span><br><span class="line">L2 = list(<span class="string">'abab'</span>)</span><br><span class="line">tuples = list(zip(L1,L2))</span><br><span class="line">mul_index = pd.MultiIndex.from_tuples(tuples, names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">pd.DataFrame(&#123;<span class="string">'Score'</span>:[<span class="string">'perfect'</span>,<span class="string">'good'</span>,<span class="string">'fair'</span>,<span class="string">'bad'</span>]&#125;,index=mul_index)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Score</th>
+    </tr>
+    <tr>
+      <th>Upper</th>
+      <th>Lower</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">A</th>
+      <th>a</th>
+      <td>perfect</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">B</th>
+      <th>a</th>
+      <td>fair</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>bad</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arrays = [[<span class="string">'A'</span>,<span class="string">'a'</span>],[<span class="string">'A'</span>,<span class="string">'b'</span>],[<span class="string">'B'</span>,<span class="string">'a'</span>],[<span class="string">'B'</span>,<span class="string">'b'</span>]]</span><br><span class="line">mul_index = pd.MultiIndex.from_tuples(arrays, names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">pd.DataFrame(&#123;<span class="string">'Score'</span>:[<span class="string">'perfect'</span>,<span class="string">'good'</span>,<span class="string">'fair'</span>,<span class="string">'bad'</span>]&#125;,index=mul_index)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Score</th>
+    </tr>
+    <tr>
+      <th>Upper</th>
+      <th>Lower</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">A</th>
+      <th>a</th>
+      <td>perfect</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">B</th>
+      <th>a</th>
+      <td>fair</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>bad</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">mul_index</span><br><span class="line"><span class="comment">#由此看出内部自动转成元组</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>MultiIndex([(&apos;A&apos;, &apos;a&apos;),
+            (&apos;A&apos;, &apos;b&apos;),
+            (&apos;B&apos;, &apos;a&apos;),
+            (&apos;B&apos;, &apos;b&apos;)],
+           names=[&apos;Upper&apos;, &apos;Lower&apos;])</code></pre><p>（b）通过from_product</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">L1 = [<span class="string">'A'</span>,<span class="string">'B'</span>]</span><br><span class="line">L2 = [<span class="string">'a'</span>,<span class="string">'b'</span>]</span><br><span class="line">pd.MultiIndex.from_product([L1,L2],names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line"><span class="comment">#两两相乘</span></span><br></pre></td></tr></table></figure>
+
+<p>（c）指定df中的列创建（set_index方法）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_using_mul = df.set_index([<span class="string">'Class'</span>,<span class="string">'Address'</span>])</span><br><span class="line">df_using_mul.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>School</th>
+      <th>Gender</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>Class</th>
+      <th>Address</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">C_1</th>
+      <th>street_1</th>
+      <td>S_1</td>
+      <td>M</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>M</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>street_4</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>2.多层索引切片</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_using_mul.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>School</th>
+      <th>Gender</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>Class</th>
+      <th>Address</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">C_1</th>
+      <th>street_1</th>
+      <td>S_1</td>
+      <td>M</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>M</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>street_4</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>3.多层索引中的slice对象</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">L1,L2 = [<span class="string">'A'</span>,<span class="string">'B'</span>],[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line">mul_index1 = pd.MultiIndex.from_product([L1,L2],names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">L3,L4 = [<span class="string">'D'</span>,<span class="string">'E'</span>,<span class="string">'F'</span>],[<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>]</span><br><span class="line">mul_index2 = pd.MultiIndex.from_product([L3,L4],names=(<span class="string">'Big'</span>, <span class="string">'Small'</span>))</span><br><span class="line">df_s = pd.DataFrame(np.random.rand(<span class="number">6</span>,<span class="number">9</span>),index=mul_index1,columns=mul_index2)</span><br><span class="line">df_s</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead tr th {
+    text-align: left;
+}
+
+.dataframe thead tr:last-of-type th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Big</th>
+      <th colspan="3" halign="left">D</th>
+      <th colspan="3" halign="left">E</th>
+      <th colspan="3" halign="left">F</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Small</th>
+      <th>d</th>
+      <th>e</th>
+      <th>f</th>
+      <th>d</th>
+      <th>e</th>
+      <th>f</th>
+      <th>d</th>
+      <th>e</th>
+      <th>f</th>
+    </tr>
+    <tr>
+      <th>Upper</th>
+      <th>Lower</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">A</th>
+      <th>a</th>
+      <td>0.693152</td>
+      <td>0.672084</td>
+      <td>0.929580</td>
+      <td>0.348846</td>
+      <td>0.998656</td>
+      <td>0.618890</td>
+      <td>0.134470</td>
+      <td>0.629302</td>
+      <td>0.755844</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>0.793648</td>
+      <td>0.663314</td>
+      <td>0.793556</td>
+      <td>0.632018</td>
+      <td>0.837149</td>
+      <td>0.573710</td>
+      <td>0.083993</td>
+      <td>0.774272</td>
+      <td>0.634520</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>0.485607</td>
+      <td>0.429198</td>
+      <td>0.971712</td>
+      <td>0.471989</td>
+      <td>0.250029</td>
+      <td>0.027371</td>
+      <td>0.377319</td>
+      <td>0.721766</td>
+      <td>0.911952</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">B</th>
+      <th>a</th>
+      <td>0.434036</td>
+      <td>0.430081</td>
+      <td>0.590865</td>
+      <td>0.106680</td>
+      <td>0.678473</td>
+      <td>0.946369</td>
+      <td>0.681991</td>
+      <td>0.788171</td>
+      <td>0.272536</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>0.116107</td>
+      <td>0.186889</td>
+      <td>0.252728</td>
+      <td>0.137849</td>
+      <td>0.078398</td>
+      <td>0.986727</td>
+      <td>0.533018</td>
+      <td>0.049788</td>
+      <td>0.078079</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>0.577150</td>
+      <td>0.858875</td>
+      <td>0.468748</td>
+      <td>0.016894</td>
+      <td>0.717600</td>
+      <td>0.283764</td>
+      <td>0.595257</td>
+      <td>0.037818</td>
+      <td>0.839023</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+]]></content>
+      <categories>
+        <category>Pandas教程</category>
+      </categories>
+      <tags>
+        <tag>DataWhale</tag>
+        <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python爬虫编程实践-Task1</title>
     <url>/2020/04/21/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task1/</url>
     <content><![CDATA[<p>HTTP是一个客户端（用户）和服务器端（网站）之间进行请求和应答的标准。通过使用网页浏览器、网络爬虫或者其他工具，客户端可以向服务器上的指定端口（默认端口为80）发起一个HTTP请求。这个客户端成为客户代理（user agent）。应答服务器上存储着一些资源码，比如HTML文件和图像。这个应答服务器成为源服务器（origin server）。在用户代理和源服务器中间可能存在多个“中间层”，比如代理服务器、网关或者隧道（tunnel）。尽管TCP/IP是互联网最流行的协议，但HTTP中并没有规定必须使用它或它支持的层。</p>
