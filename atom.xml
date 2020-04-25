@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-23T11:22:15.320Z</updated>
+  <updated>2020-04-25T08:55:34.197Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python爬虫编程实践-Task3</title>
+    <link href="http://yoursite.com/2020/04/25/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task3/"/>
+    <id>http://yoursite.com/2020/04/25/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task3/</id>
+    <published>2020-04-25T08:53:39.000Z</published>
+    <updated>2020-04-25T08:55:34.197Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;session和cookie&quot;&gt;&lt;a href=&quot;#session和cookie&quot; class=&quot;headerlink&quot; title=&quot;session和cookie&quot;&gt;&lt;/a&gt;session和cookie&lt;/h2&gt;&lt;p&gt;Session 是会话的意思，会话是产生在服务端的，用来保存当前用户的会话信息，而 Cookies 是保存在客户端（浏览器），有了 Cookie 以后，客户端（浏览器）再次访问服务端的时候，会将这个 Cookie 带上，这时，服务端可以通过 Cookie 来识别本次请求到底是谁在访问。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Python爬虫编程实践" scheme="http://yoursite.com/categoriesl/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="Python爬虫" scheme="http://yoursite.com/tags/Python%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pandas教程-Task3</title>
+    <link href="http://yoursite.com/2020/04/25/Pandas%E6%95%99%E7%A8%8B-Task3/"/>
+    <id>http://yoursite.com/2020/04/25/Pandas%E6%95%99%E7%A8%8B-Task3/</id>
+    <published>2020-04-25T08:53:12.000Z</published>
+    <updated>2020-04-25T08:54:41.686Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Pandas教程" scheme="http://yoursite.com/categoriesl/Pandas%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="Pandas" scheme="http://yoursite.com/tags/Pandas/"/>
+    
+  </entry>
   
   <entry>
     <title>Python爬虫编程实践-Task2</title>
