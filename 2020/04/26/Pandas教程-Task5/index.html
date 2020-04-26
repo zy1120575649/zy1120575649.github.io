@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="生活,旅行,思考,代码,博客" />
+   
+  <meta name="description" content="大鱼的考研日记" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Pandas教程-Task5 |  大鱼海棠
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/images/touxiang.jpg" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
+</head>
+
+</html>
+<!-- 样式一（鼠标点击更换样式） -->
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-Pandas教程-Task5" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Pandas教程-Task5
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/26/Pandas%E6%95%99%E7%A8%8B-Task5/" class="article-date">
+  <time datetime="2020-04-26T11:25:07.000Z" itemprop="datePublished">2020-04-26</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categoriesl/Pandas%E6%95%99%E7%A8%8B/">Pandas教程</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.3k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1101</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1102</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1103</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1104</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1105</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="一、append与assign"><a href="#一、append与assign" class="headerlink" title="一、append与assign"></a>一、append与assign</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. append方法</span></span><br><span class="line"><span class="comment">#（a）利用序列添加行（必须指定name）</span></span><br><span class="line">df_append = df.loc[:<span class="number">3</span>,[<span class="string">'Gender'</span>,<span class="string">'Height'</span>]].copy()</span><br><span class="line">df_append</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gender</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>M</td>
+      <td>173</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>F</td>
+      <td>192</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>M</td>
+      <td>186</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>F</td>
+      <td>167</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = pd.Series(&#123;<span class="string">'Gender'</span>:<span class="string">'F'</span>,<span class="string">'Height'</span>:<span class="number">188</span>&#125;,name=<span class="string">'new_row'</span>)</span><br><span class="line">df_append.append(s)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gender</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>M</td>
+      <td>173</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>F</td>
+      <td>192</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>M</td>
+      <td>186</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>F</td>
+      <td>167</td>
+    </tr>
+    <tr>
+      <th>new_row</th>
+      <td>F</td>
+      <td>188</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#（b）用DataFrame添加表</span></span><br><span class="line">df_temp = pd.DataFrame(&#123;<span class="string">'Gender'</span>:[<span class="string">'F'</span>,<span class="string">'M'</span>],<span class="string">'Height'</span>:[<span class="number">188</span>,<span class="number">176</span>]&#125;,index=[<span class="string">'new_1'</span>,<span class="string">'new_2'</span>])</span><br><span class="line">df_append.append(df_temp)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gender</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>M</td>
+      <td>173</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>F</td>
+      <td>192</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>M</td>
+      <td>186</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>F</td>
+      <td>167</td>
+    </tr>
+    <tr>
+      <th>new_1</th>
+      <td>F</td>
+      <td>188</td>
+    </tr>
+    <tr>
+      <th>new_2</th>
+      <td>M</td>
+      <td>176</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#2. assign方法</span></span><br><span class="line"><span class="comment">#该方法主要用于添加列，列名直接由参数指定</span></span><br><span class="line">s = pd.Series(list(<span class="string">'abcd'</span>),index=range(<span class="number">4</span>))</span><br><span class="line">df_append.assign(Letter=s)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gender</th>
+      <th>Height</th>
+      <th>Letter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>M</td>
+      <td>173</td>
+      <td>a</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>F</td>
+      <td>192</td>
+      <td>b</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>M</td>
+      <td>186</td>
+      <td>c</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>F</td>
+      <td>167</td>
+      <td>d</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="二、combine与update"><a href="#二、combine与update" class="headerlink" title="二、combine与update"></a>二、combine与update</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. comine方法</span></span><br><span class="line"><span class="comment">#comine和update都是用于表的填充函数，可以根据某种规则填充</span></span><br><span class="line">df_combine_1 = df.loc[:<span class="number">1</span>,[<span class="string">'Gender'</span>,<span class="string">'Height'</span>]].copy()</span><br><span class="line">df_combine_2 = df.loc[<span class="number">10</span>:<span class="number">11</span>,[<span class="string">'Gender'</span>,<span class="string">'Height'</span>]].copy()</span><br><span class="line">df_combine_1.combine(df_combine_2,<span class="keyword">lambda</span> x,y:print(x,y))</span><br></pre></td></tr></table></figure>
+
+<pre><code>0       M
+1       F
+10    NaN
+11    NaN
+Name: Gender, dtype: object 0     NaN
+1     NaN
+10      M
+11      F
+Name: Gender, dtype: object
+0     173.0
+1     192.0
+10      NaN
+11      NaN
+Name: Height, dtype: float64 0       NaN
+1       NaN
+10    161.0
+11    175.0
+Name: Height, dtype: float64</code></pre><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gender</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#2. update方法</span></span><br><span class="line"><span class="comment">#（a）三个特点</span></span><br><span class="line"><span class="comment">#①返回的框索引只会与被调用框的一致（默认使用左连接，下一节会介绍）</span></span><br><span class="line"><span class="comment">#②第二个框中的nan元素不会起作用</span></span><br><span class="line"><span class="comment">#③没有返回值，直接在df上操作</span></span><br><span class="line">df1 = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">                    <span class="string">'B'</span>: [<span class="number">400</span>, <span class="number">500</span>, <span class="number">600</span>]&#125;)</span><br><span class="line">df2 = pd.DataFrame(&#123;<span class="string">'B'</span>: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">                    <span class="string">'C'</span>: [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]&#125;)</span><br><span class="line">df1.update(df2)</span><br><span class="line">df1</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="三、concat方法"><a href="#三、concat方法" class="headerlink" title="三、concat方法"></a>三、concat方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#concat方法可以在两个维度上拼接，默认纵向凭借（axis=0），拼接方式默认外连接</span></span><br><span class="line"><span class="comment">#所谓外连接，就是取拼接方向的并集，而'inner'时取拼接方向（若使用默认的纵向拼接，则为列的交集）的交集</span></span><br><span class="line"><span class="comment">#下面举一些例子说明其参数：</span></span><br><span class="line">df1 = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="string">'A0'</span>, <span class="string">'A1'</span>],</span><br><span class="line">                    <span class="string">'B'</span>: [<span class="string">'B0'</span>, <span class="string">'B1'</span>]&#125;,</span><br><span class="line">                    index = [<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">df2 = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="string">'A2'</span>, <span class="string">'A3'</span>],</span><br><span class="line">                    <span class="string">'B'</span>: [<span class="string">'B2'</span>, <span class="string">'B3'</span>]&#125;,</span><br><span class="line">                    index = [<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">df3 = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="string">'A1'</span>, <span class="string">'A3'</span>],</span><br><span class="line">                    <span class="string">'D'</span>: [<span class="string">'D1'</span>, <span class="string">'D3'</span>],</span><br><span class="line">                    <span class="string">'E'</span>: [<span class="string">'E1'</span>, <span class="string">'E3'</span>]&#125;,</span><br><span class="line">                    index = [<span class="number">1</span>,<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.concat([df1,df2])</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+      <td>B0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+      <td>B1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A2</td>
+      <td>B2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A3</td>
+      <td>B3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.concat([df1,df2],axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+      <td>B0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+      <td>B1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A2</td>
+      <td>B2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>A3</td>
+      <td>B3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.concat([df3,df1],join=<span class="string">'inner'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A3</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="四、merge与join"><a href="#四、merge与join" class="headerlink" title="四、merge与join"></a>四、merge与join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. merge函数</span></span><br><span class="line"><span class="comment">#merge函数的作用是将两个pandas对象横向合并，遇到重复的索引项时会使用笛卡尔积，默认inner连接，可选left、outer、right连接</span></span><br><span class="line"><span class="comment">#所谓左连接，就是指以第一个表索引为基准，右边的表中如果不再左边的则不加入，如果在左边的就以笛卡尔积的方式加入</span></span><br><span class="line"><span class="comment">#merge/join与concat的不同之处在于on参数，可以指定某一个对象为key来进行连接</span></span><br><span class="line">left = pd.DataFrame(&#123;<span class="string">'key1'</span>: [<span class="string">'K0'</span>, <span class="string">'K0'</span>, <span class="string">'K1'</span>, <span class="string">'K2'</span>],</span><br><span class="line">                     <span class="string">'key2'</span>: [<span class="string">'K0'</span>, <span class="string">'K1'</span>, <span class="string">'K0'</span>, <span class="string">'K1'</span>],</span><br><span class="line">                      <span class="string">'A'</span>: [<span class="string">'A0'</span>, <span class="string">'A1'</span>, <span class="string">'A2'</span>, <span class="string">'A3'</span>],</span><br><span class="line">                      <span class="string">'B'</span>: [<span class="string">'B0'</span>, <span class="string">'B1'</span>, <span class="string">'B2'</span>, <span class="string">'B3'</span>]&#125;) </span><br><span class="line">right = pd.DataFrame(&#123;<span class="string">'key1'</span>: [<span class="string">'K0'</span>, <span class="string">'K1'</span>, <span class="string">'K1'</span>, <span class="string">'K2'</span>],</span><br><span class="line">                      <span class="string">'key2'</span>: [<span class="string">'K0'</span>, <span class="string">'K0'</span>, <span class="string">'K0'</span>, <span class="string">'K0'</span>],</span><br><span class="line">                      <span class="string">'C'</span>: [<span class="string">'C0'</span>, <span class="string">'C1'</span>, <span class="string">'C2'</span>, <span class="string">'C3'</span>],</span><br><span class="line">                      <span class="string">'D'</span>: [<span class="string">'D0'</span>, <span class="string">'D1'</span>, <span class="string">'D2'</span>, <span class="string">'D3'</span>]&#125;)</span><br><span class="line">right2 = pd.DataFrame(&#123;<span class="string">'key1'</span>: [<span class="string">'K0'</span>, <span class="string">'K1'</span>, <span class="string">'K1'</span>, <span class="string">'K2'</span>],</span><br><span class="line">                      <span class="string">'key2'</span>: [<span class="string">'K0'</span>, <span class="string">'K0'</span>, <span class="string">'K0'</span>, <span class="string">'K0'</span>],</span><br><span class="line">                      <span class="string">'C'</span>: [<span class="string">'C0'</span>, <span class="string">'C1'</span>, <span class="string">'C2'</span>, <span class="string">'C3'</span>]&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left, right, on=<span class="string">'key1'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key1</th>
+      <th>key2_x</th>
+      <th>A</th>
+      <th>B</th>
+      <th>key2_y</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>K0</td>
+      <td>K0</td>
+      <td>A0</td>
+      <td>B0</td>
+      <td>K0</td>
+      <td>C0</td>
+      <td>D0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>K0</td>
+      <td>K1</td>
+      <td>A1</td>
+      <td>B1</td>
+      <td>K0</td>
+      <td>C0</td>
+      <td>D0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>K1</td>
+      <td>K0</td>
+      <td>A2</td>
+      <td>B2</td>
+      <td>K0</td>
+      <td>C1</td>
+      <td>D1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>K1</td>
+      <td>K0</td>
+      <td>A2</td>
+      <td>B2</td>
+      <td>K0</td>
+      <td>C2</td>
+      <td>D2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>K2</td>
+      <td>K1</td>
+      <td>A3</td>
+      <td>B3</td>
+      <td>K0</td>
+      <td>C3</td>
+      <td>D3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#2. join函数</span></span><br><span class="line"><span class="comment">#join函数作用是将多个pandas对象横向拼接，</span></span><br><span class="line"><span class="comment">#遇到重复的索引项时会使用笛卡尔积，默认左连接，可选inner、outer、right连接</span></span><br><span class="line">left = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="string">'A0'</span>, <span class="string">'A1'</span>, <span class="string">'A2'</span>],</span><br><span class="line">                     <span class="string">'B'</span>: [<span class="string">'B0'</span>, <span class="string">'B1'</span>, <span class="string">'B2'</span>]&#125;,</span><br><span class="line">                    index=[<span class="string">'K0'</span>, <span class="string">'K1'</span>, <span class="string">'K2'</span>])</span><br><span class="line">right = pd.DataFrame(&#123;<span class="string">'C'</span>: [<span class="string">'C0'</span>, <span class="string">'C2'</span>, <span class="string">'C3'</span>],</span><br><span class="line">                      <span class="string">'D'</span>: [<span class="string">'D0'</span>, <span class="string">'D2'</span>, <span class="string">'D3'</span>]&#125;,</span><br><span class="line">                    index=[<span class="string">'K0'</span>, <span class="string">'K2'</span>, <span class="string">'K3'</span>])</span><br><span class="line">left.join(right)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>K0</th>
+      <td>A0</td>
+      <td>B0</td>
+      <td>C0</td>
+      <td>D0</td>
+    </tr>
+    <tr>
+      <th>K1</th>
+      <td>A1</td>
+      <td>B1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>K2</th>
+      <td>A2</td>
+      <td>B2</td>
+      <td>C2</td>
+      <td>D2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/04/26/Pandas%E6%95%99%E7%A8%8B-Task5/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataWhale/" rel="tag">DataWhale</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/04/26/Pandas%E6%95%99%E7%A8%8B-Task6/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Pandas教程-Task6
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/26/Pandas%E6%95%99%E7%A8%8B-Task4/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Pandas教程-Task4</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'aDsQwlhzvBv0FMcfBGVHEfBM-gzGzoHsz',
+        app_key: 'Yrj2x3uWtManAhSJbyJw5MMr',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2020
+        Jenny
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/touxiang.jpg" alt="大鱼海棠"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/touxiang.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/touxiang.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['唯爱与梦想不可辜负', '罗马不是一天建成的', '蒲苇韧如丝，磐石无转移'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>

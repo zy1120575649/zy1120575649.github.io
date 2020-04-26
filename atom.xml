@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-25T08:55:34.197Z</updated>
+  <updated>2020-04-26T11:28:52.962Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,128 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Pandas教程-Task6</title>
+    <link href="http://yoursite.com/2020/04/26/Pandas%E6%95%99%E7%A8%8B-Task6/"/>
+    <id>http://yoursite.com/2020/04/26/Pandas%E6%95%99%E7%A8%8B-Task6/</id>
+    <published>2020-04-26T11:25:12.000Z</published>
+    <updated>2020-04-26T11:28:52.962Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Pandas教程" scheme="http://yoursite.com/categoriesl/Pandas%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="Pandas" scheme="http://yoursite.com/tags/Pandas/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pandas教程-Task5</title>
+    <link href="http://yoursite.com/2020/04/26/Pandas%E6%95%99%E7%A8%8B-Task5/"/>
+    <id>http://yoursite.com/2020/04/26/Pandas%E6%95%99%E7%A8%8B-Task5/</id>
+    <published>2020-04-26T11:25:07.000Z</published>
+    <updated>2020-04-26T11:28:22.989Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Pandas教程" scheme="http://yoursite.com/categoriesl/Pandas%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="Pandas" scheme="http://yoursite.com/tags/Pandas/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pandas教程-Task4</title>
+    <link href="http://yoursite.com/2020/04/26/Pandas%E6%95%99%E7%A8%8B-Task4/"/>
+    <id>http://yoursite.com/2020/04/26/Pandas%E6%95%99%E7%A8%8B-Task4/</id>
+    <published>2020-04-26T11:25:01.000Z</published>
+    <updated>2020-04-26T11:27:50.972Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;第4章 变形&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Pandas教程" scheme="http://yoursite.com/categoriesl/Pandas%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="Pandas" scheme="http://yoursite.com/tags/Pandas/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python爬虫编程实践-Task4</title>
+    <link href="http://yoursite.com/2020/04/26/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task4/"/>
+    <id>http://yoursite.com/2020/04/26/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task4/</id>
+    <published>2020-04-26T11:24:38.000Z</published>
+    <updated>2020-04-26T11:27:15.197Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ol&gt;
+&lt;li&gt;了解ajax加载&lt;/li&gt;
+&lt;li&gt;通过chrome的开发者工具，监控网络请求，并分析&lt;/li&gt;
+&lt;li&gt;用selenium完成爬虫&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python爬虫编程实践" scheme="http://yoursite.com/categoriesl/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/"/>
+    
+    
+      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
+    
+      <category term="Python爬虫" scheme="http://yoursite.com/tags/Python%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>Python爬虫编程实践-Task3</title>
