@@ -75,6 +75,2775 @@
     
     
     
+    <article id="post-Pandas教程-Task1" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/20/Pandas%E6%95%99%E7%A8%8B-Task1/"
+    >Pandas教程-Task1</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/20/Pandas%E6%95%99%E7%A8%8B-Task1/" class="article-date">
+  <time datetime="2020-04-20T13:12:34.000Z" itemprop="datePublished">2020-04-20</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categoriesl/Pandas%E6%95%99%E7%A8%8B/">Pandas教程</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.__version__</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&apos;0.25.3&apos;</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1101</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1102</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1103</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1104</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1105</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_txt = pd.read_table(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table.txt'</span>)</span><br><span class="line">df_txt</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col1</th>
+      <th>col2</th>
+      <th>col3</th>
+      <th>col4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>a</td>
+      <td>1.4</td>
+      <td>apple</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>b</td>
+      <td>3.4</td>
+      <td>banana</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>c</td>
+      <td>2.5</td>
+      <td>orange</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5</td>
+      <td>d</td>
+      <td>3.2</td>
+      <td>lemon</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_excel = pd.read_excel(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table.xlsx'</span>)</span><br><span class="line">df_excel.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1101</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1102</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1103</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1104</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1105</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.to_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/new_table.csv'</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.to_excel(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/new_table2.xlsx'</span>, sheet_name=<span class="string">'Sheet1'</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = pd.Series(np.random.randn(<span class="number">5</span>),index=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>],name=<span class="string">'这是一个Series'</span>,dtype=<span class="string">'float64'</span>)</span><br><span class="line">s</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>a   -0.699435
+b   -0.583320
+c   -0.526598
+d   -1.110295
+e   -0.006360
+Name: 这是一个Series, dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.values</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([-0.6994351 , -0.5833203 , -0.52659774, -1.11029458, -0.00635964])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.name</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&apos;这是一个Series&apos;</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.index</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>Index([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;], dtype=&apos;object&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.dtype</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>dtype(&apos;float64&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s[<span class="string">'a'</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>-0.6994350999787233</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.mean()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>-0.585201471154681</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print([attr <span class="keyword">for</span> attr <span class="keyword">in</span> dir(s) <span class="keyword">if</span> <span class="keyword">not</span> attr.startswith(<span class="string">'_'</span>)])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&apos;T&apos;, &apos;a&apos;, &apos;abs&apos;, &apos;add&apos;, &apos;add_prefix&apos;, &apos;add_suffix&apos;, &apos;agg&apos;, &apos;aggregate&apos;, &apos;align&apos;, &apos;all&apos;, &apos;any&apos;, &apos;append&apos;, &apos;apply&apos;, &apos;argmax&apos;, &apos;argmin&apos;, &apos;argsort&apos;, &apos;array&apos;, &apos;as_matrix&apos;, &apos;asfreq&apos;, &apos;asof&apos;, &apos;astype&apos;, &apos;at&apos;, &apos;at_time&apos;, &apos;autocorr&apos;, &apos;axes&apos;, &apos;b&apos;, &apos;between&apos;, &apos;between_time&apos;, &apos;bfill&apos;, &apos;bool&apos;, &apos;c&apos;, &apos;clip&apos;, &apos;clip_lower&apos;, &apos;clip_upper&apos;, &apos;combine&apos;, &apos;combine_first&apos;, &apos;compound&apos;, &apos;compress&apos;, &apos;copy&apos;, &apos;corr&apos;, &apos;count&apos;, &apos;cov&apos;, &apos;cummax&apos;, &apos;cummin&apos;, &apos;cumprod&apos;, &apos;cumsum&apos;, &apos;d&apos;, &apos;describe&apos;, &apos;diff&apos;, &apos;div&apos;, &apos;divide&apos;, &apos;divmod&apos;, &apos;dot&apos;, &apos;drop&apos;, &apos;drop_duplicates&apos;, &apos;droplevel&apos;, &apos;dropna&apos;, &apos;dtype&apos;, &apos;dtypes&apos;, &apos;duplicated&apos;, &apos;e&apos;, &apos;empty&apos;, &apos;eq&apos;, &apos;equals&apos;, &apos;ewm&apos;, &apos;expanding&apos;, &apos;explode&apos;, &apos;factorize&apos;, &apos;ffill&apos;, &apos;fillna&apos;, &apos;filter&apos;, &apos;first&apos;, &apos;first_valid_index&apos;, &apos;floordiv&apos;, &apos;from_array&apos;, &apos;ge&apos;, &apos;get&apos;, &apos;get_dtype_counts&apos;, &apos;get_ftype_counts&apos;, &apos;get_values&apos;, &apos;groupby&apos;, &apos;gt&apos;, &apos;hasnans&apos;, &apos;head&apos;, &apos;hist&apos;, &apos;iat&apos;, &apos;idxmax&apos;, &apos;idxmin&apos;, &apos;iloc&apos;, &apos;index&apos;, &apos;infer_objects&apos;, &apos;interpolate&apos;, &apos;is_monotonic&apos;, &apos;is_monotonic_decreasing&apos;, &apos;is_monotonic_increasing&apos;, &apos;is_unique&apos;, &apos;isin&apos;, &apos;isna&apos;, &apos;isnull&apos;, &apos;item&apos;, &apos;items&apos;, &apos;iteritems&apos;, &apos;keys&apos;, &apos;kurt&apos;, &apos;kurtosis&apos;, &apos;last&apos;, &apos;last_valid_index&apos;, &apos;le&apos;, &apos;loc&apos;, &apos;lt&apos;, &apos;mad&apos;, &apos;map&apos;, &apos;mask&apos;, &apos;max&apos;, &apos;mean&apos;, &apos;median&apos;, &apos;memory_usage&apos;, &apos;min&apos;, &apos;mod&apos;, &apos;mode&apos;, &apos;mul&apos;, &apos;multiply&apos;, &apos;name&apos;, &apos;nbytes&apos;, &apos;ndim&apos;, &apos;ne&apos;, &apos;nlargest&apos;, &apos;nonzero&apos;, &apos;notna&apos;, &apos;notnull&apos;, &apos;nsmallest&apos;, &apos;nunique&apos;, &apos;pct_change&apos;, &apos;pipe&apos;, &apos;plot&apos;, &apos;pop&apos;, &apos;pow&apos;, &apos;prod&apos;, &apos;product&apos;, &apos;ptp&apos;, &apos;put&apos;, &apos;quantile&apos;, &apos;radd&apos;, &apos;rank&apos;, &apos;ravel&apos;, &apos;rdiv&apos;, &apos;rdivmod&apos;, &apos;reindex&apos;, &apos;reindex_like&apos;, &apos;rename&apos;, &apos;rename_axis&apos;, &apos;reorder_levels&apos;, &apos;repeat&apos;, &apos;replace&apos;, &apos;resample&apos;, &apos;reset_index&apos;, &apos;rfloordiv&apos;, &apos;rmod&apos;, &apos;rmul&apos;, &apos;rolling&apos;, &apos;round&apos;, &apos;rpow&apos;, &apos;rsub&apos;, &apos;rtruediv&apos;, &apos;sample&apos;, &apos;searchsorted&apos;, &apos;sem&apos;, &apos;set_axis&apos;, &apos;shape&apos;, &apos;shift&apos;, &apos;size&apos;, &apos;skew&apos;, &apos;slice_shift&apos;, &apos;sort_index&apos;, &apos;sort_values&apos;, &apos;squeeze&apos;, &apos;std&apos;, &apos;sub&apos;, &apos;subtract&apos;, &apos;sum&apos;, &apos;swapaxes&apos;, &apos;swaplevel&apos;, &apos;tail&apos;, &apos;take&apos;, &apos;to_clipboard&apos;, &apos;to_csv&apos;, &apos;to_dense&apos;, &apos;to_dict&apos;, &apos;to_excel&apos;, &apos;to_frame&apos;, &apos;to_hdf&apos;, &apos;to_json&apos;, &apos;to_latex&apos;, &apos;to_list&apos;, &apos;to_msgpack&apos;, &apos;to_numpy&apos;, &apos;to_period&apos;, &apos;to_pickle&apos;, &apos;to_sparse&apos;, &apos;to_sql&apos;, &apos;to_string&apos;, &apos;to_timestamp&apos;, &apos;to_xarray&apos;, &apos;transform&apos;, &apos;transpose&apos;, &apos;truediv&apos;, &apos;truncate&apos;, &apos;tshift&apos;, &apos;tz_convert&apos;, &apos;tz_localize&apos;, &apos;unique&apos;, &apos;unstack&apos;, &apos;update&apos;, &apos;value_counts&apos;, &apos;values&apos;, &apos;var&apos;, &apos;view&apos;, &apos;where&apos;, &apos;xs&apos;]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(&#123;<span class="string">'col1'</span>:list(<span class="string">'abcde'</span>),<span class="string">'col2'</span>:range(<span class="number">5</span>,<span class="number">10</span>),<span class="string">'col3'</span>:[<span class="number">1.3</span>,<span class="number">2.5</span>,<span class="number">3.6</span>,<span class="number">4.6</span>,<span class="number">5.8</span>]&#125;,</span><br><span class="line">                 index=list(<span class="string">'一二三四五'</span>))</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col1</th>
+      <th>col2</th>
+      <th>col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>一</th>
+      <td>a</td>
+      <td>5</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <th>二</th>
+      <td>b</td>
+      <td>6</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>三</th>
+      <td>c</td>
+      <td>7</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>四</th>
+      <td>d</td>
+      <td>8</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>五</th>
+      <td>e</td>
+      <td>9</td>
+      <td>5.8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'col1'</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>一    a
+二    b
+三    c
+四    d
+五    e
+Name: col1, dtype: object</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(df)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>pandas.core.frame.DataFrame</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(df[<span class="string">'col1'</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>pandas.core.series.Series</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.rename(index=&#123;<span class="string">'一'</span>:<span class="string">'one'</span>&#125;,columns=&#123;<span class="string">'col1'</span>:<span class="string">'new_col1'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>new_col1</th>
+      <th>col2</th>
+      <th>col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>one</th>
+      <td>a</td>
+      <td>5</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <th>二</th>
+      <td>b</td>
+      <td>6</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>三</th>
+      <td>c</td>
+      <td>7</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>四</th>
+      <td>d</td>
+      <td>8</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>五</th>
+      <td>e</td>
+      <td>9</td>
+      <td>5.8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.index</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>Index([&apos;一&apos;, &apos;二&apos;, &apos;三&apos;, &apos;四&apos;, &apos;五&apos;], dtype=&apos;object&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.columns</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>Index([&apos;col1&apos;, &apos;col2&apos;, &apos;col3&apos;], dtype=&apos;object&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.values</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[&apos;a&apos;, 5, 1.3],
+       [&apos;b&apos;, 6, 2.5],
+       [&apos;c&apos;, 7, 3.6],
+       [&apos;d&apos;, 8, 4.6],
+       [&apos;e&apos;, 9, 5.8]], dtype=object)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(5, 3)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.mean()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>col2    7.00
+col3    3.56
+dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df1 = pd.DataFrame(&#123;<span class="string">'A'</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]&#125;,index=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">df2 = pd.DataFrame(&#123;<span class="string">'A'</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]&#125;,index=[<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line">df1-df2</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.drop(index=<span class="string">'五'</span>,columns=<span class="string">'col1'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col2</th>
+      <th>col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>一</th>
+      <td>5</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <th>二</th>
+      <td>6</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>三</th>
+      <td>7</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>四</th>
+      <td>8</td>
+      <td>4.6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'col1'</span>]=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">del</span> df[<span class="string">'col1'</span>]</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col2</th>
+      <th>col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>一</th>
+      <td>5</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <th>二</th>
+      <td>6</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>三</th>
+      <td>7</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>四</th>
+      <td>8</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>五</th>
+      <td>9</td>
+      <td>5.8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'col1'</span>]=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">df.pop(<span class="string">'col1'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>一    1
+二    2
+三    3
+四    4
+五    5
+Name: col1, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col2</th>
+      <th>col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>一</th>
+      <td>5</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <th>二</th>
+      <td>6</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>三</th>
+      <td>7</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>四</th>
+      <td>8</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>五</th>
+      <td>9</td>
+      <td>5.8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df1[<span class="string">'B'</span>]=list(<span class="string">'abc'</span>)</span><br><span class="line">df1</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>a</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>b</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>c</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df1.assign(C=pd.Series(list(<span class="string">'def'</span>)))</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>a</td>
+      <td>e</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>b</td>
+      <td>f</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>c</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df1</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>a</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>b</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>c</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.select_dtypes(include=[<span class="string">'number'</span>]).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col2</th>
+      <th>col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>一</th>
+      <td>5</td>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <th>二</th>
+      <td>6</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>三</th>
+      <td>7</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>四</th>
+      <td>8</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>五</th>
+      <td>9</td>
+      <td>5.8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.select_dtypes(include=[<span class="string">'float'</span>]).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>一</th>
+      <td>1.3</td>
+    </tr>
+    <tr>
+      <th>二</th>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>三</th>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>四</th>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>五</th>
+      <td>5.8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = df.mean()</span><br><span class="line">s.name=<span class="string">'to_DataFrame'</span></span><br><span class="line">s</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>col2    7.00
+col3    3.56
+Name: to_DataFrame, dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.to_frame()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>to_DataFrame</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>col2</th>
+      <td>7.00</td>
+    </tr>
+    <tr>
+      <th>col3</th>
+      <td>3.56</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.to_frame().T</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col2</th>
+      <th>col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>to_DataFrame</th>
+      <td>7.0</td>
+      <td>3.56</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1101</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1102</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1103</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1104</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1105</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.tail()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>30</th>
+      <td>S_2</td>
+      <td>C_4</td>
+      <td>2401</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>62</td>
+      <td>45.3</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>S_2</td>
+      <td>C_4</td>
+      <td>2402</td>
+      <td>M</td>
+      <td>street_7</td>
+      <td>166</td>
+      <td>82</td>
+      <td>48.7</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>S_2</td>
+      <td>C_4</td>
+      <td>2403</td>
+      <td>F</td>
+      <td>street_6</td>
+      <td>158</td>
+      <td>60</td>
+      <td>59.7</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>S_2</td>
+      <td>C_4</td>
+      <td>2404</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>160</td>
+      <td>84</td>
+      <td>67.7</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>S_2</td>
+      <td>C_4</td>
+      <td>2405</td>
+      <td>F</td>
+      <td>street_6</td>
+      <td>193</td>
+      <td>54</td>
+      <td>47.6</td>
+      <td>B</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1101</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1102</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1103</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Physics'</span>].nunique()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>7</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Physics'</span>].unique()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([&apos;A+&apos;, &apos;B+&apos;, &apos;B-&apos;, &apos;A-&apos;, &apos;B&apos;, &apos;A&apos;, &apos;C&apos;], dtype=object)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Physics'</span>].count()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>35</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">df[<span class="string">'Physics'</span>].value_counts()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>B+    9
+B     8
+B-    6
+A     4
+A-    3
+A+    3
+C     2
+Name: Physics, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.info()</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+RangeIndex: 35 entries, 0 to 34
+Data columns (total 9 columns):
+School     35 non-null object
+Class      35 non-null object
+ID         35 non-null int64
+Gender     35 non-null object
+Address    35 non-null object
+Height     35 non-null int64
+Weight     35 non-null int64
+Math       35 non-null float64
+Physics    35 non-null object
+dtypes: float64(1), int64(3), object(5)
+memory usage: 2.6+ KB</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>35.00000</td>
+      <td>35.000000</td>
+      <td>35.000000</td>
+      <td>35.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1803.00000</td>
+      <td>174.142857</td>
+      <td>74.657143</td>
+      <td>61.351429</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>536.87741</td>
+      <td>13.541098</td>
+      <td>12.895377</td>
+      <td>19.915164</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1101.00000</td>
+      <td>155.000000</td>
+      <td>53.000000</td>
+      <td>31.500000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1204.50000</td>
+      <td>161.000000</td>
+      <td>63.000000</td>
+      <td>47.400000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2103.00000</td>
+      <td>173.000000</td>
+      <td>74.000000</td>
+      <td>61.700000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2301.50000</td>
+      <td>187.500000</td>
+      <td>82.000000</td>
+      <td>77.100000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2405.00000</td>
+      <td>195.000000</td>
+      <td>100.000000</td>
+      <td>97.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.describe(percentiles=[<span class="number">.05</span>, <span class="number">.25</span>, <span class="number">.75</span>, <span class="number">.95</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>35.00000</td>
+      <td>35.000000</td>
+      <td>35.000000</td>
+      <td>35.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1803.00000</td>
+      <td>174.142857</td>
+      <td>74.657143</td>
+      <td>61.351429</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>536.87741</td>
+      <td>13.541098</td>
+      <td>12.895377</td>
+      <td>19.915164</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1101.00000</td>
+      <td>155.000000</td>
+      <td>53.000000</td>
+      <td>31.500000</td>
+    </tr>
+    <tr>
+      <th>5%</th>
+      <td>1102.70000</td>
+      <td>157.000000</td>
+      <td>56.100000</td>
+      <td>32.640000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1204.50000</td>
+      <td>161.000000</td>
+      <td>63.000000</td>
+      <td>47.400000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2103.00000</td>
+      <td>173.000000</td>
+      <td>74.000000</td>
+      <td>61.700000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2301.50000</td>
+      <td>187.500000</td>
+      <td>82.000000</td>
+      <td>77.100000</td>
+    </tr>
+    <tr>
+      <th>95%</th>
+      <td>2403.30000</td>
+      <td>193.300000</td>
+      <td>97.600000</td>
+      <td>90.040000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2405.00000</td>
+      <td>195.000000</td>
+      <td>100.000000</td>
+      <td>97.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Physics'</span>].describe()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>count     35
+unique     7
+top       B+
+freq       9
+Name: Physics, dtype: object</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Math'</span>].idxmax()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>5</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Math'</span>].nlargest(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>5     97.0
+28    95.5
+11    87.7
+Name: Math, dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Math'</span>].head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0    34.0
+1    32.5
+2    87.2
+3    80.4
+4    84.8
+Name: Math, dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Math'</span>].clip(<span class="number">33</span>,<span class="number">80</span>).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0    34.0
+1    33.0
+2    80.0
+3    80.0
+4    80.0
+Name: Math, dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Math'</span>].mad()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>16.924244897959188</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Address'</span>].head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0    street_1
+1    street_2
+2    street_2
+3    street_2
+4    street_4
+Name: Address, dtype: object</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Address'</span>].replace([<span class="string">'street_1'</span>,<span class="string">'street_2'</span>],[<span class="string">'one'</span>,<span class="string">'two'</span>]).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0         one
+1         two
+2         two
+3         two
+4    street_4
+Name: Address, dtype: object</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.replace(&#123;<span class="string">'Address'</span>:&#123;<span class="string">'street_1'</span>:<span class="string">'one'</span>,<span class="string">'street_2'</span>:<span class="string">'two'</span>&#125;&#125;).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1101</td>
+      <td>M</td>
+      <td>one</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1102</td>
+      <td>F</td>
+      <td>two</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1103</td>
+      <td>M</td>
+      <td>two</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1104</td>
+      <td>F</td>
+      <td>two</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1105</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Math'</span>].apply(<span class="keyword">lambda</span> x:str(x)+<span class="string">'!'</span>).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0    34.0!
+1    32.5!
+2    87.2!
+3    80.4!
+4    84.8!
+Name: Math, dtype: object</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.apply(<span class="keyword">lambda</span> x:x.apply(<span class="keyword">lambda</span> x:str(x)+<span class="string">'!'</span>)).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>S_1!</td>
+      <td>C_1!</td>
+      <td>1101!</td>
+      <td>M!</td>
+      <td>street_1!</td>
+      <td>173!</td>
+      <td>63!</td>
+      <td>34.0!</td>
+      <td>A+!</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>S_1!</td>
+      <td>C_1!</td>
+      <td>1102!</td>
+      <td>F!</td>
+      <td>street_2!</td>
+      <td>192!</td>
+      <td>73!</td>
+      <td>32.5!</td>
+      <td>B+!</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>S_1!</td>
+      <td>C_1!</td>
+      <td>1103!</td>
+      <td>M!</td>
+      <td>street_2!</td>
+      <td>186!</td>
+      <td>82!</td>
+      <td>87.2!</td>
+      <td>B+!</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>S_1!</td>
+      <td>C_1!</td>
+      <td>1104!</td>
+      <td>F!</td>
+      <td>street_2!</td>
+      <td>167!</td>
+      <td>81!</td>
+      <td>80.4!</td>
+      <td>B-!</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>S_1!</td>
+      <td>C_1!</td>
+      <td>1105!</td>
+      <td>F!</td>
+      <td>street_4!</td>
+      <td>159!</td>
+      <td>64!</td>
+      <td>84.8!</td>
+      <td>B+!</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.set_index(<span class="string">'Math'</span>).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>Math</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>34.0</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1101</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>32.5</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1102</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>87.2</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1103</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>80.4</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1104</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>84.8</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1105</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.set_index(<span class="string">'Math'</span>).sort_index().head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>Math</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>31.5</th>
+      <td>S_1</td>
+      <td>C_3</td>
+      <td>1301</td>
+      <td>M</td>
+      <td>street_4</td>
+      <td>161</td>
+      <td>68</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>32.5</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1102</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>32.7</th>
+      <td>S_2</td>
+      <td>C_3</td>
+      <td>2302</td>
+      <td>M</td>
+      <td>street_5</td>
+      <td>171</td>
+      <td>88</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>33.8</th>
+      <td>S_1</td>
+      <td>C_2</td>
+      <td>1204</td>
+      <td>F</td>
+      <td>street_5</td>
+      <td>162</td>
+      <td>63</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>34.0</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1101</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>A+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sort_values(by=<span class="string">'Class'</span>).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1101</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>2105</td>
+      <td>M</td>
+      <td>street_4</td>
+      <td>170</td>
+      <td>81</td>
+      <td>34.2</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>2104</td>
+      <td>F</td>
+      <td>street_5</td>
+      <td>159</td>
+      <td>97</td>
+      <td>72.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>2102</td>
+      <td>F</td>
+      <td>street_6</td>
+      <td>161</td>
+      <td>61</td>
+      <td>50.6</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>2101</td>
+      <td>M</td>
+      <td>street_7</td>
+      <td>174</td>
+      <td>84</td>
+      <td>83.3</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sort_values(by=[<span class="string">'Address'</span>,<span class="string">'Height'</span>]).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>ID</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1101</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>S_1</td>
+      <td>C_3</td>
+      <td>1302</td>
+      <td>F</td>
+      <td>street_1</td>
+      <td>175</td>
+      <td>57</td>
+      <td>87.7</td>
+      <td>A-</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>S_2</td>
+      <td>C_2</td>
+      <td>2204</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>175</td>
+      <td>74</td>
+      <td>47.2</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>S_2</td>
+      <td>C_4</td>
+      <td>2404</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>160</td>
+      <td>84</td>
+      <td>67.7</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>1104</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="【问题一】-Series和DataFrame有哪些常见属性和方法？"><a href="#【问题一】-Series和DataFrame有哪些常见属性和方法？" class="headerlink" title="【问题一】 Series和DataFrame有哪些常见属性和方法？"></a>【问题一】 Series和DataFrame有哪些常见属性和方法？</h3><p>对于一个Series，其中最常用的属性为值（values），索引（index），名字（name），类型（dtype）。<br>对于DataFrame，属性有index、columns、values、shape。<br>方法是mean（）。</p>
+<h3 id="【问题二】-value-counts会统计缺失值吗？"><a href="#【问题二】-value-counts会统计缺失值吗？" class="headerlink" title="【问题二】 value_counts会统计缺失值吗？"></a>【问题二】 value_counts会统计缺失值吗？</h3><p>不会</p>
+<h3 id="【问题三】-与idxmax和nlargest功能相反的是哪两组函数？"><a href="#【问题三】-与idxmax和nlargest功能相反的是哪两组函数？" class="headerlink" title="【问题三】 与idxmax和nlargest功能相反的是哪两组函数？"></a>【问题三】 与idxmax和nlargest功能相反的是哪两组函数？</h3><p>idxmin、nsmallest</p>
+<h3 id="【问题四】-在常用函数一节中，由于一些函数的功能比较简单，因此没有列入，现在将它们列在下面，请分别说明它们的用途并尝试使用。"><a href="#【问题四】-在常用函数一节中，由于一些函数的功能比较简单，因此没有列入，现在将它们列在下面，请分别说明它们的用途并尝试使用。" class="headerlink" title="【问题四】 在常用函数一节中，由于一些函数的功能比较简单，因此没有列入，现在将它们列在下面，请分别说明它们的用途并尝试使用。"></a>【问题四】 在常用函数一节中，由于一些函数的功能比较简单，因此没有列入，现在将它们列在下面，请分别说明它们的用途并尝试使用。</h3><p>sum/mean/median/mad/min/max/abs/std/var/quantile/cummax/cumsum/cumprod</p>
+<h3 id="【问题五】-df-mean-axis-1-是什么意思？它与df-mean-的结果一样吗？第一问提到的函数也有axis参数吗？怎么使用？"><a href="#【问题五】-df-mean-axis-1-是什么意思？它与df-mean-的结果一样吗？第一问提到的函数也有axis参数吗？怎么使用？" class="headerlink" title="【问题五】 df.mean(axis=1)是什么意思？它与df.mean()的结果一样吗？第一问提到的函数也有axis参数吗？怎么使用？"></a>【问题五】 df.mean(axis=1)是什么意思？它与df.mean()的结果一样吗？第一问提到的函数也有axis参数吗？怎么使用？</h3><h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p>1.【练习一】 现有一份关于美剧《权力的游戏》剧本的数据集，请解决以下问题：¶</p>
+<p>（a）在所有的数据中，一共出现了多少人物？</p>
+<p>（b）以单元格计数（即简单把一个单元格视作一句），谁说了最多的话？</p>
+<p>（c）以单词计数，谁说了最多的单词</p>
+<p>2.【练习二】现有一份关于科比的投篮数据集，请解决如下问题：</p>
+<p>（a）哪种action_type和combined_shot_type的组合是最多的？</p>
+<p>（b）在所有被记录的game_id中，遭遇到最多的opponent是一个支？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#练习1-a</span></span><br><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/Game_of_Thrones_Script.csv'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Release Date</th>
+      <th>Season</th>
+      <th>Episode</th>
+      <th>Episode Title</th>
+      <th>Name</th>
+      <th>Sentence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2011/4/17</td>
+      <td>Season 1</td>
+      <td>Episode 1</td>
+      <td>Winter is Coming</td>
+      <td>waymar royce</td>
+      <td>What do you expect? They're savages. One lot s...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2011/4/17</td>
+      <td>Season 1</td>
+      <td>Episode 1</td>
+      <td>Winter is Coming</td>
+      <td>will</td>
+      <td>I've never seen wildlings do a thing like this...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2011/4/17</td>
+      <td>Season 1</td>
+      <td>Episode 1</td>
+      <td>Winter is Coming</td>
+      <td>waymar royce</td>
+      <td>How close did you get?</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2011/4/17</td>
+      <td>Season 1</td>
+      <td>Episode 1</td>
+      <td>Winter is Coming</td>
+      <td>will</td>
+      <td>Close as any man would.</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2011/4/17</td>
+      <td>Season 1</td>
+      <td>Episode 1</td>
+      <td>Winter is Coming</td>
+      <td>gared</td>
+      <td>We should head back to the wall.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Name'</span>].nunique()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>564</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#练习1-b</span></span><br><span class="line">df[<span class="string">'Name'</span>].value_counts().index[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&apos;tyrion lannister&apos;</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#练习1-c</span></span><br><span class="line">df_words = df.assign(Words=df[<span class="string">'Sentence'</span>].apply(<span class="keyword">lambda</span> x:len(x.split()))).sort_values(by=<span class="string">'Name'</span>)</span><br><span class="line">df_words.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Release Date</th>
+      <th>Season</th>
+      <th>Episode</th>
+      <th>Episode Title</th>
+      <th>Name</th>
+      <th>Sentence</th>
+      <th>Words</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>276</th>
+      <td>2011/4/17</td>
+      <td>Season 1</td>
+      <td>Episode 1</td>
+      <td>Winter is Coming</td>
+      <td>a voice</td>
+      <td>It's Maester Luwin, my lord.</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3012</th>
+      <td>2011/6/19</td>
+      <td>Season 1</td>
+      <td>Episode 10</td>
+      <td>Fire and Blood</td>
+      <td>addam marbrand</td>
+      <td>ls it true about Stannis and Renly?</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>3017</th>
+      <td>2011/6/19</td>
+      <td>Season 1</td>
+      <td>Episode 10</td>
+      <td>Fire and Blood</td>
+      <td>addam marbrand</td>
+      <td>Kevan Lannister</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>13610</th>
+      <td>2014/6/8</td>
+      <td>Season 4</td>
+      <td>Episode 9</td>
+      <td>The Watchers on the Wall</td>
+      <td>aemon</td>
+      <td>And what is it that couldn't wait until mornin...</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>13614</th>
+      <td>2014/6/8</td>
+      <td>Season 4</td>
+      <td>Episode 9</td>
+      <td>The Watchers on the Wall</td>
+      <td>aemon</td>
+      <td>Oh, no need. I know my way around this library...</td>
+      <td>48</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">L_count = []</span><br><span class="line">N_words = list(zip(df_words[<span class="string">'Name'</span>],df_words[<span class="string">'Words'</span>]))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> N_words:</span><br><span class="line">    <span class="keyword">if</span> i == N_words[<span class="number">0</span>]:</span><br><span class="line">        L_count.append(i[<span class="number">1</span>])</span><br><span class="line">        last = i[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        L_count.append(L_count[<span class="number">-1</span>]+i[<span class="number">1</span>] <span class="keyword">if</span> i[<span class="number">0</span>]==last <span class="keyword">else</span> i[<span class="number">1</span>])</span><br><span class="line">        last = i[<span class="number">0</span>]</span><br><span class="line">df_words[<span class="string">'Count'</span>]=L_count</span><br><span class="line">df_words[<span class="string">'Name'</span>][df_words[<span class="string">'Count'</span>].idxmax()]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&apos;tyrion lannister&apos;</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#练习2-a</span></span><br><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/Kobe_data.csv'</span>,index_col=<span class="string">'shot_id'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>action_type</th>
+      <th>combined_shot_type</th>
+      <th>game_event_id</th>
+      <th>game_id</th>
+      <th>lat</th>
+      <th>loc_x</th>
+      <th>loc_y</th>
+      <th>lon</th>
+      <th>minutes_remaining</th>
+      <th>period</th>
+      <th>...</th>
+      <th>shot_made_flag</th>
+      <th>shot_type</th>
+      <th>shot_zone_area</th>
+      <th>shot_zone_basic</th>
+      <th>shot_zone_range</th>
+      <th>team_id</th>
+      <th>team_name</th>
+      <th>game_date</th>
+      <th>matchup</th>
+      <th>opponent</th>
+    </tr>
+    <tr>
+      <th>shot_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Jump Shot</td>
+      <td>Jump Shot</td>
+      <td>10</td>
+      <td>20000012</td>
+      <td>33.9723</td>
+      <td>167</td>
+      <td>72</td>
+      <td>-118.1028</td>
+      <td>10</td>
+      <td>1</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>2PT Field Goal</td>
+      <td>Right Side(R)</td>
+      <td>Mid-Range</td>
+      <td>16-24 ft.</td>
+      <td>1610612747</td>
+      <td>Los Angeles Lakers</td>
+      <td>2000/10/31</td>
+      <td>LAL @ POR</td>
+      <td>POR</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jump Shot</td>
+      <td>Jump Shot</td>
+      <td>12</td>
+      <td>20000012</td>
+      <td>34.0443</td>
+      <td>-157</td>
+      <td>0</td>
+      <td>-118.4268</td>
+      <td>10</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>2PT Field Goal</td>
+      <td>Left Side(L)</td>
+      <td>Mid-Range</td>
+      <td>8-16 ft.</td>
+      <td>1610612747</td>
+      <td>Los Angeles Lakers</td>
+      <td>2000/10/31</td>
+      <td>LAL @ POR</td>
+      <td>POR</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jump Shot</td>
+      <td>Jump Shot</td>
+      <td>35</td>
+      <td>20000012</td>
+      <td>33.9093</td>
+      <td>-101</td>
+      <td>135</td>
+      <td>-118.3708</td>
+      <td>7</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>2PT Field Goal</td>
+      <td>Left Side Center(LC)</td>
+      <td>Mid-Range</td>
+      <td>16-24 ft.</td>
+      <td>1610612747</td>
+      <td>Los Angeles Lakers</td>
+      <td>2000/10/31</td>
+      <td>LAL @ POR</td>
+      <td>POR</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Jump Shot</td>
+      <td>Jump Shot</td>
+      <td>43</td>
+      <td>20000012</td>
+      <td>33.8693</td>
+      <td>138</td>
+      <td>175</td>
+      <td>-118.1318</td>
+      <td>6</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>2PT Field Goal</td>
+      <td>Right Side Center(RC)</td>
+      <td>Mid-Range</td>
+      <td>16-24 ft.</td>
+      <td>1610612747</td>
+      <td>Los Angeles Lakers</td>
+      <td>2000/10/31</td>
+      <td>LAL @ POR</td>
+      <td>POR</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Driving Dunk Shot</td>
+      <td>Dunk</td>
+      <td>155</td>
+      <td>20000012</td>
+      <td>34.0443</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-118.2698</td>
+      <td>6</td>
+      <td>2</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>2PT Field Goal</td>
+      <td>Center(C)</td>
+      <td>Restricted Area</td>
+      <td>Less Than 8 ft.</td>
+      <td>1610612747</td>
+      <td>Los Angeles Lakers</td>
+      <td>2000/10/31</td>
+      <td>LAL @ POR</td>
+      <td>POR</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.Series(list(zip(df[<span class="string">'action_type'</span>],df[<span class="string">'combined_shot_type'</span>]))).value_counts().index[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>(&apos;Jump Shot&apos;, &apos;Jump Shot&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#练习2-b</span></span><br><span class="line">pd.Series(list(list(zip(*(pd.Series(list(zip(df[<span class="string">'game_id'</span>],df[<span class="string">'opponent'</span>])))</span><br><span class="line">                          .unique()).tolist()))[<span class="number">1</span>])).value_counts().index[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&apos;SAS&apos;</code></pre>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataWhale/" rel="tag">DataWhale</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Datawhale-零基础入门数据挖掘-Task5-模型融合" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -453,7 +3222,7 @@
     <ul class="list-inline">
       <li>
         &copy;
-        2020
+        2020-2021
         Jenny
       </li>
       <li>
