@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-01-11T07:13:07.408Z</updated>
+  <updated>2021-01-12T13:43:00.741Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>腾讯精选练习题50题-回文数</title>
+    <link href="http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%9B%9E%E6%96%87%E6%95%B0/"/>
+    <id>http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%9B%9E%E6%96%87%E6%95%B0/</id>
+    <published>2021-01-11T13:41:03.000Z</published>
+    <updated>2021-01-12T13:43:00.741Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例 1:&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+      <category term="算法刷题" scheme="http://yoursite.com/categoriesl/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="腾讯算法" scheme="http://yoursite.com/tags/%E8%85%BE%E8%AE%AF%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>腾讯精选练习题50题-两数相加</title>
@@ -57,6 +87,120 @@
         
         
           &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="算法刷题" scheme="http://yoursite.com/categoriesl/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="腾讯算法" scheme="http://yoursite.com/tags/%E8%85%BE%E8%AE%AF%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>腾讯精选练习题50题-字符串转换整数 (atoi)</title>
+    <link href="http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi)/"/>
+    <id>http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi)/</id>
+    <published>2021-01-11T07:03:03.000Z</published>
+    <updated>2021-01-12T12:40:47.409Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;请你来实现一个 &lt;code&gt;atoi&lt;/code&gt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="算法刷题" scheme="http://yoursite.com/categoriesl/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="腾讯算法" scheme="http://yoursite.com/tags/%E8%85%BE%E8%AE%AF%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>腾讯精选练习题50题-寻找两个正序数组的中位数</title>
+    <link href="http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"/>
+    <id>http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/</id>
+    <published>2021-01-11T07:03:03.000Z</published>
+    <updated>2021-01-11T12:39:28.643Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;给定两个大小为 m 和 n 的正序（从小到大）数组 &lt;code&gt;nums1&lt;/code&gt; 和 &lt;code&gt;nums2&lt;/code&gt;。请你找出并返回这两个正序数组的中位数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;进阶：&lt;/strong&gt;你能设计一个时间复杂度为
+        
+      
+    
+    </summary>
+    
+    
+      <category term="算法刷题" scheme="http://yoursite.com/categoriesl/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="腾讯算法" scheme="http://yoursite.com/tags/%E8%85%BE%E8%AE%AF%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>腾讯精选练习题50题-整数反转</title>
+    <link href="http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/"/>
+    <id>http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/</id>
+    <published>2021-01-11T07:03:03.000Z</published>
+    <updated>2021-01-12T03:19:18.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231, 231 −
+        
+      
+    
+    </summary>
+    
+    
+      <category term="算法刷题" scheme="http://yoursite.com/categoriesl/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="腾讯算法" scheme="http://yoursite.com/tags/%E8%85%BE%E8%AE%AF%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>腾讯精选练习题50题-最长回文子串</title>
+    <link href="http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/"/>
+    <id>http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</id>
+    <published>2021-01-11T07:03:03.000Z</published>
+    <updated>2021-01-12T03:16:02.300Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;给你一个字符串 &lt;code&gt;s&lt;/code&gt;，找到 &lt;code&gt;s&lt;/code&gt; 中最长的回文子串。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例 1：&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
         
       
     
@@ -418,53 +562,6 @@
     
     
       <category term="-FIT5216 Week2" scheme="http://yoursite.com/tags/FIT5216-Week2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Datawhale 二手车价格预测Task3</title>
-    <link href="http://yoursite.com/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/"/>
-    <id>http://yoursite.com/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/</id>
-    <published>2020-03-27T08:26:31.000Z</published>
-    <updated>2020-03-27T08:29:05.962Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Task3-特征工程&quot;&gt;&lt;a href=&quot;#Task3-特征工程&quot; class=&quot;headerlink&quot; title=&quot;Task3-特征工程&quot;&gt;&lt;/a&gt;Task3-特征工程&lt;/h2&gt;&lt;p&gt;特征工程的主要目的还是在于将数据转换为能更好地表示潜在问题的特征，从而提高机器学习的性能。比如，异常值处理是为了去除噪声，填补缺失值可以加入先验知识等。特征构造也属于特征工程的一部分，其目的是为了增强数据的表达。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="数据挖掘" scheme="http://yoursite.com/categoriesl/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
-    
-    
-      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
-    
-      <category term="天池" scheme="http://yoursite.com/tags/%E5%A4%A9%E6%B1%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Datawhale 二手车价格预测Task1&amp;Task2</title>
-    <link href="http://yoursite.com/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&amp;Task2/"/>
-    <id>http://yoursite.com/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&amp;Task2/</id>
-    <published>2020-03-24T01:53:54.000Z</published>
-    <updated>2020-03-25T10:47:04.599Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;二手车交易价格预测&lt;/p&gt;
-&lt;p&gt;大家好，我是一个数据挖掘小白，通过看官方提供的内容我发现很多专业词汇我都没有接触过，我想通过这个平台来锻炼提高自己，感谢大家批评指正。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="数据挖掘" scheme="http://yoursite.com/categoriesl/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
-    
-    
-      <category term="DataWhale" scheme="http://yoursite.com/tags/DataWhale/"/>
-    
-      <category term="天池" scheme="http://yoursite.com/tags/%E5%A4%A9%E6%B1%A0/"/>
     
   </entry>
   

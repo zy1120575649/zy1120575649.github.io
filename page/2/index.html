@@ -75,6 +75,2054 @@
     
     
     
+    <article id="post-Python爬虫编程实践-Task4" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/26/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task4/"
+    >Python爬虫编程实践-Task4</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/26/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task4/" class="article-date">
+  <time datetime="2020-04-26T11:24:38.000Z" itemprop="datePublished">2020-04-26</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categoriesl/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/">Python爬虫编程实践</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <ol>
+<li>了解ajax加载</li>
+<li>通过chrome的开发者工具，监控网络请求，并分析</li>
+<li>用selenium完成爬虫</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span>  selenium <span class="keyword">import</span> webdriver</span><br><span class="line">driver=webdriver.Chrome(executable_path=<span class="string">"D:\chromedriver\chromedriver.exe"</span>)</span><br><span class="line">driver.get(<span class="string">"https://news.qq.com"</span>)</span><br><span class="line"><span class="comment">#了解ajax加载</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line">    driver.execute_script(<span class="string">"window.scrollTo(window.scrollX, %d);"</span>%(i*<span class="number">200</span>))</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">html=driver.page_source</span><br><span class="line">bsObj=BeautifulSoup(html,<span class="string">"lxml"</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jxtits=bsObj.find_all(<span class="string">"div"</span>,&#123;<span class="string">"class"</span>:<span class="string">"jx-tit"</span>&#125;)[<span class="number">0</span>].find_next_sibling().find_all(<span class="string">"li"</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"index"</span>,<span class="string">","</span>,<span class="string">"title"</span>,<span class="string">","</span>,<span class="string">"url"</span>)</span><br><span class="line"><span class="keyword">for</span> i,jxtit <span class="keyword">in</span> enumerate(jxtits):</span><br><span class="line"><span class="comment">#     print(jxtit)</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        text=jxtit.find_all(<span class="string">"img"</span>)[<span class="number">0</span>][<span class="string">"alt"</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        text=jxtit.find_all(<span class="string">"div"</span>,&#123;<span class="string">"class"</span>:<span class="string">"lazyload-placeholder"</span>&#125;)[<span class="number">0</span>].text</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        url=jxtit.find_all(<span class="string">"a"</span>)[<span class="number">0</span>][<span class="string">"href"</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        print(jxtit)</span><br><span class="line">    print(i+<span class="number">1</span>,<span class="string">","</span>,text,<span class="string">","</span>,url)</span><br></pre></td></tr></table></figure>
+
+<p>进阶加餐-知乎爬虫</p>
+<p>链接如下<br><a href="https://www.zhihu.com/search?q=Datawhale&amp;utm_content=search_history&amp;type=content" target="_blank" rel="noopener">https://www.zhihu.com/search?q=Datawhale&amp;utm_content=search_history&amp;type=content</a><br>用requests库实现，不能用selenium网页自动化</p>
+<p>提示：<br>该链接需要登录，可通过github等，搜索知乎登录的代码实现，并理解其中的逻辑，此任务允许复制粘贴代码<br>与上面ajax加载类似，这次的ajax加载需要用requests完成爬取，最终存储样式随意，但是通过Chrome的开发者工具，分析出ajax的流程需要写出来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> http <span class="keyword">import</span> cookiejar</span><br><span class="line">Session=requests.session()</span><br><span class="line">Session.cookies = cookiejar.LWPCookieJar(filename=<span class="string">'./cookies.txt'</span>)</span><br><span class="line">Session.cookies.load(ignore_discard=<span class="literal">True</span>)</span><br><span class="line">Session.headers=&#123;</span><br><span class="line">            <span class="string">'Host'</span>: <span class="string">'www.zhihu.com'</span>,</span><br><span class="line">            <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '</span></span><br><span class="line">                          <span class="string">'(KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36'</span></span><br><span class="line">        &#125;</span><br><span class="line">r=Session.get(<span class="string">"https://www.zhihu.com/search?q=Datawhale&amp;utm_content=search_history&amp;type=content"</span>)</span><br><span class="line">r.encoding=<span class="string">"utf-8"</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">compiler=re.compile(<span class="string">'"next":"(https:\\\\u002F\\\\u002Fapi.zhihu.com\\\\u002Fsearch_v3.*?)"'</span>)</span><br><span class="line">r.text</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bsObj=BeautifulSoup(r.text,<span class="string">"lxml"</span>)</span><br><span class="line">url=compiler.findall(r.text)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> unquote</span><br><span class="line">url=unquote(url,encoding=<span class="string">"utf-8"</span>, errors=<span class="string">'replace'</span>)</span><br><span class="line">url=url.replace(<span class="string">"\\u002F"</span>,<span class="string">"/"</span>)</span><br><span class="line">search_hash_id=re.search(<span class="string">"search_hash_id=(.*?)&amp;show_all_topics"</span>,url).group(<span class="number">1</span>)</span><br><span class="line">search_hash_id</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">offset=<span class="number">20</span></span><br><span class="line">lc_idx=<span class="number">21</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    r=Session.get(<span class="string">"https://www.zhihu.com/api/v4/search_v3?t=general&amp;q=Datawhale&amp;correction=1&amp;offset=&#123;offset&#125;&amp;limit=20&amp;lc_idx=&#123;lc_idx&#125;&amp;show_all_topics=0&amp;search_hash_id=&#123;search_hash_id&#125;&amp;vertical_info=0%2C0%2C1%2C0%2C0%2C0%2C0%2C0%2C0%2C0"</span>.format(**&#123;<span class="string">"offset"</span>:offset+i*<span class="number">20</span>,<span class="string">"lc_idx"</span>:lc_idx+i*<span class="number">20</span>,<span class="string">"search_hash_id"</span>:search_hash_id&#125;))</span><br><span class="line">    r.encoding=<span class="string">"utf-8"</span></span><br><span class="line">    print(r.json())</span><br><span class="line">    print(<span class="string">"\n"</span>*<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataWhale/" rel="tag">DataWhale</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Python爬虫编程实践-Task3" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/25/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task3/"
+    >Python爬虫编程实践-Task3</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/25/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task3/" class="article-date">
+  <time datetime="2020-04-25T08:53:39.000Z" itemprop="datePublished">2020-04-25</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categoriesl/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/">Python爬虫编程实践</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="session和cookie"><a href="#session和cookie" class="headerlink" title="session和cookie"></a>session和cookie</h2><p>Session 是会话的意思，会话是产生在服务端的，用来保存当前用户的会话信息，而 Cookies 是保存在客户端（浏览器），有了 Cookie 以后，客户端（浏览器）再次访问服务端的时候，会将这个 Cookie 带上，这时，服务端可以通过 Cookie 来识别本次请求到底是谁在访问。</p>
+      
+      <a class="article-more-link" href="/2020/04/25/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task3/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataWhale/" rel="tag">DataWhale</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Pandas教程-Task3" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/25/Pandas%E6%95%99%E7%A8%8B-Task3/"
+    >Pandas教程-Task3</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/25/Pandas%E6%95%99%E7%A8%8B-Task3/" class="article-date">
+  <time datetime="2020-04-25T08:53:12.000Z" itemprop="datePublished">2020-04-25</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categoriesl/Pandas%E6%95%99%E7%A8%8B/">Pandas教程</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span>,index_col=<span class="string">'ID'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1101</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1102</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>1103</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>1104</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>1105</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="一、SAC过程"><a href="#一、SAC过程" class="headerlink" title="一、SAC过程"></a>一、SAC过程</h2><h3 id="1-内涵"><a href="#1-内涵" class="headerlink" title="1. 内涵"></a>1. 内涵</h3><p>SAC指的是分组操作中的split-apply-combine过程<br>其中split指基于某一些规则，将数据拆成若干组，apply是指对每一组独立地使用函数，combine指将每一组的结果组合成某一类数据结构</p>
+<h3 id="2-apply过程"><a href="#2-apply过程" class="headerlink" title="2. apply过程"></a>2. apply过程</h3><p>在该过程中，我们实际往往会遇到四类问题：<br>整合（Aggregation）——即分组计算统计量（如求均值、求每组元素个数）<br>变换（Transformation）——即分组对每个单元的数据进行操作（如元素标准化）<br>过滤（Filtration）——即按照某些规则筛选出一些组（如选出组内某一指标小于50的组）<br>综合问题——即前面提及的三种问题的混合</p>
+<h2 id="二、groupby函数"><a href="#二、groupby函数" class="headerlink" title="二、groupby函数"></a>二、groupby函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grouped_single = df.groupby(<span class="string">'School'</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grouped_single.get_group(<span class="string">'S_1'</span>).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1101</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1102</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>1103</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>1104</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>1105</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grouped_mul = df.groupby([<span class="string">'School'</span>,<span class="string">'Class'</span>])</span><br><span class="line">grouped_mul.get_group((<span class="string">'S_2'</span>,<span class="string">'C_4'</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2401</th>
+      <td>S_2</td>
+      <td>C_4</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>62</td>
+      <td>45.3</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>2402</th>
+      <td>S_2</td>
+      <td>C_4</td>
+      <td>M</td>
+      <td>street_7</td>
+      <td>166</td>
+      <td>82</td>
+      <td>48.7</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>2403</th>
+      <td>S_2</td>
+      <td>C_4</td>
+      <td>F</td>
+      <td>street_6</td>
+      <td>158</td>
+      <td>60</td>
+      <td>59.7</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>2404</th>
+      <td>S_2</td>
+      <td>C_4</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>160</td>
+      <td>84</td>
+      <td>67.7</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>2405</th>
+      <td>S_2</td>
+      <td>C_4</td>
+      <td>F</td>
+      <td>street_6</td>
+      <td>193</td>
+      <td>54</td>
+      <td>47.6</td>
+      <td>B</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grouped_single.size()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>School
+S_1    15
+S_2    20
+dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grouped_mul.size()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>School  Class
+S_1     C_1      5
+        C_2      5
+        C_3      5
+S_2     C_1      5
+        C_2      5
+        C_3      5
+        C_4      5
+dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grouped_single.ngroups</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>2</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grouped_mul.ngroups</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>7</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> name,group <span class="keyword">in</span> grouped_single:</span><br><span class="line">    print(name)</span><br><span class="line">    display(group.head())</span><br></pre></td></tr></table></figure>
+
+<pre><code>S_1</code></pre><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1101</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1102</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>1103</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>1104</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>1105</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+<pre><code>S_2</code></pre><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2101</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_7</td>
+      <td>174</td>
+      <td>84</td>
+      <td>83.3</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2102</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_6</td>
+      <td>161</td>
+      <td>61</td>
+      <td>50.6</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>2103</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_4</td>
+      <td>157</td>
+      <td>61</td>
+      <td>52.5</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>2104</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_5</td>
+      <td>159</td>
+      <td>97</td>
+      <td>72.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>2105</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_4</td>
+      <td>170</td>
+      <td>81</td>
+      <td>34.2</td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.set_index([<span class="string">'Gender'</span>,<span class="string">'School'</span>]).groupby(level=<span class="number">1</span>,axis=<span class="number">0</span>).get_group(<span class="string">'S_1'</span>).head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Class</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <th>School</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>M</th>
+      <th>S_1</th>
+      <td>C_1</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>F</th>
+      <th>S_1</th>
+      <td>C_1</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>M</th>
+      <th>S_1</th>
+      <td>C_1</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">F</th>
+      <th>S_1</th>
+      <td>C_1</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>S_1</th>
+      <td>C_1</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print([attr <span class="keyword">for</span> attr <span class="keyword">in</span> dir(grouped_single) <span class="keyword">if</span> <span class="keyword">not</span> attr.startswith(<span class="string">'_'</span>)])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&apos;Address&apos;, &apos;Class&apos;, &apos;Gender&apos;, &apos;Height&apos;, &apos;Math&apos;, &apos;Physics&apos;, &apos;School&apos;, &apos;Weight&apos;, &apos;agg&apos;, &apos;aggregate&apos;, &apos;all&apos;, &apos;any&apos;, &apos;apply&apos;, &apos;backfill&apos;, &apos;bfill&apos;, &apos;boxplot&apos;, &apos;corr&apos;, &apos;corrwith&apos;, &apos;count&apos;, &apos;cov&apos;, &apos;cumcount&apos;, &apos;cummax&apos;, &apos;cummin&apos;, &apos;cumprod&apos;, &apos;cumsum&apos;, &apos;describe&apos;, &apos;diff&apos;, &apos;dtypes&apos;, &apos;expanding&apos;, &apos;ffill&apos;, &apos;fillna&apos;, &apos;filter&apos;, &apos;first&apos;, &apos;get_group&apos;, &apos;groups&apos;, &apos;head&apos;, &apos;hist&apos;, &apos;idxmax&apos;, &apos;idxmin&apos;, &apos;indices&apos;, &apos;last&apos;, &apos;mad&apos;, &apos;max&apos;, &apos;mean&apos;, &apos;median&apos;, &apos;min&apos;, &apos;ndim&apos;, &apos;ngroup&apos;, &apos;ngroups&apos;, &apos;nth&apos;, &apos;nunique&apos;, &apos;ohlc&apos;, &apos;pad&apos;, &apos;pct_change&apos;, &apos;pipe&apos;, &apos;plot&apos;, &apos;prod&apos;, &apos;quantile&apos;, &apos;rank&apos;, &apos;resample&apos;, &apos;rolling&apos;, &apos;sem&apos;, &apos;shift&apos;, &apos;size&apos;, &apos;skew&apos;, &apos;std&apos;, &apos;sum&apos;, &apos;tail&apos;, &apos;take&apos;, &apos;transform&apos;, &apos;tshift&apos;, &apos;var&apos;]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grouped_single.head(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1101</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1102</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>2101</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_7</td>
+      <td>174</td>
+      <td>84</td>
+      <td>83.3</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2102</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_6</td>
+      <td>161</td>
+      <td>61</td>
+      <td>50.6</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grouped_single.first()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>School</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>S_1</th>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>S_2</th>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_7</td>
+      <td>174</td>
+      <td>84</td>
+      <td>83.3</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.groupby(np.random.choice([<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>],df.shape[<span class="number">0</span>])).get_group(<span class="string">'a'</span>).head()</span><br><span class="line"><span class="comment">#相当于将np.random.choice(['a','b','c'],df.shape[0])当做新的一列进行分组</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1103</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>1104</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>1202</th>
+      <td>S_1</td>
+      <td>C_2</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>176</td>
+      <td>94</td>
+      <td>63.5</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>1301</th>
+      <td>S_1</td>
+      <td>C_3</td>
+      <td>M</td>
+      <td>street_4</td>
+      <td>161</td>
+      <td>68</td>
+      <td>31.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>2101</th>
+      <td>S_2</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_7</td>
+      <td>174</td>
+      <td>84</td>
+      <td>83.3</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[:<span class="number">5</span>].groupby(<span class="keyword">lambda</span> x:print(x)).head(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1101
+1102
+1103
+1104
+1105</code></pre><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby(<span class="keyword">lambda</span> x:<span class="string">'奇数行'</span> <span class="keyword">if</span> <span class="keyword">not</span> df.index.get_loc(x)%<span class="number">2</span>==<span class="number">1</span> <span class="keyword">else</span> <span class="string">'偶数行'</span>).groups</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>{&apos;偶数行&apos;: Int64Index([1102, 1104, 1201, 1203, 1205, 1302, 1304, 2101, 2103, 2105, 2202,
+             2204, 2301, 2303, 2305, 2402, 2404],
+            dtype=&apos;int64&apos;, name=&apos;ID&apos;),
+ &apos;奇数行&apos;: Int64Index([1101, 1103, 1105, 1202, 1204, 1301, 1303, 1305, 2102, 2104, 2201,
+             2203, 2205, 2302, 2304, 2401, 2403, 2405],
+            dtype=&apos;int64&apos;, name=&apos;ID&apos;)}</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">math_score = df.set_index([<span class="string">'Gender'</span>,<span class="string">'School'</span>])[<span class="string">'Math'</span>].sort_index()</span><br><span class="line">grouped_score = df.set_index([<span class="string">'Gender'</span>,<span class="string">'School'</span>]).sort_index().\</span><br><span class="line">            groupby(<span class="keyword">lambda</span> x:(x,<span class="string">'均分及格'</span> <span class="keyword">if</span> math_score[x].mean()&gt;=<span class="number">60</span> <span class="keyword">else</span> <span class="string">'均分不及格'</span>))</span><br><span class="line"><span class="keyword">for</span> name,_ <span class="keyword">in</span> grouped_score:print(name)</span><br></pre></td></tr></table></figure>
+
+<pre><code>((&apos;F&apos;, &apos;S_1&apos;), &apos;均分及格&apos;)
+((&apos;F&apos;, &apos;S_2&apos;), &apos;均分及格&apos;)
+((&apos;M&apos;, &apos;S_1&apos;), &apos;均分及格&apos;)
+((&apos;M&apos;, &apos;S_2&apos;), &apos;均分不及格&apos;)</code></pre><h2 id="三、聚合、过滤和变换"><a href="#三、聚合、过滤和变换" class="headerlink" title="三、聚合、过滤和变换"></a>三、聚合、过滤和变换</h2><h3 id="1-聚合（Aggregation）"><a href="#1-聚合（Aggregation）" class="headerlink" title="1. 聚合（Aggregation）"></a>1. 聚合（Aggregation）</h3><p>所谓聚合就是把一堆数，变成一个标量，因此mean/sum/size/count/std/var/sem/describe/first/last/nth/min/max都是聚合函数</p>
+<h3 id="2-过滤（Filteration）"><a href="#2-过滤（Filteration）" class="headerlink" title="2. 过滤（Filteration）"></a>2. 过滤（Filteration）</h3><p>filter函数是用来筛选某些组的（务必记住结果是组的全体），因此传入的值应当是布尔标量</p>
+<h3 id="3-变换（Transformation）"><a href="#3-变换（Transformation）" class="headerlink" title="3. 变换（Transformation）"></a>3. 变换（Transformation）</h3>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataWhale/" rel="tag">DataWhale</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Python爬虫编程实践-Task2" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/23/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task2/"
+    >Python爬虫编程实践-Task2</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/23/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task2/" class="article-date">
+  <time datetime="2020-04-23T11:21:23.000Z" itemprop="datePublished">2020-04-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categoriesl/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/">Python爬虫编程实践</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="Beautiful-Soup库入门"><a href="#Beautiful-Soup库入门" class="headerlink" title="Beautiful Soup库入门"></a>Beautiful Soup库入门</h2><ol>
+<li><p>学习beautifulsoup基础知识。</p>
+</li>
+<li><p>使用beautifulsoup解析HTML页面。</p>
+</li>
+</ol>
+<p>Beautiful Soup 是一个HTML/XML 的解析器，主要用于解析和提取 HTML/XML 数据。<br>它基于HTML DOM 的，会载入整个文档，解析整个DOM树，因此时间和内存开销都会大很多，所以性能要低于lxml。</p>
+<p>BeautifulSoup 用来解析 HTML 比较简单，API非常人性化，支持CSS选择器、Python标准库中的HTML解析器，也支持 lxml 的 XML解析器。</p>
+<p>虽然说BeautifulSoup4 简单容易比较上手，但是匹配效率还是远远不如正则以及xpath的，一般不推荐使用，推荐正则的使用。</p>
+<p>第一步：pip install beautifulsoup4 ，万事开头难，先安装 beautifulsoup4，安装成功后就完成了第一步。</p>
+<p>第二步：导入from bs4 import BeautifulSoup</p>
+<p>第三步：创建 Beautiful Soup对象   soup = BeautifulSoup(html，’html.parser’) </p>
+<h2 id="学习xpath"><a href="#学习xpath" class="headerlink" title="学习xpath"></a>学习xpath</h2><ol>
+<li>学习目标：<br>学习xpath，使用lxml+xpath提取内容。</li>
+</ol>
+<p>使用xpath提取丁香园论坛的回复内容。</p>
+<p>抓取丁香园网页：<a href="http://www.dxy.cn/bbs/thread/626626#626626" target="_blank" rel="noopener">http://www.dxy.cn/bbs/thread/626626#626626</a> 。<br>2. Xpath常用的路径表达式：<br>XPath即为XML路径语言（XML Path Language），它是一种用来确定XML文档中某部分位置的语言。<br>在XPath中，有七种类型的节点：元素、属性、文本、命名空间、处理指令、注释以及文档（根）节点。<br>XML文档是被作为节点树来对待的。<br>XPath使用路径表达式在XML文档中选取节点。节点是通过沿着路径选取的。</p>
+<ol start="3">
+<li>使用lxml解析</li>
+<li>实战：爬取丁香园-用户名和回复内容</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入库</span></span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://www.dxy.cn/bbs/thread/626626#626626"</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">req = requests.get(url)</span><br><span class="line">html = req.text</span><br><span class="line"><span class="comment"># html</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tree = etree.HTML(html) </span><br><span class="line">tree</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&lt;Element html at 0x110f226e0&gt;</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user = tree.xpath(<span class="string">''</span>)</span><br><span class="line"><span class="comment"># print(user)</span></span><br><span class="line">content = tree.xpath(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">results = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(user)):</span><br><span class="line">    <span class="comment"># print(user[i].strip()+":"+content[i].xpath('string(.)').strip())</span></span><br><span class="line">    <span class="comment"># print("*"*80)</span></span><br><span class="line">    <span class="comment"># 因为回复内容中有换行等标签，所以需要用string()来获取数据</span></span><br><span class="line">    results.append(user[i].strip() + <span class="string">":  "</span> + content[i].xpath(<span class="string">'string(.)'</span>).strip())</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印爬取的结果</span></span><br><span class="line"><span class="keyword">for</span> i,result <span class="keyword">in</span> zip(range(<span class="number">0</span>, len(user)),results):</span><br><span class="line">    print(<span class="string">"user"</span>+ str(i+<span class="number">1</span>) + <span class="string">"-"</span> + result)</span><br><span class="line">    print(<span class="string">"*"</span>*<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="学习正则表达式-re"><a href="#学习正则表达式-re" class="headerlink" title="学习正则表达式 re"></a>学习正则表达式 re</h2><p>re库的主要功能函数：</p>
+<p>re.search() 在一个字符串中搜索匹配正则表达式的第一个位置，返回match对象<br>re.search(pattern, string, flags=0)</p>
+<p>re.match() 从一个字符串的开始位置起匹配正则表达式，返回match对象<br>re.match(pattern, string, flags=0)</p>
+<p>re.findall() 搜索字符串，以列表类型返回全部能匹配的子串<br>re.findall(pattern, string, flags=0)</p>
+<p>re.split() 将一个字符串按照正则表达式匹配结果进行分割，返回列表类型<br>re.split(pattern, string, maxsplit=0, flags=0)</p>
+<p>re.finditer() 搜索字符串，返回一个匹配结果的迭代类型，每个迭代元素是match对象<br>re.finditer(pattern, string, flags=0)</p>
+<p>re.sub() 在一个字符串中替换所有匹配正则表达式的子串，返回替换后的字符串</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataWhale/" rel="tag">DataWhale</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python%E7%88%AC%E8%99%AB/" rel="tag">Python爬虫</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Pandas教程-Task2" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/23/Pandas%E6%95%99%E7%A8%8B-Task2/"
+    >Pandas教程-Task2</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/23/Pandas%E6%95%99%E7%A8%8B-Task2/" class="article-date">
+  <time datetime="2020-04-23T07:03:31.000Z" itemprop="datePublished">2020-04-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categoriesl/Pandas%E6%95%99%E7%A8%8B/">Pandas教程</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span>,index_col=<span class="string">'ID'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>School</th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1101</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_1</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1102</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>1103</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>M</td>
+      <td>street_2</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>1104</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_2</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>1105</th>
+      <td>S_1</td>
+      <td>C_1</td>
+      <td>F</td>
+      <td>street_4</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="单级索引"><a href="#单级索引" class="headerlink" title="单级索引"></a>单级索引</h2><h3 id="loc方法、iloc方法、-操作符"><a href="#loc方法、iloc方法、-操作符" class="headerlink" title="loc方法、iloc方法、[]操作符"></a>loc方法、iloc方法、[]操作符</h3><p>最常用的索引方法可能就是这三类，其中iloc表示位置索引，loc表示标签索引，[]也具有很大的便利性，各有特点</p>
+<h3 id="布尔索引"><a href="#布尔索引" class="headerlink" title="布尔索引"></a>布尔索引</h3><h3 id="快速标量索引"><a href="#快速标量索引" class="headerlink" title="快速标量索引"></a>快速标量索引</h3><h3 id="区间索引"><a href="#区间索引" class="headerlink" title="区间索引"></a>区间索引</h3><h2 id="多级索引"><a href="#多级索引" class="headerlink" title="多级索引"></a>多级索引</h2><p>1.创建多级索引<br>（a）通过from_tuple或from_arrays</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tuples = [(<span class="string">'A'</span>,<span class="string">'a'</span>),(<span class="string">'A'</span>,<span class="string">'b'</span>),(<span class="string">'B'</span>,<span class="string">'a'</span>),(<span class="string">'B'</span>,<span class="string">'b'</span>)]</span><br><span class="line">mul_index = pd.MultiIndex.from_tuples(tuples, names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">mul_index</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>MultiIndex([(&apos;A&apos;, &apos;a&apos;),
+            (&apos;A&apos;, &apos;b&apos;),
+            (&apos;B&apos;, &apos;a&apos;),
+            (&apos;B&apos;, &apos;b&apos;)],
+           names=[&apos;Upper&apos;, &apos;Lower&apos;])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.DataFrame(&#123;<span class="string">'Score'</span>:[<span class="string">'perfect'</span>,<span class="string">'good'</span>,<span class="string">'fair'</span>,<span class="string">'bad'</span>]&#125;,index=mul_index)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Score</th>
+    </tr>
+    <tr>
+      <th>Upper</th>
+      <th>Lower</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">A</th>
+      <th>a</th>
+      <td>perfect</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">B</th>
+      <th>a</th>
+      <td>fair</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>bad</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">L1 = list(<span class="string">'AABB'</span>)</span><br><span class="line">L2 = list(<span class="string">'abab'</span>)</span><br><span class="line">tuples = list(zip(L1,L2))</span><br><span class="line">mul_index = pd.MultiIndex.from_tuples(tuples, names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">pd.DataFrame(&#123;<span class="string">'Score'</span>:[<span class="string">'perfect'</span>,<span class="string">'good'</span>,<span class="string">'fair'</span>,<span class="string">'bad'</span>]&#125;,index=mul_index)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Score</th>
+    </tr>
+    <tr>
+      <th>Upper</th>
+      <th>Lower</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">A</th>
+      <th>a</th>
+      <td>perfect</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">B</th>
+      <th>a</th>
+      <td>fair</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>bad</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arrays = [[<span class="string">'A'</span>,<span class="string">'a'</span>],[<span class="string">'A'</span>,<span class="string">'b'</span>],[<span class="string">'B'</span>,<span class="string">'a'</span>],[<span class="string">'B'</span>,<span class="string">'b'</span>]]</span><br><span class="line">mul_index = pd.MultiIndex.from_tuples(arrays, names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">pd.DataFrame(&#123;<span class="string">'Score'</span>:[<span class="string">'perfect'</span>,<span class="string">'good'</span>,<span class="string">'fair'</span>,<span class="string">'bad'</span>]&#125;,index=mul_index)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Score</th>
+    </tr>
+    <tr>
+      <th>Upper</th>
+      <th>Lower</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">A</th>
+      <th>a</th>
+      <td>perfect</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">B</th>
+      <th>a</th>
+      <td>fair</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>bad</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mul_index</span><br><span class="line"><span class="comment">#由此看出内部自动转成元组</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>MultiIndex([(&apos;A&apos;, &apos;a&apos;),
+            (&apos;A&apos;, &apos;b&apos;),
+            (&apos;B&apos;, &apos;a&apos;),
+            (&apos;B&apos;, &apos;b&apos;)],
+           names=[&apos;Upper&apos;, &apos;Lower&apos;])</code></pre><p>（b）通过from_product</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">L1 = [<span class="string">'A'</span>,<span class="string">'B'</span>]</span><br><span class="line">L2 = [<span class="string">'a'</span>,<span class="string">'b'</span>]</span><br><span class="line">pd.MultiIndex.from_product([L1,L2],names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line"><span class="comment">#两两相乘</span></span><br></pre></td></tr></table></figure>
+
+<p>（c）指定df中的列创建（set_index方法）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_using_mul = df.set_index([<span class="string">'Class'</span>,<span class="string">'Address'</span>])</span><br><span class="line">df_using_mul.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>School</th>
+      <th>Gender</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>Class</th>
+      <th>Address</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">C_1</th>
+      <th>street_1</th>
+      <td>S_1</td>
+      <td>M</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>M</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>street_4</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>2.多层索引切片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_using_mul.head()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>School</th>
+      <th>Gender</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Math</th>
+      <th>Physics</th>
+    </tr>
+    <tr>
+      <th>Class</th>
+      <th>Address</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">C_1</th>
+      <th>street_1</th>
+      <td>S_1</td>
+      <td>M</td>
+      <td>173</td>
+      <td>63</td>
+      <td>34.0</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>192</td>
+      <td>73</td>
+      <td>32.5</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>M</td>
+      <td>186</td>
+      <td>82</td>
+      <td>87.2</td>
+      <td>B+</td>
+    </tr>
+    <tr>
+      <th>street_2</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>167</td>
+      <td>81</td>
+      <td>80.4</td>
+      <td>B-</td>
+    </tr>
+    <tr>
+      <th>street_4</th>
+      <td>S_1</td>
+      <td>F</td>
+      <td>159</td>
+      <td>64</td>
+      <td>84.8</td>
+      <td>B+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>3.多层索引中的slice对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">L1,L2 = [<span class="string">'A'</span>,<span class="string">'B'</span>],[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line">mul_index1 = pd.MultiIndex.from_product([L1,L2],names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">L3,L4 = [<span class="string">'D'</span>,<span class="string">'E'</span>,<span class="string">'F'</span>],[<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>]</span><br><span class="line">mul_index2 = pd.MultiIndex.from_product([L3,L4],names=(<span class="string">'Big'</span>, <span class="string">'Small'</span>))</span><br><span class="line">df_s = pd.DataFrame(np.random.rand(<span class="number">6</span>,<span class="number">9</span>),index=mul_index1,columns=mul_index2)</span><br><span class="line">df_s</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead tr th {
+    text-align: left;
+}
+
+.dataframe thead tr:last-of-type th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Big</th>
+      <th colspan="3" halign="left">D</th>
+      <th colspan="3" halign="left">E</th>
+      <th colspan="3" halign="left">F</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Small</th>
+      <th>d</th>
+      <th>e</th>
+      <th>f</th>
+      <th>d</th>
+      <th>e</th>
+      <th>f</th>
+      <th>d</th>
+      <th>e</th>
+      <th>f</th>
+    </tr>
+    <tr>
+      <th>Upper</th>
+      <th>Lower</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">A</th>
+      <th>a</th>
+      <td>0.693152</td>
+      <td>0.672084</td>
+      <td>0.929580</td>
+      <td>0.348846</td>
+      <td>0.998656</td>
+      <td>0.618890</td>
+      <td>0.134470</td>
+      <td>0.629302</td>
+      <td>0.755844</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>0.793648</td>
+      <td>0.663314</td>
+      <td>0.793556</td>
+      <td>0.632018</td>
+      <td>0.837149</td>
+      <td>0.573710</td>
+      <td>0.083993</td>
+      <td>0.774272</td>
+      <td>0.634520</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>0.485607</td>
+      <td>0.429198</td>
+      <td>0.971712</td>
+      <td>0.471989</td>
+      <td>0.250029</td>
+      <td>0.027371</td>
+      <td>0.377319</td>
+      <td>0.721766</td>
+      <td>0.911952</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">B</th>
+      <th>a</th>
+      <td>0.434036</td>
+      <td>0.430081</td>
+      <td>0.590865</td>
+      <td>0.106680</td>
+      <td>0.678473</td>
+      <td>0.946369</td>
+      <td>0.681991</td>
+      <td>0.788171</td>
+      <td>0.272536</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>0.116107</td>
+      <td>0.186889</td>
+      <td>0.252728</td>
+      <td>0.137849</td>
+      <td>0.078398</td>
+      <td>0.986727</td>
+      <td>0.533018</td>
+      <td>0.049788</td>
+      <td>0.078079</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>0.577150</td>
+      <td>0.858875</td>
+      <td>0.468748</td>
+      <td>0.016894</td>
+      <td>0.717600</td>
+      <td>0.283764</td>
+      <td>0.595257</td>
+      <td>0.037818</td>
+      <td>0.839023</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataWhale/" rel="tag">DataWhale</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Python爬虫编程实践-Task1" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -3132,158 +5180,13 @@ Name: Math, dtype: object</code></pre><figure class="highlight python"><table><t
 
 </article>
     
-    <article id="post-Datawhale-二手车价格预测Task3" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/"
-    >Datawhale 二手车价格预测Task3</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/" class="article-date">
-  <time datetime="2020-03-27T08:26:31.000Z" itemprop="datePublished">2020-03-27</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categoriesl/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="Task3-特征工程"><a href="#Task3-特征工程" class="headerlink" title="Task3-特征工程"></a>Task3-特征工程</h2><p>特征工程的主要目的还是在于将数据转换为能更好地表示潜在问题的特征，从而提高机器学习的性能。比如，异常值处理是为了去除噪声，填补缺失值可以加入先验知识等。特征构造也属于特征工程的一部分，其目的是为了增强数据的表达。</p>
-      
-      <a class="article-more-link" href="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataWhale/" rel="tag">DataWhale</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A9%E6%B1%A0/" rel="tag">天池</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Datawhale 二手车价格预测Task1&amp;Task2" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/"
-    >Datawhale 二手车价格预测Task1&amp;Task2</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/" class="article-date">
-  <time datetime="2020-03-24T01:53:54.000Z" itemprop="datePublished">2020-03-24</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categoriesl/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>二手车交易价格预测</p>
-<p>大家好，我是一个数据挖掘小白，通过看官方提供的内容我发现很多专业词汇我都没有接触过，我想通过这个平台来锻炼提高自己，感谢大家批评指正。</p>
-      
-      <a class="article-more-link" href="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataWhale/" rel="tag">DataWhale</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A9%E6%B1%A0/" rel="tag">天池</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
   
 </section>

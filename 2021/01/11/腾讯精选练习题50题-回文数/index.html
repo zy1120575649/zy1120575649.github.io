@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    腾讯精选练习题50题-两数相加 |  大鱼海棠
+    腾讯精选练习题50题-回文数 |  大鱼海棠
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -36,7 +36,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-腾讯精选练习题50题-两数相加" class="article article-type-post" itemscope
+  <article id="post-腾讯精选练习题50题-回文数" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -44,7 +44,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  腾讯精选练习题50题-两数相加
+  腾讯精选练习题50题-回文数
 </h1>
  
 
@@ -53,8 +53,8 @@
 
     
     <div class="article-meta">
-      <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" class="article-date">
-  <time datetime="2021-01-11T07:03:03.000Z" itemprop="datePublished">2021-01-11</time>
+      <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%9B%9E%E6%96%87%E6%95%B0/" class="article-date">
+  <time datetime="2021-01-11T13:41:03.000Z" itemprop="datePublished">2021-01-11</time>
 </a>
       
   <div class="article-category">
@@ -68,7 +68,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">303字</span>
+            <span class="post-count">339字</span>
         </span>
     </span>
 
@@ -100,7 +100,29 @@
       
 
       
-      <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode.cn id=2 lang=java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [2] 两数相加</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @lc code=start</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//2-&gt;4-&gt;3 9-&gt;1 结果就是1-&gt;6-&gt;3</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    ListNode l3 = <span class="keyword">new</span> ListNode(<span class="number">0</span>);<span class="comment">//虚拟头节点</span></span><br><span class="line">    ListNode cur= l3;<span class="comment">//当前节点指向l3</span></span><br><span class="line">    <span class="keyword">int</span> jin= <span class="number">0</span>;<span class="comment">//进位为0</span></span><br><span class="line">    <span class="keyword">while</span>(l1!=<span class="keyword">null</span>||l2!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> sum =<span class="number">0</span>;<span class="comment">//定义该位上的和</span></span><br><span class="line">        <span class="keyword">if</span>(l1!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            sum=sum+l1.val;</span><br><span class="line">            l1=l1.next;</span><br><span class="line">        &#125;<span class="comment">//防止999999+999这种位数不同的情况 所以要判断</span></span><br><span class="line">        <span class="keyword">if</span>(l2!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            sum+=l2.val;</span><br><span class="line">            l2=l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        sum += jin;</span><br><span class="line">        cur.next= <span class="keyword">new</span> ListNode(sum%<span class="number">10</span>);</span><br><span class="line">        cur= cur.next;</span><br><span class="line">        jin = sum/<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(jin!=<span class="number">0</span>)&#123;</span><br><span class="line">        cur.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l3.next;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">/*这种方法就不需要最后判断最后一位有没有进位了</span></span><br><span class="line"><span class="comment">class Solution &#123;</span></span><br><span class="line"><span class="comment">    public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span></span><br><span class="line"><span class="comment">        ListNode l3 = new ListNode(0);//虚拟头节点</span></span><br><span class="line"><span class="comment">        ListNode cur = l3;</span></span><br><span class="line"><span class="comment">        int t = 0;//进位</span></span><br><span class="line"><span class="comment">        while(l1!=null||l2!=null||t!=0)&#123;</span></span><br><span class="line"><span class="comment">            if(l1!=null) &#123;t+=l1.val;l1=l1.next;&#125;</span></span><br><span class="line"><span class="comment">            if(l2!=null) &#123;t+=l2.val;l2=l2.next;&#125;</span></span><br><span class="line"><span class="comment">            cur.next = new ListNode(t%10);</span></span><br><span class="line"><span class="comment">            cur= cur.next;</span></span><br><span class="line"><span class="comment">           // l1=l1.next;</span></span><br><span class="line"><span class="comment">           // l2=l2.next;</span></span><br><span class="line"><span class="comment">            t/=10;</span></span><br><span class="line"><span class="comment">           </span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        return l3.next;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// @lc code=end</span></span><br></pre></td></tr></table></figure>
+      <ul>
+<li><p>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 121</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: -121</span><br><span class="line">输出: false</span><br><span class="line">解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 10</span><br><span class="line">输出: false</span><br><span class="line">解释: 从右向左读, 为 01 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure>
+
+<p><strong>进阶:</strong></p>
+<p>你能不将整数转为字符串来解决这个问题吗？</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode.cn id=9 lang=java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [9] 回文数</span></span><br><span class="line"><span class="comment"> * 不将整数转为字符串来处理（用的第7题整数反转的思想）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @lc code=start</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// //整数反转后和原数比较(全部反转后可能会溢出)</span></span><br><span class="line">        <span class="comment">// if(x&lt;0) return false;</span></span><br><span class="line">        <span class="comment">// int res=0;</span></span><br><span class="line">        <span class="comment">// int y =x;</span></span><br><span class="line">        <span class="comment">// while(x!=0)&#123;</span></span><br><span class="line">        <span class="comment">//     res = res*10+x%10;</span></span><br><span class="line">        <span class="comment">//     x/=10;</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// return res==y;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//取后半段进行反转 如果和前半段相同-》是回文数</span></span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(x!=<span class="number">0</span>&amp;&amp;x%<span class="number">10</span>==<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> reverseNumber=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x&gt;reverseNumber)&#123;</span><br><span class="line">            reverseNumber = reverseNumber*<span class="number">10</span>+x%<span class="number">10</span>;</span><br><span class="line">            x/=<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> x==reverseNumber||x==reverseNumber/<span class="number">10</span>;<span class="comment">//奇数和偶数两种情况 12321 123 12，1221 12 21</span></span><br><span class="line">       <span class="comment">//时间复杂度：O(logn)，对于每次迭代，我们会将输入除以 10，因此时间复杂度为 O(logn)。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// @lc code=end</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
       
       <!-- reward -->
       
@@ -169,7 +191,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%9B%9E%E6%96%87%E6%95%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -187,17 +209,8 @@
   
   <nav class="article-nav">
     
-      <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%9B%9E%E6%96%87%E6%95%B0/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            腾讯精选练习题50题-回文数
-          
-        </div>
-      </a>
     
-    
-      <a href="/2021/01/11/FIT5216-Workshop-GraghLabel-PowerGen/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" class="article-nav-link">
+      <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title">腾讯精选练习题50题-两数相加</div>
       </a>
