@@ -1,0 +1,73 @@
+<hr>
+<p>title: 腾讯精选练习题50题-两数相加<br>date: 2021-01-11 15:03:03<br>tags:<br>    - 腾讯算法<br>categories: 算法刷题</p>
+<hr>
+<pre><code class="java"><span class="comment">/*</span>
+<span class="comment"> * @lc app=leetcode.cn id=2 lang=java</span>
+<span class="comment"> *</span>
+<span class="comment"> * [2] 两数相加</span>
+<span class="comment"> */</span>
+
+<span class="comment">// @lc code=start</span>
+<span class="comment">/**</span>
+<span class="comment"> * Definition for singly-linked list.</span>
+<span class="comment"> * public class ListNode {</span>
+<span class="comment"> *     int val;</span>
+<span class="comment"> *     ListNode next;</span>
+<span class="comment"> *     ListNode() {}</span>
+<span class="comment"> *     ListNode(int val) { this.val = val; }</span>
+<span class="comment"> *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }</span>
+<span class="comment"> * }</span>
+<span class="comment"> */</span>
+<span class="comment">//2-&gt;4-&gt;3 9-&gt;1 结果就是1-&gt;6-&gt;3</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{
+    <span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>{
+    ListNode l3 = <span class="keyword">new</span> ListNode(<span class="number">0</span>);<span class="comment">//虚拟头节点</span>
+    ListNode cur= l3;<span class="comment">//当前节点指向l3</span>
+    <span class="keyword">int</span> jin= <span class="number">0</span>;<span class="comment">//进位为0</span>
+    <span class="keyword">while</span>(l1!=<span class="keyword">null</span>||l2!=<span class="keyword">null</span>){
+        <span class="keyword">int</span> sum =<span class="number">0</span>;<span class="comment">//定义该位上的和</span>
+        <span class="keyword">if</span>(l1!=<span class="keyword">null</span>){
+            sum=sum+l1.val;
+            l1=l1.next;
+        }<span class="comment">//防止999999+999这种位数不同的情况 所以要判断</span>
+        <span class="keyword">if</span>(l2!=<span class="keyword">null</span>){
+            sum+=l2.val;
+            l2=l2.next;
+        }
+        sum += jin;
+        cur.next= <span class="keyword">new</span> ListNode(sum%<span class="number">10</span>);
+        cur= cur.next;
+        jin = sum/<span class="number">10</span>;
+    }
+    <span class="keyword">if</span>(jin!=<span class="number">0</span>){
+        cur.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);
+    }
+    <span class="keyword">return</span> l3.next;
+
+        }
+
+    }
+<span class="comment">/*这种方法就不需要最后判断最后一位有没有进位了</span>
+<span class="comment">class Solution {</span>
+<span class="comment">    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {</span>
+<span class="comment">        ListNode l3 = new ListNode(0);//虚拟头节点</span>
+<span class="comment">        ListNode cur = l3;</span>
+<span class="comment">        int t = 0;//进位</span>
+<span class="comment">        while(l1!=null||l2!=null||t!=0){</span>
+<span class="comment">            if(l1!=null) {t+=l1.val;l1=l1.next;}</span>
+<span class="comment">            if(l2!=null) {t+=l2.val;l2=l2.next;}</span>
+<span class="comment">            cur.next = new ListNode(t%10);</span>
+<span class="comment">            cur= cur.next;</span>
+<span class="comment">           // l1=l1.next;</span>
+<span class="comment">           // l2=l2.next;</span>
+<span class="comment">            t/=10;</span>
+<span class="comment"></span>
+<span class="comment">        }</span>
+<span class="comment">        return l3.next;</span>
+<span class="comment">    }</span>
+<span class="comment">}</span>
+<span class="comment">*/</span>
+<span class="comment">// @lc code=end</span>
+
+
+</code></pre>
