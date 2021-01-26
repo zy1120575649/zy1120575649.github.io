@@ -487,33 +487,64 @@
 <li>通过chrome的开发者工具，监控网络请求，并分析</li>
 <li>用selenium完成爬虫</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span>  selenium <span class="keyword">import</span> webdriver</span><br><span class="line">driver=webdriver.Chrome(executable_path=<span class="string">"D:\chromedriver\chromedriver.exe"</span>)</span><br><span class="line">driver.get(<span class="string">"https://news.qq.com"</span>)</span><br><span class="line"><span class="comment">#了解ajax加载</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line">    driver.execute_script(<span class="string">"window.scrollTo(window.scrollX, %d);"</span>%(i*<span class="number">200</span>))</span><br></pre></td></tr></table></figure>
+<pre><code class="python">import time
+from  selenium import webdriver
+driver=webdriver.Chrome(executable_path=&quot;D:\chromedriver\chromedriver.exe&quot;)
+driver.get(&quot;https://news.qq.com&quot;)
+#了解ajax加载
+for i in range(1,100):
+    time.sleep(2)
+    driver.execute_script(&quot;window.scrollTo(window.scrollX, %d);&quot;%(i*200))</code></pre>
+<pre><code class="python">from bs4 import BeautifulSoup
+html=driver.page_source
+bsObj=BeautifulSoup(html,&quot;lxml&quot;)</code></pre>
+<pre><code class="python">jxtits=bsObj.find_all(&quot;div&quot;,{&quot;class&quot;:&quot;jx-tit&quot;})[0].find_next_sibling().find_all(&quot;li&quot;)</code></pre>
+<pre><code class="python">print(&quot;index&quot;,&quot;,&quot;,&quot;title&quot;,&quot;,&quot;,&quot;url&quot;)
+for i,jxtit in enumerate(jxtits):
+#     print(jxtit)
 
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">html=driver.page_source</span><br><span class="line">bsObj=BeautifulSoup(html,<span class="string">"lxml"</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jxtits=bsObj.find_all(<span class="string">"div"</span>,&#123;<span class="string">"class"</span>:<span class="string">"jx-tit"</span>&#125;)[<span class="number">0</span>].find_next_sibling().find_all(<span class="string">"li"</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"index"</span>,<span class="string">","</span>,<span class="string">"title"</span>,<span class="string">","</span>,<span class="string">"url"</span>)</span><br><span class="line"><span class="keyword">for</span> i,jxtit <span class="keyword">in</span> enumerate(jxtits):</span><br><span class="line"><span class="comment">#     print(jxtit)</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        text=jxtit.find_all(<span class="string">"img"</span>)[<span class="number">0</span>][<span class="string">"alt"</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        text=jxtit.find_all(<span class="string">"div"</span>,&#123;<span class="string">"class"</span>:<span class="string">"lazyload-placeholder"</span>&#125;)[<span class="number">0</span>].text</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        url=jxtit.find_all(<span class="string">"a"</span>)[<span class="number">0</span>][<span class="string">"href"</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        print(jxtit)</span><br><span class="line">    print(i+<span class="number">1</span>,<span class="string">","</span>,text,<span class="string">","</span>,url)</span><br></pre></td></tr></table></figure>
-
+    try:
+        text=jxtit.find_all(&quot;img&quot;)[0][&quot;alt&quot;]
+    except:
+        text=jxtit.find_all(&quot;div&quot;,{&quot;class&quot;:&quot;lazyload-placeholder&quot;})[0].text
+    try:
+        url=jxtit.find_all(&quot;a&quot;)[0][&quot;href&quot;]
+    except:
+        print(jxtit)
+    print(i+1,&quot;,&quot;,text,&quot;,&quot;,url) </code></pre>
 <p>进阶加餐-知乎爬虫</p>
 <p>链接如下<br><a href="https://www.zhihu.com/search?q=Datawhale&amp;utm_content=search_history&amp;type=content" target="_blank" rel="noopener">https://www.zhihu.com/search?q=Datawhale&amp;utm_content=search_history&amp;type=content</a><br>用requests库实现，不能用selenium网页自动化</p>
 <p>提示：<br>该链接需要登录，可通过github等，搜索知乎登录的代码实现，并理解其中的逻辑，此任务允许复制粘贴代码<br>与上面ajax加载类似，这次的ajax加载需要用requests完成爬取，最终存储样式随意，但是通过Chrome的开发者工具，分析出ajax的流程需要写出来</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> http <span class="keyword">import</span> cookiejar</span><br><span class="line">Session=requests.session()</span><br><span class="line">Session.cookies = cookiejar.LWPCookieJar(filename=<span class="string">'./cookies.txt'</span>)</span><br><span class="line">Session.cookies.load(ignore_discard=<span class="literal">True</span>)</span><br><span class="line">Session.headers=&#123;</span><br><span class="line">            <span class="string">'Host'</span>: <span class="string">'www.zhihu.com'</span>,</span><br><span class="line">            <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '</span></span><br><span class="line">                          <span class="string">'(KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36'</span></span><br><span class="line">        &#125;</span><br><span class="line">r=Session.get(<span class="string">"https://www.zhihu.com/search?q=Datawhale&amp;utm_content=search_history&amp;type=content"</span>)</span><br><span class="line">r.encoding=<span class="string">"utf-8"</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">compiler=re.compile(<span class="string">'"next":"(https:\\\\u002F\\\\u002Fapi.zhihu.com\\\\u002Fsearch_v3.*?)"'</span>)</span><br><span class="line">r.text</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bsObj=BeautifulSoup(r.text,<span class="string">"lxml"</span>)</span><br><span class="line">url=compiler.findall(r.text)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> unquote</span><br><span class="line">url=unquote(url,encoding=<span class="string">"utf-8"</span>, errors=<span class="string">'replace'</span>)</span><br><span class="line">url=url.replace(<span class="string">"\\u002F"</span>,<span class="string">"/"</span>)</span><br><span class="line">search_hash_id=re.search(<span class="string">"search_hash_id=(.*?)&amp;show_all_topics"</span>,url).group(<span class="number">1</span>)</span><br><span class="line">search_hash_id</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">offset=<span class="number">20</span></span><br><span class="line">lc_idx=<span class="number">21</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    r=Session.get(<span class="string">"https://www.zhihu.com/api/v4/search_v3?t=general&amp;q=Datawhale&amp;correction=1&amp;offset=&#123;offset&#125;&amp;limit=20&amp;lc_idx=&#123;lc_idx&#125;&amp;show_all_topics=0&amp;search_hash_id=&#123;search_hash_id&#125;&amp;vertical_info=0%2C0%2C1%2C0%2C0%2C0%2C0%2C0%2C0%2C0"</span>.format(**&#123;<span class="string">"offset"</span>:offset+i*<span class="number">20</span>,<span class="string">"lc_idx"</span>:lc_idx+i*<span class="number">20</span>,<span class="string">"search_hash_id"</span>:search_hash_id&#125;))</span><br><span class="line">    r.encoding=<span class="string">"utf-8"</span></span><br><span class="line">    print(r.json())</span><br><span class="line">    print(<span class="string">"\n"</span>*<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="python">import requests
+from http import cookiejar
+Session=requests.session()
+Session.cookies = cookiejar.LWPCookieJar(filename=&#39;./cookies.txt&#39;)
+Session.cookies.load(ignore_discard=True)
+Session.headers={
+            &#39;Host&#39;: &#39;www.zhihu.com&#39;,
+            &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 &#39;
+                          &#39;(KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36&#39;
+        }
+r=Session.get(&quot;https://www.zhihu.com/search?q=Datawhale&amp;utm_content=search_history&amp;type=content&quot;)
+r.encoding=&quot;utf-8&quot;</code></pre>
+<pre><code class="python">from bs4 import BeautifulSoup
+import re
+compiler=re.compile(&#39;&quot;next&quot;:&quot;(https:\\\\u002F\\\\u002Fapi.zhihu.com\\\\u002Fsearch_v3.*?)&quot;&#39;)
+r.text</code></pre>
+<pre><code class="python">bsObj=BeautifulSoup(r.text,&quot;lxml&quot;)
+url=compiler.findall(r.text)[0]</code></pre>
+<pre><code class="python">from urllib.parse import unquote
+url=unquote(url,encoding=&quot;utf-8&quot;, errors=&#39;replace&#39;)
+url=url.replace(&quot;\\u002F&quot;,&quot;/&quot;)
+search_hash_id=re.search(&quot;search_hash_id=(.*?)&amp;show_all_topics&quot;,url).group(1)
+search_hash_id</code></pre>
+<pre><code class="python">offset=20
+lc_idx=21
+for i in range(5):
+    r=Session.get(&quot;https://www.zhihu.com/api/v4/search_v3?t=general&amp;q=Datawhale&amp;correction=1&amp;offset={offset}&amp;limit=20&amp;lc_idx={lc_idx}&amp;show_all_topics=0&amp;search_hash_id={search_hash_id}&amp;vertical_info=0%2C0%2C1%2C0%2C0%2C0%2C0%2C0%2C0%2C0&quot;.format(**{&quot;offset&quot;:offset+i*20,&quot;lc_idx&quot;:lc_idx+i*20,&quot;search_hash_id&quot;:search_hash_id}))
+    r.encoding=&quot;utf-8&quot;
+    print(r.json())
+    print(&quot;\n&quot;*20)</code></pre>
 
                 
             </div>
@@ -880,6 +911,8 @@
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

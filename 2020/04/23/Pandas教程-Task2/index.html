@@ -482,11 +482,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span>,index_col=<span class="string">'ID'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+                <pre><code class="python">import numpy as np
+import pandas as pd
+df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/table.csv&#39;,index_col=&#39;ID&#39;)
+df.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -589,20 +588,14 @@
 
 <h2 id="单级索引"><a href="#单级索引" class="headerlink" title="单级索引"></a>单级索引</h2><h3 id="loc方法、iloc方法、-操作符"><a href="#loc方法、iloc方法、-操作符" class="headerlink" title="loc方法、iloc方法、[]操作符"></a>loc方法、iloc方法、[]操作符</h3><p>最常用的索引方法可能就是这三类，其中iloc表示位置索引，loc表示标签索引，[]也具有很大的便利性，各有特点</p>
 <h3 id="布尔索引"><a href="#布尔索引" class="headerlink" title="布尔索引"></a>布尔索引</h3><h3 id="快速标量索引"><a href="#快速标量索引" class="headerlink" title="快速标量索引"></a>快速标量索引</h3><h3 id="区间索引"><a href="#区间索引" class="headerlink" title="区间索引"></a>区间索引</h3><h2 id="多级索引"><a href="#多级索引" class="headerlink" title="多级索引"></a>多级索引</h2><p>1.创建多级索引<br>（a）通过from_tuple或from_arrays</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tuples = [(<span class="string">'A'</span>,<span class="string">'a'</span>),(<span class="string">'A'</span>,<span class="string">'b'</span>),(<span class="string">'B'</span>,<span class="string">'a'</span>),(<span class="string">'B'</span>,<span class="string">'b'</span>)]</span><br><span class="line">mul_index = pd.MultiIndex.from_tuples(tuples, names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">mul_index</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>MultiIndex([(&apos;A&apos;, &apos;a&apos;),
-            (&apos;A&apos;, &apos;b&apos;),
-            (&apos;B&apos;, &apos;a&apos;),
-            (&apos;B&apos;, &apos;b&apos;)],
-           names=[&apos;Upper&apos;, &apos;Lower&apos;])</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.DataFrame(&#123;<span class="string">'Score'</span>:[<span class="string">'perfect'</span>,<span class="string">'good'</span>,<span class="string">'fair'</span>,<span class="string">'bad'</span>]&#125;,index=mul_index)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">tuples = [(&#39;A&#39;,&#39;a&#39;),(&#39;A&#39;,&#39;b&#39;),(&#39;B&#39;,&#39;a&#39;),(&#39;B&#39;,&#39;b&#39;)]
+mul_index = pd.MultiIndex.from_tuples(tuples, names=(&#39;Upper&#39;, &#39;Lower&#39;))
+mul_index</code></pre>
+<pre><code>MultiIndex([(&#39;A&#39;, &#39;a&#39;),
+            (&#39;A&#39;, &#39;b&#39;),
+            (&#39;B&#39;, &#39;a&#39;),
+            (&#39;B&#39;, &#39;b&#39;)],
+           names=[&#39;Upper&#39;, &#39;Lower&#39;])</code></pre><pre><code class="python">pd.DataFrame({&#39;Score&#39;:[&#39;perfect&#39;,&#39;good&#39;,&#39;fair&#39;,&#39;bad&#39;]},index=mul_index)</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -655,11 +648,11 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">L1 = list(<span class="string">'AABB'</span>)</span><br><span class="line">L2 = list(<span class="string">'abab'</span>)</span><br><span class="line">tuples = list(zip(L1,L2))</span><br><span class="line">mul_index = pd.MultiIndex.from_tuples(tuples, names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">pd.DataFrame(&#123;<span class="string">'Score'</span>:[<span class="string">'perfect'</span>,<span class="string">'good'</span>,<span class="string">'fair'</span>,<span class="string">'bad'</span>]&#125;,index=mul_index)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">L1 = list(&#39;AABB&#39;)
+L2 = list(&#39;abab&#39;)
+tuples = list(zip(L1,L2))
+mul_index = pd.MultiIndex.from_tuples(tuples, names=(&#39;Upper&#39;, &#39;Lower&#39;))
+pd.DataFrame({&#39;Score&#39;:[&#39;perfect&#39;,&#39;good&#39;,&#39;fair&#39;,&#39;bad&#39;]},index=mul_index)</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -712,11 +705,9 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arrays = [[<span class="string">'A'</span>,<span class="string">'a'</span>],[<span class="string">'A'</span>,<span class="string">'b'</span>],[<span class="string">'B'</span>,<span class="string">'a'</span>],[<span class="string">'B'</span>,<span class="string">'b'</span>]]</span><br><span class="line">mul_index = pd.MultiIndex.from_tuples(arrays, names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">pd.DataFrame(&#123;<span class="string">'Score'</span>:[<span class="string">'perfect'</span>,<span class="string">'good'</span>,<span class="string">'fair'</span>,<span class="string">'bad'</span>]&#125;,index=mul_index)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">arrays = [[&#39;A&#39;,&#39;a&#39;],[&#39;A&#39;,&#39;b&#39;],[&#39;B&#39;,&#39;a&#39;],[&#39;B&#39;,&#39;b&#39;]]
+mul_index = pd.MultiIndex.from_tuples(arrays, names=(&#39;Upper&#39;, &#39;Lower&#39;))
+pd.DataFrame({&#39;Score&#39;:[&#39;perfect&#39;,&#39;good&#39;,&#39;fair&#39;,&#39;bad&#39;]},index=mul_index)</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -769,24 +760,20 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mul_index</span><br><span class="line"><span class="comment">#由此看出内部自动转成元组</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>MultiIndex([(&apos;A&apos;, &apos;a&apos;),
-            (&apos;A&apos;, &apos;b&apos;),
-            (&apos;B&apos;, &apos;a&apos;),
-            (&apos;B&apos;, &apos;b&apos;)],
-           names=[&apos;Upper&apos;, &apos;Lower&apos;])</code></pre><p>（b）通过from_product</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">L1 = [<span class="string">'A'</span>,<span class="string">'B'</span>]</span><br><span class="line">L2 = [<span class="string">'a'</span>,<span class="string">'b'</span>]</span><br><span class="line">pd.MultiIndex.from_product([L1,L2],names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line"><span class="comment">#两两相乘</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">mul_index
+#由此看出内部自动转成元组</code></pre>
+<pre><code>MultiIndex([(&#39;A&#39;, &#39;a&#39;),
+            (&#39;A&#39;, &#39;b&#39;),
+            (&#39;B&#39;, &#39;a&#39;),
+            (&#39;B&#39;, &#39;b&#39;)],
+           names=[&#39;Upper&#39;, &#39;Lower&#39;])</code></pre><p>（b）通过from_product</p>
+<pre><code class="python">L1 = [&#39;A&#39;,&#39;B&#39;]
+L2 = [&#39;a&#39;,&#39;b&#39;]
+pd.MultiIndex.from_product([L1,L2],names=(&#39;Upper&#39;, &#39;Lower&#39;))
+#两两相乘</code></pre>
 <p>（c）指定df中的列创建（set_index方法）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_using_mul = df.set_index([<span class="string">'Class'</span>,<span class="string">'Address'</span>])</span><br><span class="line">df_using_mul.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">df_using_mul = df.set_index([&#39;Class&#39;,&#39;Address&#39;])
+df_using_mul.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -877,11 +864,7 @@
 
 
 <p>2.多层索引切片</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_using_mul.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">df_using_mul.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -972,11 +955,12 @@
 
 
 <p>3.多层索引中的slice对象</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">L1,L2 = [<span class="string">'A'</span>,<span class="string">'B'</span>],[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line">mul_index1 = pd.MultiIndex.from_product([L1,L2],names=(<span class="string">'Upper'</span>, <span class="string">'Lower'</span>))</span><br><span class="line">L3,L4 = [<span class="string">'D'</span>,<span class="string">'E'</span>,<span class="string">'F'</span>],[<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>]</span><br><span class="line">mul_index2 = pd.MultiIndex.from_product([L3,L4],names=(<span class="string">'Big'</span>, <span class="string">'Small'</span>))</span><br><span class="line">df_s = pd.DataFrame(np.random.rand(<span class="number">6</span>,<span class="number">9</span>),index=mul_index1,columns=mul_index2)</span><br><span class="line">df_s</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">L1,L2 = [&#39;A&#39;,&#39;B&#39;],[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]
+mul_index1 = pd.MultiIndex.from_product([L1,L2],names=(&#39;Upper&#39;, &#39;Lower&#39;))
+L3,L4 = [&#39;D&#39;,&#39;E&#39;,&#39;F&#39;],[&#39;d&#39;,&#39;e&#39;,&#39;f&#39;]
+mul_index2 = pd.MultiIndex.from_product([L3,L4],names=(&#39;Big&#39;, &#39;Small&#39;))
+df_s = pd.DataFrame(np.random.rand(6,9),index=mul_index1,columns=mul_index2)
+df_s</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1476,6 +1460,8 @@
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

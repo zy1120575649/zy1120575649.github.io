@@ -531,14 +531,19 @@
 <li>定位所需的信息；</li>
 <li>得到并处理信息。</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">'https://www.python.org/dev/peps/pep-0020/'</span></span><br><span class="line">res = requests.get(url)</span><br><span class="line">text = res.text</span><br></pre></td></tr></table></figure>
+<pre><code class="python">import requests
+url = &#39;https://www.python.org/dev/peps/pep-0020/&#39;
+res = requests.get(url)
+text = res.text</code></pre>
+<pre><code class="python">## 爬取python之禅并存入txt文件
 
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 爬取python之禅并存入txt文件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'zon_of_python.txt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(text[text.find(<span class="string">'&lt;pre'</span>)+<span class="number">28</span>:text.find(<span class="string">'&lt;/pre&gt;'</span>)<span class="number">-1</span>])</span><br><span class="line">print(text[text.find(<span class="string">'&lt;pre'</span>)+<span class="number">28</span>:text.find(<span class="string">'&lt;/pre&gt;'</span>)<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line">url = <span class="string">'https://www.python.org/dev/peps/pep-0020/'</span></span><br><span class="line">res = urllib.request.urlopen(url).read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line">print(res[res.find(<span class="string">'&lt;pre'</span>)+<span class="number">28</span>:res.find(<span class="string">'&lt;/pre&gt;'</span>)<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
-
+with open(&#39;zon_of_python.txt&#39;, &#39;w&#39;) as f:
+    f.write(text[text.find(&#39;&lt;pre&#39;)+28:text.find(&#39;&lt;/pre&gt;&#39;)-1])
+print(text[text.find(&#39;&lt;pre&#39;)+28:text.find(&#39;&lt;/pre&gt;&#39;)-1])</code></pre>
+<pre><code class="python">import urllib
+url = &#39;https://www.python.org/dev/peps/pep-0020/&#39;
+res = urllib.request.urlopen(url).read().decode(&#39;utf-8&#39;)
+print(res[res.find(&#39;&lt;pre&#39;)+28:res.find(&#39;&lt;/pre&gt;&#39;)-1])</code></pre>
 <pre><code>Beautiful is better than ugly.
 Explicit is better than implicit.
 Simple is better than complex.
@@ -546,18 +551,18 @@ Complex is better than complicated.
 Flat is better than nested.
 Sparse is better than dense.
 Readability counts.
-Special cases aren&apos;t special enough to break the rules.
+Special cases aren&#39;t special enough to break the rules.
 Although practicality beats purity.
 Errors should never pass silently.
 Unless explicitly silenced.
 In the face of ambiguity, refuse the temptation to guess.
 There should be one-- and preferably only one --obvious way to do it.
-Although that way may not be obvious at first unless you&apos;re Dutch.
+Although that way may not be obvious at first unless you&#39;re Dutch.
 Now is better than never.
 Although never is often better than *right* now.
-If the implementation is hard to explain, it&apos;s a bad idea.
+If the implementation is hard to explain, it&#39;s a bad idea.
 If the implementation is easy to explain, it may be a good idea.
-Namespaces are one honking great idea -- let&apos;s do more of those!</code></pre><p>使用API：</p>
+Namespaces are one honking great idea -- let&#39;s do more of those!</code></pre><p>使用API：</p>
 <p>所谓的采集网络数据，并不一定必须从网页中抓取数据，而api（Application Programming Iterface）的用处就在这里：API为开发者提供了方便友好的接口，不同的开发者用不同的语言都能获取相同的数据。目前API一般会以XML（Extensible Markup Language，可拓展标记语言）或者JSON（JavaScript Object Notation）格式来返回服务器响应，其中JSON数据格式越来越受到人们的欢迎，我们后面的课程也会详细介绍JSON格式。</p>
 
                 
@@ -925,6 +930,8 @@ Namespaces are one honking great idea -- let&apos;s do more of those!</code></pr
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

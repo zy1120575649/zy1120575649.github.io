@@ -482,11 +482,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table_missing.csv'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+                <pre><code class="python">import pandas as pd
+import numpy as np
+df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/table_missing.csv&#39;)
+df.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -582,31 +581,22 @@
 
 
 
-<h2 id="一、缺失观测及其类型"><a href="#一、缺失观测及其类型" class="headerlink" title="一、缺失观测及其类型"></a>一、缺失观测及其类型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. 了解缺失信息</span></span><br><span class="line"><span class="comment">#（a）isna和notna方法</span></span><br><span class="line"><span class="comment">#对Series使用会返回布尔列表</span></span><br><span class="line">df[<span class="string">'Physics'</span>].isna().head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h2 id="一、缺失观测及其类型"><a href="#一、缺失观测及其类型" class="headerlink" title="一、缺失观测及其类型"></a>一、缺失观测及其类型</h2><pre><code class="python">#1. 了解缺失信息
+#（a）isna和notna方法
+#对Series使用会返回布尔列表
+df[&#39;Physics&#39;].isna().head()</code></pre>
 <pre><code>0    False
 1    False
 2    False
 3     True
 4    False
-Name: Physics, dtype: bool</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Physics'</span>].notna().head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: Physics, dtype: bool</code></pre><pre><code class="python">df[&#39;Physics&#39;].notna().head()</code></pre>
 <pre><code>0     True
 1     True
 2     True
 3    False
 4     True
-Name: Physics, dtype: bool</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.isna().head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: Physics, dtype: bool</code></pre><pre><code class="python">df.isna().head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -703,11 +693,7 @@ Name: Physics, dtype: bool</code></pre><figure class="highlight python"><table><
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.isna().sum()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">df.isna().sum()</code></pre>
 <pre><code>School      0
 Class       4
 ID          6
@@ -717,9 +703,8 @@ Height      0
 Weight     13
 Math        5
 Physics     4
-dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.info()</span><br></pre></td></tr></table></figure>
-
-<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+dtype: int64</code></pre><pre><code class="python">df.info()</code></pre>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 35 entries, 0 to 34
 Data columns (total 9 columns):
 School     35 non-null object
@@ -732,11 +717,7 @@ Weight     22 non-null float64
 Math       30 non-null float64
 Physics    31 non-null object
 dtypes: float64(3), int64(1), object(5)
-memory usage: 2.6+ KB</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[df[<span class="string">'Physics'</span>].isna()]</span><br></pre></td></tr></table></figure>
-
-
-
-
+memory usage: 2.6+ KB</code></pre><pre><code class="python">df[df[&#39;Physics&#39;].isna()]</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -821,80 +802,50 @@ memory usage: 2.6+ KB</code></pre><figure class="highlight python"><table><tr><t
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[df.notna().all(<span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、缺失数据的运算与分组"><a href="#二、缺失数据的运算与分组" class="headerlink" title="二、缺失数据的运算与分组"></a>二、缺失数据的运算与分组</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. 加号与乘号规则</span></span><br><span class="line"><span class="comment">#使用加法时，缺失值为0</span></span><br><span class="line">s = pd.Series([<span class="number">2</span>,<span class="number">3</span>,np.nan,<span class="number">4</span>])</span><br><span class="line">s.sum()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>9.0</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.prod()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>24.0</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.cumsum()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">df[df.notna().all(1)]</code></pre>
+<h2 id="二、缺失数据的运算与分组"><a href="#二、缺失数据的运算与分组" class="headerlink" title="二、缺失数据的运算与分组"></a>二、缺失数据的运算与分组</h2><pre><code class="python">#1. 加号与乘号规则
+#使用加法时，缺失值为0
+s = pd.Series([2,3,np.nan,4])
+s.sum()</code></pre>
+<pre><code>9.0</code></pre><pre><code class="python">s.prod()</code></pre>
+<pre><code>24.0</code></pre><pre><code class="python">s.cumsum()</code></pre>
 <pre><code>0    2.0
 1    5.0
 2    NaN
 3    9.0
-dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.cumprod()</span><br></pre></td></tr></table></figure>
-
-
-
-
+dtype: float64</code></pre><pre><code class="python">s.cumprod()</code></pre>
 <pre><code>0     2.0
 1     6.0
 2     NaN
 3    24.0
-dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.pct_change()</span><br></pre></td></tr></table></figure>
-
-
-
-
+dtype: float64</code></pre><pre><code class="python">s.pct_change()</code></pre>
 <pre><code>0         NaN
 1    0.500000
 2    0.000000
 3    0.333333
-dtype: float64</code></pre><h2 id="三、填充与剔除"><a href="#三、填充与剔除" class="headerlink" title="三、填充与剔除"></a>三、填充与剔除</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. fillna方法</span></span><br><span class="line"><span class="comment">#（a）值填充与前后向填充（分别与ffill方法和bfill方法等价）</span></span><br><span class="line">df[<span class="string">'Physics'</span>].fillna(<span class="string">'missing'</span>).head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+dtype: float64</code></pre><h2 id="三、填充与剔除"><a href="#三、填充与剔除" class="headerlink" title="三、填充与剔除"></a>三、填充与剔除</h2><pre><code class="python">#1. fillna方法
+#（a）值填充与前后向填充（分别与ffill方法和bfill方法等价）
+df[&#39;Physics&#39;].fillna(&#39;missing&#39;).head()</code></pre>
 <pre><code>0         A+
 1         B+
 2         B+
 3    missing
 4         A-
-Name: Physics, dtype: object</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Physics'</span>].fillna(method=<span class="string">'ffill'</span>).head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: Physics, dtype: object</code></pre><pre><code class="python">df[&#39;Physics&#39;].fillna(method=&#39;ffill&#39;).head()</code></pre>
 <pre><code>0    A+
 1    B+
 2    B+
 3    B+
 4    A-
-Name: Physics, dtype: object</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Physics'</span>].fillna(method=<span class="string">'backfill'</span>).head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: Physics, dtype: object</code></pre><pre><code class="python">df[&#39;Physics&#39;].fillna(method=&#39;backfill&#39;).head()</code></pre>
 <pre><code>0    A+
 1    B+
 2    B+
 3    A-
 4    A-
-Name: Physics, dtype: object</code></pre><h2 id="四、插值（interpolation）"><a href="#四、插值（interpolation）" class="headerlink" title="四、插值（interpolation）"></a>四、插值（interpolation）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. 线性插值</span></span><br><span class="line"><span class="comment">#（a）索引无关的线性插值</span></span><br><span class="line"><span class="comment">#默认状态下，interpolate会对缺失的值进行线性插值¶</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: Physics, dtype: object</code></pre><h2 id="四、插值（interpolation）"><a href="#四、插值（interpolation）" class="headerlink" title="四、插值（interpolation）"></a>四、插值（interpolation）</h2><pre><code class="python">#1. 线性插值
+#（a）索引无关的线性插值
+#默认状态下，interpolate会对缺失的值进行线性插值¶</code></pre>
 <pre><code>0     1.0
 1    10.0
 2    15.0
@@ -903,11 +854,7 @@ Name: Physics, dtype: object</code></pre><h2 id="四、插值（interpolation）
 5     NaN
 6     NaN
 7    28.0
-dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.interpolate()</span><br></pre></td></tr></table></figure>
-
-
-
-
+dtype: float64</code></pre><pre><code class="python">s.interpolate()</code></pre>
 <pre><code>0     1.0
 1    10.0
 2    15.0
@@ -916,11 +863,9 @@ dtype: float64</code></pre><figure class="highlight python"><table><tr><td class
 5     8.0
 6    18.0
 7    28.0
-dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s.index = np.sort(np.random.randint(<span class="number">50</span>,<span class="number">300</span>,<span class="number">8</span>))</span><br><span class="line">s.interpolate()</span><br><span class="line"><span class="comment">#值不变</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+dtype: float64</code></pre><pre><code class="python">s.index = np.sort(np.random.randint(50,300,8))
+s.interpolate()
+#值不变</code></pre>
 <pre><code>137     1.0
 148    10.0
 167    15.0
@@ -929,7 +874,7 @@ dtype: float64</code></pre><figure class="highlight python"><table><tr><td class
 283     8.0
 290    18.0
 299    28.0
-dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+dtype: float64</code></pre><pre><code class="python"></code></pre>
 
                 
             </div>
@@ -1175,31 +1120,31 @@ dtype: float64</code></pre><figure class="highlight python"><table><tr><td class
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/01/11/FIT5216-Workshop-GraghLabel-PowerGen/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
+                <a href="/2020/12/26/C-C-auto/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="腾讯精选练习题50题-两数相加">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="(C\C++) auto">
                         
-                        <span class="card-title">腾讯精选练习题50题-两数相加</span>
+                        <span class="card-title">(C\C++) auto</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            auto关键字的用法
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-11
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-26
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categoriesl/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/" class="post-category">
-                                    算法刷题
+                            <a href="/categoriesl/C-C/" class="post-category">
+                                    C\C++
                                 </a>
                             
                             
@@ -1209,8 +1154,8 @@ dtype: float64</code></pre><figure class="highlight python"><table><tr><td class
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%85%BE%E8%AE%AF%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">腾讯算法</span>
+                    <a href="/tags/C-C/">
+                        <span class="chip bg-color">C\C++</span>
                     </a>
                     
                 </div>
@@ -1292,6 +1237,8 @@ dtype: float64</code></pre><figure class="highlight python"><table><tr><td class
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

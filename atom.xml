@@ -60,7 +60,8 @@
           &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;示例 1:&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight
+&lt;pre&gt;&lt;code class=&quot;markdown&quot;&gt;输入: 121
+输出:
         
       
     
@@ -94,7 +95,8 @@
 &lt;/ul&gt;
 &lt;pre&gt;&lt;code&gt;**示例 1：**
 
-&lt;figure
+```
+输入：strs =
         
       
     
@@ -149,34 +151,15 @@
       
         
         
-          &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-    
-      <category term="算法刷题" scheme="https://zy1120575649.github.io/categoriesl/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"/>
-    
-    
-      <category term="腾讯算法" scheme="https://zy1120575649.github.io/tags/%E8%85%BE%E8%AE%AF%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>腾讯精选练习题50题-字符串转换整数 (atoi)</title>
-    <link href="https://zy1120575649.github.io/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi)/"/>
-    <id>https://zy1120575649.github.io/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi)/</id>
-    <published>2021-01-11T07:03:03.000Z</published>
-    <updated>2021-01-12T12:40:47.409Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;请你来实现一个 &lt;code&gt;atoi&lt;/code&gt;
+          &lt;pre&gt;&lt;code class=&quot;java&quot;&gt;/*
+ * @lc app=leetcode.cn id=2 lang=java
+ *
+ * [2] 两数相加
+ */
+
+// @lc code=start
+/**
+ * Definition for singly-linked
         
       
     
@@ -205,6 +188,33 @@
         
           &lt;p&gt;给定两个大小为 m 和 n 的正序（从小到大）数组 &lt;code&gt;nums1&lt;/code&gt; 和 &lt;code&gt;nums2&lt;/code&gt;。请你找出并返回这两个正序数组的中位数。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;进阶：&lt;/strong&gt;你能设计一个时间复杂度为
+        
+      
+    
+    </summary>
+    
+    
+      <category term="算法刷题" scheme="https://zy1120575649.github.io/categoriesl/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="腾讯算法" scheme="https://zy1120575649.github.io/tags/%E8%85%BE%E8%AE%AF%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>腾讯精选练习题50题-字符串转换整数 (atoi)</title>
+    <link href="https://zy1120575649.github.io/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi)/"/>
+    <id>https://zy1120575649.github.io/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi)/</id>
+    <published>2021-01-11T07:03:03.000Z</published>
+    <updated>2021-01-12T12:40:47.409Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;请你来实现一个 &lt;code&gt;atoi&lt;/code&gt;
         
       
     
@@ -263,7 +273,7 @@
         
           &lt;p&gt;给你一个字符串 &lt;code&gt;s&lt;/code&gt;，找到 &lt;code&gt;s&lt;/code&gt; 中最长的回文子串。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;示例 1：&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+&lt;pre&gt;&lt;code&gt;输入：s =
         
       
     
@@ -290,7 +300,15 @@
       
         
         
-          &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+          &lt;pre&gt;&lt;code class=&quot;java&quot;&gt;/*
+ * @lc app=leetcode.cn id=2 lang=java
+ *
+ * [2] 两数相加
+ */
+
+// @lc code=start
+/**
+ * Definition for singly-linked
         
       
     
@@ -301,6 +319,33 @@
     
     
       <category term="腾讯算法" scheme="https://zy1120575649.github.io/tags/%E8%85%BE%E8%AE%AF%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>(C\C++) auto</title>
+    <link href="https://zy1120575649.github.io/2020/12/26/C-C-auto/"/>
+    <id>https://zy1120575649.github.io/2020/12/26/C-C-auto/</id>
+    <published>2020-12-26T08:29:08.000Z</published>
+    <updated>2020-12-26T16:31:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;auto-before-C-0x&quot;&gt;&lt;a href=&quot;#auto-before-C-0x&quot; class=&quot;headerlink&quot; title=&quot;auto before C++0x&quot;&gt;&lt;/a&gt;auto before
+        
+      
+    
+    </summary>
+    
+    
+      <category term="C\C++" scheme="https://zy1120575649.github.io/categoriesl/C-C/"/>
+    
+    
+      <category term="C\C++" scheme="https://zy1120575649.github.io/tags/C-C/"/>
     
   </entry>
   
@@ -317,7 +362,9 @@
       
         
         
-          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+          &lt;pre&gt;&lt;code class=&quot;python&quot;&gt;import pandas as pd
+import numpy as np
+df =
         
       
     
@@ -346,7 +393,9 @@
       
         
         
-          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+          &lt;pre&gt;&lt;code class=&quot;python&quot;&gt;import numpy as np
+import pandas as pd
+df =
         
       
     
@@ -376,7 +425,9 @@
         
         
           &lt;p&gt;第4章 变形&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;import numpy as np
+import pandas as pd
+df =
         
       
     
@@ -410,7 +461,8 @@
 &lt;li&gt;通过chrome的开发者工具，监控网络请求，并分析&lt;/li&gt;
 &lt;li&gt;用selenium完成爬虫&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;import time
+from  selenium
         
       
     
@@ -462,7 +514,9 @@
       
         
         
-          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+          &lt;pre&gt;&lt;code class=&quot;python&quot;&gt;import numpy as np
+import pandas as pd
+df =
         
       
     
@@ -520,7 +574,9 @@
       
         
         
-          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+          &lt;pre&gt;&lt;code class=&quot;python&quot;&gt;import numpy as np
+import pandas as pd
+df =
         
       
     
@@ -556,35 +612,6 @@
       <category term="DataWhale" scheme="https://zy1120575649.github.io/tags/DataWhale/"/>
     
       <category term="Python爬虫" scheme="https://zy1120575649.github.io/tags/Python%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pandas教程-Task1</title>
-    <link href="https://zy1120575649.github.io/2020/04/20/Pandas%E6%95%99%E7%A8%8B-Task1/"/>
-    <id>https://zy1120575649.github.io/2020/04/20/Pandas%E6%95%99%E7%A8%8B-Task1/</id>
-    <published>2020-04-20T13:12:34.000Z</published>
-    <updated>2020-04-20T13:15:06.540Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Pandas教程" scheme="https://zy1120575649.github.io/categoriesl/Pandas%E6%95%99%E7%A8%8B/"/>
-    
-    
-      <category term="DataWhale" scheme="https://zy1120575649.github.io/tags/DataWhale/"/>
-    
-      <category term="Pandas" scheme="https://zy1120575649.github.io/tags/Pandas/"/>
     
   </entry>
   

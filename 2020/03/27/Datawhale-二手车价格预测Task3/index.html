@@ -521,17 +521,21 @@
 <li><p>降维<br>PCA/ LDA/ ICA；<br>特征选择也是一种降维。</p>
 </li>
 </ol>
-<h3 id="3-2-代码示例"><a href="#3-2-代码示例" class="headerlink" title="3.2 代码示例"></a>3.2 代码示例</h3><h4 id="3-2-0-导入数据"><a href="#3-2-0-导入数据" class="headerlink" title="3.2.0 导入数据"></a>3.2.0 导入数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> itemgetter</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-代码示例"><a href="#3-2-代码示例" class="headerlink" title="3.2 代码示例"></a>3.2 代码示例</h3><h4 id="3-2-0-导入数据"><a href="#3-2-0-导入数据" class="headerlink" title="3.2.0 导入数据"></a>3.2.0 导入数据</h4><pre><code class="python">import pandas as pd
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns
+from operator import itemgetter
 
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">path = <span class="string">'./tianchi/'</span></span><br><span class="line">Train_data = pd.read_csv(path+<span class="string">'used_car_train_20200313.csv'</span>, sep=<span class="string">' '</span>)</span><br><span class="line">Test_data = pd.read_csv(path+<span class="string">'used_car_testA_20200313.csv'</span>, sep=<span class="string">' '</span>)</span><br><span class="line">print(Train_data.shape)</span><br><span class="line">print(Test_data.shape)</span><br></pre></td></tr></table></figure>
-
+%matplotlib inline</code></pre>
+<pre><code class="python">path = &#39;./tianchi/&#39;
+Train_data = pd.read_csv(path+&#39;used_car_train_20200313.csv&#39;, sep=&#39; &#39;)
+Test_data = pd.read_csv(path+&#39;used_car_testA_20200313.csv&#39;, sep=&#39; &#39;)
+print(Train_data.shape)
+print(Test_data.shape)</code></pre>
 <pre><code>(150000, 31)
-(50000, 30)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+(50000, 30)</code></pre><pre><code class="python">Train_data.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -701,31 +705,68 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data.columns</span><br></pre></td></tr></table></figure>
+<pre><code class="python">Train_data.columns</code></pre>
+<pre><code>Index([&#39;SaleID&#39;, &#39;name&#39;, &#39;regDate&#39;, &#39;model&#39;, &#39;brand&#39;, &#39;bodyType&#39;, &#39;fuelType&#39;,
+       &#39;gearbox&#39;, &#39;power&#39;, &#39;kilometer&#39;, &#39;notRepairedDamage&#39;, &#39;regionCode&#39;,
+       &#39;seller&#39;, &#39;offerType&#39;, &#39;creatDate&#39;, &#39;price&#39;, &#39;v_0&#39;, &#39;v_1&#39;, &#39;v_2&#39;, &#39;v_3&#39;,
+       &#39;v_4&#39;, &#39;v_5&#39;, &#39;v_6&#39;, &#39;v_7&#39;, &#39;v_8&#39;, &#39;v_9&#39;, &#39;v_10&#39;, &#39;v_11&#39;, &#39;v_12&#39;,
+       &#39;v_13&#39;, &#39;v_14&#39;],
+      dtype=&#39;object&#39;)</code></pre><pre><code class="python">Test_data.columns</code></pre>
+<pre><code>Index([&#39;SaleID&#39;, &#39;name&#39;, &#39;regDate&#39;, &#39;model&#39;, &#39;brand&#39;, &#39;bodyType&#39;, &#39;fuelType&#39;,
+       &#39;gearbox&#39;, &#39;power&#39;, &#39;kilometer&#39;, &#39;notRepairedDamage&#39;, &#39;regionCode&#39;,
+       &#39;seller&#39;, &#39;offerType&#39;, &#39;creatDate&#39;, &#39;v_0&#39;, &#39;v_1&#39;, &#39;v_2&#39;, &#39;v_3&#39;, &#39;v_4&#39;,
+       &#39;v_5&#39;, &#39;v_6&#39;, &#39;v_7&#39;, &#39;v_8&#39;, &#39;v_9&#39;, &#39;v_10&#39;, &#39;v_11&#39;, &#39;v_12&#39;, &#39;v_13&#39;,
+       &#39;v_14&#39;],
+      dtype=&#39;object&#39;)</code></pre><h4 id="3-2-1-删除异常值"><a href="#3-2-1-删除异常值" class="headerlink" title="3.2.1 删除异常值"></a>3.2.1 删除异常值</h4><pre><code class="python"># 这里我包装了一个异常值处理的代码，可以随便调用。
+def outliers_proc(data, col_name, scale=3):
+    &quot;&quot;&quot;
+    用于清洗异常值，默认用 box_plot（scale=3）进行清洗
+    :param data: 接收 pandas 数据格式
+    :param col_name: pandas 列名
+    :param scale: 尺度
+    :return:
+    &quot;&quot;&quot;
 
+    def box_plot_outliers(data_ser, box_scale):
+        &quot;&quot;&quot;
+        利用箱线图去除异常值
+        :param data_ser: 接收 pandas.Series 数据格式
+        :param box_scale: 箱线图尺度，
+        :return:
+        &quot;&quot;&quot;
+        iqr = box_scale * (data_ser.quantile(0.75) - data_ser.quantile(0.25))
+        val_low = data_ser.quantile(0.25) - iqr
+        val_up = data_ser.quantile(0.75) + iqr
+        rule_low = (data_ser &lt; val_low)
+        rule_up = (data_ser &gt; val_up)
+        return (rule_low, rule_up), (val_low, val_up)
 
+    data_n = data.copy()
+    data_series = data_n[col_name]
+    rule, value = box_plot_outliers(data_series, box_scale=scale)
+    index = np.arange(data_series.shape[0])[rule[0] | rule[1]]
+    print(&quot;Delete number is: {}&quot;.format(len(index)))
+    data_n = data_n.drop(index)
+    data_n.reset_index(drop=True, inplace=True)
+    print(&quot;Now column number is: {}&quot;.format(data_n.shape[0]))
+    index_low = np.arange(data_series.shape[0])[rule[0]]
+    outliers = data_series.iloc[index_low]
+    print(&quot;Description of data less than the lower bound is:&quot;)
+    print(pd.Series(outliers).describe())
+    index_up = np.arange(data_series.shape[0])[rule[1]]
+    outliers = data_series.iloc[index_up]
+    print(&quot;Description of data larger than the upper bound is:&quot;)
+    print(pd.Series(outliers).describe())
 
+    fig, ax = plt.subplots(1, 2, figsize=(10, 7))
+    sns.boxplot(y=data[col_name], data=data, palette=&quot;Set1&quot;, ax=ax[0])
+    sns.boxplot(y=data_n[col_name], data=data_n, palette=&quot;Set1&quot;, ax=ax[1])
+    return data_n</code></pre>
+<pre><code class="python"># 我们可以删掉一些异常数据，以 power 为例。  
+# 这里删不删同学可以自行判断
+# 但是要注意 test 的数据不能删 = = 不能掩耳盗铃是不是
 
-<pre><code>Index([&apos;SaleID&apos;, &apos;name&apos;, &apos;regDate&apos;, &apos;model&apos;, &apos;brand&apos;, &apos;bodyType&apos;, &apos;fuelType&apos;,
-       &apos;gearbox&apos;, &apos;power&apos;, &apos;kilometer&apos;, &apos;notRepairedDamage&apos;, &apos;regionCode&apos;,
-       &apos;seller&apos;, &apos;offerType&apos;, &apos;creatDate&apos;, &apos;price&apos;, &apos;v_0&apos;, &apos;v_1&apos;, &apos;v_2&apos;, &apos;v_3&apos;,
-       &apos;v_4&apos;, &apos;v_5&apos;, &apos;v_6&apos;, &apos;v_7&apos;, &apos;v_8&apos;, &apos;v_9&apos;, &apos;v_10&apos;, &apos;v_11&apos;, &apos;v_12&apos;,
-       &apos;v_13&apos;, &apos;v_14&apos;],
-      dtype=&apos;object&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test_data.columns</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>Index([&apos;SaleID&apos;, &apos;name&apos;, &apos;regDate&apos;, &apos;model&apos;, &apos;brand&apos;, &apos;bodyType&apos;, &apos;fuelType&apos;,
-       &apos;gearbox&apos;, &apos;power&apos;, &apos;kilometer&apos;, &apos;notRepairedDamage&apos;, &apos;regionCode&apos;,
-       &apos;seller&apos;, &apos;offerType&apos;, &apos;creatDate&apos;, &apos;v_0&apos;, &apos;v_1&apos;, &apos;v_2&apos;, &apos;v_3&apos;, &apos;v_4&apos;,
-       &apos;v_5&apos;, &apos;v_6&apos;, &apos;v_7&apos;, &apos;v_8&apos;, &apos;v_9&apos;, &apos;v_10&apos;, &apos;v_11&apos;, &apos;v_12&apos;, &apos;v_13&apos;,
-       &apos;v_14&apos;],
-      dtype=&apos;object&apos;)</code></pre><h4 id="3-2-1-删除异常值"><a href="#3-2-1-删除异常值" class="headerlink" title="3.2.1 删除异常值"></a>3.2.1 删除异常值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里我包装了一个异常值处理的代码，可以随便调用。</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">outliers_proc</span><span class="params">(data, col_name, scale=<span class="number">3</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    用于清洗异常值，默认用 box_plot（scale=3）进行清洗</span></span><br><span class="line"><span class="string">    :param data: 接收 pandas 数据格式</span></span><br><span class="line"><span class="string">    :param col_name: pandas 列名</span></span><br><span class="line"><span class="string">    :param scale: 尺度</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">box_plot_outliers</span><span class="params">(data_ser, box_scale)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        利用箱线图去除异常值</span></span><br><span class="line"><span class="string">        :param data_ser: 接收 pandas.Series 数据格式</span></span><br><span class="line"><span class="string">        :param box_scale: 箱线图尺度，</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        iqr = box_scale * (data_ser.quantile(<span class="number">0.75</span>) - data_ser.quantile(<span class="number">0.25</span>))</span><br><span class="line">        val_low = data_ser.quantile(<span class="number">0.25</span>) - iqr</span><br><span class="line">        val_up = data_ser.quantile(<span class="number">0.75</span>) + iqr</span><br><span class="line">        rule_low = (data_ser &lt; val_low)</span><br><span class="line">        rule_up = (data_ser &gt; val_up)</span><br><span class="line">        <span class="keyword">return</span> (rule_low, rule_up), (val_low, val_up)</span><br><span class="line"></span><br><span class="line">    data_n = data.copy()</span><br><span class="line">    data_series = data_n[col_name]</span><br><span class="line">    rule, value = box_plot_outliers(data_series, box_scale=scale)</span><br><span class="line">    index = np.arange(data_series.shape[<span class="number">0</span>])[rule[<span class="number">0</span>] | rule[<span class="number">1</span>]]</span><br><span class="line">    print(<span class="string">"Delete number is: &#123;&#125;"</span>.format(len(index)))</span><br><span class="line">    data_n = data_n.drop(index)</span><br><span class="line">    data_n.reset_index(drop=<span class="literal">True</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">    print(<span class="string">"Now column number is: &#123;&#125;"</span>.format(data_n.shape[<span class="number">0</span>]))</span><br><span class="line">    index_low = np.arange(data_series.shape[<span class="number">0</span>])[rule[<span class="number">0</span>]]</span><br><span class="line">    outliers = data_series.iloc[index_low]</span><br><span class="line">    print(<span class="string">"Description of data less than the lower bound is:"</span>)</span><br><span class="line">    print(pd.Series(outliers).describe())</span><br><span class="line">    index_up = np.arange(data_series.shape[<span class="number">0</span>])[rule[<span class="number">1</span>]]</span><br><span class="line">    outliers = data_series.iloc[index_up]</span><br><span class="line">    print(<span class="string">"Description of data larger than the upper bound is:"</span>)</span><br><span class="line">    print(pd.Series(outliers).describe())</span><br><span class="line">    </span><br><span class="line">    fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">10</span>, <span class="number">7</span>))</span><br><span class="line">    sns.boxplot(y=data[col_name], data=data, palette=<span class="string">"Set1"</span>, ax=ax[<span class="number">0</span>])</span><br><span class="line">    sns.boxplot(y=data_n[col_name], data=data_n, palette=<span class="string">"Set1"</span>, ax=ax[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">return</span> data_n</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我们可以删掉一些异常数据，以 power 为例。  </span></span><br><span class="line"><span class="comment"># 这里删不删同学可以自行判断</span></span><br><span class="line"><span class="comment"># 但是要注意 test 的数据不能删 = = 不能掩耳盗铃是不是</span></span><br><span class="line"></span><br><span class="line">Train_data = outliers_proc(Train_data, <span class="string">'power'</span>, scale=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-
+Train_data = outliers_proc(Train_data, &#39;power&#39;, scale=3)</code></pre>
 <pre><code>Delete number is: 963
 Now column number is: 149037
 Description of data less than the lower bound is:
@@ -748,34 +789,59 @@ min        376.000000
 75%        514.000000
 max      19312.000000
 Name: power, dtype: float64</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_8_1.png" alt="png"></p>
-<h4 id="3-2-2-特征构造"><a href="#3-2-2-特征构造" class="headerlink" title="3.2.2 特征构造"></a>3.2.2 特征构造</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 训练集和测试集放在一起，方便构造特征</span></span><br><span class="line">Train_data[<span class="string">'train'</span>]=<span class="number">1</span></span><br><span class="line">Test_data[<span class="string">'train'</span>]=<span class="number">0</span></span><br><span class="line">data = pd.concat([Train_data, Test_data], ignore_index=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
+<h4 id="3-2-2-特征构造"><a href="#3-2-2-特征构造" class="headerlink" title="3.2.2 特征构造"></a>3.2.2 特征构造</h4><pre><code class="python"># 训练集和测试集放在一起，方便构造特征
+Train_data[&#39;train&#39;]=1
+Test_data[&#39;train&#39;]=0
+data = pd.concat([Train_data, Test_data], ignore_index=True)</code></pre>
 <pre><code>/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:4: FutureWarning: Sorting because non-concatenation axis is not aligned. A future version
 of pandas will change to not sort by default.
 
-To accept the future behavior, pass &apos;sort=False&apos;.
+To accept the future behavior, pass &#39;sort=False&#39;.
 
-To retain the current behavior and silence the warning, pass &apos;sort=True&apos;.
+To retain the current behavior and silence the warning, pass &#39;sort=True&#39;.
 
-  after removing the cwd from sys.path.</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用时间：data['creatDate'] - data['regDate']，反应汽车使用时间，一般来说价格与使用时间成反比</span></span><br><span class="line"><span class="comment"># 不过要注意，数据里有时间出错的格式，所以我们需要 errors='coerce'</span></span><br><span class="line">data[<span class="string">'used_time'</span>] = (pd.to_datetime(data[<span class="string">'creatDate'</span>], format=<span class="string">'%Y%m%d'</span>, errors=<span class="string">'coerce'</span>) - </span><br><span class="line">                            pd.to_datetime(data[<span class="string">'regDate'</span>], format=<span class="string">'%Y%m%d'</span>, errors=<span class="string">'coerce'</span>)).dt.days</span><br></pre></td></tr></table></figure>
+  after removing the cwd from sys.path.</code></pre><pre><code class="python"># 使用时间：data[&#39;creatDate&#39;] - data[&#39;regDate&#39;]，反应汽车使用时间，一般来说价格与使用时间成反比
+# 不过要注意，数据里有时间出错的格式，所以我们需要 errors=&#39;coerce&#39;
+data[&#39;used_time&#39;] = (pd.to_datetime(data[&#39;creatDate&#39;], format=&#39;%Y%m%d&#39;, errors=&#39;coerce&#39;) - 
+                            pd.to_datetime(data[&#39;regDate&#39;], format=&#39;%Y%m%d&#39;, errors=&#39;coerce&#39;)).dt.days</code></pre>
+<pre><code class="python"># 看一下空数据，有 15k 个样本的时间是有问题的，我们可以选择删除，也可以选择放着。
+# 但是这里不建议删除，因为删除缺失数据占总样本量过大，7.5%
+# 我们可以先放着，因为如果我们 XGBoost 之类的决策树，其本身就能处理缺失值，所以可以不用管；
+data[&#39;used_time&#39;].isnull().sum()</code></pre>
+<pre><code>15072</code></pre><pre><code class="python"># 从邮编中提取城市信息，相当于加入了先验知识
+data[&#39;city&#39;] = data[&#39;regionCode&#39;].apply(lambda x : str(x)[:-3])
+data = data</code></pre>
+<pre><code class="python"># 计算某品牌的销售统计量，同学们还可以计算其他特征的统计量
+# 这里要以 train 的数据计算统计量
+Train_gb = Train_data.groupby(&quot;brand&quot;)
+all_info = {}
+for kind, kind_data in Train_gb:
+    info = {}
+    kind_data = kind_data[kind_data[&#39;price&#39;] &gt; 0]
+    info[&#39;brand_amount&#39;] = len(kind_data)
+    info[&#39;brand_price_max&#39;] = kind_data.price.max()
+    info[&#39;brand_price_median&#39;] = kind_data.price.median()
+    info[&#39;brand_price_min&#39;] = kind_data.price.min()
+    info[&#39;brand_price_sum&#39;] = kind_data.price.sum()
+    info[&#39;brand_price_std&#39;] = kind_data.price.std()
+    info[&#39;brand_price_average&#39;] = round(kind_data.price.sum() / (len(kind_data) + 1), 2)
+    all_info[kind] = info
+brand_fe = pd.DataFrame(all_info).T.reset_index().rename(columns={&quot;index&quot;: &quot;brand&quot;})
+data = data.merge(brand_fe, how=&#39;left&#39;, on=&#39;brand&#39;)</code></pre>
+<pre><code class="python"># 数据分桶 以 power 为例
+# 这时候我们的缺失值也进桶了，
+# 为什么要做数据分桶呢，原因有很多，= =
+# 1. 离散后稀疏向量内积乘法运算速度更快，计算结果也方便存储，容易扩展；
+# 2. 离散后的特征对异常值更具鲁棒性，如 age&gt;30 为 1 否则为 0，对于年龄为 200 的也不会对模型造成很大的干扰；
+# 3. LR 属于广义线性模型，表达能力有限，经过离散化后，每个变量有单独的权重，这相当于引入了非线性，能够提升模型的表达能力，加大拟合；
+# 4. 离散后特征可以进行特征交叉，提升表达能力，由 M+N 个变量编程 M*N 个变量，进一步引入非线形，提升了表达能力；
+# 5. 特征离散后模型更稳定，如用户年龄区间，不会因为用户年龄长了一岁就变化
 
+# 当然还有很多原因，LightGBM 在改进 XGBoost 时就增加了数据分桶，增强了模型的泛化性
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看一下空数据，有 15k 个样本的时间是有问题的，我们可以选择删除，也可以选择放着。</span></span><br><span class="line"><span class="comment"># 但是这里不建议删除，因为删除缺失数据占总样本量过大，7.5%</span></span><br><span class="line"><span class="comment"># 我们可以先放着，因为如果我们 XGBoost 之类的决策树，其本身就能处理缺失值，所以可以不用管；</span></span><br><span class="line">data[<span class="string">'used_time'</span>].isnull().sum()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>15072</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从邮编中提取城市信息，相当于加入了先验知识</span></span><br><span class="line">data[<span class="string">'city'</span>] = data[<span class="string">'regionCode'</span>].apply(<span class="keyword">lambda</span> x : str(x)[:<span class="number">-3</span>])</span><br><span class="line">data = data</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算某品牌的销售统计量，同学们还可以计算其他特征的统计量</span></span><br><span class="line"><span class="comment"># 这里要以 train 的数据计算统计量</span></span><br><span class="line">Train_gb = Train_data.groupby(<span class="string">"brand"</span>)</span><br><span class="line">all_info = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> kind, kind_data <span class="keyword">in</span> Train_gb:</span><br><span class="line">    info = &#123;&#125;</span><br><span class="line">    kind_data = kind_data[kind_data[<span class="string">'price'</span>] &gt; <span class="number">0</span>]</span><br><span class="line">    info[<span class="string">'brand_amount'</span>] = len(kind_data)</span><br><span class="line">    info[<span class="string">'brand_price_max'</span>] = kind_data.price.max()</span><br><span class="line">    info[<span class="string">'brand_price_median'</span>] = kind_data.price.median()</span><br><span class="line">    info[<span class="string">'brand_price_min'</span>] = kind_data.price.min()</span><br><span class="line">    info[<span class="string">'brand_price_sum'</span>] = kind_data.price.sum()</span><br><span class="line">    info[<span class="string">'brand_price_std'</span>] = kind_data.price.std()</span><br><span class="line">    info[<span class="string">'brand_price_average'</span>] = round(kind_data.price.sum() / (len(kind_data) + <span class="number">1</span>), <span class="number">2</span>)</span><br><span class="line">    all_info[kind] = info</span><br><span class="line">brand_fe = pd.DataFrame(all_info).T.reset_index().rename(columns=&#123;<span class="string">"index"</span>: <span class="string">"brand"</span>&#125;)</span><br><span class="line">data = data.merge(brand_fe, how=<span class="string">'left'</span>, on=<span class="string">'brand'</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据分桶 以 power 为例</span></span><br><span class="line"><span class="comment"># 这时候我们的缺失值也进桶了，</span></span><br><span class="line"><span class="comment"># 为什么要做数据分桶呢，原因有很多，= =</span></span><br><span class="line"><span class="comment"># 1. 离散后稀疏向量内积乘法运算速度更快，计算结果也方便存储，容易扩展；</span></span><br><span class="line"><span class="comment"># 2. 离散后的特征对异常值更具鲁棒性，如 age&gt;30 为 1 否则为 0，对于年龄为 200 的也不会对模型造成很大的干扰；</span></span><br><span class="line"><span class="comment"># 3. LR 属于广义线性模型，表达能力有限，经过离散化后，每个变量有单独的权重，这相当于引入了非线性，能够提升模型的表达能力，加大拟合；</span></span><br><span class="line"><span class="comment"># 4. 离散后特征可以进行特征交叉，提升表达能力，由 M+N 个变量编程 M*N 个变量，进一步引入非线形，提升了表达能力；</span></span><br><span class="line"><span class="comment"># 5. 特征离散后模型更稳定，如用户年龄区间，不会因为用户年龄长了一岁就变化</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当然还有很多原因，LightGBM 在改进 XGBoost 时就增加了数据分桶，增强了模型的泛化性</span></span><br><span class="line"></span><br><span class="line">bin = [i*<span class="number">10</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">31</span>)]</span><br><span class="line">data[<span class="string">'power_bin'</span>] = pd.cut(data[<span class="string">'power'</span>], bin, labels=<span class="literal">False</span>)</span><br><span class="line">data[[<span class="string">'power_bin'</span>, <span class="string">'power'</span>]].head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+bin = [i*10 for i in range(31)]
+data[&#39;power_bin&#39;] = pd.cut(data[&#39;power&#39;], bin, labels=False)
+data[[&#39;power_bin&#39;, &#39;power&#39;]].head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -830,97 +896,131 @@ To retain the current behavior and silence the warning, pass &apos;sort=True&apo
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除不需要的数据</span></span><br><span class="line">data = data.drop([<span class="string">'creatDate'</span>, <span class="string">'regDate'</span>, <span class="string">'regionCode'</span>], axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(data.shape)</span><br><span class="line">data.columns</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python"># 删除不需要的数据
+data = data.drop([&#39;creatDate&#39;, &#39;regDate&#39;, &#39;regionCode&#39;], axis=1)</code></pre>
+<pre><code class="python">print(data.shape)
+data.columns</code></pre>
 <pre><code>(199037, 39)
 
 
 
 
 
-Index([&apos;SaleID&apos;, &apos;bodyType&apos;, &apos;brand&apos;, &apos;fuelType&apos;, &apos;gearbox&apos;, &apos;kilometer&apos;,
-       &apos;model&apos;, &apos;name&apos;, &apos;notRepairedDamage&apos;, &apos;offerType&apos;, &apos;power&apos;, &apos;price&apos;,
-       &apos;seller&apos;, &apos;train&apos;, &apos;v_0&apos;, &apos;v_1&apos;, &apos;v_10&apos;, &apos;v_11&apos;, &apos;v_12&apos;, &apos;v_13&apos;, &apos;v_14&apos;,
-       &apos;v_2&apos;, &apos;v_3&apos;, &apos;v_4&apos;, &apos;v_5&apos;, &apos;v_6&apos;, &apos;v_7&apos;, &apos;v_8&apos;, &apos;v_9&apos;, &apos;used_time&apos;,
-       &apos;city&apos;, &apos;brand_amount&apos;, &apos;brand_price_max&apos;, &apos;brand_price_median&apos;,
-       &apos;brand_price_min&apos;, &apos;brand_price_sum&apos;, &apos;brand_price_std&apos;,
-       &apos;brand_price_average&apos;, &apos;power_bin&apos;],
-      dtype=&apos;object&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 目前的数据其实已经可以给树模型使用了，所以我们导出一下</span></span><br><span class="line">data.to_csv(<span class="string">'data_for_tree.csv'</span>, index=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我们可以再构造一份特征给 LR NN 之类的模型用</span></span><br><span class="line"><span class="comment"># 之所以分开构造是因为，不同模型对数据集的要求不同</span></span><br><span class="line"><span class="comment"># 我们看下数据分布：</span></span><br><span class="line">data[<span class="string">'power'</span>].plot.hist()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Index([&#39;SaleID&#39;, &#39;bodyType&#39;, &#39;brand&#39;, &#39;fuelType&#39;, &#39;gearbox&#39;, &#39;kilometer&#39;,
+       &#39;model&#39;, &#39;name&#39;, &#39;notRepairedDamage&#39;, &#39;offerType&#39;, &#39;power&#39;, &#39;price&#39;,
+       &#39;seller&#39;, &#39;train&#39;, &#39;v_0&#39;, &#39;v_1&#39;, &#39;v_10&#39;, &#39;v_11&#39;, &#39;v_12&#39;, &#39;v_13&#39;, &#39;v_14&#39;,
+       &#39;v_2&#39;, &#39;v_3&#39;, &#39;v_4&#39;, &#39;v_5&#39;, &#39;v_6&#39;, &#39;v_7&#39;, &#39;v_8&#39;, &#39;v_9&#39;, &#39;used_time&#39;,
+       &#39;city&#39;, &#39;brand_amount&#39;, &#39;brand_price_max&#39;, &#39;brand_price_median&#39;,
+       &#39;brand_price_min&#39;, &#39;brand_price_sum&#39;, &#39;brand_price_std&#39;,
+       &#39;brand_price_average&#39;, &#39;power_bin&#39;],
+      dtype=&#39;object&#39;)</code></pre><pre><code class="python"># 目前的数据其实已经可以给树模型使用了，所以我们导出一下
+data.to_csv(&#39;data_for_tree.csv&#39;, index=0)</code></pre>
+<pre><code class="python"># 我们可以再构造一份特征给 LR NN 之类的模型用
+# 之所以分开构造是因为，不同模型对数据集的要求不同
+# 我们看下数据分布：
+data[&#39;power&#39;].plot.hist()</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x104cfb890&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_19_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我们刚刚已经对 train 进行异常值处理了，但是现在还有这么奇怪的分布是因为 test 中的 power 异常值，</span></span><br><span class="line"><span class="comment"># 所以我们其实刚刚 train 中的 power 异常值不删为好，可以用长尾分布截断来代替</span></span><br><span class="line">Train_data[<span class="string">'power'</span>].plot.hist()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python"># 我们刚刚已经对 train 进行异常值处理了，但是现在还有这么奇怪的分布是因为 test 中的 power 异常值，
+# 所以我们其实刚刚 train 中的 power 异常值不删为好，可以用长尾分布截断来代替
+Train_data[&#39;power&#39;].plot.hist()</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a1ac0e090&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_20_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我们对其取 log，在做归一化</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing</span><br><span class="line">min_max_scaler = preprocessing.MinMaxScaler()</span><br><span class="line">data[<span class="string">'power'</span>] = np.log(data[<span class="string">'power'</span>] + <span class="number">1</span>) </span><br><span class="line">data[<span class="string">'power'</span>] = ((data[<span class="string">'power'</span>] - np.min(data[<span class="string">'power'</span>])) / (np.max(data[<span class="string">'power'</span>]) - np.min(data[<span class="string">'power'</span>])))</span><br><span class="line">data[<span class="string">'power'</span>].plot.hist()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python"># 我们对其取 log，在做归一化
+from sklearn import preprocessing
+min_max_scaler = preprocessing.MinMaxScaler()
+data[&#39;power&#39;] = np.log(data[&#39;power&#39;] + 1) 
+data[&#39;power&#39;] = ((data[&#39;power&#39;] - np.min(data[&#39;power&#39;])) / (np.max(data[&#39;power&#39;]) - np.min(data[&#39;power&#39;])))
+data[&#39;power&#39;].plot.hist()</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11829b050&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_21_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># km 的比较正常，应该是已经做过分桶了</span></span><br><span class="line">data[<span class="string">'kilometer'</span>].plot.hist()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python"># km 的比较正常，应该是已经做过分桶了
+data[&#39;kilometer&#39;].plot.hist()</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a1b54ced0&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_22_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 所以我们可以直接做归一化</span></span><br><span class="line">data[<span class="string">'kilometer'</span>] = ((data[<span class="string">'kilometer'</span>] - np.min(data[<span class="string">'kilometer'</span>])) / </span><br><span class="line">                        (np.max(data[<span class="string">'kilometer'</span>]) - np.min(data[<span class="string">'kilometer'</span>])))</span><br><span class="line">data[<span class="string">'kilometer'</span>].plot.hist()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python"># 所以我们可以直接做归一化
+data[&#39;kilometer&#39;] = ((data[&#39;kilometer&#39;] - np.min(data[&#39;kilometer&#39;])) / 
+                        (np.max(data[&#39;kilometer&#39;]) - np.min(data[&#39;kilometer&#39;])))
+data[&#39;kilometer&#39;].plot.hist()</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a1c187750&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_23_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 除此之外 还有我们刚刚构造的统计量特征：</span></span><br><span class="line"><span class="comment"># 'brand_amount', 'brand_price_average', 'brand_price_max',</span></span><br><span class="line"><span class="comment"># 'brand_price_median', 'brand_price_min', 'brand_price_std',</span></span><br><span class="line"><span class="comment"># 'brand_price_sum'</span></span><br><span class="line"><span class="comment"># 这里不再一一举例分析了，直接做变换，</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_min</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (x - np.min(x)) / (np.max(x) - np.min(x))</span><br><span class="line"></span><br><span class="line">data[<span class="string">'brand_amount'</span>] = ((data[<span class="string">'brand_amount'</span>] - np.min(data[<span class="string">'brand_amount'</span>])) / </span><br><span class="line">                        (np.max(data[<span class="string">'brand_amount'</span>]) - np.min(data[<span class="string">'brand_amount'</span>])))</span><br><span class="line">data[<span class="string">'brand_price_average'</span>] = ((data[<span class="string">'brand_price_average'</span>] - np.min(data[<span class="string">'brand_price_average'</span>])) / </span><br><span class="line">                               (np.max(data[<span class="string">'brand_price_average'</span>]) - np.min(data[<span class="string">'brand_price_average'</span>])))</span><br><span class="line">data[<span class="string">'brand_price_max'</span>] = ((data[<span class="string">'brand_price_max'</span>] - np.min(data[<span class="string">'brand_price_max'</span>])) / </span><br><span class="line">                           (np.max(data[<span class="string">'brand_price_max'</span>]) - np.min(data[<span class="string">'brand_price_max'</span>])))</span><br><span class="line">data[<span class="string">'brand_price_median'</span>] = ((data[<span class="string">'brand_price_median'</span>] - np.min(data[<span class="string">'brand_price_median'</span>])) /</span><br><span class="line">                              (np.max(data[<span class="string">'brand_price_median'</span>]) - np.min(data[<span class="string">'brand_price_median'</span>])))</span><br><span class="line">data[<span class="string">'brand_price_min'</span>] = ((data[<span class="string">'brand_price_min'</span>] - np.min(data[<span class="string">'brand_price_min'</span>])) / </span><br><span class="line">                           (np.max(data[<span class="string">'brand_price_min'</span>]) - np.min(data[<span class="string">'brand_price_min'</span>])))</span><br><span class="line">data[<span class="string">'brand_price_std'</span>] = ((data[<span class="string">'brand_price_std'</span>] - np.min(data[<span class="string">'brand_price_std'</span>])) / </span><br><span class="line">                           (np.max(data[<span class="string">'brand_price_std'</span>]) - np.min(data[<span class="string">'brand_price_std'</span>])))</span><br><span class="line">data[<span class="string">'brand_price_sum'</span>] = ((data[<span class="string">'brand_price_sum'</span>] - np.min(data[<span class="string">'brand_price_sum'</span>])) / </span><br><span class="line">                           (np.max(data[<span class="string">'brand_price_sum'</span>]) - np.min(data[<span class="string">'brand_price_sum'</span>])))</span><br></pre></td></tr></table></figure>
+<pre><code class="python"># 除此之外 还有我们刚刚构造的统计量特征：
+# &#39;brand_amount&#39;, &#39;brand_price_average&#39;, &#39;brand_price_max&#39;,
+# &#39;brand_price_median&#39;, &#39;brand_price_min&#39;, &#39;brand_price_std&#39;,
+# &#39;brand_price_sum&#39;
+# 这里不再一一举例分析了，直接做变换，
+def max_min(x):
+    return (x - np.min(x)) / (np.max(x) - np.min(x))
 
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对类别特征进行 OneEncoder</span></span><br><span class="line">data = pd.get_dummies(data, columns=[<span class="string">'model'</span>, <span class="string">'brand'</span>, <span class="string">'bodyType'</span>, <span class="string">'fuelType'</span>,</span><br><span class="line">                                     <span class="string">'gearbox'</span>, <span class="string">'notRepairedDamage'</span>, <span class="string">'power_bin'</span>])</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(data.shape)</span><br><span class="line">data.columns</span><br></pre></td></tr></table></figure>
-
+data[&#39;brand_amount&#39;] = ((data[&#39;brand_amount&#39;] - np.min(data[&#39;brand_amount&#39;])) / 
+                        (np.max(data[&#39;brand_amount&#39;]) - np.min(data[&#39;brand_amount&#39;])))
+data[&#39;brand_price_average&#39;] = ((data[&#39;brand_price_average&#39;] - np.min(data[&#39;brand_price_average&#39;])) / 
+                               (np.max(data[&#39;brand_price_average&#39;]) - np.min(data[&#39;brand_price_average&#39;])))
+data[&#39;brand_price_max&#39;] = ((data[&#39;brand_price_max&#39;] - np.min(data[&#39;brand_price_max&#39;])) / 
+                           (np.max(data[&#39;brand_price_max&#39;]) - np.min(data[&#39;brand_price_max&#39;])))
+data[&#39;brand_price_median&#39;] = ((data[&#39;brand_price_median&#39;] - np.min(data[&#39;brand_price_median&#39;])) /
+                              (np.max(data[&#39;brand_price_median&#39;]) - np.min(data[&#39;brand_price_median&#39;])))
+data[&#39;brand_price_min&#39;] = ((data[&#39;brand_price_min&#39;] - np.min(data[&#39;brand_price_min&#39;])) / 
+                           (np.max(data[&#39;brand_price_min&#39;]) - np.min(data[&#39;brand_price_min&#39;])))
+data[&#39;brand_price_std&#39;] = ((data[&#39;brand_price_std&#39;] - np.min(data[&#39;brand_price_std&#39;])) / 
+                           (np.max(data[&#39;brand_price_std&#39;]) - np.min(data[&#39;brand_price_std&#39;])))
+data[&#39;brand_price_sum&#39;] = ((data[&#39;brand_price_sum&#39;] - np.min(data[&#39;brand_price_sum&#39;])) / 
+                           (np.max(data[&#39;brand_price_sum&#39;]) - np.min(data[&#39;brand_price_sum&#39;])))</code></pre>
+<pre><code class="python"># 对类别特征进行 OneEncoder
+data = pd.get_dummies(data, columns=[&#39;model&#39;, &#39;brand&#39;, &#39;bodyType&#39;, &#39;fuelType&#39;,
+                                     &#39;gearbox&#39;, &#39;notRepairedDamage&#39;, &#39;power_bin&#39;])</code></pre>
+<pre><code class="python">print(data.shape)
+data.columns</code></pre>
 <pre><code>(199037, 370)
 
 
 
 
 
-Index([&apos;SaleID&apos;, &apos;kilometer&apos;, &apos;name&apos;, &apos;offerType&apos;, &apos;power&apos;, &apos;price&apos;, &apos;seller&apos;,
-       &apos;train&apos;, &apos;v_0&apos;, &apos;v_1&apos;,
+Index([&#39;SaleID&#39;, &#39;kilometer&#39;, &#39;name&#39;, &#39;offerType&#39;, &#39;power&#39;, &#39;price&#39;, &#39;seller&#39;,
+       &#39;train&#39;, &#39;v_0&#39;, &#39;v_1&#39;,
        ...
-       &apos;power_bin_20.0&apos;, &apos;power_bin_21.0&apos;, &apos;power_bin_22.0&apos;, &apos;power_bin_23.0&apos;,
-       &apos;power_bin_24.0&apos;, &apos;power_bin_25.0&apos;, &apos;power_bin_26.0&apos;, &apos;power_bin_27.0&apos;,
-       &apos;power_bin_28.0&apos;, &apos;power_bin_29.0&apos;],
-      dtype=&apos;object&apos;, length=370)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这份数据可以给 LR 用</span></span><br><span class="line">data.to_csv(<span class="string">'data_for_lr.csv'</span>, index=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-2-3-特征筛选"><a href="#3-2-3-特征筛选" class="headerlink" title="3.2.3 特征筛选"></a>3.2.3 特征筛选</h4><h5 id="过滤式"><a href="#过滤式" class="headerlink" title="过滤式"></a>过滤式</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 相关性分析</span></span><br><span class="line">print(data[<span class="string">'power'</span>].corr(data[<span class="string">'price'</span>], method=<span class="string">'spearman'</span>))</span><br><span class="line">print(data[<span class="string">'kilometer'</span>].corr(data[<span class="string">'price'</span>], method=<span class="string">'spearman'</span>))</span><br><span class="line">print(data[<span class="string">'brand_amount'</span>].corr(data[<span class="string">'price'</span>], method=<span class="string">'spearman'</span>))</span><br><span class="line">print(data[<span class="string">'brand_price_average'</span>].corr(data[<span class="string">'price'</span>], method=<span class="string">'spearman'</span>))</span><br><span class="line">print(data[<span class="string">'brand_price_max'</span>].corr(data[<span class="string">'price'</span>], method=<span class="string">'spearman'</span>))</span><br><span class="line">print(data[<span class="string">'brand_price_median'</span>].corr(data[<span class="string">'price'</span>], method=<span class="string">'spearman'</span>))</span><br></pre></td></tr></table></figure>
-
+       &#39;power_bin_20.0&#39;, &#39;power_bin_21.0&#39;, &#39;power_bin_22.0&#39;, &#39;power_bin_23.0&#39;,
+       &#39;power_bin_24.0&#39;, &#39;power_bin_25.0&#39;, &#39;power_bin_26.0&#39;, &#39;power_bin_27.0&#39;,
+       &#39;power_bin_28.0&#39;, &#39;power_bin_29.0&#39;],
+      dtype=&#39;object&#39;, length=370)</code></pre><pre><code class="python"># 这份数据可以给 LR 用
+data.to_csv(&#39;data_for_lr.csv&#39;, index=0)</code></pre>
+<h4 id="3-2-3-特征筛选"><a href="#3-2-3-特征筛选" class="headerlink" title="3.2.3 特征筛选"></a>3.2.3 特征筛选</h4><h5 id="过滤式"><a href="#过滤式" class="headerlink" title="过滤式"></a>过滤式</h5><pre><code class="python"># 相关性分析
+print(data[&#39;power&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))
+print(data[&#39;kilometer&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))
+print(data[&#39;brand_amount&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))
+print(data[&#39;brand_price_average&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))
+print(data[&#39;brand_price_max&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))
+print(data[&#39;brand_price_median&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))</code></pre>
 <pre><code>0.5728285196051496
 -0.4082569701616764
 0.058156610025581514
 0.3834909576057687
 0.259066833880992
-0.38691042393409447</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 当然也可以直接看图</span></span><br><span class="line">data_numeric = data[[<span class="string">'power'</span>, <span class="string">'kilometer'</span>, <span class="string">'brand_amount'</span>, <span class="string">'brand_price_average'</span>, </span><br><span class="line">                     <span class="string">'brand_price_max'</span>, <span class="string">'brand_price_median'</span>]]</span><br><span class="line">correlation = data_numeric.corr()</span><br><span class="line"></span><br><span class="line">f , ax = plt.subplots(figsize = (<span class="number">7</span>, <span class="number">7</span>))</span><br><span class="line">plt.title(<span class="string">'Correlation of Numeric Features with Price'</span>,y=<span class="number">1</span>,size=<span class="number">16</span>)</span><br><span class="line">sns.heatmap(correlation,square = <span class="literal">True</span>,  vmax=<span class="number">0.8</span>)</span><br></pre></td></tr></table></figure>
+0.38691042393409447</code></pre><pre><code class="python"># 当然也可以直接看图
+data_numeric = data[[&#39;power&#39;, &#39;kilometer&#39;, &#39;brand_amount&#39;, &#39;brand_price_average&#39;, 
+                     &#39;brand_price_max&#39;, &#39;brand_price_median&#39;]]
+correlation = data_numeric.corr()
 
-
-
-
+f , ax = plt.subplots(figsize = (7, 7))
+plt.title(&#39;Correlation of Numeric Features with Price&#39;,y=1,size=16)
+sns.heatmap(correlation,square = True,  vmax=0.8)</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a1b4f4b90&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_30_1.png" alt="png"></p>
-<h5 id="包裹式"><a href="#包裹式" class="headerlink" title="包裹式"></a>包裹式</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># k_feature 太大会很难跑，没服务器，所以提前 interrupt 了</span></span><br><span class="line"><span class="keyword">from</span> mlxtend.feature_selection <span class="keyword">import</span> SequentialFeatureSelector <span class="keyword">as</span> SFS</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line">sfs = SFS(LinearRegression(),</span><br><span class="line">           k_features=<span class="number">10</span>,</span><br><span class="line">           forward=<span class="literal">True</span>,</span><br><span class="line">           floating=<span class="literal">False</span>,</span><br><span class="line">           scoring = <span class="string">'r2'</span>,</span><br><span class="line">           cv = <span class="number">0</span>)</span><br><span class="line">x = data.drop([<span class="string">'price'</span>], axis=<span class="number">1</span>)</span><br><span class="line">x = x.fillna(<span class="number">0</span>)</span><br><span class="line">y = data[<span class="string">'price'</span>]</span><br><span class="line">sfs.fit(x, y)</span><br><span class="line">sfs.k_feature_names_</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 画出来，可以看到边际效益</span></span><br><span class="line"><span class="keyword">from</span> mlxtend.plotting <span class="keyword">import</span> plot_sequential_feature_selection <span class="keyword">as</span> plot_sfs</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig1 = plot_sfs(sfs.get_metric_dict(), kind=<span class="string">'std_dev'</span>)</span><br><span class="line">plt.grid()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
+<h5 id="包裹式"><a href="#包裹式" class="headerlink" title="包裹式"></a>包裹式</h5><pre><code class="python"># k_feature 太大会很难跑，没服务器，所以提前 interrupt 了
+from mlxtend.feature_selection import SequentialFeatureSelector as SFS
+from sklearn.linear_model import LinearRegression
+sfs = SFS(LinearRegression(),
+           k_features=10,
+           forward=True,
+           floating=False,
+           scoring = &#39;r2&#39;,
+           cv = 0)
+x = data.drop([&#39;price&#39;], axis=1)
+x = x.fillna(0)
+y = data[&#39;price&#39;]
+sfs.fit(x, y)
+sfs.k_feature_names_ </code></pre>
+<pre><code class="python"># 画出来，可以看到边际效益
+from mlxtend.plotting import plot_sequential_feature_selection as plot_sfs
+import matplotlib.pyplot as plt
+fig1 = plot_sfs(sfs.get_metric_dict(), kind=&#39;std_dev&#39;)
+plt.grid()
+plt.show()</code></pre>
 <h5 id="嵌入式"><a href="#嵌入式" class="headerlink" title="嵌入式"></a>嵌入式</h5><p>下一章介绍。</p>
 
                 
@@ -1285,6 +1385,8 @@ Index([&apos;SaleID&apos;, &apos;kilometer&apos;, &apos;name&apos;, &apos;offerT
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

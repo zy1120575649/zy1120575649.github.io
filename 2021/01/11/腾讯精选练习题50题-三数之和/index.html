@@ -485,18 +485,66 @@
 </ul>
 <pre><code>**示例 1：**
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [-1,0,1,2,-1,-4]</span><br><span class="line">输出：[[-1,-1,2],[-1,0,1]]</span><br></pre></td></tr></table></figure>
+```
+输入：nums = [-1,0,1,2,-1,-4]
+输出：[[-1,-1,2],[-1,0,1]]
+```
 
 **示例 2：**
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; []</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
+```
+输入：nums = []
+输出：[]
+```
 
 **示例 3：**
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [0]</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure></code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode.cn id=15 lang=java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [15] 三数之和</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @lc code=start</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res= <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">           <span class="keyword">if</span>(i!=<span class="number">0</span>&amp;&amp;nums[i]==nums[i-<span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">           <span class="keyword">int</span> l=i+<span class="number">1</span>;</span><br><span class="line">           <span class="keyword">int</span> r =n-<span class="number">1</span>;</span><br><span class="line">           <span class="keyword">int</span> sum;</span><br><span class="line">           <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            sum = nums[i]+nums[l]+nums[r];</span><br><span class="line">            <span class="keyword">if</span>(sum==<span class="number">0</span>)&#123;</span><br><span class="line">                res.add(List.of(nums[i],nums[l],nums[r]));</span><br><span class="line">                 <span class="comment">//去除重复处理</span></span><br><span class="line">                 <span class="keyword">do</span> &#123;l ++;&#125; <span class="keyword">while</span>(l &lt; r &amp;&amp; nums[l] == nums[l - <span class="number">1</span>]);</span><br><span class="line">                 <span class="keyword">do</span> &#123;r --;&#125; <span class="keyword">while</span>(l &lt; r &amp;&amp; nums[r] == nums[r + <span class="number">1</span>]);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(sum&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                r--;</span><br><span class="line">               <span class="comment">// continue;</span></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                l++;</span><br><span class="line">                <span class="comment">//continue;</span></span><br><span class="line">            &#125;</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// @lc code=end</span></span><br></pre></td></tr></table></figure>
+```
+输入：nums = [0]
+输出：[]
+```</code></pre><pre><code class="java">import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+/*
+ * @lc app=leetcode.cn id=15 lang=java
+ *
+ * [15] 三数之和
+ */
 
+// @lc code=start
+class Solution {
+    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
+        List&lt;List&lt;Integer&gt;&gt; res= new ArrayList&lt;&gt;();
+        Arrays.sort(nums);
+        int n = nums.length;
+        for(int i =0;i&lt;n;i++){
+           if(i!=0&amp;&amp;nums[i]==nums[i-1]) continue;
+           int l=i+1;
+           int r =n-1;
+           int sum;
+           while(l&lt;r){
+            sum = nums[i]+nums[l]+nums[r];
+            if(sum==0){
+                res.add(List.of(nums[i],nums[l],nums[r]));
+                 //去除重复处理
+                 do {l ++;} while(l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
+                 do {r --;} while(l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
+            }else if(sum&gt;0){
+                r--;
+               // continue;
+            }else{
+                l++;
+                //continue;
+            }
+           }
+        }
+        return res;
+    }
+}
+// @lc code=end
 
+</code></pre>
 <p>算法分析<br>排序 + 双指针</p>
 <p>1、枚举每个数，表示该数nums[i]已被确定，在排序后的情况下，通过双指针l，r分别从左边l = i + 1和右边n - 1往中间靠拢，找到nums[i] + nums[l] + nums[r] == 0的所有符合条件的搭配<br>2、在找符合条件搭配的过程中，假设sum = nums[i] + nums[l] + nums[r]<br>若sum &gt; 0，则r往左走，使sum变小<br>若sum &lt; 0，则l往右走，使sum变大<br>若sum == 0，则表示找到了与nums[i]搭配的组合nums[l]和nums[r]，存到ans中<br>3、判重处理<br>确定好nums[i]时，l 需要从i + 1开始<br>当nums[i] == nums[i - 1]，表示当前确定好的数与上一个一样，需要直接continue<br>当找符合条件搭配时，即sum == 0,需要对相同的nums[l]和nums[r]进行判重出来<br>时间复杂度 O(n2)O(n2)</p>
 
@@ -855,6 +903,8 @@
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

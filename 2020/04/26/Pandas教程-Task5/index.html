@@ -482,11 +482,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+                <pre><code class="python">import numpy as np
+import pandas as pd
+df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/table.csv&#39;)
+df.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -582,11 +581,10 @@
 
 
 
-<h2 id="一、append与assign"><a href="#一、append与assign" class="headerlink" title="一、append与assign"></a>一、append与assign</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. append方法</span></span><br><span class="line"><span class="comment">#（a）利用序列添加行（必须指定name）</span></span><br><span class="line">df_append = df.loc[:<span class="number">3</span>,[<span class="string">'Gender'</span>,<span class="string">'Height'</span>]].copy()</span><br><span class="line">df_append</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h2 id="一、append与assign"><a href="#一、append与assign" class="headerlink" title="一、append与assign"></a>一、append与assign</h2><pre><code class="python">#1. append方法
+#（a）利用序列添加行（必须指定name）
+df_append = df.loc[:3,[&#39;Gender&#39;,&#39;Height&#39;]].copy()
+df_append</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -636,11 +634,8 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = pd.Series(&#123;<span class="string">'Gender'</span>:<span class="string">'F'</span>,<span class="string">'Height'</span>:<span class="number">188</span>&#125;,name=<span class="string">'new_row'</span>)</span><br><span class="line">df_append.append(s)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">s = pd.Series({&#39;Gender&#39;:&#39;F&#39;,&#39;Height&#39;:188},name=&#39;new_row&#39;)
+df_append.append(s)</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -695,11 +690,9 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#（b）用DataFrame添加表</span></span><br><span class="line">df_temp = pd.DataFrame(&#123;<span class="string">'Gender'</span>:[<span class="string">'F'</span>,<span class="string">'M'</span>],<span class="string">'Height'</span>:[<span class="number">188</span>,<span class="number">176</span>]&#125;,index=[<span class="string">'new_1'</span>,<span class="string">'new_2'</span>])</span><br><span class="line">df_append.append(df_temp)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">#（b）用DataFrame添加表
+df_temp = pd.DataFrame({&#39;Gender&#39;:[&#39;F&#39;,&#39;M&#39;],&#39;Height&#39;:[188,176]},index=[&#39;new_1&#39;,&#39;new_2&#39;])
+df_append.append(df_temp)</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -759,11 +752,10 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#2. assign方法</span></span><br><span class="line"><span class="comment">#该方法主要用于添加列，列名直接由参数指定</span></span><br><span class="line">s = pd.Series(list(<span class="string">'abcd'</span>),index=range(<span class="number">4</span>))</span><br><span class="line">df_append.assign(Letter=s)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">#2. assign方法
+#该方法主要用于添加列，列名直接由参数指定
+s = pd.Series(list(&#39;abcd&#39;),index=range(4))
+df_append.assign(Letter=s)</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -817,8 +809,11 @@
 
 
 
-<h2 id="二、combine与update"><a href="#二、combine与update" class="headerlink" title="二、combine与update"></a>二、combine与update</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. comine方法</span></span><br><span class="line"><span class="comment">#comine和update都是用于表的填充函数，可以根据某种规则填充</span></span><br><span class="line">df_combine_1 = df.loc[:<span class="number">1</span>,[<span class="string">'Gender'</span>,<span class="string">'Height'</span>]].copy()</span><br><span class="line">df_combine_2 = df.loc[<span class="number">10</span>:<span class="number">11</span>,[<span class="string">'Gender'</span>,<span class="string">'Height'</span>]].copy()</span><br><span class="line">df_combine_1.combine(df_combine_2,<span class="keyword">lambda</span> x,y:print(x,y))</span><br></pre></td></tr></table></figure>
-
+<h2 id="二、combine与update"><a href="#二、combine与update" class="headerlink" title="二、combine与update"></a>二、combine与update</h2><pre><code class="python">#1. comine方法
+#comine和update都是用于表的填充函数，可以根据某种规则填充
+df_combine_1 = df.loc[:1,[&#39;Gender&#39;,&#39;Height&#39;]].copy()
+df_combine_2 = df.loc[10:11,[&#39;Gender&#39;,&#39;Height&#39;]].copy()
+df_combine_1.combine(df_combine_2,lambda x,y:print(x,y))</code></pre>
 <pre><code>0       M
 1       F
 10    NaN
@@ -885,11 +880,17 @@ Name: Height, dtype: float64</code></pre><div>
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#2. update方法</span></span><br><span class="line"><span class="comment">#（a）三个特点</span></span><br><span class="line"><span class="comment">#①返回的框索引只会与被调用框的一致（默认使用左连接，下一节会介绍）</span></span><br><span class="line"><span class="comment">#②第二个框中的nan元素不会起作用</span></span><br><span class="line"><span class="comment">#③没有返回值，直接在df上操作</span></span><br><span class="line">df1 = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">                    <span class="string">'B'</span>: [<span class="number">400</span>, <span class="number">500</span>, <span class="number">600</span>]&#125;)</span><br><span class="line">df2 = pd.DataFrame(&#123;<span class="string">'B'</span>: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">                    <span class="string">'C'</span>: [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]&#125;)</span><br><span class="line">df1.update(df2)</span><br><span class="line">df1</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">#2. update方法
+#（a）三个特点
+#①返回的框索引只会与被调用框的一致（默认使用左连接，下一节会介绍）
+#②第二个框中的nan元素不会起作用
+#③没有返回值，直接在df上操作
+df1 = pd.DataFrame({&#39;A&#39;: [1, 2, 3],
+                    &#39;B&#39;: [400, 500, 600]})
+df2 = pd.DataFrame({&#39;B&#39;: [4, 5, 6],
+                    &#39;C&#39;: [7, 8, 9]})
+df1.update(df2)
+df1</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -933,14 +934,20 @@ Name: Height, dtype: float64</code></pre><div>
 
 
 
-<h2 id="三、concat方法"><a href="#三、concat方法" class="headerlink" title="三、concat方法"></a>三、concat方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#concat方法可以在两个维度上拼接，默认纵向凭借（axis=0），拼接方式默认外连接</span></span><br><span class="line"><span class="comment">#所谓外连接，就是取拼接方向的并集，而'inner'时取拼接方向（若使用默认的纵向拼接，则为列的交集）的交集</span></span><br><span class="line"><span class="comment">#下面举一些例子说明其参数：</span></span><br><span class="line">df1 = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="string">'A0'</span>, <span class="string">'A1'</span>],</span><br><span class="line">                    <span class="string">'B'</span>: [<span class="string">'B0'</span>, <span class="string">'B1'</span>]&#125;,</span><br><span class="line">                    index = [<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">df2 = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="string">'A2'</span>, <span class="string">'A3'</span>],</span><br><span class="line">                    <span class="string">'B'</span>: [<span class="string">'B2'</span>, <span class="string">'B3'</span>]&#125;,</span><br><span class="line">                    index = [<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">df3 = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="string">'A1'</span>, <span class="string">'A3'</span>],</span><br><span class="line">                    <span class="string">'D'</span>: [<span class="string">'D1'</span>, <span class="string">'D3'</span>],</span><br><span class="line">                    <span class="string">'E'</span>: [<span class="string">'E1'</span>, <span class="string">'E3'</span>]&#125;,</span><br><span class="line">                    index = [<span class="number">1</span>,<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.concat([df1,df2])</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h2 id="三、concat方法"><a href="#三、concat方法" class="headerlink" title="三、concat方法"></a>三、concat方法</h2><pre><code class="python">#concat方法可以在两个维度上拼接，默认纵向凭借（axis=0），拼接方式默认外连接
+#所谓外连接，就是取拼接方向的并集，而&#39;inner&#39;时取拼接方向（若使用默认的纵向拼接，则为列的交集）的交集
+#下面举一些例子说明其参数：
+df1 = pd.DataFrame({&#39;A&#39;: [&#39;A0&#39;, &#39;A1&#39;],
+                    &#39;B&#39;: [&#39;B0&#39;, &#39;B1&#39;]},
+                    index = [0,1])
+df2 = pd.DataFrame({&#39;A&#39;: [&#39;A2&#39;, &#39;A3&#39;],
+                    &#39;B&#39;: [&#39;B2&#39;, &#39;B3&#39;]},
+                    index = [2,3])
+df3 = pd.DataFrame({&#39;A&#39;: [&#39;A1&#39;, &#39;A3&#39;],
+                    &#39;D&#39;: [&#39;D1&#39;, &#39;D3&#39;],
+                    &#39;E&#39;: [&#39;E1&#39;, &#39;E3&#39;]},
+                    index = [1,3])</code></pre>
+<pre><code class="python">pd.concat([df1,df2])</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -990,11 +997,7 @@ Name: Height, dtype: float64</code></pre><div>
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.concat([df1,df2],axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">pd.concat([df1,df2],axis=1)</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1054,11 +1057,7 @@ Name: Height, dtype: float64</code></pre><div>
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.concat([df3,df1],join=<span class="string">'inner'</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">pd.concat([df3,df1],join=&#39;inner&#39;)</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1102,14 +1101,22 @@ Name: Height, dtype: float64</code></pre><div>
 
 
 
-<h2 id="四、merge与join"><a href="#四、merge与join" class="headerlink" title="四、merge与join"></a>四、merge与join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. merge函数</span></span><br><span class="line"><span class="comment">#merge函数的作用是将两个pandas对象横向合并，遇到重复的索引项时会使用笛卡尔积，默认inner连接，可选left、outer、right连接</span></span><br><span class="line"><span class="comment">#所谓左连接，就是指以第一个表索引为基准，右边的表中如果不再左边的则不加入，如果在左边的就以笛卡尔积的方式加入</span></span><br><span class="line"><span class="comment">#merge/join与concat的不同之处在于on参数，可以指定某一个对象为key来进行连接</span></span><br><span class="line">left = pd.DataFrame(&#123;<span class="string">'key1'</span>: [<span class="string">'K0'</span>, <span class="string">'K0'</span>, <span class="string">'K1'</span>, <span class="string">'K2'</span>],</span><br><span class="line">                     <span class="string">'key2'</span>: [<span class="string">'K0'</span>, <span class="string">'K1'</span>, <span class="string">'K0'</span>, <span class="string">'K1'</span>],</span><br><span class="line">                      <span class="string">'A'</span>: [<span class="string">'A0'</span>, <span class="string">'A1'</span>, <span class="string">'A2'</span>, <span class="string">'A3'</span>],</span><br><span class="line">                      <span class="string">'B'</span>: [<span class="string">'B0'</span>, <span class="string">'B1'</span>, <span class="string">'B2'</span>, <span class="string">'B3'</span>]&#125;) </span><br><span class="line">right = pd.DataFrame(&#123;<span class="string">'key1'</span>: [<span class="string">'K0'</span>, <span class="string">'K1'</span>, <span class="string">'K1'</span>, <span class="string">'K2'</span>],</span><br><span class="line">                      <span class="string">'key2'</span>: [<span class="string">'K0'</span>, <span class="string">'K0'</span>, <span class="string">'K0'</span>, <span class="string">'K0'</span>],</span><br><span class="line">                      <span class="string">'C'</span>: [<span class="string">'C0'</span>, <span class="string">'C1'</span>, <span class="string">'C2'</span>, <span class="string">'C3'</span>],</span><br><span class="line">                      <span class="string">'D'</span>: [<span class="string">'D0'</span>, <span class="string">'D1'</span>, <span class="string">'D2'</span>, <span class="string">'D3'</span>]&#125;)</span><br><span class="line">right2 = pd.DataFrame(&#123;<span class="string">'key1'</span>: [<span class="string">'K0'</span>, <span class="string">'K1'</span>, <span class="string">'K1'</span>, <span class="string">'K2'</span>],</span><br><span class="line">                      <span class="string">'key2'</span>: [<span class="string">'K0'</span>, <span class="string">'K0'</span>, <span class="string">'K0'</span>, <span class="string">'K0'</span>],</span><br><span class="line">                      <span class="string">'C'</span>: [<span class="string">'C0'</span>, <span class="string">'C1'</span>, <span class="string">'C2'</span>, <span class="string">'C3'</span>]&#125;)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left, right, on=<span class="string">'key1'</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h2 id="四、merge与join"><a href="#四、merge与join" class="headerlink" title="四、merge与join"></a>四、merge与join</h2><pre><code class="python">#1. merge函数
+#merge函数的作用是将两个pandas对象横向合并，遇到重复的索引项时会使用笛卡尔积，默认inner连接，可选left、outer、right连接
+#所谓左连接，就是指以第一个表索引为基准，右边的表中如果不再左边的则不加入，如果在左边的就以笛卡尔积的方式加入
+#merge/join与concat的不同之处在于on参数，可以指定某一个对象为key来进行连接
+left = pd.DataFrame({&#39;key1&#39;: [&#39;K0&#39;, &#39;K0&#39;, &#39;K1&#39;, &#39;K2&#39;],
+                     &#39;key2&#39;: [&#39;K0&#39;, &#39;K1&#39;, &#39;K0&#39;, &#39;K1&#39;],
+                      &#39;A&#39;: [&#39;A0&#39;, &#39;A1&#39;, &#39;A2&#39;, &#39;A3&#39;],
+                      &#39;B&#39;: [&#39;B0&#39;, &#39;B1&#39;, &#39;B2&#39;, &#39;B3&#39;]}) 
+right = pd.DataFrame({&#39;key1&#39;: [&#39;K0&#39;, &#39;K1&#39;, &#39;K1&#39;, &#39;K2&#39;],
+                      &#39;key2&#39;: [&#39;K0&#39;, &#39;K0&#39;, &#39;K0&#39;, &#39;K0&#39;],
+                      &#39;C&#39;: [&#39;C0&#39;, &#39;C1&#39;, &#39;C2&#39;, &#39;C3&#39;],
+                      &#39;D&#39;: [&#39;D0&#39;, &#39;D1&#39;, &#39;D2&#39;, &#39;D3&#39;]})
+right2 = pd.DataFrame({&#39;key1&#39;: [&#39;K0&#39;, &#39;K1&#39;, &#39;K1&#39;, &#39;K2&#39;],
+                      &#39;key2&#39;: [&#39;K0&#39;, &#39;K0&#39;, &#39;K0&#39;, &#39;K0&#39;],
+                      &#39;C&#39;: [&#39;C0&#39;, &#39;C1&#39;, &#39;C2&#39;, &#39;C3&#39;]})</code></pre>
+<pre><code class="python">pd.merge(left, right, on=&#39;key1&#39;)</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1194,11 +1201,16 @@ Name: Height, dtype: float64</code></pre><div>
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#2. join函数</span></span><br><span class="line"><span class="comment">#join函数作用是将多个pandas对象横向拼接，</span></span><br><span class="line"><span class="comment">#遇到重复的索引项时会使用笛卡尔积，默认左连接，可选inner、outer、right连接</span></span><br><span class="line">left = pd.DataFrame(&#123;<span class="string">'A'</span>: [<span class="string">'A0'</span>, <span class="string">'A1'</span>, <span class="string">'A2'</span>],</span><br><span class="line">                     <span class="string">'B'</span>: [<span class="string">'B0'</span>, <span class="string">'B1'</span>, <span class="string">'B2'</span>]&#125;,</span><br><span class="line">                    index=[<span class="string">'K0'</span>, <span class="string">'K1'</span>, <span class="string">'K2'</span>])</span><br><span class="line">right = pd.DataFrame(&#123;<span class="string">'C'</span>: [<span class="string">'C0'</span>, <span class="string">'C2'</span>, <span class="string">'C3'</span>],</span><br><span class="line">                      <span class="string">'D'</span>: [<span class="string">'D0'</span>, <span class="string">'D2'</span>, <span class="string">'D3'</span>]&#125;,</span><br><span class="line">                    index=[<span class="string">'K0'</span>, <span class="string">'K2'</span>, <span class="string">'K3'</span>])</span><br><span class="line">left.join(right)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">#2. join函数
+#join函数作用是将多个pandas对象横向拼接，
+#遇到重复的索引项时会使用笛卡尔积，默认左连接，可选inner、outer、right连接
+left = pd.DataFrame({&#39;A&#39;: [&#39;A0&#39;, &#39;A1&#39;, &#39;A2&#39;],
+                     &#39;B&#39;: [&#39;B0&#39;, &#39;B1&#39;, &#39;B2&#39;]},
+                    index=[&#39;K0&#39;, &#39;K1&#39;, &#39;K2&#39;])
+right = pd.DataFrame({&#39;C&#39;: [&#39;C0&#39;, &#39;C2&#39;, &#39;C3&#39;],
+                      &#39;D&#39;: [&#39;D0&#39;, &#39;D2&#39;, &#39;D3&#39;]},
+                    index=[&#39;K0&#39;, &#39;K2&#39;, &#39;K3&#39;])
+left.join(right)</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1615,6 +1627,8 @@ Name: Height, dtype: float64</code></pre><div>
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

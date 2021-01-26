@@ -483,11 +483,10 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>第4章 变形</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span>)</span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">import numpy as np
+import pandas as pd
+df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/table.csv&#39;)
+df.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -584,11 +583,10 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. pivot¶</span></span><br><span class="line"><span class="comment">#一般状态下，数据在DataFrame会以压缩（stacked）状态存放，例如上面的Gender，</span></span><br><span class="line"><span class="comment">#两个类别被叠在一列中，pivot函数可将某一列作为新的cols</span></span><br><span class="line">df.pivot(index=<span class="string">'ID'</span>,columns=<span class="string">'Gender'</span>,values=<span class="string">'Height'</span>).head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">#1. pivot¶
+#一般状态下，数据在DataFrame会以压缩（stacked）状态存放，例如上面的Gender，
+#两个类别被叠在一列中，pivot函数可将某一列作为新的cols
+df.pivot(index=&#39;ID&#39;,columns=&#39;Gender&#39;,values=&#39;Height&#39;).head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -648,14 +646,14 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#2. pivot_table</span></span><br><span class="line"><span class="comment">#由于功能更多，速度上自然是比不上原来的pivot函数</span></span><br><span class="line">%timeit df.pivot(index=<span class="string">'ID'</span>,columns=<span class="string">'Gender'</span>,values=<span class="string">'Height'</span>)</span><br><span class="line">%timeit pd.pivot_table(df,index=<span class="string">'ID'</span>,columns=<span class="string">'Gender'</span>,values=<span class="string">'Height'</span>)</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">#2. pivot_table
+#由于功能更多，速度上自然是比不上原来的pivot函数
+%timeit df.pivot(index=&#39;ID&#39;,columns=&#39;Gender&#39;,values=&#39;Height&#39;)
+%timeit pd.pivot_table(df,index=&#39;ID&#39;,columns=&#39;Gender&#39;,values=&#39;Height&#39;)</code></pre>
 <pre><code>3.15 ms ± 336 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
-14 ms ± 663 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#3. crosstab（交叉表）</span></span><br><span class="line"><span class="comment">#交叉表是一种特殊的透视表，典型的用途如分组统计，如现在想要统计关于街道和性别分组的频数：¶</span></span><br><span class="line">pd.crosstab(index=df[<span class="string">'Address'</span>],columns=df[<span class="string">'Gender'</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-
+14 ms ± 663 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre><pre><code class="python">#3. crosstab（交叉表）
+#交叉表是一种特殊的透视表，典型的用途如分组统计，如现在想要统计关于街道和性别分组的频数：¶
+pd.crosstab(index=df[&#39;Address&#39;],columns=df[&#39;Gender&#39;])</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -720,11 +718,11 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#其他变形方法</span></span><br><span class="line"><span class="comment">#1. melt</span></span><br><span class="line"><span class="comment">#melt函数可以认为是pivot函数的逆操作，将unstacked状态的数据，压缩成stacked，使“宽”的DataFrame变“窄”</span></span><br><span class="line">df_m = df[[<span class="string">'ID'</span>,<span class="string">'Gender'</span>,<span class="string">'Math'</span>]]</span><br><span class="line">df_m.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">#其他变形方法
+#1. melt
+#melt函数可以认为是pivot函数的逆操作，将unstacked状态的数据，压缩成stacked，使“宽”的DataFrame变“窄”
+df_m = df[[&#39;ID&#39;,&#39;Gender&#39;,&#39;Math&#39;]]
+df_m.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -785,11 +783,7 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.pivot(index=<span class="string">'ID'</span>,columns=<span class="string">'Gender'</span>,values=<span class="string">'Math'</span>).head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">df.pivot(index=&#39;ID&#39;,columns=&#39;Gender&#39;,values=&#39;Math&#39;).head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -849,16 +843,16 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pivoted = df.pivot(index=<span class="string">'ID'</span>,columns=<span class="string">'Gender'</span>,values=<span class="string">'Math'</span>)</span><br><span class="line">result = pivoted.reset_index().melt(id_vars=[<span class="string">'ID'</span>],value_vars=[<span class="string">'F'</span>,<span class="string">'M'</span>],value_name=<span class="string">'Math'</span>)\</span><br><span class="line">                     .dropna().set_index(<span class="string">'ID'</span>).sort_index()</span><br><span class="line"><span class="comment">#检验是否与展开前的df相同，可以分别将这些链式方法的中间步骤展开，看看是什么结果</span></span><br><span class="line">result.equals(df_m.set_index(<span class="string">'ID'</span>))</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>True</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#哑变量与因子化</span></span><br><span class="line"><span class="comment">#1. Dummy Variable（哑变量）</span></span><br><span class="line"><span class="comment">#这里主要介绍get_dummies函数，其功能主要是进行one-hot编码</span></span><br><span class="line">df_d = df[[<span class="string">'Class'</span>,<span class="string">'Gender'</span>,<span class="string">'Weight'</span>]]</span><br><span class="line">df_d.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">pivoted = df.pivot(index=&#39;ID&#39;,columns=&#39;Gender&#39;,values=&#39;Math&#39;)
+result = pivoted.reset_index().melt(id_vars=[&#39;ID&#39;],value_vars=[&#39;F&#39;,&#39;M&#39;],value_name=&#39;Math&#39;)\
+                     .dropna().set_index(&#39;ID&#39;).sort_index()
+#检验是否与展开前的df相同，可以分别将这些链式方法的中间步骤展开，看看是什么结果
+result.equals(df_m.set_index(&#39;ID&#39;))</code></pre>
+<pre><code>True</code></pre><pre><code class="python">#哑变量与因子化
+#1. Dummy Variable（哑变量）
+#这里主要介绍get_dummies函数，其功能主要是进行one-hot编码
+df_d = df[[&#39;Class&#39;,&#39;Gender&#39;,&#39;Weight&#39;]]
+df_d.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -919,11 +913,8 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pd.get_dummies(df_d[[<span class="string">'Class'</span>,<span class="string">'Gender'</span>]]).join(df_d[<span class="string">'Weight'</span>]).head()</span><br><span class="line"><span class="comment">#可选prefix参数添加前缀，prefix_sep添加分隔符</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">pd.get_dummies(df_d[[&#39;Class&#39;,&#39;Gender&#39;]]).join(df_d[&#39;Weight&#39;]).head()
+#可选prefix参数添加前缀，prefix_sep添加分隔符</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1008,14 +999,16 @@
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#2. factorize方法</span></span><br><span class="line"><span class="comment">#该方法主要用于自然数编码，并且缺失值会被记做-1，其中sort参数表示是否排序后赋值</span></span><br><span class="line">codes, uniques = pd.factorize([<span class="string">'b'</span>, <span class="literal">None</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'b'</span>], sort=<span class="literal">True</span>)</span><br><span class="line">display(codes)</span><br><span class="line">display(uniques)</span><br></pre></td></tr></table></figure>
-
-
+<pre><code class="python">#2. factorize方法
+#该方法主要用于自然数编码，并且缺失值会被记做-1，其中sort参数表示是否排序后赋值
+codes, uniques = pd.factorize([&#39;b&#39;, None, &#39;a&#39;, &#39;c&#39;, &#39;b&#39;], sort=True)
+display(codes)
+display(uniques)</code></pre>
 <pre><code>array([ 1, -1,  0,  2,  1])
 
 
 
-array([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], dtype=object)</code></pre>
+array([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], dtype=object)</code></pre>
                 
             </div>
             <hr/>
@@ -1381,6 +1374,8 @@ array([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], dtype=object)</code></pre>
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

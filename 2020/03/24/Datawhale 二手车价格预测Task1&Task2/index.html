@@ -506,14 +506,18 @@
 <p>price - 汽车价格<br>v_0’, ‘v_1’, ‘v_2’, ‘v_3’, ‘v_4’, ‘v_5’, ‘v_6’, ‘v_7’, ‘v_8’, ‘v_9’, ‘v_10’, ‘v_11’, ‘v_12’, ‘v_13’,’v_14’ 【匿名特征，包含v0-14在内15个匿名特征】</p>
 <p>数字全都脱敏处理，都为label encoding形式，即数字形式</p>
 <h3 id="1-3-预测指标"><a href="#1-3-预测指标" class="headerlink" title="1.3 预测指标"></a>1.3 预测指标</h3><p>本赛题的评价标准为MAE(Mean Absolute Error)。</p>
-<h3 id="1-3-数据读取pandas"><a href="#1-3-数据读取pandas" class="headerlink" title="1.3 数据读取pandas"></a>1.3 数据读取pandas</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">## 1 载入训练集和测试集</span></span><br><span class="line">path = <span class="string">'./tianchi/'</span></span><br><span class="line">Train_data = pd.read_csv(path+<span class="string">'used_car_train_20200313.csv'</span>, sep=<span class="string">' '</span>)</span><br><span class="line">Test_data = pd.read_csv(path+<span class="string">'used_car_testA_20200313.csv'</span>, sep=<span class="string">' '</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'Train data shape:'</span>,Train_data.shape)</span><br><span class="line">print(<span class="string">'TestA data shape:'</span>,Test_data.shape)</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-数据读取pandas"><a href="#1-3-数据读取pandas" class="headerlink" title="1.3 数据读取pandas"></a>1.3 数据读取pandas</h3><pre><code class="python">import pandas as pd
+import numpy as np
 
+## 1 载入训练集和测试集
+path = &#39;./tianchi/&#39;
+Train_data = pd.read_csv(path+&#39;used_car_train_20200313.csv&#39;, sep=&#39; &#39;)
+Test_data = pd.read_csv(path+&#39;used_car_testA_20200313.csv&#39;, sep=&#39; &#39;)
+
+print(&#39;Train data shape:&#39;,Train_data.shape)
+print(&#39;TestA data shape:&#39;,Test_data.shape)</code></pre>
 <pre><code>Train data shape: (150000, 31)
-TestA data shape: (50000, 30)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+TestA data shape: (50000, 30)</code></pre><pre><code class="python">Train_data.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -682,32 +686,66 @@ TestA data shape: (50000, 30)</code></pre><figure class="highlight python"><tabl
 
 
 
-<h3 id="1-4-分类指标评价计算"><a href="#1-4-分类指标评价计算" class="headerlink" title="1.4 分类指标评价计算"></a>1.4 分类指标评价计算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## accuracy</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line">y_pred = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">y_true = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line">print(<span class="string">'ACC:'</span>,accuracy_score(y_true,y_pred))</span><br></pre></td></tr></table></figure>
-
-<pre><code>ACC: 0.75</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Precision,Recall,F1-score</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> metrics</span><br><span class="line">y_pred = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">y_true = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">print(<span class="string">'Precision:'</span>,metrics.precision_score(y_true,y_pred))</span><br><span class="line">print(<span class="string">'Recall'</span>,metrics.recall_score(y_true,y_pred))</span><br><span class="line">print(<span class="string">'F1-score:'</span>,metrics.f1_score(y_true,y_pred))</span><br></pre></td></tr></table></figure>
-
+<h3 id="1-4-分类指标评价计算"><a href="#1-4-分类指标评价计算" class="headerlink" title="1.4 分类指标评价计算"></a>1.4 分类指标评价计算</h3><pre><code class="python">## accuracy
+import numpy as np 
+from sklearn.metrics import accuracy_score
+y_pred = [0,1,0,1]
+y_true = [0,1,1,1]
+print(&#39;ACC:&#39;,accuracy_score(y_true,y_pred))</code></pre>
+<pre><code>ACC: 0.75</code></pre><pre><code class="python">## Precision,Recall,F1-score
+from sklearn import metrics
+y_pred = [0,1,0,0]
+y_true = [0,1,0,1]
+print(&#39;Precision:&#39;,metrics.precision_score(y_true,y_pred))
+print(&#39;Recall&#39;,metrics.recall_score(y_true,y_pred))
+print(&#39;F1-score:&#39;,metrics.f1_score(y_true,y_pred))</code></pre>
 <pre><code>Precision: 1.0
 Recall 0.5
-F1-score: 0.6666666666666666</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># AUC</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score</span><br><span class="line">y_true = np.array([<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>])</span><br><span class="line">y_scores=np.array([<span class="number">0.1</span>,<span class="number">0.4</span>,<span class="number">0.35</span>,<span class="number">0.8</span>])</span><br><span class="line">print(<span class="string">'AUC score:'</span>,roc_auc_score(y_true,y_scores))</span><br></pre></td></tr></table></figure>
+F1-score: 0.6666666666666666</code></pre><pre><code class="python"># AUC
+import numpy as np
+from sklearn.metrics import roc_auc_score
+y_true = np.array([0,0,1,1])
+y_scores=np.array([0.1,0.4,0.35,0.8])
+print(&#39;AUC score:&#39;,roc_auc_score(y_true,y_scores))</code></pre>
+<pre><code>AUC score: 0.75</code></pre><h3 id="1-5-回归指标评价计算"><a href="#1-5-回归指标评价计算" class="headerlink" title="1.5 回归指标评价计算"></a>1.5 回归指标评价计算</h3><pre><code class="python"># coding=utf-8
+import numpy as np
+from sklearn import metrics
 
-<pre><code>AUC score: 0.75</code></pre><h3 id="1-5-回归指标评价计算"><a href="#1-5-回归指标评价计算" class="headerlink" title="1.5 回归指标评价计算"></a>1.5 回归指标评价计算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> metrics</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mape</span><span class="params">(y_true,y_pred)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.mean(np.abs((y_pred - y_true)/y_true))</span><br><span class="line">y_true = np.array([<span class="number">1.0</span>,<span class="number">5.0</span>,<span class="number">4.0</span>,<span class="number">3.0</span>,<span class="number">2.0</span>,<span class="number">5.0</span>,<span class="number">-3.0</span>])</span><br><span class="line">y_pred = np.array([<span class="number">1.0</span>,<span class="number">4.5</span>,<span class="number">3.8</span>,<span class="number">3.2</span>,<span class="number">3.0</span>,<span class="number">4.8</span>,<span class="number">-2.2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#Mse</span></span><br><span class="line">print(<span class="string">'MSE:'</span>,metrics.mean_squared_error(y_true,y_pred))</span><br><span class="line">print(<span class="string">'RMSE:'</span>,np.sqrt(metrics.mean_squared_error(y_true,y_pred)))</span><br><span class="line">print(<span class="string">'MAE:'</span>,metrics.mean_absolute_error(y_true,y_pred))</span><br><span class="line">print(<span class="string">'MAPE:'</span>,mape(y_true,y_pred))</span><br></pre></td></tr></table></figure>
+def mape(y_true,y_pred):
+    return np.mean(np.abs((y_pred - y_true)/y_true))
+y_true = np.array([1.0,5.0,4.0,3.0,2.0,5.0,-3.0])
+y_pred = np.array([1.0,4.5,3.8,3.2,3.0,4.8,-2.2])
 
+#Mse
+print(&#39;MSE:&#39;,metrics.mean_squared_error(y_true,y_pred))
+print(&#39;RMSE:&#39;,np.sqrt(metrics.mean_squared_error(y_true,y_pred)))
+print(&#39;MAE:&#39;,metrics.mean_absolute_error(y_true,y_pred))
+print(&#39;MAPE:&#39;,mape(y_true,y_pred))</code></pre>
 <pre><code>MSE: 0.2871428571428571
 RMSE: 0.5358571238146014
 MAE: 0.4142857142857143
-MAPE: 0.1461904761904762</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## R2-score</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> r2_score</span><br><span class="line">y_true =[<span class="number">3</span>,<span class="number">-0.5</span>,<span class="number">2</span>,<span class="number">7</span>]</span><br><span class="line">y_pred =[<span class="number">2.5</span>,<span class="number">0.0</span>,<span class="number">2</span>,<span class="number">8</span>]</span><br><span class="line">print(<span class="string">'R2-score:'</span>,r2_score(y_true,y_pred))</span><br></pre></td></tr></table></figure>
-
+MAPE: 0.1461904761904762</code></pre><pre><code class="python">## R2-score
+from sklearn.metrics import r2_score
+y_true =[3,-0.5,2,7]
+y_pred =[2.5,0.0,2,8]
+print(&#39;R2-score:&#39;,r2_score(y_true,y_pred))</code></pre>
 <pre><code>R2-score: 0.9486081370449679</code></pre><h2 id="Task2-数据分析"><a href="#Task2-数据分析" class="headerlink" title="Task2-数据分析"></a>Task2-数据分析</h2><h2 id="2-1-目标"><a href="#2-1-目标" class="headerlink" title="2.1 目标"></a>2.1 目标</h2><p>1.熟悉数据集，了解数据集<br>2.了解变量间的互相关系以及变量与预测值之间的存在关系<br>3.引导我们进行数据吹以及特征工程的步骤<br>4.对数据进行一些图表或者文字总结。</p>
-<h2 id="2-2-内容步骤"><a href="#2-2-内容步骤" class="headerlink" title="2.2 内容步骤"></a>2.2 内容步骤</h2><h3 id="2-2-1-载入各种数据科学以及可视化库"><a href="#2-2-1-载入各种数据科学以及可视化库" class="headerlink" title="2.2.1 载入各种数据科学以及可视化库"></a>2.2.1 载入各种数据科学以及可视化库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="comment">#导入warnings包，利用过滤器来实现忽略警告语句。</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> missingno <span class="keyword">as</span> msno</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-内容步骤"><a href="#2-2-内容步骤" class="headerlink" title="2.2 内容步骤"></a>2.2 内容步骤</h2><h3 id="2-2-1-载入各种数据科学以及可视化库"><a href="#2-2-1-载入各种数据科学以及可视化库" class="headerlink" title="2.2.1 载入各种数据科学以及可视化库"></a>2.2.1 载入各种数据科学以及可视化库</h3><pre><code class="python">#coding:utf-8
+#导入warnings包，利用过滤器来实现忽略警告语句。
+import warnings
+warnings.filterwarnings(&#39;ignore&#39;)
 
-<h3 id="2-2-2-载入数据"><a href="#2-2-2-载入数据" class="headerlink" title="2.2.2 载入数据"></a>2.2.2 载入数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 1载入训练集和测试集</span></span><br><span class="line">path = <span class="string">'./tianchi/'</span></span><br><span class="line">Train_data = pd.read_csv(path+<span class="string">'used_car_train_20200313.csv'</span>, sep=<span class="string">' '</span>)</span><br><span class="line">Test_data = pd.read_csv(path+<span class="string">'used_car_testA_20200313.csv'</span>, sep=<span class="string">' '</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 2观察数据（head()+shape）</span></span><br><span class="line">Train_data.head().append(Train_data.tail())</span><br></pre></td></tr></table></figure>
-
-
-
-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import missingno as msno</code></pre>
+<h3 id="2-2-2-载入数据"><a href="#2-2-2-载入数据" class="headerlink" title="2.2.2 载入数据"></a>2.2.2 载入数据</h3><pre><code class="python">## 1载入训练集和测试集
+path = &#39;./tianchi/&#39;
+Train_data = pd.read_csv(path+&#39;used_car_train_20200313.csv&#39;, sep=&#39; &#39;)
+Test_data = pd.read_csv(path+&#39;used_car_testA_20200313.csv&#39;, sep=&#39; &#39;)</code></pre>
+<pre><code class="python">## 2观察数据（head()+shape）
+Train_data.head().append(Train_data.tail())</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -997,16 +1035,8 @@ MAPE: 0.1461904761904762</code></pre><figure class="highlight python"><table><tr
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data.shape</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>(150000, 31)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test_data.head().append(Test_data.tail())</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">Train_data.shape</code></pre>
+<pre><code>(150000, 31)</code></pre><pre><code class="python">Test_data.head().append(Test_data.tail())</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1296,16 +1326,9 @@ MAPE: 0.1461904761904762</code></pre><figure class="highlight python"><table><tr
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test_data.shape</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>(50000, 30)</code></pre><h3 id="2-2-3-总览数据概况"><a href="#2-2-3-总览数据概况" class="headerlink" title="2.2.3 总览数据概况"></a>2.2.3 总览数据概况</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##1通过describe（）来熟悉数据的相关统计量</span></span><br><span class="line">Train_data.describe()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">Test_data.shape</code></pre>
+<pre><code>(50000, 30)</code></pre><h3 id="2-2-3-总览数据概况"><a href="#2-2-3-总览数据概况" class="headerlink" title="2.2.3 总览数据概况"></a>2.2.3 总览数据概况</h3><pre><code class="python">##1通过describe（）来熟悉数据的相关统计量
+Train_data.describe()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1547,11 +1570,7 @@ MAPE: 0.1461904761904762</code></pre><figure class="highlight python"><table><tr
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test_data.describe()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">Test_data.describe()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1793,9 +1812,9 @@ MAPE: 0.1461904761904762</code></pre><figure class="highlight python"><table><tr
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##2通过info（）来熟悉数据类型</span></span><br><span class="line">Train_data.info()</span><br></pre></td></tr></table></figure>
-
-<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+<pre><code class="python">##2通过info（）来熟悉数据类型
+Train_data.info()</code></pre>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 150000 entries, 0 to 149999
 Data columns (total 31 columns):
  #   Column             Non-Null Count   Dtype  
@@ -1832,9 +1851,8 @@ Data columns (total 31 columns):
  29  v_13               150000 non-null  float64
  30  v_14               150000 non-null  float64
 dtypes: float64(20), int64(10), object(1)
-memory usage: 35.5+ MB</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test_data.info()</span><br></pre></td></tr></table></figure>
-
-<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+memory usage: 35.5+ MB</code></pre><pre><code class="python">Test_data.info()</code></pre>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 50000 entries, 0 to 49999
 Data columns (total 30 columns):
  #   Column             Non-Null Count  Dtype  
@@ -1870,11 +1888,8 @@ Data columns (total 30 columns):
  28  v_13               50000 non-null  float64
  29  v_14               50000 non-null  float64
 dtypes: float64(20), int64(9), object(1)
-memory usage: 11.4+ MB</code></pre><h3 id="2-2-4-判断数据缺失和异常"><a href="#2-2-4-判断数据缺失和异常" class="headerlink" title="2.2.4 判断数据缺失和异常"></a>2.2.4 判断数据缺失和异常</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##1查看每列的存在nan情况</span></span><br><span class="line">Train_data.isnull().sum()</span><br></pre></td></tr></table></figure>
-
-
-
-
+memory usage: 11.4+ MB</code></pre><h3 id="2-2-4-判断数据缺失和异常"><a href="#2-2-4-判断数据缺失和异常" class="headerlink" title="2.2.4 判断数据缺失和异常"></a>2.2.4 判断数据缺失和异常</h3><pre><code class="python">##1查看每列的存在nan情况
+Train_data.isnull().sum()</code></pre>
 <pre><code>SaleID                  0
 name                    0
 regDate                 0
@@ -1906,11 +1921,7 @@ v_11                    0
 v_12                    0
 v_13                    0
 v_14                    0
-dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test_data.isnull().sum()</span><br></pre></td></tr></table></figure>
-
-
-
-
+dtype: int64</code></pre><pre><code class="python">Test_data.isnull().sum()</code></pre>
 <pre><code>SaleID                  0
 name                    0
 regDate                 0
@@ -1941,39 +1952,24 @@ v_11                    0
 v_12                    0
 v_13                    0
 v_14                    0
-dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#nan可视化</span></span><br><span class="line">missing = Train_data.isnull().sum()</span><br><span class="line">missing = missing[missing &gt; <span class="number">0</span>]</span><br><span class="line">missing.sort_values(inplace = <span class="literal">True</span>)</span><br><span class="line">missing.plot.bar()</span><br></pre></td></tr></table></figure>
-
-
-
-
+dtype: int64</code></pre><pre><code class="python">#nan可视化
+missing = Train_data.isnull().sum()
+missing = missing[missing &gt; 0]
+missing.sort_values(inplace = True)
+missing.plot.bar()</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x118cbff10&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_27_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#可视化看下缺省值</span></span><br><span class="line">msno.matrix(Train_data.sample(<span class="number">250</span>))</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">#可视化看下缺省值
+msno.matrix(Train_data.sample(250))</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x118b63910&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_28_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msno.bar(Train_data.sample(<span class="number">1000</span>))</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">msno.bar(Train_data.sample(1000))</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x106d80290&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_29_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msno.matrix(Test_data.sample(<span class="number">250</span>))</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">msno.matrix(Test_data.sample(250))</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11f6e36d0&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_30_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msno.bar(Test_data.sample(<span class="number">1000</span>))</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">msno.bar(Test_data.sample(1000))</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11880d6d0&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_31_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##2查看异常值检测</span></span><br><span class="line">Train_data.info()</span><br></pre></td></tr></table></figure>
-
-<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+<pre><code class="python">##2查看异常值检测
+Train_data.info()</code></pre>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 150000 entries, 0 to 149999
 Data columns (total 31 columns):
  #   Column             Non-Null Count   Dtype  
@@ -2010,29 +2006,15 @@ Data columns (total 31 columns):
  29  v_13               150000 non-null  float64
  30  v_14               150000 non-null  float64
 dtypes: float64(20), int64(10), object(1)
-memory usage: 35.5+ MB</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data[<span class="string">'notRepairedDamage'</span>].value_counts()</span><br></pre></td></tr></table></figure>
-
-
-
-
+memory usage: 35.5+ MB</code></pre><pre><code class="python">Train_data[&#39;notRepairedDamage&#39;].value_counts()</code></pre>
 <pre><code>0.0    111361
 -       24324
 1.0     14315
-Name: notRepairedDamage, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data[<span class="string">'notRepairedDamage'</span>].replace(<span class="string">'-'</span>,np.nan,inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data[<span class="string">'notRepairedDamage'</span>].value_counts()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: notRepairedDamage, dtype: int64</code></pre><pre><code class="python">Train_data[&#39;notRepairedDamage&#39;].replace(&#39;-&#39;,np.nan,inplace=True)</code></pre>
+<pre><code class="python">Train_data[&#39;notRepairedDamage&#39;].value_counts()</code></pre>
 <pre><code>0.0    111361
 1.0     14315
-Name: notRepairedDamage, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data.isnull().sum()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: notRepairedDamage, dtype: int64</code></pre><pre><code class="python">Train_data.isnull().sum()</code></pre>
 <pre><code>SaleID                   0
 name                     0
 regDate                  0
@@ -2064,22 +2046,12 @@ v_11                     0
 v_12                     0
 v_13                     0
 v_14                     0
-dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test_data[<span class="string">'notRepairedDamage'</span>].value_counts()</span><br></pre></td></tr></table></figure>
-
-
-
-
+dtype: int64</code></pre><pre><code class="python">Test_data[&#39;notRepairedDamage&#39;].value_counts()</code></pre>
 <pre><code>0.0    37249
 -       8031
 1.0     4720
-Name: notRepairedDamage, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test_data[<span class="string">'notRepairedDamage'</span>].replace(<span class="string">'-'</span>,np.nan,inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test_data.isnull().sum()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: notRepairedDamage, dtype: int64</code></pre><pre><code class="python">Test_data[&#39;notRepairedDamage&#39;].replace(&#39;-&#39;,np.nan,inplace=True)</code></pre>
+<pre><code class="python">Test_data.isnull().sum()</code></pre>
 <pre><code>SaleID                  0
 name                    0
 regDate                 0
@@ -2110,24 +2082,17 @@ v_11                    0
 v_12                    0
 v_13                    0
 v_14                    0
-dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data[<span class="string">"seller"</span>].value_counts()</span><br></pre></td></tr></table></figure>
-
-
-
-
+dtype: int64</code></pre><pre><code class="python">Train_data[&quot;seller&quot;].value_counts()</code></pre>
 <pre><code>0    149999
 1         1
-Name: seller, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data[<span class="string">"offerType"</span>].value_counts()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: seller, dtype: int64</code></pre><pre><code class="python">Train_data[&quot;offerType&quot;].value_counts()</code></pre>
 <pre><code>0    150000
-Name: offerType, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> Train_data[<span class="string">"seller"</span>]</span><br><span class="line"><span class="keyword">del</span> Train_data[<span class="string">"offerType"</span>]</span><br><span class="line"><span class="keyword">del</span> Test_data[<span class="string">"seller"</span>]</span><br><span class="line"><span class="keyword">del</span> Test_data[<span class="string">"offerType"</span>]</span><br><span class="line"><span class="comment">##删除完毕</span></span><br><span class="line">Train_data.isnull().sum()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: offerType, dtype: int64</code></pre><pre><code class="python">del Train_data[&quot;seller&quot;]
+del Train_data[&quot;offerType&quot;]
+del Test_data[&quot;seller&quot;]
+del Test_data[&quot;offerType&quot;]
+##删除完毕
+Train_data.isnull().sum()</code></pre>
 <pre><code>SaleID                   0
 name                     0
 regDate                  0
@@ -2157,11 +2122,7 @@ v_11                     0
 v_12                     0
 v_13                     0
 v_14                     0
-dtype: int64</code></pre><h3 id="2-2-5-了解预测值的分布"><a href="#2-2-5-了解预测值的分布" class="headerlink" title="2.2.5 了解预测值的分布"></a>2.2.5 了解预测值的分布</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data[<span class="string">'price'</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
+dtype: int64</code></pre><h3 id="2-2-5-了解预测值的分布"><a href="#2-2-5-了解预测值的分布" class="headerlink" title="2.2.5 了解预测值的分布"></a>2.2.5 了解预测值的分布</h3><pre><code class="python">Train_data[&#39;price&#39;]</code></pre>
 <pre><code>0         1850
 1         3600
 2         6222
@@ -2173,11 +2134,7 @@ dtype: int64</code></pre><h3 id="2-2-5-了解预测值的分布"><a href="#2-2-5
 149997    7500
 149998    4999
 149999    4700
-Name: price, Length: 150000, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data[<span class="string">'price'</span>].value_counts()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: price, Length: 150000, dtype: int64</code></pre><pre><code class="python">Train_data[&#39;price&#39;].value_counts()</code></pre>
 <pre><code>500      2337
 1500     2158
 1200     1922
@@ -2189,23 +2146,25 @@ Name: price, Length: 150000, dtype: int64</code></pre><figure class="highlight p
 8801        1
 37920       1
 8188        1
-Name: price, Length: 3763, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##1总体分布概况</span></span><br><span class="line"><span class="keyword">import</span> scipy.stats <span class="keyword">as</span> st</span><br><span class="line">y = Train_data[<span class="string">'price'</span>]</span><br><span class="line">plt.figure(<span class="number">1</span>);plt.title(<span class="string">'Johnson SU'</span>)</span><br><span class="line">sns.distplot(y,kde=<span class="literal">False</span>,fit=st.johnsonsu)</span><br><span class="line">plt.figure(<span class="number">2</span>);plt.title(<span class="string">'Normal'</span>)</span><br><span class="line">sns.distplot(y,kde=<span class="literal">False</span>,fit=st.norm)</span><br><span class="line">plt.figure(<span class="number">3</span>);plt.title(<span class="string">'Log Normal'</span>)</span><br><span class="line">sns.distplot(y,kde=<span class="literal">False</span>,fit=st.lognorm)</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: price, Length: 3763, dtype: int64</code></pre><pre><code class="python">##1总体分布概况
+import scipy.stats as st
+y = Train_data[&#39;price&#39;]
+plt.figure(1);plt.title(&#39;Johnson SU&#39;)
+sns.distplot(y,kde=False,fit=st.johnsonsu)
+plt.figure(2);plt.title(&#39;Normal&#39;)
+sns.distplot(y,kde=False,fit=st.norm)
+plt.figure(3);plt.title(&#39;Log Normal&#39;)
+sns.distplot(y,kde=False,fit=st.lognorm)</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x119904b50&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_46_1.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_46_2.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_46_3.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##2查看skewness 和 kurtosis</span></span><br><span class="line">sns.distplot(Train_data[<span class="string">'price'</span>]);</span><br><span class="line">print(<span class="string">"Skewness: %f"</span> % Train_data[<span class="string">'price'</span>].skew())</span><br><span class="line">print(<span class="string">"Kurtosis: %f"</span> % Train_data[<span class="string">'price'</span>].kurt())</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">##2查看skewness 和 kurtosis
+sns.distplot(Train_data[&#39;price&#39;]);
+print(&quot;Skewness: %f&quot; % Train_data[&#39;price&#39;].skew())
+print(&quot;Kurtosis: %f&quot; % Train_data[&#39;price&#39;].kurt())</code></pre>
 <pre><code>Skewness: 3.346487
 Kurtosis: 18.995183</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_47_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data.skew(),Train_data.kurt()</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">Train_data.skew(),Train_data.kurt()</code></pre>
 <pre><code>(SaleID               6.017846e-17
  name                 5.576058e-01
  regDate              2.849508e-02
@@ -2265,34 +2224,28 @@ Kurtosis: 18.995183</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E
  v_12                    0.268937
  v_13                   -0.438274
  v_14                    2.393526
- dtype: float64)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.distplot(Train_data.skew(),color=<span class="string">'blue'</span>,axlabel=<span class="string">'Skewness'</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+ dtype: float64)</code></pre><pre><code class="python">sns.distplot(Train_data.skew(),color=&#39;blue&#39;,axlabel=&#39;Skewness&#39;)</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1197c88d0&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_49_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.distplot(Train_data.kurt(),color=<span class="string">'orange'</span>,axlabel=<span class="string">'Kurtness'</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">sns.distplot(Train_data.kurt(),color=&#39;orange&#39;,axlabel=&#39;Kurtness&#39;)</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a301f4c10&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_50_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##3查看预测值的具体频数</span></span><br><span class="line">plt.hist(Train_data[<span class="string">'price'</span>],orientation = <span class="string">'vertical'</span>,histtype=<span class="string">'bar'</span>,color=<span class="string">'red'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
+<pre><code class="python">##3查看预测值的具体频数
+plt.hist(Train_data[&#39;price&#39;],orientation = &#39;vertical&#39;,histtype=&#39;bar&#39;,color=&#39;red&#39;)
+plt.show()</code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_51_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#log变换</span></span><br><span class="line">plt.hist(np.log(Train_data[<span class="string">'price'</span>]),orientation = <span class="string">'vertical'</span>,histtype=<span class="string">'bar'</span>,color=<span class="string">'red'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
+<pre><code class="python">#log变换
+plt.hist(np.log(Train_data[&#39;price&#39;]),orientation = &#39;vertical&#39;,histtype=&#39;bar&#39;,color=&#39;red&#39;)
+plt.show()</code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_52_0.png" alt="png"></p>
-<h3 id="2-2-6-特征分为类别特征和数字特征，并对类别特征查看unique分布"><a href="#2-2-6-特征分为类别特征和数字特征，并对类别特征查看unique分布" class="headerlink" title="2.2.6 特征分为类别特征和数字特征，并对类别特征查看unique分布"></a>2.2.6 特征分为类别特征和数字特征，并对类别特征查看unique分布</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#分离预测值</span></span><br><span class="line">Y_train = Train_data[<span class="string">'price'</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-6-特征分为类别特征和数字特征，并对类别特征查看unique分布"><a href="#2-2-6-特征分为类别特征和数字特征，并对类别特征查看unique分布" class="headerlink" title="2.2.6 特征分为类别特征和数字特征，并对类别特征查看unique分布"></a>2.2.6 特征分为类别特征和数字特征，并对类别特征查看unique分布</h3><pre><code class="python">#分离预测值
+Y_train = Train_data[&#39;price&#39;]</code></pre>
+<pre><code class="python">number_features = [&#39;power&#39;,&#39;kilometer&#39;,&#39;v_0&#39;,&#39;v_1&#39;,&#39;v_2&#39;,&#39;v_3&#39;,&#39;v_4&#39;,&#39;v_5&#39;,&#39;v_6&#39;,&#39;v_7&#39;,&#39;v_8&#39;,&#39;v_9&#39;,&#39;v_10&#39;,&#39;v_11&#39;,&#39;v_12&#39;,&#39;v_13&#39;,&#39;v_14&#39;]
 
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">number_features = [<span class="string">'power'</span>,<span class="string">'kilometer'</span>,<span class="string">'v_0'</span>,<span class="string">'v_1'</span>,<span class="string">'v_2'</span>,<span class="string">'v_3'</span>,<span class="string">'v_4'</span>,<span class="string">'v_5'</span>,<span class="string">'v_6'</span>,<span class="string">'v_7'</span>,<span class="string">'v_8'</span>,<span class="string">'v_9'</span>,<span class="string">'v_10'</span>,<span class="string">'v_11'</span>,<span class="string">'v_12'</span>,<span class="string">'v_13'</span>,<span class="string">'v_14'</span>]</span><br><span class="line"></span><br><span class="line">categorical_features = [<span class="string">'name'</span>,<span class="string">'model'</span>,<span class="string">'brand'</span>,<span class="string">'bodyType'</span>,<span class="string">'fuelType'</span>,<span class="string">'gearbox'</span>,<span class="string">'notRepairedDamage'</span>,<span class="string">'regionCode'</span>]</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#特征nunique分布</span></span><br><span class="line"><span class="keyword">for</span> cat_fea <span class="keyword">in</span> categorical_features:</span><br><span class="line">    print(cat_fea + <span class="string">"的特征分布如下："</span>)</span><br><span class="line">    print(<span class="string">"&#123;&#125;特征有个&#123;&#125;不同的值"</span>.format(cat_fea,Train_data[cat_fea].nunique()))</span><br><span class="line">    print(Train_data[cat_fea].value_counts())</span><br></pre></td></tr></table></figure>
-
+categorical_features = [&#39;name&#39;,&#39;model&#39;,&#39;brand&#39;,&#39;bodyType&#39;,&#39;fuelType&#39;,&#39;gearbox&#39;,&#39;notRepairedDamage&#39;,&#39;regionCode&#39;]</code></pre>
+<pre><code class="python">#特征nunique分布
+for cat_fea in categorical_features:
+    print(cat_fea + &quot;的特征分布如下：&quot;)
+    print(&quot;{}特征有个{}不同的值&quot;.format(cat_fea,Train_data[cat_fea].nunique()))
+    print(Train_data[cat_fea].value_counts())</code></pre>
 <pre><code>name的特征分布如下：
 name特征有个99662不同的值
 708       282
@@ -2408,8 +2361,11 @@ regionCode特征有个7905不同的值
 4239      1
 5931      1
 7267      1
-Name: regionCode, Length: 7905, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#特征nunique分布</span></span><br><span class="line"><span class="keyword">for</span> cat_fea <span class="keyword">in</span> categorical_features:</span><br><span class="line">    print(cat_fea + <span class="string">"的特征分布如下："</span>)</span><br><span class="line">    print(<span class="string">"&#123;&#125;特征有个&#123;&#125;不同的值"</span>.format(cat_fea,Test_data[cat_fea].nunique()))</span><br><span class="line">    print(Test_data[cat_fea].value_counts())</span><br></pre></td></tr></table></figure>
-
+Name: regionCode, Length: 7905, dtype: int64</code></pre><pre><code class="python">#特征nunique分布
+for cat_fea in categorical_features:
+    print(cat_fea + &quot;的特征分布如下：&quot;)
+    print(&quot;{}特征有个{}不同的值&quot;.format(cat_fea,Test_data[cat_fea].nunique()))
+    print(Test_data[cat_fea].value_counts())</code></pre>
 <pre><code>name的特征分布如下：
 name特征有个37453不同的值
 55       97
@@ -2525,36 +2481,27 @@ regionCode特征有个6971不同的值
 7230      1
 826       1
 112       1
-Name: regionCode, Length: 6971, dtype: int64</code></pre><h3 id="2-2-7-数字特征分析"><a href="#2-2-7-数字特征分析" class="headerlink" title="2.2.7 数字特征分析"></a>2.2.7 数字特征分析</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">number_features = [<span class="string">'power'</span>,<span class="string">'kilometer'</span>,<span class="string">'v_0'</span>,<span class="string">'v_1'</span>,<span class="string">'v_2'</span>,<span class="string">'v_3'</span>,<span class="string">'v_4'</span>,<span class="string">'v_5'</span>,<span class="string">'v_6'</span>,<span class="string">'v_7'</span>,<span class="string">'v_8'</span>,<span class="string">'v_9'</span>,<span class="string">'v_10'</span>,<span class="string">'v_11'</span>,<span class="string">'v_12'</span>,<span class="string">'v_13'</span>,<span class="string">'v_14'</span>]</span><br><span class="line">number_features.append(<span class="string">'price'</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">number_features</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[&apos;power&apos;,
- &apos;kilometer&apos;,
- &apos;v_0&apos;,
- &apos;v_1&apos;,
- &apos;v_2&apos;,
- &apos;v_3&apos;,
- &apos;v_4&apos;,
- &apos;v_5&apos;,
- &apos;v_6&apos;,
- &apos;v_7&apos;,
- &apos;v_8&apos;,
- &apos;v_9&apos;,
- &apos;v_10&apos;,
- &apos;v_11&apos;,
- &apos;v_12&apos;,
- &apos;v_13&apos;,
- &apos;v_14&apos;,
- &apos;price&apos;]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: regionCode, Length: 6971, dtype: int64</code></pre><h3 id="2-2-7-数字特征分析"><a href="#2-2-7-数字特征分析" class="headerlink" title="2.2.7 数字特征分析"></a>2.2.7 数字特征分析</h3><pre><code class="python">number_features = [&#39;power&#39;,&#39;kilometer&#39;,&#39;v_0&#39;,&#39;v_1&#39;,&#39;v_2&#39;,&#39;v_3&#39;,&#39;v_4&#39;,&#39;v_5&#39;,&#39;v_6&#39;,&#39;v_7&#39;,&#39;v_8&#39;,&#39;v_9&#39;,&#39;v_10&#39;,&#39;v_11&#39;,&#39;v_12&#39;,&#39;v_13&#39;,&#39;v_14&#39;]
+number_features.append(&#39;price&#39;)</code></pre>
+<pre><code class="python">number_features</code></pre>
+<pre><code>[&#39;power&#39;,
+ &#39;kilometer&#39;,
+ &#39;v_0&#39;,
+ &#39;v_1&#39;,
+ &#39;v_2&#39;,
+ &#39;v_3&#39;,
+ &#39;v_4&#39;,
+ &#39;v_5&#39;,
+ &#39;v_6&#39;,
+ &#39;v_7&#39;,
+ &#39;v_8&#39;,
+ &#39;v_9&#39;,
+ &#39;v_10&#39;,
+ &#39;v_11&#39;,
+ &#39;v_12&#39;,
+ &#39;v_13&#39;,
+ &#39;v_14&#39;,
+ &#39;price&#39;]</code></pre><pre><code class="python">Train_data.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2724,8 +2671,10 @@ Name: regionCode, Length: 6971, dtype: int64</code></pre><h3 id="2-2-7-数字特
 
 
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##1相关性分析</span></span><br><span class="line">price_numeric= Train_data[number_features]</span><br><span class="line">correlation= price_numeric.corr()</span><br><span class="line">print(correlation[<span class="string">'price'</span>].sort_values(ascending = <span class="literal">False</span>),<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">##1相关性分析
+price_numeric= Train_data[number_features]
+correlation= price_numeric.corr()
+print(correlation[&#39;price&#39;].sort_values(ascending = False),&#39;\n&#39;)</code></pre>
 <pre><code>price        1.000000
 v_12         0.692823
 v_8          0.685798
@@ -2744,14 +2693,17 @@ v_10        -0.246175
 v_11        -0.275320
 kilometer   -0.440519
 v_3         -0.730946
-Name: price, dtype: float64 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f , ax = plt.subplots(figsize=(<span class="number">7</span>,<span class="number">7</span>))</span><br><span class="line">plt.title(<span class="string">'Correlation of Numeric Features with Price'</span>,y=<span class="number">1</span>,size=<span class="number">16</span>)</span><br><span class="line">sns.heatmap(correlation,square= <span class="literal">True</span>, vmax=<span class="number">0.8</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+Name: price, dtype: float64 </code></pre><pre><code class="python">f , ax = plt.subplots(figsize=(7,7))
+plt.title(&#39;Correlation of Numeric Features with Price&#39;,y=1,size=16)
+sns.heatmap(correlation,square= True, vmax=0.8)</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11979ed50&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_63_1.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">## 2查看几个特征的偏度和峰值</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> number_features:</span><br><span class="line">    print(<span class="string">'&#123;:15&#125;'</span>.format(col),</span><br><span class="line">          <span class="string">'Skewness:&#123;:05.2f&#125;'</span>.format(Train_data[col].skew()),</span><br><span class="line">          <span class="string">'   '</span>,</span><br><span class="line">          <span class="string">'Kurtosis:&#123;:06.2f&#125;'</span>.format(Train_data[col].kurt()))</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">
+## 2查看几个特征的偏度和峰值
+for col in number_features:
+    print(&#39;{:15}&#39;.format(col),
+          &#39;Skewness:{:05.2f}&#39;.format(Train_data[col].skew()),
+          &#39;   &#39;,
+          &#39;Kurtosis:{:06.2f}&#39;.format(Train_data[col].kurt()))</code></pre>
 <pre><code>power           Skewness:65.86     Kurtosis:5733.45
 kilometer       Skewness:-1.53     Kurtosis:001.14
 v_0             Skewness:-1.32     Kurtosis:003.99
@@ -2769,28 +2721,23 @@ v_11            Skewness:03.03     Kurtosis:012.57
 v_12            Skewness:00.37     Kurtosis:000.27
 v_13            Skewness:00.27     Kurtosis:-00.44
 v_14            Skewness:-1.19     Kurtosis:002.39
-price           Skewness:03.35     Kurtosis:019.00</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##3每个数字特征的分布可视化</span></span><br><span class="line">f = pd.melt(Train_data,value_vars=number_features)</span><br><span class="line">g = sns.FacetGrid(f,col=<span class="string">"variable"</span>,col_wrap=<span class="number">2</span>,sharex=<span class="literal">False</span>,sharey= <span class="literal">False</span>)</span><br><span class="line">g=g.map(sns.distplot,<span class="string">"value"</span>)</span><br></pre></td></tr></table></figure>
-
-
+price           Skewness:03.35     Kurtosis:019.00</code></pre><pre><code class="python">##3每个数字特征的分布可视化
+f = pd.melt(Train_data,value_vars=number_features)
+g = sns.FacetGrid(f,col=&quot;variable&quot;,col_wrap=2,sharex=False,sharey= False)
+g=g.map(sns.distplot,&quot;value&quot;)</code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_65_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##4数字特征相互之间的关系可视化</span></span><br><span class="line">sns.set()</span><br><span class="line">columns=[<span class="string">'price'</span>,<span class="string">'v_12'</span>,<span class="string">'v_8'</span>,<span class="string">'v_0'</span>,<span class="string">'power'</span>,<span class="string">'v_5'</span>,<span class="string">'v_2'</span>,<span class="string">'v_6'</span>,<span class="string">'v_1'</span>,<span class="string">'v_14'</span>]</span><br><span class="line">sns.pairplot(Train_data[columns],size = <span class="number">2</span>,kind=<span class="string">'scatter'</span>,diag_kind=<span class="string">'kde'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
+<pre><code class="python">##4数字特征相互之间的关系可视化
+sns.set()
+columns=[&#39;price&#39;,&#39;v_12&#39;,&#39;v_8&#39;,&#39;v_0&#39;,&#39;power&#39;,&#39;v_5&#39;,&#39;v_2&#39;,&#39;v_6&#39;,&#39;v_1&#39;,&#39;v_14&#39;]
+sns.pairplot(Train_data[columns],size = 2,kind=&#39;scatter&#39;,diag_kind=&#39;kde&#39;)
+plt.show()</code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_66_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data.columns</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>Index([&apos;SaleID&apos;, &apos;name&apos;, &apos;regDate&apos;, &apos;model&apos;, &apos;brand&apos;, &apos;bodyType&apos;, &apos;fuelType&apos;,
-       &apos;gearbox&apos;, &apos;power&apos;, &apos;kilometer&apos;, &apos;notRepairedDamage&apos;, &apos;regionCode&apos;,
-       &apos;creatDate&apos;, &apos;price&apos;, &apos;v_0&apos;, &apos;v_1&apos;, &apos;v_2&apos;, &apos;v_3&apos;, &apos;v_4&apos;, &apos;v_5&apos;, &apos;v_6&apos;,
-       &apos;v_7&apos;, &apos;v_8&apos;, &apos;v_9&apos;, &apos;v_10&apos;, &apos;v_11&apos;, &apos;v_12&apos;, &apos;v_13&apos;, &apos;v_14&apos;],
-      dtype=&apos;object&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y_train</span><br></pre></td></tr></table></figure>
-
-
-
-
+<pre><code class="python">Train_data.columns</code></pre>
+<pre><code>Index([&#39;SaleID&#39;, &#39;name&#39;, &#39;regDate&#39;, &#39;model&#39;, &#39;brand&#39;, &#39;bodyType&#39;, &#39;fuelType&#39;,
+       &#39;gearbox&#39;, &#39;power&#39;, &#39;kilometer&#39;, &#39;notRepairedDamage&#39;, &#39;regionCode&#39;,
+       &#39;creatDate&#39;, &#39;price&#39;, &#39;v_0&#39;, &#39;v_1&#39;, &#39;v_2&#39;, &#39;v_3&#39;, &#39;v_4&#39;, &#39;v_5&#39;, &#39;v_6&#39;,
+       &#39;v_7&#39;, &#39;v_8&#39;, &#39;v_9&#39;, &#39;v_10&#39;, &#39;v_11&#39;, &#39;v_12&#39;, &#39;v_13&#39;, &#39;v_14&#39;],
+      dtype=&#39;object&#39;)</code></pre><pre><code class="python">Y_train</code></pre>
 <pre><code>0         1850
 1         3600
 2         6222
@@ -2802,14 +2749,42 @@ price           Skewness:03.35     Kurtosis:019.00</code></pre><figure class="hi
 149997    7500
 149998    4999
 149999    4700
-Name: price, Length: 150000, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##5多变量互相回归关系可视化</span></span><br><span class="line">fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6), (ax7, ax8), (ax9, ax10)) = plt.subplots(nrows=<span class="number">5</span>, ncols=<span class="number">2</span>, figsize=(<span class="number">24</span>, <span class="number">20</span>))</span><br><span class="line"><span class="comment"># ['v_12', 'v_8' , 'v_0', 'power', 'v_5',  'v_2', 'v_6', 'v_1', 'v_14']</span></span><br><span class="line">v_12_scatter_plot = pd.concat([Y_train,Train_data[<span class="string">'v_12'</span>]],axis = <span class="number">1</span>)</span><br><span class="line">sns.regplot(x=<span class="string">'v_12'</span>,y = <span class="string">'price'</span>, data = v_12_scatter_plot,scatter= <span class="literal">True</span>, fit_reg=<span class="literal">True</span>, ax=ax1)</span><br><span class="line"></span><br><span class="line">v_8_scatter_plot = pd.concat([Y_train,Train_data[<span class="string">'v_8'</span>]],axis = <span class="number">1</span>)</span><br><span class="line">sns.regplot(x=<span class="string">'v_8'</span>,y = <span class="string">'price'</span>,data = v_8_scatter_plot,scatter= <span class="literal">True</span>, fit_reg=<span class="literal">True</span>, ax=ax2)</span><br><span class="line"></span><br><span class="line">v_0_scatter_plot = pd.concat([Y_train,Train_data[<span class="string">'v_0'</span>]],axis = <span class="number">1</span>)</span><br><span class="line">sns.regplot(x=<span class="string">'v_0'</span>,y = <span class="string">'price'</span>,data = v_0_scatter_plot,scatter= <span class="literal">True</span>, fit_reg=<span class="literal">True</span>, ax=ax3)</span><br><span class="line"></span><br><span class="line">power_scatter_plot = pd.concat([Y_train,Train_data[<span class="string">'power'</span>]],axis = <span class="number">1</span>)</span><br><span class="line">sns.regplot(x=<span class="string">'power'</span>,y = <span class="string">'price'</span>,data = power_scatter_plot,scatter= <span class="literal">True</span>, fit_reg=<span class="literal">True</span>, ax=ax4)</span><br><span class="line"></span><br><span class="line">v_5_scatter_plot = pd.concat([Y_train,Train_data[<span class="string">'v_5'</span>]],axis = <span class="number">1</span>)</span><br><span class="line">sns.regplot(x=<span class="string">'v_5'</span>,y = <span class="string">'price'</span>,data = v_5_scatter_plot,scatter= <span class="literal">True</span>, fit_reg=<span class="literal">True</span>, ax=ax5)</span><br><span class="line"></span><br><span class="line">v_2_scatter_plot = pd.concat([Y_train,Train_data[<span class="string">'v_2'</span>]],axis = <span class="number">1</span>)</span><br><span class="line">sns.regplot(x=<span class="string">'v_2'</span>,y = <span class="string">'price'</span>,data = v_2_scatter_plot,scatter= <span class="literal">True</span>, fit_reg=<span class="literal">True</span>, ax=ax6)</span><br><span class="line"></span><br><span class="line">v_6_scatter_plot = pd.concat([Y_train,Train_data[<span class="string">'v_6'</span>]],axis = <span class="number">1</span>)</span><br><span class="line">sns.regplot(x=<span class="string">'v_6'</span>,y = <span class="string">'price'</span>,data = v_6_scatter_plot,scatter= <span class="literal">True</span>, fit_reg=<span class="literal">True</span>, ax=ax7)</span><br><span class="line"></span><br><span class="line">v_1_scatter_plot = pd.concat([Y_train,Train_data[<span class="string">'v_1'</span>]],axis = <span class="number">1</span>)</span><br><span class="line">sns.regplot(x=<span class="string">'v_1'</span>,y = <span class="string">'price'</span>,data = v_1_scatter_plot,scatter= <span class="literal">True</span>, fit_reg=<span class="literal">True</span>, ax=ax8)</span><br><span class="line"></span><br><span class="line">v_14_scatter_plot = pd.concat([Y_train,Train_data[<span class="string">'v_14'</span>]],axis = <span class="number">1</span>)</span><br><span class="line">sns.regplot(x=<span class="string">'v_14'</span>,y = <span class="string">'price'</span>,data = v_14_scatter_plot,scatter= <span class="literal">True</span>, fit_reg=<span class="literal">True</span>, ax=ax9)</span><br><span class="line"></span><br><span class="line">v_13_scatter_plot = pd.concat([Y_train,Train_data[<span class="string">'v_13'</span>]],axis = <span class="number">1</span>)</span><br><span class="line">sns.regplot(x=<span class="string">'v_13'</span>,y = <span class="string">'price'</span>,data = v_13_scatter_plot,scatter= <span class="literal">True</span>, fit_reg=<span class="literal">True</span>, ax=ax10)</span><br></pre></td></tr></table></figure>
+Name: price, Length: 150000, dtype: int64</code></pre><pre><code class="python">##5多变量互相回归关系可视化
+fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6), (ax7, ax8), (ax9, ax10)) = plt.subplots(nrows=5, ncols=2, figsize=(24, 20))
+# [&#39;v_12&#39;, &#39;v_8&#39; , &#39;v_0&#39;, &#39;power&#39;, &#39;v_5&#39;,  &#39;v_2&#39;, &#39;v_6&#39;, &#39;v_1&#39;, &#39;v_14&#39;]
+v_12_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_12&#39;]],axis = 1)
+sns.regplot(x=&#39;v_12&#39;,y = &#39;price&#39;, data = v_12_scatter_plot,scatter= True, fit_reg=True, ax=ax1)
 
+v_8_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_8&#39;]],axis = 1)
+sns.regplot(x=&#39;v_8&#39;,y = &#39;price&#39;,data = v_8_scatter_plot,scatter= True, fit_reg=True, ax=ax2)
 
+v_0_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_0&#39;]],axis = 1)
+sns.regplot(x=&#39;v_0&#39;,y = &#39;price&#39;,data = v_0_scatter_plot,scatter= True, fit_reg=True, ax=ax3)
 
+power_scatter_plot = pd.concat([Y_train,Train_data[&#39;power&#39;]],axis = 1)
+sns.regplot(x=&#39;power&#39;,y = &#39;price&#39;,data = power_scatter_plot,scatter= True, fit_reg=True, ax=ax4)
 
+v_5_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_5&#39;]],axis = 1)
+sns.regplot(x=&#39;v_5&#39;,y = &#39;price&#39;,data = v_5_scatter_plot,scatter= True, fit_reg=True, ax=ax5)
+
+v_2_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_2&#39;]],axis = 1)
+sns.regplot(x=&#39;v_2&#39;,y = &#39;price&#39;,data = v_2_scatter_plot,scatter= True, fit_reg=True, ax=ax6)
+
+v_6_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_6&#39;]],axis = 1)
+sns.regplot(x=&#39;v_6&#39;,y = &#39;price&#39;,data = v_6_scatter_plot,scatter= True, fit_reg=True, ax=ax7)
+
+v_1_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_1&#39;]],axis = 1)
+sns.regplot(x=&#39;v_1&#39;,y = &#39;price&#39;,data = v_1_scatter_plot,scatter= True, fit_reg=True, ax=ax8)
+
+v_14_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_14&#39;]],axis = 1)
+sns.regplot(x=&#39;v_14&#39;,y = &#39;price&#39;,data = v_14_scatter_plot,scatter= True, fit_reg=True, ax=ax9)
+
+v_13_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_13&#39;]],axis = 1)
+sns.regplot(x=&#39;v_13&#39;,y = &#39;price&#39;,data = v_13_scatter_plot,scatter= True, fit_reg=True, ax=ax10)</code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a35942d10&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_69_1.png" alt="png"></p>
-<h3 id="2-2-8-类别特征分析"><a href="#2-2-8-类别特征分析" class="headerlink" title="2.2.8 类别特征分析"></a>2.2.8 类别特征分析</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##1unique分布</span></span><br><span class="line"><span class="keyword">for</span> fea <span class="keyword">in</span> categorical_features:</span><br><span class="line">    print(Train_data[fea].nunique())</span><br></pre></td></tr></table></figure>
-
+<h3 id="2-2-8-类别特征分析"><a href="#2-2-8-类别特征分析" class="headerlink" title="2.2.8 类别特征分析"></a>2.2.8 类别特征分析</h3><pre><code class="python">##1unique分布
+for fea in categorical_features:
+    print(Train_data[fea].nunique())</code></pre>
 <pre><code>99662
 248
 40
@@ -2817,55 +2792,79 @@ Name: price, Length: 150000, dtype: int64</code></pre><figure class="highlight p
 7
 2
 2
-7905</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">categorical_features</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[&apos;name&apos;,
- &apos;model&apos;,
- &apos;brand&apos;,
- &apos;bodyType&apos;,
- &apos;fuelType&apos;,
- &apos;gearbox&apos;,
- &apos;notRepairedDamage&apos;,
- &apos;regionCode&apos;]</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##2类别特征箱形图可视化</span></span><br><span class="line">categorical_features = [<span class="string">'model'</span>,</span><br><span class="line"> <span class="string">'brand'</span>,</span><br><span class="line"> <span class="string">'bodyType'</span>,</span><br><span class="line"> <span class="string">'fuelType'</span>,</span><br><span class="line"> <span class="string">'gearbox'</span>,</span><br><span class="line"> <span class="string">'notRepairedDamage'</span>]</span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> categorical_features:</span><br><span class="line">    Train_data[c]=Train_data[c].astype(<span class="string">'category'</span>)</span><br><span class="line">    <span class="keyword">if</span> Train_data[c].isnull().any():</span><br><span class="line">        Train_data[c] = Train_data[c].cat.add_categories([<span class="string">'MISSING'</span>])</span><br><span class="line">        Train_data[c]=Train_data[c].fillna(<span class="string">'MISSING'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">boxplot</span><span class="params">(x,y,**kwargs)</span>:</span></span><br><span class="line">    sns.boxplot(x=x,y=y)</span><br><span class="line">    x=plt.xticks(rotation=<span class="number">90</span>)</span><br><span class="line">f = pd.melt(Train_data,id_vars=[<span class="string">'price'</span>],value_vars=categorical_features)</span><br><span class="line">g = sns.FacetGrid(f,col=<span class="string">"variable"</span>,col_wrap=<span class="number">2</span>,sharex=<span class="literal">False</span>,sharey= <span class="literal">False</span>,size=<span class="number">5</span>)</span><br><span class="line">g = g.map(boxplot,<span class="string">"value"</span>,<span class="string">"price"</span>)</span><br></pre></td></tr></table></figure>
-
-
+7905</code></pre><pre><code class="python">categorical_features</code></pre>
+<pre><code>[&#39;name&#39;,
+ &#39;model&#39;,
+ &#39;brand&#39;,
+ &#39;bodyType&#39;,
+ &#39;fuelType&#39;,
+ &#39;gearbox&#39;,
+ &#39;notRepairedDamage&#39;,
+ &#39;regionCode&#39;]</code></pre><pre><code class="python">##2类别特征箱形图可视化
+categorical_features = [&#39;model&#39;,
+ &#39;brand&#39;,
+ &#39;bodyType&#39;,
+ &#39;fuelType&#39;,
+ &#39;gearbox&#39;,
+ &#39;notRepairedDamage&#39;]
+for c in categorical_features:
+    Train_data[c]=Train_data[c].astype(&#39;category&#39;)
+    if Train_data[c].isnull().any():
+        Train_data[c] = Train_data[c].cat.add_categories([&#39;MISSING&#39;])
+        Train_data[c]=Train_data[c].fillna(&#39;MISSING&#39;)
+def boxplot(x,y,**kwargs):
+    sns.boxplot(x=x,y=y)
+    x=plt.xticks(rotation=90)
+f = pd.melt(Train_data,id_vars=[&#39;price&#39;],value_vars=categorical_features)
+g = sns.FacetGrid(f,col=&quot;variable&quot;,col_wrap=2,sharex=False,sharey= False,size=5)
+g = g.map(boxplot,&quot;value&quot;,&quot;price&quot;)</code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_73_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Train_data.columns</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>Index([&apos;SaleID&apos;, &apos;name&apos;, &apos;regDate&apos;, &apos;model&apos;, &apos;brand&apos;, &apos;bodyType&apos;, &apos;fuelType&apos;,
-       &apos;gearbox&apos;, &apos;power&apos;, &apos;kilometer&apos;, &apos;notRepairedDamage&apos;, &apos;regionCode&apos;,
-       &apos;creatDate&apos;, &apos;price&apos;, &apos;v_0&apos;, &apos;v_1&apos;, &apos;v_2&apos;, &apos;v_3&apos;, &apos;v_4&apos;, &apos;v_5&apos;, &apos;v_6&apos;,
-       &apos;v_7&apos;, &apos;v_8&apos;, &apos;v_9&apos;, &apos;v_10&apos;, &apos;v_11&apos;, &apos;v_12&apos;, &apos;v_13&apos;, &apos;v_14&apos;],
-      dtype=&apos;object&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###3类别特征的小提琴图可视化</span></span><br><span class="line">catg_list = categorical_features</span><br><span class="line">target= <span class="string">'price'</span></span><br><span class="line"><span class="keyword">for</span> catg <span class="keyword">in</span> catg_list :</span><br><span class="line">    sns.violinplot(x=catg,y=target,data=Train_data)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
-
-
+<pre><code class="python">Train_data.columns</code></pre>
+<pre><code>Index([&#39;SaleID&#39;, &#39;name&#39;, &#39;regDate&#39;, &#39;model&#39;, &#39;brand&#39;, &#39;bodyType&#39;, &#39;fuelType&#39;,
+       &#39;gearbox&#39;, &#39;power&#39;, &#39;kilometer&#39;, &#39;notRepairedDamage&#39;, &#39;regionCode&#39;,
+       &#39;creatDate&#39;, &#39;price&#39;, &#39;v_0&#39;, &#39;v_1&#39;, &#39;v_2&#39;, &#39;v_3&#39;, &#39;v_4&#39;, &#39;v_5&#39;, &#39;v_6&#39;,
+       &#39;v_7&#39;, &#39;v_8&#39;, &#39;v_9&#39;, &#39;v_10&#39;, &#39;v_11&#39;, &#39;v_12&#39;, &#39;v_13&#39;, &#39;v_14&#39;],
+      dtype=&#39;object&#39;)</code></pre><pre><code class="python">###3类别特征的小提琴图可视化
+catg_list = categorical_features
+target= &#39;price&#39;
+for catg in catg_list :
+    sns.violinplot(x=catg,y=target,data=Train_data)
+    plt.show()</code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_0.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_1.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_2.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_3.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_4.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_5.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">categorical_features = [<span class="string">'model'</span>,</span><br><span class="line"> <span class="string">'brand'</span>,</span><br><span class="line"> <span class="string">'bodyType'</span>,</span><br><span class="line"> <span class="string">'fuelType'</span>,</span><br><span class="line"> <span class="string">'gearbox'</span>,</span><br><span class="line"> <span class="string">'notRepairedDamage'</span>]</span><br></pre></td></tr></table></figure>
+<pre><code class="python">categorical_features = [&#39;model&#39;,
+ &#39;brand&#39;,
+ &#39;bodyType&#39;,
+ &#39;fuelType&#39;,
+ &#39;gearbox&#39;,
+ &#39;notRepairedDamage&#39;]</code></pre>
+<pre><code class="python">##4类别特征的柱形图可视化
+def bar_plot(x, y, **kwargs):
+    sns.barplot(x=x, y=y)
+    x=plt.xticks(rotation=90)
 
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##4类别特征的柱形图可视化</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bar_plot</span><span class="params">(x, y, **kwargs)</span>:</span></span><br><span class="line">    sns.barplot(x=x, y=y)</span><br><span class="line">    x=plt.xticks(rotation=<span class="number">90</span>)</span><br><span class="line"></span><br><span class="line">f = pd.melt(Train_data, id_vars=[<span class="string">'price'</span>], value_vars=categorical_features)</span><br><span class="line">g = sns.FacetGrid(f, col=<span class="string">"variable"</span>,  col_wrap=<span class="number">2</span>, sharex=<span class="literal">False</span>, sharey=<span class="literal">False</span>, size=<span class="number">5</span>)</span><br><span class="line">g = g.map(bar_plot, <span class="string">"value"</span>, <span class="string">"price"</span>)</span><br></pre></td></tr></table></figure>
-
-
+f = pd.melt(Train_data, id_vars=[&#39;price&#39;], value_vars=categorical_features)
+g = sns.FacetGrid(f, col=&quot;variable&quot;,  col_wrap=2, sharex=False, sharey=False, size=5)
+g = g.map(bar_plot, &quot;value&quot;, &quot;price&quot;)</code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_77_0.png" alt="png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##5类别特征的每个类别频数可视化(count_plot)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_plot</span><span class="params">(x,  **kwargs)</span>:</span></span><br><span class="line">    sns.countplot(x=x)</span><br><span class="line">    x=plt.xticks(rotation=<span class="number">90</span>)</span><br><span class="line"></span><br><span class="line">f = pd.melt(Train_data,  value_vars=categorical_features)</span><br><span class="line">g = sns.FacetGrid(f, col=<span class="string">"variable"</span>,  col_wrap=<span class="number">2</span>, sharex=<span class="literal">False</span>, sharey=<span class="literal">False</span>, size=<span class="number">5</span>)</span><br><span class="line">g = g.map(count_plot, <span class="string">"value"</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="python">##5类别特征的每个类别频数可视化(count_plot)
+def count_plot(x,  **kwargs):
+    sns.countplot(x=x)
+    x=plt.xticks(rotation=90)
 
-
+f = pd.melt(Train_data,  value_vars=categorical_features)
+g = sns.FacetGrid(f, col=&quot;variable&quot;,  col_wrap=2, sharex=False, sharey=False, size=5)
+g = g.map(count_plot, &quot;value&quot;)</code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_78_0.png" alt="png"></p>
-<h3 id="2-2-9-用pandas-profiling生成数据报告"><a href="#2-2-9-用pandas-profiling生成数据报告" class="headerlink" title="2.2.9 用pandas_profiling生成数据报告"></a>2.2.9 用pandas_profiling生成数据报告</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas_profiling</span><br><span class="line"><span class="comment">###刚开始这个地方一直报错，终于解决了！！！！原因是我安装命令写错了</span></span><br><span class="line"><span class="comment">##错误的写成了pip install pandas profilling 正确的应该是pip install pandas_profiling</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pfr = pandas_profiling.ProfileReport(Train_data)</span><br><span class="line">pfr.to_file(<span class="string">"./tianchi/example.html"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-9-用pandas-profiling生成数据报告"><a href="#2-2-9-用pandas-profiling生成数据报告" class="headerlink" title="2.2.9 用pandas_profiling生成数据报告"></a>2.2.9 用pandas_profiling生成数据报告</h3><pre><code class="python">import pandas_profiling
+###刚开始这个地方一直报错，终于解决了！！！！原因是我安装命令写错了
+##错误的写成了pip install pandas profilling 正确的应该是pip install pandas_profiling</code></pre>
+<pre><code class="python">pfr = pandas_profiling.ProfileReport(Train_data)
+pfr.to_file(&quot;./tianchi/example.html&quot;)</code></pre>
 
                 
             </div>
@@ -3234,6 +3233,8 @@ Name: price, Length: 150000, dtype: int64</code></pre><figure class="highlight p
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

@@ -485,11 +485,18 @@
 </ul>
 <pre><code>**示例 1：**
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：strs &#x3D; [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</span><br><span class="line">输出：&quot;fl&quot;</span><br></pre></td></tr></table></figure>
+```
+输入：strs = [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]
+输出：&quot;fl&quot;
+```
 
 **示例 2：**
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：strs &#x3D; [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]</span><br><span class="line">输出：&quot;&quot;</span><br><span class="line">解释：输入不存在公共前缀。</span><br></pre></td></tr></table></figure>
+```
+输入：strs = [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]
+输出：&quot;&quot;
+解释：输入不存在公共前缀。
+```
 
 
 
@@ -497,10 +504,57 @@
 
 - `0 &lt;= strs.length &lt;= 200`
 - `0 &lt;= strs[i].length &lt;= 200`
-- `strs[i]` 仅由小写英文字母组成</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode.cn id=14 lang=java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [14] 最长公共前缀(第一次自己调试成功的代码)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @lc code=start</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        String res=<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">boolean</span> flag= <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> n = strs.length;</span><br><span class="line">        <span class="keyword">if</span>(strs.length==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(strs.length==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> strs[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//获取字符串数组中长度最小的字符串的长度</span></span><br><span class="line">        <span class="keyword">int</span> len=strs[<span class="number">0</span>].length();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">            len = Math.min(len, strs[i].length());</span><br><span class="line">        &#125;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">while</span>(index&lt;len)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                <span class="keyword">char</span> s = strs[<span class="number">0</span>].charAt(index);</span><br><span class="line">                <span class="keyword">if</span>(s==strs[i].charAt(index))&#123;</span><br><span class="line">                    flag=<span class="keyword">true</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    flag=<span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(flag==<span class="keyword">true</span>)&#123;</span><br><span class="line">                index++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                res = strs[<span class="number">0</span>].substring(<span class="number">0</span>, index);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            res= strs[<span class="number">0</span>].substring(<span class="number">0</span>, index);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// @lc code=end</span></span><br></pre></td></tr></table></figure>
+- `strs[i]` 仅由小写英文字母组成</code></pre><pre><code class="java">/*
+ * @lc app=leetcode.cn id=14 lang=java
+ *
+ * [14] 最长公共前缀(第一次自己调试成功的代码)
+ */
+
+// @lc code=start
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        String res=&quot;&quot;;
+        int index = 0;
+        boolean flag= false;
+        int n = strs.length;
+        if(strs.length==0){
+            return res;
+        }
+        if(strs.length==1){
+            return strs[0];
+        }
+        //获取字符串数组中长度最小的字符串的长度
+        int len=strs[0].length();
+        for (int i = 0; i &lt; strs.length; i++) {
+            len = Math.min(len, strs[i].length());
+        }
+
+        while(index&lt;len){
+            for (int i = 0; i &lt; n; i++) {
+                char s = strs[0].charAt(index);
+                if(s==strs[i].charAt(index)){
+                    flag=true;
+                }else{
+                    flag=false;
+                    break;
+                }
+            }
+            if(flag==true){
+                index++;
+            }else{
+                res = strs[0].substring(0, index);
+                break;
+            }
+            res= strs[0].substring(0, index);
+        }
 
 
+        return res;
+    }
+}
+// @lc code=end
 
+</code></pre>
 <p>算法<br>(暴力枚举) O(nm)<br>暴力枚举方法很简单：先找到所有字符串的最短长度 m，然后从长度 1 到 m 依次枚举判断是否所有字符串的前缀是否都相等。<br>注意输入可能为空数组。<br>时间复杂度<br>最坏情况下，对于 nn 个字符串，都需要遍历到最短长度，故总时间复杂度为 O(nm)。<br>空间复杂度<br>需要额外 O(m)O(m) 的空间存储答案。</p>
 
                 
@@ -856,6 +910,8 @@
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

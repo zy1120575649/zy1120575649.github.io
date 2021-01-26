@@ -503,25 +503,29 @@
 <li>使用lxml解析</li>
 <li>实战：爬取丁香园-用户名和回复内容</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入库</span></span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://www.dxy.cn/bbs/thread/626626#626626"</span></span><br></pre></td></tr></table></figure>
+<pre><code class="python"># 导入库
+from lxml import etree
+import requests
 
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">req = requests.get(url)</span><br><span class="line">html = req.text</span><br><span class="line"><span class="comment"># html</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tree = etree.HTML(html) </span><br><span class="line">tree</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;Element html at 0x110f226e0&gt;</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user = tree.xpath(<span class="string">''</span>)</span><br><span class="line"><span class="comment"># print(user)</span></span><br><span class="line">content = tree.xpath(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">results = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(user)):</span><br><span class="line">    <span class="comment"># print(user[i].strip()+":"+content[i].xpath('string(.)').strip())</span></span><br><span class="line">    <span class="comment"># print("*"*80)</span></span><br><span class="line">    <span class="comment"># 因为回复内容中有换行等标签，所以需要用string()来获取数据</span></span><br><span class="line">    results.append(user[i].strip() + <span class="string">":  "</span> + content[i].xpath(<span class="string">'string(.)'</span>).strip())</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印爬取的结果</span></span><br><span class="line"><span class="keyword">for</span> i,result <span class="keyword">in</span> zip(range(<span class="number">0</span>, len(user)),results):</span><br><span class="line">    print(<span class="string">"user"</span>+ str(i+<span class="number">1</span>) + <span class="string">"-"</span> + result)</span><br><span class="line">    print(<span class="string">"*"</span>*<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
-
+url = &quot;http://www.dxy.cn/bbs/thread/626626#626626&quot;</code></pre>
+<pre><code class="python">req = requests.get(url)
+html = req.text
+# html</code></pre>
+<pre><code class="python">tree = etree.HTML(html) 
+tree</code></pre>
+<pre><code>&lt;Element html at 0x110f226e0&gt;</code></pre><pre><code class="python">user = tree.xpath(&#39;&#39;)
+# print(user)
+content = tree.xpath(&#39;&#39;)</code></pre>
+<pre><code class="python">results = []
+for i in range(0, len(user)):
+    # print(user[i].strip()+&quot;:&quot;+content[i].xpath(&#39;string(.)&#39;).strip())
+    # print(&quot;*&quot;*80)
+    # 因为回复内容中有换行等标签，所以需要用string()来获取数据
+    results.append(user[i].strip() + &quot;:  &quot; + content[i].xpath(&#39;string(.)&#39;).strip())</code></pre>
+<pre><code class="python"># 打印爬取的结果
+for i,result in zip(range(0, len(user)),results):
+    print(&quot;user&quot;+ str(i+1) + &quot;-&quot; + result)
+    print(&quot;*&quot;*100)</code></pre>
 <h2 id="学习正则表达式-re"><a href="#学习正则表达式-re" class="headerlink" title="学习正则表达式 re"></a>学习正则表达式 re</h2><p>re库的主要功能函数：</p>
 <p>re.search() 在一个字符串中搜索匹配正则表达式的第一个位置，返回match对象<br>re.search(pattern, string, flags=0)</p>
 <p>re.match() 从一个字符串的开始位置起匹配正则表达式，返回match对象<br>re.match(pattern, string, flags=0)</p>
@@ -895,6 +899,8 @@
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>

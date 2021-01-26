@@ -480,32 +480,144 @@
             <div id="articleContent">
                 <p>给你一个字符串 <code>s</code>，找到 <code>s</code> 中最长的回文子串。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s &#x3D; &quot;babad&quot;</span><br><span class="line">输出：&quot;bab&quot;</span><br><span class="line">解释：&quot;aba&quot; 同样是符合题意的答案。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s &#x3D; &quot;cbbd&quot;</span><br><span class="line">输出：&quot;bb&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s &#x3D; &quot;a&quot;</span><br><span class="line">输出：&quot;a&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 4：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s &#x3D; &quot;ac&quot;</span><br><span class="line">输出：&quot;a&quot;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>提示：</strong></p>
+<pre><code>输入：s = &quot;babad&quot;
+输出：&quot;bab&quot;
+解释：&quot;aba&quot; 同样是符合题意的答案。</code></pre><p><strong>示例 2：</strong></p>
+<pre><code>输入：s = &quot;cbbd&quot;
+输出：&quot;bb&quot;</code></pre><p><strong>示例 3：</strong></p>
+<pre><code>输入：s = &quot;a&quot;
+输出：&quot;a&quot;</code></pre><p><strong>示例 4：</strong></p>
+<pre><code>输入：s = &quot;ac&quot;
+输出：&quot;a&quot;</code></pre><p><strong>提示：</strong></p>
 <ul>
 <li><code>1 &lt;= s.length &lt;= 1000</code></li>
 <li><code>s</code> 仅由数字和英文字母（大写和/或小写）组成</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode.cn id=5 lang=java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [5] 最长回文子串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @lc code=start</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">     <span class="comment">//动态规划做法</span></span><br><span class="line">        <span class="comment">//特判</span></span><br><span class="line">        <span class="keyword">int</span> len =s.length();</span><br><span class="line">        <span class="keyword">if</span>(len&lt;<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> maxLen = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> begin = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[len][len];</span><br><span class="line">        <span class="keyword">char</span>[] charArray = s.toCharArray();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            dp[i][i]=<span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;j; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(charArray[i]!=charArray[j])&#123;</span><br><span class="line">                    dp[i][j]=<span class="keyword">false</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(j-i&lt;<span class="number">3</span>)&#123;</span><br><span class="line">                        dp[i][j]=<span class="keyword">true</span>;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        dp[i][j]=dp[i+<span class="number">1</span>][j-<span class="number">1</span>];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(dp[i][j] &amp;&amp; j-i+<span class="number">1</span>&gt;maxLen)&#123;</span><br><span class="line">                    maxLen=j-i+<span class="number">1</span>;</span><br><span class="line">                    begin = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.substring(begin, begin+maxLen);</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">
+/*
+ * @lc app=leetcode.cn id=5 lang=java
+ *
+ * [5] 最长回文子串
+ */
 
+// @lc code=start
+class Solution {
+    public String longestPalindrome(String s) {
+     //动态规划做法
+        //特判
+        int len =s.length();
+        if(len&lt;2){
+            return s;
+        }
+        int maxLen = 1;
+        int begin = 0;
 
+        boolean[][] dp = new boolean[len][len];
+        char[] charArray = s.toCharArray();
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode.cn id=5 lang=java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [5] 最长回文子串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @lc code=start</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">     </span><br><span class="line">        <span class="comment">// //特判</span></span><br><span class="line">        <span class="comment">// int len =s.length();</span></span><br><span class="line">        <span class="comment">// if(len&lt;2)&#123;</span></span><br><span class="line">        <span class="comment">//     return s;</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// int maxLen = 1;</span></span><br><span class="line">        <span class="comment">// int begin = 0;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// boolean[][] dp = new boolean[len][len];</span></span><br><span class="line">        <span class="comment">// char[] charArray = s.toCharArray();</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// for (int i = 0; i &lt; len; i++) &#123;</span></span><br><span class="line">        <span class="comment">//     dp[i][i]=true;</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// for (int j = 1; j &lt; len; j++) &#123;</span></span><br><span class="line">        <span class="comment">//     for (int i = 0; i &lt;j; i++) &#123;</span></span><br><span class="line">        <span class="comment">//         if(charArray[i]!=charArray[j])&#123;</span></span><br><span class="line">        <span class="comment">//             dp[i][j]=false;</span></span><br><span class="line">        <span class="comment">//         &#125;else&#123;</span></span><br><span class="line">        <span class="comment">//             if(j-i&lt;3)&#123;</span></span><br><span class="line">        <span class="comment">//                 dp[i][j]=true;</span></span><br><span class="line">        <span class="comment">//             &#125;else&#123;</span></span><br><span class="line">        <span class="comment">//                 dp[i][j]=dp[i+1][j-1];</span></span><br><span class="line">        <span class="comment">//             &#125;</span></span><br><span class="line">        <span class="comment">//         &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//         if(dp[i][j] &amp;&amp; j-i+1&gt;maxLen)&#123;</span></span><br><span class="line">        <span class="comment">//             maxLen=j-i+1;</span></span><br><span class="line">        <span class="comment">//             begin = i;</span></span><br><span class="line">        <span class="comment">//         &#125;</span></span><br><span class="line">        <span class="comment">//     &#125;</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// return s.substring(begin, begin+maxLen);</span></span><br><span class="line"><span class="comment">//从中心扩散的方法</span></span><br><span class="line">        String res= <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">          </span><br><span class="line">          <span class="comment">//奇数</span></span><br><span class="line">            <span class="keyword">int</span> l = i-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> r = i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(l&gt;=<span class="number">0</span>&amp;&amp;r&lt;s.length()&amp;&amp;s.charAt(l)==s.charAt(r))&#123;</span><br><span class="line">                l--;</span><br><span class="line">                r++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(r-l-<span class="number">1</span>&gt;res.length())&#123;</span><br><span class="line">                res=s.substring(l+<span class="number">1</span>, r);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">						<span class="comment">//偶数</span></span><br><span class="line">             l =i;</span><br><span class="line">             r= i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(l&gt;=<span class="number">0</span>&amp;&amp;r&lt;s.length()&amp;&amp;s.charAt(l)==s.charAt(r))&#123;</span><br><span class="line">                l--;</span><br><span class="line">                r++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(r-l-<span class="number">1</span>&gt;res.length())&#123;</span><br><span class="line">                res=s.substring(l+<span class="number">1</span>, r);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// @lc code=end</span></span><br></pre></td></tr></table></figure>
+        for (int i = 0; i &lt; len; i++) {
+            dp[i][i]=true;
+        }
+        for (int j = 1; j &lt; len; j++) {
+            for (int i = 0; i &lt;j; i++) {
+                if(charArray[i]!=charArray[j]){
+                    dp[i][j]=false;
+                }else{
+                    if(j-i&lt;3){
+                        dp[i][j]=true;
+                    }else{
+                        dp[i][j]=dp[i+1][j-1];
+                    }
+                }
 
+                if(dp[i][j] &amp;&amp; j-i+1&gt;maxLen){
+                    maxLen=j-i+1;
+                    begin = i;
+                }
+            }
+        }
+        return s.substring(begin, begin+maxLen);
 
+    }
+}
 
+</code></pre>
+<pre><code class="java">/*
+ * @lc app=leetcode.cn id=5 lang=java
+ *
+ * [5] 最长回文子串
+ */
+
+// @lc code=start
+class Solution {
+    public String longestPalindrome(String s) {
+
+        // //特判
+        // int len =s.length();
+        // if(len&lt;2){
+        //     return s;
+        // }
+        // int maxLen = 1;
+        // int begin = 0;
+
+        // boolean[][] dp = new boolean[len][len];
+        // char[] charArray = s.toCharArray();
+
+        // for (int i = 0; i &lt; len; i++) {
+        //     dp[i][i]=true;
+        // }
+        // for (int j = 1; j &lt; len; j++) {
+        //     for (int i = 0; i &lt;j; i++) {
+        //         if(charArray[i]!=charArray[j]){
+        //             dp[i][j]=false;
+        //         }else{
+        //             if(j-i&lt;3){
+        //                 dp[i][j]=true;
+        //             }else{
+        //                 dp[i][j]=dp[i+1][j-1];
+        //             }
+        //         }
+
+        //         if(dp[i][j] &amp;&amp; j-i+1&gt;maxLen){
+        //             maxLen=j-i+1;
+        //             begin = i;
+        //         }
+        //     }
+        // }
+        // return s.substring(begin, begin+maxLen);
+//从中心扩散的方法
+        String res= &quot;&quot;;
+        for (int i = 0; i &lt; s.length(); i++) {
+
+          //奇数
+            int l = i-1;
+            int r = i+1;
+            while(l&gt;=0&amp;&amp;r&lt;s.length()&amp;&amp;s.charAt(l)==s.charAt(r)){
+                l--;
+                r++;
+            }
+            if(r-l-1&gt;res.length()){
+                res=s.substring(l+1, r);
+            }
+
+                        //偶数
+             l =i;
+             r= i+1;
+            while(l&gt;=0&amp;&amp;r&lt;s.length()&amp;&amp;s.charAt(l)==s.charAt(r)){
+                l--;
+                r++;
+            }
+            if(r-l-1&gt;res.length()){
+                res=s.substring(l+1, r);
+            }
+        }
+        return res;
+
+    }
+}
+// @lc code=end
+
+</code></pre>
 <p>参考链接：</p>
 <p><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/</a></p>
 
@@ -862,6 +974,8 @@
 
 
 <!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
 
     </div>
