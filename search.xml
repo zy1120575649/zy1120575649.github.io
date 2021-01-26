@@ -34,6 +34,119 @@
       </tags>
   </entry>
   <entry>
+    <title>腾讯精选练习题50题-最长公共前缀</title>
+    <url>/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
+    <content><![CDATA[<ul>
+<li><p>给你一个包含 <code>n</code> 个整数的数组 <code>nums</code>，判断 <code>nums</code> 中是否存在三个元素 <em>a，b，c ，*使得 *a + b + c =</em> 0 ？请你找出所有和为 <code>0</code> 且不重复的三元组。</p>
+<p><strong>注意：</strong>答案中不可以包含重复的三元组。</p>
+</li>
+</ul>
+<pre><code>**示例 1：**
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [-1,0,1,2,-1,-4]</span><br><span class="line">输出：[[-1,-1,2],[-1,0,1]]</span><br></pre></td></tr></table></figure>
+
+**示例 2：**
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; []</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
+
+**示例 3：**
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [0]</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure></code></pre><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode.cn id=15 lang=java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [15] 三数之和</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @lc code=start</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res= <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">           <span class="keyword">if</span>(i!=<span class="number">0</span>&amp;&amp;nums[i]==nums[i-<span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">           <span class="keyword">int</span> l=i+<span class="number">1</span>;</span><br><span class="line">           <span class="keyword">int</span> r =n-<span class="number">1</span>;</span><br><span class="line">           <span class="keyword">int</span> sum;</span><br><span class="line">           <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            sum = nums[i]+nums[l]+nums[r];</span><br><span class="line">            <span class="keyword">if</span>(sum==<span class="number">0</span>)&#123;</span><br><span class="line">                res.add(List.of(nums[i],nums[l],nums[r]));</span><br><span class="line">                 <span class="comment">//去除重复处理</span></span><br><span class="line">                 <span class="keyword">do</span> &#123;l ++;&#125; <span class="keyword">while</span>(l &lt; r &amp;&amp; nums[l] == nums[l - <span class="number">1</span>]);</span><br><span class="line">                 <span class="keyword">do</span> &#123;r --;&#125; <span class="keyword">while</span>(l &lt; r &amp;&amp; nums[r] == nums[r + <span class="number">1</span>]);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(sum&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                r--;</span><br><span class="line">               <span class="comment">// continue;</span></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                l++;</span><br><span class="line">                <span class="comment">//continue;</span></span><br><span class="line">            &#125;</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// @lc code=end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>算法分析<br>排序 + 双指针</p>
+<p>1、枚举每个数，表示该数nums[i]已被确定，在排序后的情况下，通过双指针l，r分别从左边l = i + 1和右边n - 1往中间靠拢，找到nums[i] + nums[l] + nums[r] == 0的所有符合条件的搭配<br>2、在找符合条件搭配的过程中，假设sum = nums[i] + nums[l] + nums[r]<br>若sum &gt; 0，则r往左走，使sum变小<br>若sum &lt; 0，则l往右走，使sum变大<br>若sum == 0，则表示找到了与nums[i]搭配的组合nums[l]和nums[r]，存到ans中<br>3、判重处理<br>确定好nums[i]时，l 需要从i + 1开始<br>当nums[i] == nums[i - 1]，表示当前确定好的数与上一个一样，需要直接continue<br>当找符合条件搭配时，即sum == 0,需要对相同的nums[l]和nums[r]进行判重出来<br>时间复杂度 O(n2)O(n2)</p>
+]]></content>
+      <categories>
+        <category>算法刷题</category>
+      </categories>
+      <tags>
+        <tag>腾讯算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>腾讯精选练习题50题-最长公共前缀</title>
+    <url>/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80/</url>
+    <content><![CDATA[<ul>
+<li><p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
+<p>如果不存在公共前缀，返回空字符串 <code>&quot;&quot;</code>。</p>
+</li>
+</ul>
+<pre><code>**示例 1：**
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：strs &#x3D; [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</span><br><span class="line">输出：&quot;fl&quot;</span><br></pre></td></tr></table></figure>
+
+**示例 2：**
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：strs &#x3D; [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]</span><br><span class="line">输出：&quot;&quot;</span><br><span class="line">解释：输入不存在公共前缀。</span><br></pre></td></tr></table></figure>
+
+
+
+**提示：**
+
+- `0 &lt;= strs.length &lt;= 200`
+- `0 &lt;= strs[i].length &lt;= 200`
+- `strs[i]` 仅由小写英文字母组成</code></pre><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode.cn id=14 lang=java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [14] 最长公共前缀(第一次自己调试成功的代码)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @lc code=start</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        String res=<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">boolean</span> flag= <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> n = strs.length;</span><br><span class="line">        <span class="keyword">if</span>(strs.length==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(strs.length==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> strs[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//获取字符串数组中长度最小的字符串的长度</span></span><br><span class="line">        <span class="keyword">int</span> len=strs[<span class="number">0</span>].length();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">            len = Math.min(len, strs[i].length());</span><br><span class="line">        &#125;</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">while</span>(index&lt;len)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                <span class="keyword">char</span> s = strs[<span class="number">0</span>].charAt(index);</span><br><span class="line">                <span class="keyword">if</span>(s==strs[i].charAt(index))&#123;</span><br><span class="line">                    flag=<span class="keyword">true</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    flag=<span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(flag==<span class="keyword">true</span>)&#123;</span><br><span class="line">                index++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                res = strs[<span class="number">0</span>].substring(<span class="number">0</span>, index);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            res= strs[<span class="number">0</span>].substring(<span class="number">0</span>, index);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// @lc code=end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>算法<br>(暴力枚举) O(nm)<br>暴力枚举方法很简单：先找到所有字符串的最短长度 m，然后从长度 1 到 m 依次枚举判断是否所有字符串的前缀是否都相等。<br>注意输入可能为空数组。<br>时间复杂度<br>最坏情况下，对于 nn 个字符串，都需要遍历到最短长度，故总时间复杂度为 O(nm)。<br>空间复杂度<br>需要额外 O(m)O(m) 的空间存储答案。</p>
+]]></content>
+      <categories>
+        <category>算法刷题</category>
+      </categories>
+      <tags>
+        <tag>腾讯算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>腾讯精选练习题50题-盛最多水的容器</title>
+    <url>/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/</url>
+    <content><![CDATA[<ul>
+<li><p>给你 <code>n</code> 个非负整数 <code>a1，a2，...，an</code>，每个数代表坐标中的一个点 <code>(i, ai)</code> 。在坐标内画 <code>n</code> 条垂直线，垂直线 <code>i</code> 的两个端点分别为 <code>(i, ai)</code> 和 <code>(i, 0)</code> 。找出其中的两条线，使得它们与 <code>x</code> 轴共同构成的容器可以容纳最多的水。</p>
+<p><strong>说明：</strong>你不能倾斜容器。</p>
+</li>
+</ul>
+<p>  <strong>示例 1：</strong></p>
+<p><img src="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/question_11.jpg" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：[1,8,6,2,5,4,8,3,7]</span><br><span class="line">输出：49 </span><br><span class="line">解释：图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：height &#x3D; [1,1]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>示例 3：</strong></p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：height &#x3D; [4,3,2,1,4]</span><br><span class="line">  输出：16</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>示例 4：</strong></p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：height &#x3D; [1,2,1]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+
+
+
+<p>  <strong>提示：</strong></p>
+<ul>
+<li><code>n = height.length</code></li>
+<li><code>2 &lt;= n &lt;= 3 * 104</code></li>
+<li><code>0 &lt;= height[i] &lt;= 3 * 104</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode.cn id=11 lang=java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [11] 盛最多水的容器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @lc code=start</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// int n = height.length;</span></span><br><span class="line">        <span class="comment">// int res =0;</span></span><br><span class="line">        <span class="comment">// for (int i = 1; i &lt;= n-1; i++) &#123;//暴力破解可能会超时</span></span><br><span class="line">        <span class="comment">//     for (int j = 2; j &lt;=n; j++) &#123;</span></span><br><span class="line">        <span class="comment">//         if((j-i)*Math.min(height[i-1], height[j-1])&gt;res)&#123;</span></span><br><span class="line">        <span class="comment">//             res = (j-i)*Math.min(height[i-1], height[j-1]);</span></span><br><span class="line">        <span class="comment">//         &#125;</span></span><br><span class="line">        <span class="comment">//     &#125;</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="keyword">int</span> n = height.length;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>;<span class="keyword">int</span> r = n-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            res = Math.max(res, Math.min(height[l], height[r])*(r-l));</span><br><span class="line">            <span class="keyword">if</span>(height[l]&lt;height[r])&#123;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// @lc code=end</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><strong>双指针法</strong>(关键在如何证明)</p>
+<p>在暴力解法中，每固定一条直线，就要遍历剩下的所有直线，造成了大量元素的多次重复访问。那么我们有没有办法只扫描一次数组，就可以找到最大的面积呢？让我们来看看双指针算法是怎么做的。<br>1 .最开始的时候，如果我们用指针i和j指向最两端的直线，此时两条直线之间的距离就是最大的，即我们所求矩形面积的宽度(width)为最大。<br>          2.但是位于最两端的直线不一定是最高的，所以它们组成矩形的面积也就不一定是最大的。因此我们依然需要继续遍历整个数组，这时我们将指向数组两端的指针慢慢往里面收敛，直到找到面积最大值。<br>            3.对于此时i和j指向的直线，他们之间的宽度已经是最宽了。于是在收敛的过程中，如果遇到的高度比两端的柱子更低的话，由于之间的宽度更短，所以面积必定更小，我们就可以直接跳过，不予考虑。我们只需要考虑收敛时出现的那些高度更高的柱子。<br>        4.该方法在双指针向中间收敛的过程中，对数组中的每个元素只访问了一次，因此时间复杂度为O(n)</p>
+<p><a href="https://leetcode-cn.com/problems/container-with-most-water/solution/zhi-guan-de-shuang-zhi-zhen-fa-jie-shi-by-na-kong/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/container-with-most-water/solution/zhi-guan-de-shuang-zhi-zhen-fa-jie-shi-by-na-kong/</a></p>
+]]></content>
+      <categories>
+        <category>算法刷题</category>
+      </categories>
+      <tags>
+        <tag>腾讯算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>腾讯精选练习题50题-两数相加</title>
     <url>/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</url>
     <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode.cn id=2 lang=java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [2] 两数相加</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @lc code=start</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//2-&gt;4-&gt;3 9-&gt;1 结果就是1-&gt;6-&gt;3</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    ListNode l3 = <span class="keyword">new</span> ListNode(<span class="number">0</span>);<span class="comment">//虚拟头节点</span></span><br><span class="line">    ListNode cur= l3;<span class="comment">//当前节点指向l3</span></span><br><span class="line">    <span class="keyword">int</span> jin= <span class="number">0</span>;<span class="comment">//进位为0</span></span><br><span class="line">    <span class="keyword">while</span>(l1!=<span class="keyword">null</span>||l2!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> sum =<span class="number">0</span>;<span class="comment">//定义该位上的和</span></span><br><span class="line">        <span class="keyword">if</span>(l1!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            sum=sum+l1.val;</span><br><span class="line">            l1=l1.next;</span><br><span class="line">        &#125;<span class="comment">//防止999999+999这种位数不同的情况 所以要判断</span></span><br><span class="line">        <span class="keyword">if</span>(l2!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            sum+=l2.val;</span><br><span class="line">            l2=l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        sum += jin;</span><br><span class="line">        cur.next= <span class="keyword">new</span> ListNode(sum%<span class="number">10</span>);</span><br><span class="line">        cur= cur.next;</span><br><span class="line">        jin = sum/<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(jin!=<span class="number">0</span>)&#123;</span><br><span class="line">        cur.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l3.next;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">/*这种方法就不需要最后判断最后一位有没有进位了</span></span><br><span class="line"><span class="comment">class Solution &#123;</span></span><br><span class="line"><span class="comment">    public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span></span><br><span class="line"><span class="comment">        ListNode l3 = new ListNode(0);//虚拟头节点</span></span><br><span class="line"><span class="comment">        ListNode cur = l3;</span></span><br><span class="line"><span class="comment">        int t = 0;//进位</span></span><br><span class="line"><span class="comment">        while(l1!=null||l2!=null||t!=0)&#123;</span></span><br><span class="line"><span class="comment">            if(l1!=null) &#123;t+=l1.val;l1=l1.next;&#125;</span></span><br><span class="line"><span class="comment">            if(l2!=null) &#123;t+=l2.val;l2=l2.next;&#125;</span></span><br><span class="line"><span class="comment">            cur.next = new ListNode(t%10);</span></span><br><span class="line"><span class="comment">            cur= cur.next;</span></span><br><span class="line"><span class="comment">           // l1=l1.next;</span></span><br><span class="line"><span class="comment">           // l2=l2.next;</span></span><br><span class="line"><span class="comment">            t/=10;</span></span><br><span class="line"><span class="comment">           </span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        return l3.next;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// @lc code=end</span></span><br></pre></td></tr></table></figure>]]></content>
