@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -521,21 +522,21 @@
 <li><p>降维<br>PCA/ LDA/ ICA；<br>特征选择也是一种降维。</p>
 </li>
 </ol>
-<h3 id="3-2-代码示例"><a href="#3-2-代码示例" class="headerlink" title="3.2 代码示例"></a>3.2 代码示例</h3><h4 id="3-2-0-导入数据"><a href="#3-2-0-导入数据" class="headerlink" title="3.2.0 导入数据"></a>3.2.0 导入数据</h4><pre><code class="python">import pandas as pd
-import numpy as np
-import matplotlib
-import matplotlib.pyplot as plt
-import seaborn as sns
-from operator import itemgetter
+<h3 id="3-2-代码示例"><a href="#3-2-代码示例" class="headerlink" title="3.2 代码示例"></a>3.2 代码示例</h3><h4 id="3-2-0-导入数据"><a href="#3-2-0-导入数据" class="headerlink" title="3.2.0 导入数据"></a>3.2.0 导入数据</h4><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> matplotlib
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">import</span> seaborn <span class="token keyword">as</span> sns
+<span class="token keyword">from</span> operator <span class="token keyword">import</span> itemgetter
 
-%matplotlib inline</code></pre>
-<pre><code class="python">path = &#39;./tianchi/&#39;
-Train_data = pd.read_csv(path+&#39;used_car_train_20200313.csv&#39;, sep=&#39; &#39;)
-Test_data = pd.read_csv(path+&#39;used_car_testA_20200313.csv&#39;, sep=&#39; &#39;)
-print(Train_data.shape)
-print(Test_data.shape)</code></pre>
+<span class="token operator">%</span>matplotlib inline<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">path <span class="token operator">=</span> <span class="token string">'./tianchi/'</span>
+Train_data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>path<span class="token operator">+</span><span class="token string">'used_car_train_20200313.csv'</span><span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span>
+Test_data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>path<span class="token operator">+</span><span class="token string">'used_car_testA_20200313.csv'</span><span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>Train_data<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>Test_data<span class="token punctuation">.</span>shape<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>(150000, 31)
-(50000, 30)</code></pre><pre><code class="python">Train_data.head()</code></pre>
+(50000, 30)</code></pre><pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -705,68 +706,68 @@ print(Test_data.shape)</code></pre>
 
 
 
-<pre><code class="python">Train_data.columns</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">.</span>columns<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>Index([&#39;SaleID&#39;, &#39;name&#39;, &#39;regDate&#39;, &#39;model&#39;, &#39;brand&#39;, &#39;bodyType&#39;, &#39;fuelType&#39;,
        &#39;gearbox&#39;, &#39;power&#39;, &#39;kilometer&#39;, &#39;notRepairedDamage&#39;, &#39;regionCode&#39;,
        &#39;seller&#39;, &#39;offerType&#39;, &#39;creatDate&#39;, &#39;price&#39;, &#39;v_0&#39;, &#39;v_1&#39;, &#39;v_2&#39;, &#39;v_3&#39;,
        &#39;v_4&#39;, &#39;v_5&#39;, &#39;v_6&#39;, &#39;v_7&#39;, &#39;v_8&#39;, &#39;v_9&#39;, &#39;v_10&#39;, &#39;v_11&#39;, &#39;v_12&#39;,
        &#39;v_13&#39;, &#39;v_14&#39;],
-      dtype=&#39;object&#39;)</code></pre><pre><code class="python">Test_data.columns</code></pre>
+      dtype=&#39;object&#39;)</code></pre><pre class="line-numbers language-python"><code class="language-python">Test_data<span class="token punctuation">.</span>columns<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>Index([&#39;SaleID&#39;, &#39;name&#39;, &#39;regDate&#39;, &#39;model&#39;, &#39;brand&#39;, &#39;bodyType&#39;, &#39;fuelType&#39;,
        &#39;gearbox&#39;, &#39;power&#39;, &#39;kilometer&#39;, &#39;notRepairedDamage&#39;, &#39;regionCode&#39;,
        &#39;seller&#39;, &#39;offerType&#39;, &#39;creatDate&#39;, &#39;v_0&#39;, &#39;v_1&#39;, &#39;v_2&#39;, &#39;v_3&#39;, &#39;v_4&#39;,
        &#39;v_5&#39;, &#39;v_6&#39;, &#39;v_7&#39;, &#39;v_8&#39;, &#39;v_9&#39;, &#39;v_10&#39;, &#39;v_11&#39;, &#39;v_12&#39;, &#39;v_13&#39;,
        &#39;v_14&#39;],
-      dtype=&#39;object&#39;)</code></pre><h4 id="3-2-1-删除异常值"><a href="#3-2-1-删除异常值" class="headerlink" title="3.2.1 删除异常值"></a>3.2.1 删除异常值</h4><pre><code class="python"># 这里我包装了一个异常值处理的代码，可以随便调用。
-def outliers_proc(data, col_name, scale=3):
-    &quot;&quot;&quot;
+      dtype=&#39;object&#39;)</code></pre><h4 id="3-2-1-删除异常值"><a href="#3-2-1-删除异常值" class="headerlink" title="3.2.1 删除异常值"></a>3.2.1 删除异常值</h4><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 这里我包装了一个异常值处理的代码，可以随便调用。</span>
+<span class="token keyword">def</span> <span class="token function">outliers_proc</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> col_name<span class="token punctuation">,</span> scale<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
     用于清洗异常值，默认用 box_plot（scale=3）进行清洗
     :param data: 接收 pandas 数据格式
     :param col_name: pandas 列名
     :param scale: 尺度
     :return:
-    &quot;&quot;&quot;
+    """</span>
 
-    def box_plot_outliers(data_ser, box_scale):
-        &quot;&quot;&quot;
+    <span class="token keyword">def</span> <span class="token function">box_plot_outliers</span><span class="token punctuation">(</span>data_ser<span class="token punctuation">,</span> box_scale<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
         利用箱线图去除异常值
         :param data_ser: 接收 pandas.Series 数据格式
         :param box_scale: 箱线图尺度，
         :return:
-        &quot;&quot;&quot;
-        iqr = box_scale * (data_ser.quantile(0.75) - data_ser.quantile(0.25))
-        val_low = data_ser.quantile(0.25) - iqr
-        val_up = data_ser.quantile(0.75) + iqr
-        rule_low = (data_ser &lt; val_low)
-        rule_up = (data_ser &gt; val_up)
-        return (rule_low, rule_up), (val_low, val_up)
+        """</span>
+        iqr <span class="token operator">=</span> box_scale <span class="token operator">*</span> <span class="token punctuation">(</span>data_ser<span class="token punctuation">.</span>quantile<span class="token punctuation">(</span><span class="token number">0.75</span><span class="token punctuation">)</span> <span class="token operator">-</span> data_ser<span class="token punctuation">.</span>quantile<span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        val_low <span class="token operator">=</span> data_ser<span class="token punctuation">.</span>quantile<span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">)</span> <span class="token operator">-</span> iqr
+        val_up <span class="token operator">=</span> data_ser<span class="token punctuation">.</span>quantile<span class="token punctuation">(</span><span class="token number">0.75</span><span class="token punctuation">)</span> <span class="token operator">+</span> iqr
+        rule_low <span class="token operator">=</span> <span class="token punctuation">(</span>data_ser <span class="token operator">&lt;</span> val_low<span class="token punctuation">)</span>
+        rule_up <span class="token operator">=</span> <span class="token punctuation">(</span>data_ser <span class="token operator">></span> val_up<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>rule_low<span class="token punctuation">,</span> rule_up<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>val_low<span class="token punctuation">,</span> val_up<span class="token punctuation">)</span>
 
-    data_n = data.copy()
-    data_series = data_n[col_name]
-    rule, value = box_plot_outliers(data_series, box_scale=scale)
-    index = np.arange(data_series.shape[0])[rule[0] | rule[1]]
-    print(&quot;Delete number is: {}&quot;.format(len(index)))
-    data_n = data_n.drop(index)
-    data_n.reset_index(drop=True, inplace=True)
-    print(&quot;Now column number is: {}&quot;.format(data_n.shape[0]))
-    index_low = np.arange(data_series.shape[0])[rule[0]]
-    outliers = data_series.iloc[index_low]
-    print(&quot;Description of data less than the lower bound is:&quot;)
-    print(pd.Series(outliers).describe())
-    index_up = np.arange(data_series.shape[0])[rule[1]]
-    outliers = data_series.iloc[index_up]
-    print(&quot;Description of data larger than the upper bound is:&quot;)
-    print(pd.Series(outliers).describe())
+    data_n <span class="token operator">=</span> data<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    data_series <span class="token operator">=</span> data_n<span class="token punctuation">[</span>col_name<span class="token punctuation">]</span>
+    rule<span class="token punctuation">,</span> value <span class="token operator">=</span> box_plot_outliers<span class="token punctuation">(</span>data_series<span class="token punctuation">,</span> box_scale<span class="token operator">=</span>scale<span class="token punctuation">)</span>
+    index <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span>data_series<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">[</span>rule<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">|</span> rule<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Delete number is: {}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>len<span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    data_n <span class="token operator">=</span> data_n<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>index<span class="token punctuation">)</span>
+    data_n<span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span>drop<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Now column number is: {}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>data_n<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    index_low <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span>data_series<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">[</span>rule<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+    outliers <span class="token operator">=</span> data_series<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span>index_low<span class="token punctuation">]</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Description of data less than the lower bound is:"</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>outliers<span class="token punctuation">)</span><span class="token punctuation">.</span>describe<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    index_up <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span>data_series<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">[</span>rule<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+    outliers <span class="token operator">=</span> data_series<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span>index_up<span class="token punctuation">]</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Description of data larger than the upper bound is:"</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>outliers<span class="token punctuation">)</span><span class="token punctuation">.</span>describe<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    fig, ax = plt.subplots(1, 2, figsize=(10, 7))
-    sns.boxplot(y=data[col_name], data=data, palette=&quot;Set1&quot;, ax=ax[0])
-    sns.boxplot(y=data_n[col_name], data=data_n, palette=&quot;Set1&quot;, ax=ax[1])
-    return data_n</code></pre>
-<pre><code class="python"># 我们可以删掉一些异常数据，以 power 为例。  
-# 这里删不删同学可以自行判断
-# 但是要注意 test 的数据不能删 = = 不能掩耳盗铃是不是
+    fig<span class="token punctuation">,</span> ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    sns<span class="token punctuation">.</span>boxplot<span class="token punctuation">(</span>y<span class="token operator">=</span>data<span class="token punctuation">[</span>col_name<span class="token punctuation">]</span><span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">,</span> palette<span class="token operator">=</span><span class="token string">"Set1"</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    sns<span class="token punctuation">.</span>boxplot<span class="token punctuation">(</span>y<span class="token operator">=</span>data_n<span class="token punctuation">[</span>col_name<span class="token punctuation">]</span><span class="token punctuation">,</span> data<span class="token operator">=</span>data_n<span class="token punctuation">,</span> palette<span class="token operator">=</span><span class="token string">"Set1"</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> data_n<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 我们可以删掉一些异常数据，以 power 为例。  </span>
+<span class="token comment" spellcheck="true"># 这里删不删同学可以自行判断</span>
+<span class="token comment" spellcheck="true"># 但是要注意 test 的数据不能删 = = 不能掩耳盗铃是不是</span>
 
-Train_data = outliers_proc(Train_data, &#39;power&#39;, scale=3)</code></pre>
+Train_data <span class="token operator">=</span> outliers_proc<span class="token punctuation">(</span>Train_data<span class="token punctuation">,</span> <span class="token string">'power'</span><span class="token punctuation">,</span> scale<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>Delete number is: 963
 Now column number is: 149037
 Description of data less than the lower bound is:
@@ -789,10 +790,10 @@ min        376.000000
 75%        514.000000
 max      19312.000000
 Name: power, dtype: float64</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_8_1.png" alt="png"></p>
-<h4 id="3-2-2-特征构造"><a href="#3-2-2-特征构造" class="headerlink" title="3.2.2 特征构造"></a>3.2.2 特征构造</h4><pre><code class="python"># 训练集和测试集放在一起，方便构造特征
-Train_data[&#39;train&#39;]=1
-Test_data[&#39;train&#39;]=0
-data = pd.concat([Train_data, Test_data], ignore_index=True)</code></pre>
+<h4 id="3-2-2-特征构造"><a href="#3-2-2-特征构造" class="headerlink" title="3.2.2 特征构造"></a>3.2.2 特征构造</h4><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 训练集和测试集放在一起，方便构造特征</span>
+Train_data<span class="token punctuation">[</span><span class="token string">'train'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span>
+Test_data<span class="token punctuation">[</span><span class="token string">'train'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span>
+data <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>Train_data<span class="token punctuation">,</span> Test_data<span class="token punctuation">]</span><span class="token punctuation">,</span> ignore_index<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:4: FutureWarning: Sorting because non-concatenation axis is not aligned. A future version
 of pandas will change to not sort by default.
 
@@ -800,48 +801,48 @@ To accept the future behavior, pass &#39;sort=False&#39;.
 
 To retain the current behavior and silence the warning, pass &#39;sort=True&#39;.
 
-  after removing the cwd from sys.path.</code></pre><pre><code class="python"># 使用时间：data[&#39;creatDate&#39;] - data[&#39;regDate&#39;]，反应汽车使用时间，一般来说价格与使用时间成反比
-# 不过要注意，数据里有时间出错的格式，所以我们需要 errors=&#39;coerce&#39;
-data[&#39;used_time&#39;] = (pd.to_datetime(data[&#39;creatDate&#39;], format=&#39;%Y%m%d&#39;, errors=&#39;coerce&#39;) - 
-                            pd.to_datetime(data[&#39;regDate&#39;], format=&#39;%Y%m%d&#39;, errors=&#39;coerce&#39;)).dt.days</code></pre>
-<pre><code class="python"># 看一下空数据，有 15k 个样本的时间是有问题的，我们可以选择删除，也可以选择放着。
-# 但是这里不建议删除，因为删除缺失数据占总样本量过大，7.5%
-# 我们可以先放着，因为如果我们 XGBoost 之类的决策树，其本身就能处理缺失值，所以可以不用管；
-data[&#39;used_time&#39;].isnull().sum()</code></pre>
-<pre><code>15072</code></pre><pre><code class="python"># 从邮编中提取城市信息，相当于加入了先验知识
-data[&#39;city&#39;] = data[&#39;regionCode&#39;].apply(lambda x : str(x)[:-3])
-data = data</code></pre>
-<pre><code class="python"># 计算某品牌的销售统计量，同学们还可以计算其他特征的统计量
-# 这里要以 train 的数据计算统计量
-Train_gb = Train_data.groupby(&quot;brand&quot;)
-all_info = {}
-for kind, kind_data in Train_gb:
-    info = {}
-    kind_data = kind_data[kind_data[&#39;price&#39;] &gt; 0]
-    info[&#39;brand_amount&#39;] = len(kind_data)
-    info[&#39;brand_price_max&#39;] = kind_data.price.max()
-    info[&#39;brand_price_median&#39;] = kind_data.price.median()
-    info[&#39;brand_price_min&#39;] = kind_data.price.min()
-    info[&#39;brand_price_sum&#39;] = kind_data.price.sum()
-    info[&#39;brand_price_std&#39;] = kind_data.price.std()
-    info[&#39;brand_price_average&#39;] = round(kind_data.price.sum() / (len(kind_data) + 1), 2)
-    all_info[kind] = info
-brand_fe = pd.DataFrame(all_info).T.reset_index().rename(columns={&quot;index&quot;: &quot;brand&quot;})
-data = data.merge(brand_fe, how=&#39;left&#39;, on=&#39;brand&#39;)</code></pre>
-<pre><code class="python"># 数据分桶 以 power 为例
-# 这时候我们的缺失值也进桶了，
-# 为什么要做数据分桶呢，原因有很多，= =
-# 1. 离散后稀疏向量内积乘法运算速度更快，计算结果也方便存储，容易扩展；
-# 2. 离散后的特征对异常值更具鲁棒性，如 age&gt;30 为 1 否则为 0，对于年龄为 200 的也不会对模型造成很大的干扰；
-# 3. LR 属于广义线性模型，表达能力有限，经过离散化后，每个变量有单独的权重，这相当于引入了非线性，能够提升模型的表达能力，加大拟合；
-# 4. 离散后特征可以进行特征交叉，提升表达能力，由 M+N 个变量编程 M*N 个变量，进一步引入非线形，提升了表达能力；
-# 5. 特征离散后模型更稳定，如用户年龄区间，不会因为用户年龄长了一岁就变化
+  after removing the cwd from sys.path.</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 使用时间：data['creatDate'] - data['regDate']，反应汽车使用时间，一般来说价格与使用时间成反比</span>
+<span class="token comment" spellcheck="true"># 不过要注意，数据里有时间出错的格式，所以我们需要 errors='coerce'</span>
+data<span class="token punctuation">[</span><span class="token string">'used_time'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>pd<span class="token punctuation">.</span>to_datetime<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'creatDate'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> format<span class="token operator">=</span><span class="token string">'%Y%m%d'</span><span class="token punctuation">,</span> errors<span class="token operator">=</span><span class="token string">'coerce'</span><span class="token punctuation">)</span> <span class="token operator">-</span> 
+                            pd<span class="token punctuation">.</span>to_datetime<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'regDate'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> format<span class="token operator">=</span><span class="token string">'%Y%m%d'</span><span class="token punctuation">,</span> errors<span class="token operator">=</span><span class="token string">'coerce'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>dt<span class="token punctuation">.</span>days<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 看一下空数据，有 15k 个样本的时间是有问题的，我们可以选择删除，也可以选择放着。</span>
+<span class="token comment" spellcheck="true"># 但是这里不建议删除，因为删除缺失数据占总样本量过大，7.5%</span>
+<span class="token comment" spellcheck="true"># 我们可以先放着，因为如果我们 XGBoost 之类的决策树，其本身就能处理缺失值，所以可以不用管；</span>
+data<span class="token punctuation">[</span><span class="token string">'used_time'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>15072</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 从邮编中提取城市信息，相当于加入了先验知识</span>
+data<span class="token punctuation">[</span><span class="token string">'city'</span><span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token string">'regionCode'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>apply<span class="token punctuation">(</span><span class="token keyword">lambda</span> x <span class="token punctuation">:</span> str<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+data <span class="token operator">=</span> data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 计算某品牌的销售统计量，同学们还可以计算其他特征的统计量</span>
+<span class="token comment" spellcheck="true"># 这里要以 train 的数据计算统计量</span>
+Train_gb <span class="token operator">=</span> Train_data<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token string">"brand"</span><span class="token punctuation">)</span>
+all_info <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">for</span> kind<span class="token punctuation">,</span> kind_data <span class="token keyword">in</span> Train_gb<span class="token punctuation">:</span>
+    info <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    kind_data <span class="token operator">=</span> kind_data<span class="token punctuation">[</span>kind_data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">]</span>
+    info<span class="token punctuation">[</span><span class="token string">'brand_amount'</span><span class="token punctuation">]</span> <span class="token operator">=</span> len<span class="token punctuation">(</span>kind_data<span class="token punctuation">)</span>
+    info<span class="token punctuation">[</span><span class="token string">'brand_price_max'</span><span class="token punctuation">]</span> <span class="token operator">=</span> kind_data<span class="token punctuation">.</span>price<span class="token punctuation">.</span>max<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    info<span class="token punctuation">[</span><span class="token string">'brand_price_median'</span><span class="token punctuation">]</span> <span class="token operator">=</span> kind_data<span class="token punctuation">.</span>price<span class="token punctuation">.</span>median<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    info<span class="token punctuation">[</span><span class="token string">'brand_price_min'</span><span class="token punctuation">]</span> <span class="token operator">=</span> kind_data<span class="token punctuation">.</span>price<span class="token punctuation">.</span>min<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    info<span class="token punctuation">[</span><span class="token string">'brand_price_sum'</span><span class="token punctuation">]</span> <span class="token operator">=</span> kind_data<span class="token punctuation">.</span>price<span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    info<span class="token punctuation">[</span><span class="token string">'brand_price_std'</span><span class="token punctuation">]</span> <span class="token operator">=</span> kind_data<span class="token punctuation">.</span>price<span class="token punctuation">.</span>std<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    info<span class="token punctuation">[</span><span class="token string">'brand_price_average'</span><span class="token punctuation">]</span> <span class="token operator">=</span> round<span class="token punctuation">(</span>kind_data<span class="token punctuation">.</span>price<span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>len<span class="token punctuation">(</span>kind_data<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    all_info<span class="token punctuation">[</span>kind<span class="token punctuation">]</span> <span class="token operator">=</span> info
+brand_fe <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>all_info<span class="token punctuation">)</span><span class="token punctuation">.</span>T<span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>rename<span class="token punctuation">(</span>columns<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"index"</span><span class="token punctuation">:</span> <span class="token string">"brand"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+data <span class="token operator">=</span> data<span class="token punctuation">.</span>merge<span class="token punctuation">(</span>brand_fe<span class="token punctuation">,</span> how<span class="token operator">=</span><span class="token string">'left'</span><span class="token punctuation">,</span> on<span class="token operator">=</span><span class="token string">'brand'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 数据分桶 以 power 为例</span>
+<span class="token comment" spellcheck="true"># 这时候我们的缺失值也进桶了，</span>
+<span class="token comment" spellcheck="true"># 为什么要做数据分桶呢，原因有很多，= =</span>
+<span class="token comment" spellcheck="true"># 1. 离散后稀疏向量内积乘法运算速度更快，计算结果也方便存储，容易扩展；</span>
+<span class="token comment" spellcheck="true"># 2. 离散后的特征对异常值更具鲁棒性，如 age>30 为 1 否则为 0，对于年龄为 200 的也不会对模型造成很大的干扰；</span>
+<span class="token comment" spellcheck="true"># 3. LR 属于广义线性模型，表达能力有限，经过离散化后，每个变量有单独的权重，这相当于引入了非线性，能够提升模型的表达能力，加大拟合；</span>
+<span class="token comment" spellcheck="true"># 4. 离散后特征可以进行特征交叉，提升表达能力，由 M+N 个变量编程 M*N 个变量，进一步引入非线形，提升了表达能力；</span>
+<span class="token comment" spellcheck="true"># 5. 特征离散后模型更稳定，如用户年龄区间，不会因为用户年龄长了一岁就变化</span>
 
-# 当然还有很多原因，LightGBM 在改进 XGBoost 时就增加了数据分桶，增强了模型的泛化性
+<span class="token comment" spellcheck="true"># 当然还有很多原因，LightGBM 在改进 XGBoost 时就增加了数据分桶，增强了模型的泛化性</span>
 
-bin = [i*10 for i in range(31)]
-data[&#39;power_bin&#39;] = pd.cut(data[&#39;power&#39;], bin, labels=False)
-data[[&#39;power_bin&#39;, &#39;power&#39;]].head()</code></pre>
+bin <span class="token operator">=</span> <span class="token punctuation">[</span>i<span class="token operator">*</span><span class="token number">10</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">31</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+data<span class="token punctuation">[</span><span class="token string">'power_bin'</span><span class="token punctuation">]</span> <span class="token operator">=</span> pd<span class="token punctuation">.</span>cut<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> bin<span class="token punctuation">,</span> labels<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+data<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'power_bin'</span><span class="token punctuation">,</span> <span class="token string">'power'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -896,10 +897,10 @@ data[[&#39;power_bin&#39;, &#39;power&#39;]].head()</code></pre>
 
 
 
-<pre><code class="python"># 删除不需要的数据
-data = data.drop([&#39;creatDate&#39;, &#39;regDate&#39;, &#39;regionCode&#39;], axis=1)</code></pre>
-<pre><code class="python">print(data.shape)
-data.columns</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 删除不需要的数据</span>
+data <span class="token operator">=</span> data<span class="token punctuation">.</span>drop<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'creatDate'</span><span class="token punctuation">,</span> <span class="token string">'regDate'</span><span class="token punctuation">,</span> <span class="token string">'regionCode'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+data<span class="token punctuation">.</span>columns<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <pre><code>(199037, 39)
 
 
@@ -913,59 +914,59 @@ Index([&#39;SaleID&#39;, &#39;bodyType&#39;, &#39;brand&#39;, &#39;fuelType&#39;
        &#39;city&#39;, &#39;brand_amount&#39;, &#39;brand_price_max&#39;, &#39;brand_price_median&#39;,
        &#39;brand_price_min&#39;, &#39;brand_price_sum&#39;, &#39;brand_price_std&#39;,
        &#39;brand_price_average&#39;, &#39;power_bin&#39;],
-      dtype=&#39;object&#39;)</code></pre><pre><code class="python"># 目前的数据其实已经可以给树模型使用了，所以我们导出一下
-data.to_csv(&#39;data_for_tree.csv&#39;, index=0)</code></pre>
-<pre><code class="python"># 我们可以再构造一份特征给 LR NN 之类的模型用
-# 之所以分开构造是因为，不同模型对数据集的要求不同
-# 我们看下数据分布：
-data[&#39;power&#39;].plot.hist()</code></pre>
+      dtype=&#39;object&#39;)</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 目前的数据其实已经可以给树模型使用了，所以我们导出一下</span>
+data<span class="token punctuation">.</span>to_csv<span class="token punctuation">(</span><span class="token string">'data_for_tree.csv'</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 我们可以再构造一份特征给 LR NN 之类的模型用</span>
+<span class="token comment" spellcheck="true"># 之所以分开构造是因为，不同模型对数据集的要求不同</span>
+<span class="token comment" spellcheck="true"># 我们看下数据分布：</span>
+data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>plot<span class="token punctuation">.</span>hist<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x104cfb890&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_19_1.png" alt="png"></p>
-<pre><code class="python"># 我们刚刚已经对 train 进行异常值处理了，但是现在还有这么奇怪的分布是因为 test 中的 power 异常值，
-# 所以我们其实刚刚 train 中的 power 异常值不删为好，可以用长尾分布截断来代替
-Train_data[&#39;power&#39;].plot.hist()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 我们刚刚已经对 train 进行异常值处理了，但是现在还有这么奇怪的分布是因为 test 中的 power 异常值，</span>
+<span class="token comment" spellcheck="true"># 所以我们其实刚刚 train 中的 power 异常值不删为好，可以用长尾分布截断来代替</span>
+Train_data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>plot<span class="token punctuation">.</span>hist<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a1ac0e090&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_20_1.png" alt="png"></p>
-<pre><code class="python"># 我们对其取 log，在做归一化
-from sklearn import preprocessing
-min_max_scaler = preprocessing.MinMaxScaler()
-data[&#39;power&#39;] = np.log(data[&#39;power&#39;] + 1) 
-data[&#39;power&#39;] = ((data[&#39;power&#39;] - np.min(data[&#39;power&#39;])) / (np.max(data[&#39;power&#39;]) - np.min(data[&#39;power&#39;])))
-data[&#39;power&#39;].plot.hist()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 我们对其取 log，在做归一化</span>
+<span class="token keyword">from</span> sklearn <span class="token keyword">import</span> preprocessing
+min_max_scaler <span class="token operator">=</span> preprocessing<span class="token punctuation">.</span>MinMaxScaler<span class="token punctuation">(</span><span class="token punctuation">)</span>
+data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>log<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> 
+data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>np<span class="token punctuation">.</span>max<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>plot<span class="token punctuation">.</span>hist<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11829b050&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_21_1.png" alt="png"></p>
-<pre><code class="python"># km 的比较正常，应该是已经做过分桶了
-data[&#39;kilometer&#39;].plot.hist()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># km 的比较正常，应该是已经做过分桶了</span>
+data<span class="token punctuation">[</span><span class="token string">'kilometer'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>plot<span class="token punctuation">.</span>hist<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a1b54ced0&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_22_1.png" alt="png"></p>
-<pre><code class="python"># 所以我们可以直接做归一化
-data[&#39;kilometer&#39;] = ((data[&#39;kilometer&#39;] - np.min(data[&#39;kilometer&#39;])) / 
-                        (np.max(data[&#39;kilometer&#39;]) - np.min(data[&#39;kilometer&#39;])))
-data[&#39;kilometer&#39;].plot.hist()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 所以我们可以直接做归一化</span>
+data<span class="token punctuation">[</span><span class="token string">'kilometer'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'kilometer'</span><span class="token punctuation">]</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'kilometer'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> 
+                        <span class="token punctuation">(</span>np<span class="token punctuation">.</span>max<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'kilometer'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'kilometer'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+data<span class="token punctuation">[</span><span class="token string">'kilometer'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>plot<span class="token punctuation">.</span>hist<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a1c187750&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_23_1.png" alt="png"></p>
-<pre><code class="python"># 除此之外 还有我们刚刚构造的统计量特征：
-# &#39;brand_amount&#39;, &#39;brand_price_average&#39;, &#39;brand_price_max&#39;,
-# &#39;brand_price_median&#39;, &#39;brand_price_min&#39;, &#39;brand_price_std&#39;,
-# &#39;brand_price_sum&#39;
-# 这里不再一一举例分析了，直接做变换，
-def max_min(x):
-    return (x - np.min(x)) / (np.max(x) - np.min(x))
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 除此之外 还有我们刚刚构造的统计量特征：</span>
+<span class="token comment" spellcheck="true"># 'brand_amount', 'brand_price_average', 'brand_price_max',</span>
+<span class="token comment" spellcheck="true"># 'brand_price_median', 'brand_price_min', 'brand_price_std',</span>
+<span class="token comment" spellcheck="true"># 'brand_price_sum'</span>
+<span class="token comment" spellcheck="true"># 这里不再一一举例分析了，直接做变换，</span>
+<span class="token keyword">def</span> <span class="token function">max_min</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>x <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>np<span class="token punctuation">.</span>max<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-data[&#39;brand_amount&#39;] = ((data[&#39;brand_amount&#39;] - np.min(data[&#39;brand_amount&#39;])) / 
-                        (np.max(data[&#39;brand_amount&#39;]) - np.min(data[&#39;brand_amount&#39;])))
-data[&#39;brand_price_average&#39;] = ((data[&#39;brand_price_average&#39;] - np.min(data[&#39;brand_price_average&#39;])) / 
-                               (np.max(data[&#39;brand_price_average&#39;]) - np.min(data[&#39;brand_price_average&#39;])))
-data[&#39;brand_price_max&#39;] = ((data[&#39;brand_price_max&#39;] - np.min(data[&#39;brand_price_max&#39;])) / 
-                           (np.max(data[&#39;brand_price_max&#39;]) - np.min(data[&#39;brand_price_max&#39;])))
-data[&#39;brand_price_median&#39;] = ((data[&#39;brand_price_median&#39;] - np.min(data[&#39;brand_price_median&#39;])) /
-                              (np.max(data[&#39;brand_price_median&#39;]) - np.min(data[&#39;brand_price_median&#39;])))
-data[&#39;brand_price_min&#39;] = ((data[&#39;brand_price_min&#39;] - np.min(data[&#39;brand_price_min&#39;])) / 
-                           (np.max(data[&#39;brand_price_min&#39;]) - np.min(data[&#39;brand_price_min&#39;])))
-data[&#39;brand_price_std&#39;] = ((data[&#39;brand_price_std&#39;] - np.min(data[&#39;brand_price_std&#39;])) / 
-                           (np.max(data[&#39;brand_price_std&#39;]) - np.min(data[&#39;brand_price_std&#39;])))
-data[&#39;brand_price_sum&#39;] = ((data[&#39;brand_price_sum&#39;] - np.min(data[&#39;brand_price_sum&#39;])) / 
-                           (np.max(data[&#39;brand_price_sum&#39;]) - np.min(data[&#39;brand_price_sum&#39;])))</code></pre>
-<pre><code class="python"># 对类别特征进行 OneEncoder
-data = pd.get_dummies(data, columns=[&#39;model&#39;, &#39;brand&#39;, &#39;bodyType&#39;, &#39;fuelType&#39;,
-                                     &#39;gearbox&#39;, &#39;notRepairedDamage&#39;, &#39;power_bin&#39;])</code></pre>
-<pre><code class="python">print(data.shape)
-data.columns</code></pre>
+data<span class="token punctuation">[</span><span class="token string">'brand_amount'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_amount'</span><span class="token punctuation">]</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_amount'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> 
+                        <span class="token punctuation">(</span>np<span class="token punctuation">.</span>max<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_amount'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_amount'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+data<span class="token punctuation">[</span><span class="token string">'brand_price_average'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_average'</span><span class="token punctuation">]</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_average'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> 
+                               <span class="token punctuation">(</span>np<span class="token punctuation">.</span>max<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_average'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_average'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+data<span class="token punctuation">[</span><span class="token string">'brand_price_max'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_max'</span><span class="token punctuation">]</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_max'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> 
+                           <span class="token punctuation">(</span>np<span class="token punctuation">.</span>max<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_max'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_max'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+data<span class="token punctuation">[</span><span class="token string">'brand_price_median'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_median'</span><span class="token punctuation">]</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_median'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span>
+                              <span class="token punctuation">(</span>np<span class="token punctuation">.</span>max<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_median'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_median'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+data<span class="token punctuation">[</span><span class="token string">'brand_price_min'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_min'</span><span class="token punctuation">]</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_min'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> 
+                           <span class="token punctuation">(</span>np<span class="token punctuation">.</span>max<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_min'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_min'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+data<span class="token punctuation">[</span><span class="token string">'brand_price_std'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_std'</span><span class="token punctuation">]</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_std'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> 
+                           <span class="token punctuation">(</span>np<span class="token punctuation">.</span>max<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_std'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_std'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+data<span class="token punctuation">[</span><span class="token string">'brand_price_sum'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_sum'</span><span class="token punctuation">]</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_sum'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> 
+                           <span class="token punctuation">(</span>np<span class="token punctuation">.</span>max<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_sum'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> np<span class="token punctuation">.</span>min<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_sum'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 对类别特征进行 OneEncoder</span>
+data <span class="token operator">=</span> pd<span class="token punctuation">.</span>get_dummies<span class="token punctuation">(</span>data<span class="token punctuation">,</span> columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'model'</span><span class="token punctuation">,</span> <span class="token string">'brand'</span><span class="token punctuation">,</span> <span class="token string">'bodyType'</span><span class="token punctuation">,</span> <span class="token string">'fuelType'</span><span class="token punctuation">,</span>
+                                     <span class="token string">'gearbox'</span><span class="token punctuation">,</span> <span class="token string">'notRepairedDamage'</span><span class="token punctuation">,</span> <span class="token string">'power_bin'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+data<span class="token punctuation">.</span>columns<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <pre><code>(199037, 370)
 
 
@@ -978,49 +979,49 @@ Index([&#39;SaleID&#39;, &#39;kilometer&#39;, &#39;name&#39;, &#39;offerType&#39
        &#39;power_bin_20.0&#39;, &#39;power_bin_21.0&#39;, &#39;power_bin_22.0&#39;, &#39;power_bin_23.0&#39;,
        &#39;power_bin_24.0&#39;, &#39;power_bin_25.0&#39;, &#39;power_bin_26.0&#39;, &#39;power_bin_27.0&#39;,
        &#39;power_bin_28.0&#39;, &#39;power_bin_29.0&#39;],
-      dtype=&#39;object&#39;, length=370)</code></pre><pre><code class="python"># 这份数据可以给 LR 用
-data.to_csv(&#39;data_for_lr.csv&#39;, index=0)</code></pre>
-<h4 id="3-2-3-特征筛选"><a href="#3-2-3-特征筛选" class="headerlink" title="3.2.3 特征筛选"></a>3.2.3 特征筛选</h4><h5 id="过滤式"><a href="#过滤式" class="headerlink" title="过滤式"></a>过滤式</h5><pre><code class="python"># 相关性分析
-print(data[&#39;power&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))
-print(data[&#39;kilometer&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))
-print(data[&#39;brand_amount&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))
-print(data[&#39;brand_price_average&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))
-print(data[&#39;brand_price_max&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))
-print(data[&#39;brand_price_median&#39;].corr(data[&#39;price&#39;], method=&#39;spearman&#39;))</code></pre>
+      dtype=&#39;object&#39;, length=370)</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 这份数据可以给 LR 用</span>
+data<span class="token punctuation">.</span>to_csv<span class="token punctuation">(</span><span class="token string">'data_for_lr.csv'</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="3-2-3-特征筛选"><a href="#3-2-3-特征筛选" class="headerlink" title="3.2.3 特征筛选"></a>3.2.3 特征筛选</h4><h5 id="过滤式"><a href="#过滤式" class="headerlink" title="过滤式"></a>过滤式</h5><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 相关性分析</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>corr<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> method<span class="token operator">=</span><span class="token string">'spearman'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'kilometer'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>corr<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> method<span class="token operator">=</span><span class="token string">'spearman'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_amount'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>corr<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> method<span class="token operator">=</span><span class="token string">'spearman'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_average'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>corr<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> method<span class="token operator">=</span><span class="token string">'spearman'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_max'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>corr<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> method<span class="token operator">=</span><span class="token string">'spearman'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'brand_price_median'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>corr<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> method<span class="token operator">=</span><span class="token string">'spearman'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>0.5728285196051496
 -0.4082569701616764
 0.058156610025581514
 0.3834909576057687
 0.259066833880992
-0.38691042393409447</code></pre><pre><code class="python"># 当然也可以直接看图
-data_numeric = data[[&#39;power&#39;, &#39;kilometer&#39;, &#39;brand_amount&#39;, &#39;brand_price_average&#39;, 
-                     &#39;brand_price_max&#39;, &#39;brand_price_median&#39;]]
-correlation = data_numeric.corr()
+0.38691042393409447</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 当然也可以直接看图</span>
+data_numeric <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">,</span> <span class="token string">'kilometer'</span><span class="token punctuation">,</span> <span class="token string">'brand_amount'</span><span class="token punctuation">,</span> <span class="token string">'brand_price_average'</span><span class="token punctuation">,</span> 
+                     <span class="token string">'brand_price_max'</span><span class="token punctuation">,</span> <span class="token string">'brand_price_median'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+correlation <span class="token operator">=</span> data_numeric<span class="token punctuation">.</span>corr<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-f , ax = plt.subplots(figsize = (7, 7))
-plt.title(&#39;Correlation of Numeric Features with Price&#39;,y=1,size=16)
-sns.heatmap(correlation,square = True,  vmax=0.8)</code></pre>
+f <span class="token punctuation">,</span> ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span>figsize <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Correlation of Numeric Features with Price'</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>size<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>heatmap<span class="token punctuation">(</span>correlation<span class="token punctuation">,</span>square <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span>  vmax<span class="token operator">=</span><span class="token number">0.8</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a1b4f4b90&gt;</code></pre><p><img src="/2020/03/27/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask3/output_30_1.png" alt="png"></p>
-<h5 id="包裹式"><a href="#包裹式" class="headerlink" title="包裹式"></a>包裹式</h5><pre><code class="python"># k_feature 太大会很难跑，没服务器，所以提前 interrupt 了
-from mlxtend.feature_selection import SequentialFeatureSelector as SFS
-from sklearn.linear_model import LinearRegression
-sfs = SFS(LinearRegression(),
-           k_features=10,
-           forward=True,
-           floating=False,
-           scoring = &#39;r2&#39;,
-           cv = 0)
-x = data.drop([&#39;price&#39;], axis=1)
-x = x.fillna(0)
-y = data[&#39;price&#39;]
-sfs.fit(x, y)
-sfs.k_feature_names_ </code></pre>
-<pre><code class="python"># 画出来，可以看到边际效益
-from mlxtend.plotting import plot_sequential_feature_selection as plot_sfs
-import matplotlib.pyplot as plt
-fig1 = plot_sfs(sfs.get_metric_dict(), kind=&#39;std_dev&#39;)
-plt.grid()
-plt.show()</code></pre>
+<h5 id="包裹式"><a href="#包裹式" class="headerlink" title="包裹式"></a>包裹式</h5><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># k_feature 太大会很难跑，没服务器，所以提前 interrupt 了</span>
+<span class="token keyword">from</span> mlxtend<span class="token punctuation">.</span>feature_selection <span class="token keyword">import</span> SequentialFeatureSelector <span class="token keyword">as</span> SFS
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>linear_model <span class="token keyword">import</span> LinearRegression
+sfs <span class="token operator">=</span> SFS<span class="token punctuation">(</span>LinearRegression<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+           k_features<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>
+           forward<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+           floating<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+           scoring <span class="token operator">=</span> <span class="token string">'r2'</span><span class="token punctuation">,</span>
+           cv <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+x <span class="token operator">=</span> data<span class="token punctuation">.</span>drop<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+x <span class="token operator">=</span> x<span class="token punctuation">.</span>fillna<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span>
+sfs<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+sfs<span class="token punctuation">.</span>k_feature_names_ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 画出来，可以看到边际效益</span>
+<span class="token keyword">from</span> mlxtend<span class="token punctuation">.</span>plotting <span class="token keyword">import</span> plot_sequential_feature_selection <span class="token keyword">as</span> plot_sfs
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+fig1 <span class="token operator">=</span> plot_sfs<span class="token punctuation">(</span>sfs<span class="token punctuation">.</span>get_metric_dict<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> kind<span class="token operator">=</span><span class="token string">'std_dev'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>grid<span class="token punctuation">(</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="嵌入式"><a href="#嵌入式" class="headerlink" title="嵌入式"></a>嵌入式</h5><p>下一章介绍。</p>
 
                 

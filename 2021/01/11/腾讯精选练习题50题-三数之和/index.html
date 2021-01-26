@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -502,49 +503,49 @@
 ```
 输入：nums = [0]
 输出：[]
-```</code></pre><pre><code class="java">import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+```</code></pre><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Arrays<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span>
 
-/*
+<span class="token comment" spellcheck="true">/*
  * @lc app=leetcode.cn id=15 lang=java
  *
  * [15] 三数之和
- */
+ */</span>
 
-// @lc code=start
-class Solution {
-    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) {
-        List&lt;List&lt;Integer&gt;&gt; res= new ArrayList&lt;&gt;();
-        Arrays.sort(nums);
-        int n = nums.length;
-        for(int i =0;i&lt;n;i++){
-           if(i!=0&amp;&amp;nums[i]==nums[i-1]) continue;
-           int l=i+1;
-           int r =n-1;
-           int sum;
-           while(l&lt;r){
-            sum = nums[i]+nums[l]+nums[r];
-            if(sum==0){
-                res.add(List.of(nums[i],nums[l],nums[r]));
-                 //去除重复处理
-                 do {l ++;} while(l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
-                 do {r --;} while(l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
-            }else if(sum&gt;0){
-                r--;
-               // continue;
-            }else{
-                l++;
-                //continue;
-            }
-           }
-        }
-        return res;
-    }
-}
-// @lc code=end
+<span class="token comment" spellcheck="true">// @lc code=start</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> <span class="token function">threeSum</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> res<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Arrays<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> n <span class="token operator">=</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+           <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">!=</span><span class="token number">0</span><span class="token operator">&amp;&amp;</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>nums<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+           <span class="token keyword">int</span> l<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+           <span class="token keyword">int</span> r <span class="token operator">=</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+           <span class="token keyword">int</span> sum<span class="token punctuation">;</span>
+           <span class="token keyword">while</span><span class="token punctuation">(</span>l<span class="token operator">&lt;</span>r<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            sum <span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token operator">+</span>nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>sum<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                res<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>List<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">,</span>nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                 <span class="token comment" spellcheck="true">//去除重复处理</span>
+                 <span class="token keyword">do</span> <span class="token punctuation">{</span>l <span class="token operator">++</span><span class="token punctuation">;</span><span class="token punctuation">}</span> <span class="token keyword">while</span><span class="token punctuation">(</span>l <span class="token operator">&lt;</span> r <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span> <span class="token operator">==</span> nums<span class="token punctuation">[</span>l <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                 <span class="token keyword">do</span> <span class="token punctuation">{</span>r <span class="token operator">--</span><span class="token punctuation">;</span><span class="token punctuation">}</span> <span class="token keyword">while</span><span class="token punctuation">(</span>l <span class="token operator">&lt;</span> r <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span> <span class="token operator">==</span> nums<span class="token punctuation">[</span>r <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>sum<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                r<span class="token operator">--</span><span class="token punctuation">;</span>
+               <span class="token comment" spellcheck="true">// continue;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+                l<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//continue;</span>
+            <span class="token punctuation">}</span>
+           <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// @lc code=end</span>
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>算法分析<br>排序 + 双指针</p>
 <p>1、枚举每个数，表示该数nums[i]已被确定，在排序后的情况下，通过双指针l，r分别从左边l = i + 1和右边n - 1往中间靠拢，找到nums[i] + nums[l] + nums[r] == 0的所有符合条件的搭配<br>2、在找符合条件搭配的过程中，假设sum = nums[i] + nums[l] + nums[r]<br>若sum &gt; 0，则r往左走，使sum变小<br>若sum &lt; 0，则l往右走，使sum变大<br>若sum == 0，则表示找到了与nums[i]搭配的组合nums[l]和nums[r]，存到ans中<br>3、判重处理<br>确定好nums[i]时，l 需要从i + 1开始<br>当nums[i] == nums[i - 1]，表示当前确定好的数与上一个一样，需要直接continue<br>当找符合条件搭配时，即sum == 0,需要对相同的nums[l]和nums[r]进行判重出来<br>时间复杂度 O(n2)O(n2)</p>
 

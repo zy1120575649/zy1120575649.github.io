@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -498,96 +499,96 @@
 <li>采用代理IP并轮换</li>
 <li>设置访问时间间隔</li>
 </ol>
-<pre><code class="python">import requests
-import re
-import json
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> requests
+<span class="token keyword">import</span> re
+<span class="token keyword">import</span> json
 
 
-def open_proxy_url(url):
-    user_agent = &#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36&#39;
-    headers = {&#39;User-Agent&#39;: user_agent}
-    try:
-        r = requests.get(url, headers = headers, timeout = 10)
-        r.raise_for_status()
-        r.encoding = r.apparent_encoding
-        return r.text
-    except:
-        print(&#39;无法访问网页&#39; + url)
+<span class="token keyword">def</span> <span class="token function">open_proxy_url</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    user_agent <span class="token operator">=</span> <span class="token string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36'</span>
+    headers <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'User-Agent'</span><span class="token punctuation">:</span> user_agent<span class="token punctuation">}</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        r <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">,</span> headers <span class="token operator">=</span> headers<span class="token punctuation">,</span> timeout <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">)</span>
+        r<span class="token punctuation">.</span>raise_for_status<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        r<span class="token punctuation">.</span>encoding <span class="token operator">=</span> r<span class="token punctuation">.</span>apparent_encoding
+        <span class="token keyword">return</span> r<span class="token punctuation">.</span>text
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'无法访问网页'</span> <span class="token operator">+</span> url<span class="token punctuation">)</span>
 
 
-def get_proxy_ip(response):
-    proxy_ip_list = []
-    soup = BeautifulSoup(response, &#39;html.parser&#39;)
-    proxy_ips = soup.find(id = &#39;ip_list&#39;).find_all(&#39;tr&#39;)
-    for proxy_ip in proxy_ips:
-        if len(proxy_ip.select(&#39;td&#39;)) &gt;=8:
-            ip = proxy_ip.select(&#39;td&#39;)[1].text
-            port = proxy_ip.select(&#39;td&#39;)[2].text
-            protocol = proxy_ip.select(&#39;td&#39;)[5].text
-            if protocol in (&#39;HTTP&#39;,&#39;HTTPS&#39;,&#39;http&#39;,&#39;https&#39;):
-                proxy_ip_list.append(f&#39;{protocol}://{ip}:{port}&#39;)
-    return proxy_ip_list
+<span class="token keyword">def</span> <span class="token function">get_proxy_ip</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    proxy_ip_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    soup <span class="token operator">=</span> BeautifulSoup<span class="token punctuation">(</span>response<span class="token punctuation">,</span> <span class="token string">'html.parser'</span><span class="token punctuation">)</span>
+    proxy_ips <span class="token operator">=</span> soup<span class="token punctuation">.</span>find<span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string">'ip_list'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>find_all<span class="token punctuation">(</span><span class="token string">'tr'</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> proxy_ip <span class="token keyword">in</span> proxy_ips<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> len<span class="token punctuation">(</span>proxy_ip<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token string">'td'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">>=</span><span class="token number">8</span><span class="token punctuation">:</span>
+            ip <span class="token operator">=</span> proxy_ip<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token string">'td'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text
+            port <span class="token operator">=</span> proxy_ip<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token string">'td'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text
+            protocol <span class="token operator">=</span> proxy_ip<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token string">'td'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text
+            <span class="token keyword">if</span> protocol <span class="token keyword">in</span> <span class="token punctuation">(</span><span class="token string">'HTTP'</span><span class="token punctuation">,</span><span class="token string">'HTTPS'</span><span class="token punctuation">,</span><span class="token string">'http'</span><span class="token punctuation">,</span><span class="token string">'https'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                proxy_ip_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>f<span class="token string">'{protocol}://{ip}:{port}'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> proxy_ip_list
 
 
-def open_url_using_proxy(url, proxy):
-    user_agent = &#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36&#39;
-    headers = {&#39;User-Agent&#39;: user_agent}
-    proxies = {}
-    if proxy.startswith((&#39;HTTPS&#39;,&#39;https&#39;)):
-        proxies[&#39;https&#39;] = proxy
-    else:
-        proxies[&#39;http&#39;] = proxy
+<span class="token keyword">def</span> <span class="token function">open_url_using_proxy</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> proxy<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    user_agent <span class="token operator">=</span> <span class="token string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36'</span>
+    headers <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'User-Agent'</span><span class="token punctuation">:</span> user_agent<span class="token punctuation">}</span>
+    proxies <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token keyword">if</span> proxy<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'HTTPS'</span><span class="token punctuation">,</span><span class="token string">'https'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        proxies<span class="token punctuation">[</span><span class="token string">'https'</span><span class="token punctuation">]</span> <span class="token operator">=</span> proxy
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        proxies<span class="token punctuation">[</span><span class="token string">'http'</span><span class="token punctuation">]</span> <span class="token operator">=</span> proxy
 
-    try:
-        r = requests.get(url, headers = headers, proxies = proxies, timeout = 10)
-        r.raise_for_status()
-        r.encoding = r.apparent_encoding
-        return (r.text, r.status_code)
-    except:
-        print(&#39;无法访问网页&#39; + url)
-        print(&#39;无效代理IP: &#39; + proxy)
-        return False
-
-
-def check_proxy_avaliability(proxy):
-    url = &#39;http://www.baidu.com&#39;
-    result = open_url_using_proxy(url, proxy)
-    VALID_PROXY = False
-    if result:
-        text, status_code = result
-        if status_code == 200:
-            r_title = re.findall(&#39;&lt;title&gt;.*&lt;/title&gt;&#39;, text)
-            if r_title:
-                if r_title[0] == &#39;&lt;title&gt;百度一下，你就知道&lt;/title&gt;&#39;:
-                    VALID_PROXY = True
-        if VALID_PROXY:
-            check_ip_url = &#39;https://jsonip.com/&#39;
-            try:
-                text, status_code = open_url_using_proxy(check_ip_url, proxy)
-            except:
-                return
-
-            print(&#39;有效代理IP: &#39; + proxy)
-            with open(&#39;valid_proxy_ip.txt&#39;,&#39;a&#39;) as f:
-                f.writelines(proxy)
-            try:
-                source_ip = json.loads(text).get(&#39;ip&#39;)
-                print(f&#39;源IP地址为：{source_ip}&#39;)
-                print(&#39;=&#39;*40)
-            except:
-                print(&#39;返回的非json,无法解析&#39;)
-                print(text)
-    else:
-        print(&#39;无效代理IP: &#39; + proxy)
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        r <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">,</span> headers <span class="token operator">=</span> headers<span class="token punctuation">,</span> proxies <span class="token operator">=</span> proxies<span class="token punctuation">,</span> timeout <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">)</span>
+        r<span class="token punctuation">.</span>raise_for_status<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        r<span class="token punctuation">.</span>encoding <span class="token operator">=</span> r<span class="token punctuation">.</span>apparent_encoding
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">,</span> r<span class="token punctuation">.</span>status_code<span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'无法访问网页'</span> <span class="token operator">+</span> url<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'无效代理IP: '</span> <span class="token operator">+</span> proxy<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
 
 
-if __name__ == &#39;__main__&#39;:
-    proxy_url = &#39;https://www.xicidaili.com/&#39;
-    proxy_ip_filename = &#39;proxy_ip.txt&#39;
-    text = open(proxy_ip_filename, &#39;r&#39;).read()
-    proxy_ip_list = get_proxy_ip(text)
-    for proxy in proxy_ip_list:
-        check_proxy_avaliability(proxy)</code></pre>
+<span class="token keyword">def</span> <span class="token function">check_proxy_avaliability</span><span class="token punctuation">(</span>proxy<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    url <span class="token operator">=</span> <span class="token string">'http://www.baidu.com'</span>
+    result <span class="token operator">=</span> open_url_using_proxy<span class="token punctuation">(</span>url<span class="token punctuation">,</span> proxy<span class="token punctuation">)</span>
+    VALID_PROXY <span class="token operator">=</span> <span class="token boolean">False</span>
+    <span class="token keyword">if</span> result<span class="token punctuation">:</span>
+        text<span class="token punctuation">,</span> status_code <span class="token operator">=</span> result
+        <span class="token keyword">if</span> status_code <span class="token operator">==</span> <span class="token number">200</span><span class="token punctuation">:</span>
+            r_title <span class="token operator">=</span> re<span class="token punctuation">.</span>findall<span class="token punctuation">(</span><span class="token string">'&lt;title>.*&lt;/title>'</span><span class="token punctuation">,</span> text<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> r_title<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> r_title<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'&lt;title>百度一下，你就知道&lt;/title>'</span><span class="token punctuation">:</span>
+                    VALID_PROXY <span class="token operator">=</span> <span class="token boolean">True</span>
+        <span class="token keyword">if</span> VALID_PROXY<span class="token punctuation">:</span>
+            check_ip_url <span class="token operator">=</span> <span class="token string">'https://jsonip.com/'</span>
+            <span class="token keyword">try</span><span class="token punctuation">:</span>
+                text<span class="token punctuation">,</span> status_code <span class="token operator">=</span> open_url_using_proxy<span class="token punctuation">(</span>check_ip_url<span class="token punctuation">,</span> proxy<span class="token punctuation">)</span>
+            <span class="token keyword">except</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span>
+
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'有效代理IP: '</span> <span class="token operator">+</span> proxy<span class="token punctuation">)</span>
+            <span class="token keyword">with</span> open<span class="token punctuation">(</span><span class="token string">'valid_proxy_ip.txt'</span><span class="token punctuation">,</span><span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+                f<span class="token punctuation">.</span>writelines<span class="token punctuation">(</span>proxy<span class="token punctuation">)</span>
+            <span class="token keyword">try</span><span class="token punctuation">:</span>
+                source_ip <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'ip'</span><span class="token punctuation">)</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">'源IP地址为：{source_ip}'</span><span class="token punctuation">)</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'='</span><span class="token operator">*</span><span class="token number">40</span><span class="token punctuation">)</span>
+            <span class="token keyword">except</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'返回的非json,无法解析'</span><span class="token punctuation">)</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'无效代理IP: '</span> <span class="token operator">+</span> proxy<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    proxy_url <span class="token operator">=</span> <span class="token string">'https://www.xicidaili.com/'</span>
+    proxy_ip_filename <span class="token operator">=</span> <span class="token string">'proxy_ip.txt'</span>
+    text <span class="token operator">=</span> open<span class="token punctuation">(</span>proxy_ip_filename<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    proxy_ip_list <span class="token operator">=</span> get_proxy_ip<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> proxy <span class="token keyword">in</span> proxy_ip_list<span class="token punctuation">:</span>
+        check_proxy_avaliability<span class="token punctuation">(</span>proxy<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="selenium"><a href="#selenium" class="headerlink" title="selenium"></a>selenium</h2><p>selenium是什么：一个自动化测试工具（大家都是这么说的）</p>
 <p>selenium应用场景：用代码的方式去模拟浏览器操作过程（如：打开浏览器、在输入框里输入文字、回车等），在爬虫方面很有必要</p>
 <p>准备工作：</p>
@@ -595,13 +596,13 @@ if __name__ == &#39;__main__&#39;:
 <li>安装selenium（pip install selenium）</li>
 <li>安装chromedriver（一个驱动程序，用以启动chrome浏览器，具体的驱动程序需要对应的驱动，在官网上可以找到下载地址） 基本步骤：</li>
 </ol>
-<pre><code class="python">from selenium import webdriver  # 启动浏览器需要用到
-from selenium.webdriver.common.keys import Keys</code></pre>
-<pre><code class="python">driver = webdriver.Chrome(&quot;chromedriver驱动程序路径&quot;)</code></pre>
-<pre><code class="python">driver.get(&quot;http://www.python.org&quot;)</code></pre>
-<pre><code class="python">driver.close()  # 关闭浏览器一个Tab
-# or
-driver.quit()  # 关闭浏览器窗口</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver  <span class="token comment" spellcheck="true"># 启动浏览器需要用到</span>
+<span class="token keyword">from</span> selenium<span class="token punctuation">.</span>webdriver<span class="token punctuation">.</span>common<span class="token punctuation">.</span>keys <span class="token keyword">import</span> Keys<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token string">"chromedriver驱动程序路径"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"http://www.python.org"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">driver<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 关闭浏览器一个Tab</span>
+<span class="token comment" spellcheck="true"># or</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 关闭浏览器窗口</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>

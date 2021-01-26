@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -481,8 +482,8 @@
                 <ul>
 <li><p>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
 <p><strong>示例 1:</strong></p>
-<pre><code class="markdown">输入: 121
-输出: true</code></pre>
+<pre class="line-numbers language-markdown"><code class="language-markdown">输入: 121
+输出: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p><strong>示例 2:</strong></p>
 <pre><code>输入: -121
 输出: false
@@ -493,43 +494,43 @@
 <p>你能不将整数转为字符串来解决这个问题吗？</p>
 </li>
 </ul>
-<pre><code class="java">
+<pre class="line-numbers language-java"><code class="language-java">
 
-/*
+<span class="token comment" spellcheck="true">/*
  * @lc app=leetcode.cn id=9 lang=java
  *
  * [9] 回文数
  * 不将整数转为字符串来处理（用的第7题整数反转的思想）
- */
+ */</span>
 
-// @lc code=start
-class Solution {
-    public boolean isPalindrome(int x) {
-        // //整数反转后和原数比较(全部反转后可能会溢出)
-        // if(x&lt;0) return false;
-        // int res=0;
-        // int y =x;
-        // while(x!=0){
-        //     res = res*10+x%10;
-        //     x/=10;
-        // }
-        // return res==y;
+<span class="token comment" spellcheck="true">// @lc code=start</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isPalindrome</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// //整数反转后和原数比较(全部反转后可能会溢出)</span>
+        <span class="token comment" spellcheck="true">// if(x&lt;0) return false;</span>
+        <span class="token comment" spellcheck="true">// int res=0;</span>
+        <span class="token comment" spellcheck="true">// int y =x;</span>
+        <span class="token comment" spellcheck="true">// while(x!=0){</span>
+        <span class="token comment" spellcheck="true">//     res = res*10+x%10;</span>
+        <span class="token comment" spellcheck="true">//     x/=10;</span>
+        <span class="token comment" spellcheck="true">// }</span>
+        <span class="token comment" spellcheck="true">// return res==y;</span>
 
-        //取后半段进行反转 如果和前半段相同-》是回文数
-        if(x&lt;0) return false;
-        if(x!=0&amp;&amp;x%10==0) return false;
-        int reverseNumber=0;
-        while(x&gt;reverseNumber){
-            reverseNumber = reverseNumber*10+x%10;
-            x/=10;
-        }
-        return x==reverseNumber||x==reverseNumber/10;//奇数和偶数两种情况 12321 123 12，1221 12 21
-       //时间复杂度：O(logn)，对于每次迭代，我们会将输入除以 10，因此时间复杂度为 O(logn)。
-    }
-}
-// @lc code=end
+        <span class="token comment" spellcheck="true">//取后半段进行反转 如果和前半段相同-》是回文数</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">!=</span><span class="token number">0</span><span class="token operator">&amp;&amp;</span>x<span class="token operator">%</span><span class="token number">10</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> reverseNumber<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>x<span class="token operator">></span>reverseNumber<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            reverseNumber <span class="token operator">=</span> reverseNumber<span class="token operator">*</span><span class="token number">10</span><span class="token operator">+</span>x<span class="token operator">%</span><span class="token number">10</span><span class="token punctuation">;</span>
+            x<span class="token operator">/=</span><span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> x<span class="token operator">==</span>reverseNumber<span class="token operator">||</span>x<span class="token operator">==</span>reverseNumber<span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//奇数和偶数两种情况 12321 123 12，1221 12 21</span>
+       <span class="token comment" spellcheck="true">//时间复杂度：O(logn)，对于每次迭代，我们会将输入除以 10，因此时间复杂度为 O(logn)。</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// @lc code=end</span>
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>

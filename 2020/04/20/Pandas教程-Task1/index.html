@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -482,11 +483,11 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code class="python">import pandas as pd
-import numpy as np</code></pre>
-<pre><code class="python">pd.__version__</code></pre>
-<pre><code>&#39;0.25.3&#39;</code></pre><pre><code class="python">df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/table.csv&#39;)
-df.head()</code></pre>
+                <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">pd<span class="token punctuation">.</span>__version__<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>&#39;0.25.3&#39;</code></pre><pre class="line-numbers language-python"><code class="language-python">df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span><span class="token punctuation">)</span>
+df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -583,8 +584,8 @@ df.head()</code></pre>
 
 
 
-<pre><code class="python">df_txt = pd.read_table(&#39;Documents/Pandas教程/joyful-pandas-master/data/table.txt&#39;)
-df_txt</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df_txt <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_table<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/table.txt'</span><span class="token punctuation">)</span>
+df_txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -644,8 +645,8 @@ df_txt</code></pre>
 
 
 
-<pre><code class="python">df_excel = pd.read_excel(&#39;Documents/Pandas教程/joyful-pandas-master/data/table.xlsx&#39;)
-df_excel.head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df_excel <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_excel<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/table.xlsx'</span><span class="token punctuation">)</span>
+df_excel<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -742,25 +743,25 @@ df_excel.head()</code></pre>
 
 
 
-<pre><code class="python">df.to_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/new_table.csv&#39;)</code></pre>
-<pre><code class="python">df.to_excel(&#39;Documents/Pandas教程/joyful-pandas-master/data/new_table2.xlsx&#39;, sheet_name=&#39;Sheet1&#39;)</code></pre>
-<pre><code class="python">s = pd.Series(np.random.randn(5),index=[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;],name=&#39;这是一个Series&#39;,dtype=&#39;float64&#39;)
-s</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>to_csv<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/new_table.csv'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>to_excel<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/new_table2.xlsx'</span><span class="token punctuation">,</span> sheet_name<span class="token operator">=</span><span class="token string">'Sheet1'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">,</span><span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'这是一个Series'</span><span class="token punctuation">,</span>dtype<span class="token operator">=</span><span class="token string">'float64'</span><span class="token punctuation">)</span>
+s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <pre><code>a   -0.699435
 b   -0.583320
 c   -0.526598
 d   -1.110295
 e   -0.006360
-Name: 这是一个Series, dtype: float64</code></pre><pre><code class="python">s.values</code></pre>
-<pre><code>array([-0.6994351 , -0.5833203 , -0.52659774, -1.11029458, -0.00635964])</code></pre><pre><code class="python">s.name</code></pre>
-<pre><code>&#39;这是一个Series&#39;</code></pre><pre><code class="python">s.index</code></pre>
-<pre><code>Index([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;], dtype=&#39;object&#39;)</code></pre><pre><code class="python">s.dtype</code></pre>
-<pre><code>dtype(&#39;float64&#39;)</code></pre><pre><code class="python">s[&#39;a&#39;]</code></pre>
-<pre><code>-0.6994350999787233</code></pre><pre><code class="python">s.mean()</code></pre>
-<pre><code>-0.585201471154681</code></pre><pre><code class="python">print([attr for attr in dir(s) if not attr.startswith(&#39;_&#39;)])</code></pre>
-<pre><code>[&#39;T&#39;, &#39;a&#39;, &#39;abs&#39;, &#39;add&#39;, &#39;add_prefix&#39;, &#39;add_suffix&#39;, &#39;agg&#39;, &#39;aggregate&#39;, &#39;align&#39;, &#39;all&#39;, &#39;any&#39;, &#39;append&#39;, &#39;apply&#39;, &#39;argmax&#39;, &#39;argmin&#39;, &#39;argsort&#39;, &#39;array&#39;, &#39;as_matrix&#39;, &#39;asfreq&#39;, &#39;asof&#39;, &#39;astype&#39;, &#39;at&#39;, &#39;at_time&#39;, &#39;autocorr&#39;, &#39;axes&#39;, &#39;b&#39;, &#39;between&#39;, &#39;between_time&#39;, &#39;bfill&#39;, &#39;bool&#39;, &#39;c&#39;, &#39;clip&#39;, &#39;clip_lower&#39;, &#39;clip_upper&#39;, &#39;combine&#39;, &#39;combine_first&#39;, &#39;compound&#39;, &#39;compress&#39;, &#39;copy&#39;, &#39;corr&#39;, &#39;count&#39;, &#39;cov&#39;, &#39;cummax&#39;, &#39;cummin&#39;, &#39;cumprod&#39;, &#39;cumsum&#39;, &#39;d&#39;, &#39;describe&#39;, &#39;diff&#39;, &#39;div&#39;, &#39;divide&#39;, &#39;divmod&#39;, &#39;dot&#39;, &#39;drop&#39;, &#39;drop_duplicates&#39;, &#39;droplevel&#39;, &#39;dropna&#39;, &#39;dtype&#39;, &#39;dtypes&#39;, &#39;duplicated&#39;, &#39;e&#39;, &#39;empty&#39;, &#39;eq&#39;, &#39;equals&#39;, &#39;ewm&#39;, &#39;expanding&#39;, &#39;explode&#39;, &#39;factorize&#39;, &#39;ffill&#39;, &#39;fillna&#39;, &#39;filter&#39;, &#39;first&#39;, &#39;first_valid_index&#39;, &#39;floordiv&#39;, &#39;from_array&#39;, &#39;ge&#39;, &#39;get&#39;, &#39;get_dtype_counts&#39;, &#39;get_ftype_counts&#39;, &#39;get_values&#39;, &#39;groupby&#39;, &#39;gt&#39;, &#39;hasnans&#39;, &#39;head&#39;, &#39;hist&#39;, &#39;iat&#39;, &#39;idxmax&#39;, &#39;idxmin&#39;, &#39;iloc&#39;, &#39;index&#39;, &#39;infer_objects&#39;, &#39;interpolate&#39;, &#39;is_monotonic&#39;, &#39;is_monotonic_decreasing&#39;, &#39;is_monotonic_increasing&#39;, &#39;is_unique&#39;, &#39;isin&#39;, &#39;isna&#39;, &#39;isnull&#39;, &#39;item&#39;, &#39;items&#39;, &#39;iteritems&#39;, &#39;keys&#39;, &#39;kurt&#39;, &#39;kurtosis&#39;, &#39;last&#39;, &#39;last_valid_index&#39;, &#39;le&#39;, &#39;loc&#39;, &#39;lt&#39;, &#39;mad&#39;, &#39;map&#39;, &#39;mask&#39;, &#39;max&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;memory_usage&#39;, &#39;min&#39;, &#39;mod&#39;, &#39;mode&#39;, &#39;mul&#39;, &#39;multiply&#39;, &#39;name&#39;, &#39;nbytes&#39;, &#39;ndim&#39;, &#39;ne&#39;, &#39;nlargest&#39;, &#39;nonzero&#39;, &#39;notna&#39;, &#39;notnull&#39;, &#39;nsmallest&#39;, &#39;nunique&#39;, &#39;pct_change&#39;, &#39;pipe&#39;, &#39;plot&#39;, &#39;pop&#39;, &#39;pow&#39;, &#39;prod&#39;, &#39;product&#39;, &#39;ptp&#39;, &#39;put&#39;, &#39;quantile&#39;, &#39;radd&#39;, &#39;rank&#39;, &#39;ravel&#39;, &#39;rdiv&#39;, &#39;rdivmod&#39;, &#39;reindex&#39;, &#39;reindex_like&#39;, &#39;rename&#39;, &#39;rename_axis&#39;, &#39;reorder_levels&#39;, &#39;repeat&#39;, &#39;replace&#39;, &#39;resample&#39;, &#39;reset_index&#39;, &#39;rfloordiv&#39;, &#39;rmod&#39;, &#39;rmul&#39;, &#39;rolling&#39;, &#39;round&#39;, &#39;rpow&#39;, &#39;rsub&#39;, &#39;rtruediv&#39;, &#39;sample&#39;, &#39;searchsorted&#39;, &#39;sem&#39;, &#39;set_axis&#39;, &#39;shape&#39;, &#39;shift&#39;, &#39;size&#39;, &#39;skew&#39;, &#39;slice_shift&#39;, &#39;sort_index&#39;, &#39;sort_values&#39;, &#39;squeeze&#39;, &#39;std&#39;, &#39;sub&#39;, &#39;subtract&#39;, &#39;sum&#39;, &#39;swapaxes&#39;, &#39;swaplevel&#39;, &#39;tail&#39;, &#39;take&#39;, &#39;to_clipboard&#39;, &#39;to_csv&#39;, &#39;to_dense&#39;, &#39;to_dict&#39;, &#39;to_excel&#39;, &#39;to_frame&#39;, &#39;to_hdf&#39;, &#39;to_json&#39;, &#39;to_latex&#39;, &#39;to_list&#39;, &#39;to_msgpack&#39;, &#39;to_numpy&#39;, &#39;to_period&#39;, &#39;to_pickle&#39;, &#39;to_sparse&#39;, &#39;to_sql&#39;, &#39;to_string&#39;, &#39;to_timestamp&#39;, &#39;to_xarray&#39;, &#39;transform&#39;, &#39;transpose&#39;, &#39;truediv&#39;, &#39;truncate&#39;, &#39;tshift&#39;, &#39;tz_convert&#39;, &#39;tz_localize&#39;, &#39;unique&#39;, &#39;unstack&#39;, &#39;update&#39;, &#39;value_counts&#39;, &#39;values&#39;, &#39;var&#39;, &#39;view&#39;, &#39;where&#39;, &#39;xs&#39;]</code></pre><pre><code class="python">df = pd.DataFrame({&#39;col1&#39;:list(&#39;abcde&#39;),&#39;col2&#39;:range(5,10),&#39;col3&#39;:[1.3,2.5,3.6,4.6,5.8]},
-                 index=list(&#39;一二三四五&#39;))
-df</code></pre>
+Name: 这是一个Series, dtype: float64</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>values<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>array([-0.6994351 , -0.5833203 , -0.52659774, -1.11029458, -0.00635964])</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>&#39;这是一个Series&#39;</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>index<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>Index([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;], dtype=&#39;object&#39;)</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>dtype<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>dtype(&#39;float64&#39;)</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>-0.6994350999787233</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>-0.585201471154681</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">[</span>attr <span class="token keyword">for</span> attr <span class="token keyword">in</span> dir<span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token operator">not</span> attr<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">'_'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>[&#39;T&#39;, &#39;a&#39;, &#39;abs&#39;, &#39;add&#39;, &#39;add_prefix&#39;, &#39;add_suffix&#39;, &#39;agg&#39;, &#39;aggregate&#39;, &#39;align&#39;, &#39;all&#39;, &#39;any&#39;, &#39;append&#39;, &#39;apply&#39;, &#39;argmax&#39;, &#39;argmin&#39;, &#39;argsort&#39;, &#39;array&#39;, &#39;as_matrix&#39;, &#39;asfreq&#39;, &#39;asof&#39;, &#39;astype&#39;, &#39;at&#39;, &#39;at_time&#39;, &#39;autocorr&#39;, &#39;axes&#39;, &#39;b&#39;, &#39;between&#39;, &#39;between_time&#39;, &#39;bfill&#39;, &#39;bool&#39;, &#39;c&#39;, &#39;clip&#39;, &#39;clip_lower&#39;, &#39;clip_upper&#39;, &#39;combine&#39;, &#39;combine_first&#39;, &#39;compound&#39;, &#39;compress&#39;, &#39;copy&#39;, &#39;corr&#39;, &#39;count&#39;, &#39;cov&#39;, &#39;cummax&#39;, &#39;cummin&#39;, &#39;cumprod&#39;, &#39;cumsum&#39;, &#39;d&#39;, &#39;describe&#39;, &#39;diff&#39;, &#39;div&#39;, &#39;divide&#39;, &#39;divmod&#39;, &#39;dot&#39;, &#39;drop&#39;, &#39;drop_duplicates&#39;, &#39;droplevel&#39;, &#39;dropna&#39;, &#39;dtype&#39;, &#39;dtypes&#39;, &#39;duplicated&#39;, &#39;e&#39;, &#39;empty&#39;, &#39;eq&#39;, &#39;equals&#39;, &#39;ewm&#39;, &#39;expanding&#39;, &#39;explode&#39;, &#39;factorize&#39;, &#39;ffill&#39;, &#39;fillna&#39;, &#39;filter&#39;, &#39;first&#39;, &#39;first_valid_index&#39;, &#39;floordiv&#39;, &#39;from_array&#39;, &#39;ge&#39;, &#39;get&#39;, &#39;get_dtype_counts&#39;, &#39;get_ftype_counts&#39;, &#39;get_values&#39;, &#39;groupby&#39;, &#39;gt&#39;, &#39;hasnans&#39;, &#39;head&#39;, &#39;hist&#39;, &#39;iat&#39;, &#39;idxmax&#39;, &#39;idxmin&#39;, &#39;iloc&#39;, &#39;index&#39;, &#39;infer_objects&#39;, &#39;interpolate&#39;, &#39;is_monotonic&#39;, &#39;is_monotonic_decreasing&#39;, &#39;is_monotonic_increasing&#39;, &#39;is_unique&#39;, &#39;isin&#39;, &#39;isna&#39;, &#39;isnull&#39;, &#39;item&#39;, &#39;items&#39;, &#39;iteritems&#39;, &#39;keys&#39;, &#39;kurt&#39;, &#39;kurtosis&#39;, &#39;last&#39;, &#39;last_valid_index&#39;, &#39;le&#39;, &#39;loc&#39;, &#39;lt&#39;, &#39;mad&#39;, &#39;map&#39;, &#39;mask&#39;, &#39;max&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;memory_usage&#39;, &#39;min&#39;, &#39;mod&#39;, &#39;mode&#39;, &#39;mul&#39;, &#39;multiply&#39;, &#39;name&#39;, &#39;nbytes&#39;, &#39;ndim&#39;, &#39;ne&#39;, &#39;nlargest&#39;, &#39;nonzero&#39;, &#39;notna&#39;, &#39;notnull&#39;, &#39;nsmallest&#39;, &#39;nunique&#39;, &#39;pct_change&#39;, &#39;pipe&#39;, &#39;plot&#39;, &#39;pop&#39;, &#39;pow&#39;, &#39;prod&#39;, &#39;product&#39;, &#39;ptp&#39;, &#39;put&#39;, &#39;quantile&#39;, &#39;radd&#39;, &#39;rank&#39;, &#39;ravel&#39;, &#39;rdiv&#39;, &#39;rdivmod&#39;, &#39;reindex&#39;, &#39;reindex_like&#39;, &#39;rename&#39;, &#39;rename_axis&#39;, &#39;reorder_levels&#39;, &#39;repeat&#39;, &#39;replace&#39;, &#39;resample&#39;, &#39;reset_index&#39;, &#39;rfloordiv&#39;, &#39;rmod&#39;, &#39;rmul&#39;, &#39;rolling&#39;, &#39;round&#39;, &#39;rpow&#39;, &#39;rsub&#39;, &#39;rtruediv&#39;, &#39;sample&#39;, &#39;searchsorted&#39;, &#39;sem&#39;, &#39;set_axis&#39;, &#39;shape&#39;, &#39;shift&#39;, &#39;size&#39;, &#39;skew&#39;, &#39;slice_shift&#39;, &#39;sort_index&#39;, &#39;sort_values&#39;, &#39;squeeze&#39;, &#39;std&#39;, &#39;sub&#39;, &#39;subtract&#39;, &#39;sum&#39;, &#39;swapaxes&#39;, &#39;swaplevel&#39;, &#39;tail&#39;, &#39;take&#39;, &#39;to_clipboard&#39;, &#39;to_csv&#39;, &#39;to_dense&#39;, &#39;to_dict&#39;, &#39;to_excel&#39;, &#39;to_frame&#39;, &#39;to_hdf&#39;, &#39;to_json&#39;, &#39;to_latex&#39;, &#39;to_list&#39;, &#39;to_msgpack&#39;, &#39;to_numpy&#39;, &#39;to_period&#39;, &#39;to_pickle&#39;, &#39;to_sparse&#39;, &#39;to_sql&#39;, &#39;to_string&#39;, &#39;to_timestamp&#39;, &#39;to_xarray&#39;, &#39;transform&#39;, &#39;transpose&#39;, &#39;truediv&#39;, &#39;truncate&#39;, &#39;tshift&#39;, &#39;tz_convert&#39;, &#39;tz_localize&#39;, &#39;unique&#39;, &#39;unstack&#39;, &#39;update&#39;, &#39;value_counts&#39;, &#39;values&#39;, &#39;var&#39;, &#39;view&#39;, &#39;where&#39;, &#39;xs&#39;]</code></pre><pre class="line-numbers language-python"><code class="language-python">df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'col1'</span><span class="token punctuation">:</span>list<span class="token punctuation">(</span><span class="token string">'abcde'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'col2'</span><span class="token punctuation">:</span>range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'col3'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">1.3</span><span class="token punctuation">,</span><span class="token number">2.5</span><span class="token punctuation">,</span><span class="token number">3.6</span><span class="token punctuation">,</span><span class="token number">4.6</span><span class="token punctuation">,</span><span class="token number">5.8</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                 index<span class="token operator">=</span>list<span class="token punctuation">(</span><span class="token string">'一二三四五'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+df<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -821,15 +822,15 @@ df</code></pre>
 
 
 
-<pre><code class="python">df[&#39;col1&#39;]</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'col1'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>一    a
 二    b
 三    c
 四    d
 五    e
-Name: col1, dtype: object</code></pre><pre><code class="python">type(df)</code></pre>
-<pre><code>pandas.core.frame.DataFrame</code></pre><pre><code class="python">type(df[&#39;col1&#39;])</code></pre>
-<pre><code>pandas.core.series.Series</code></pre><pre><code class="python">df.rename(index={&#39;一&#39;:&#39;one&#39;},columns={&#39;col1&#39;:&#39;new_col1&#39;})</code></pre>
+Name: col1, dtype: object</code></pre><pre class="line-numbers language-python"><code class="language-python">type<span class="token punctuation">(</span>df<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>pandas.core.frame.DataFrame</code></pre><pre class="line-numbers language-python"><code class="language-python">type<span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'col1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>pandas.core.series.Series</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>rename<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'一'</span><span class="token punctuation">:</span><span class="token string">'one'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>columns<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'col1'</span><span class="token punctuation">:</span><span class="token string">'new_col1'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -890,20 +891,20 @@ Name: col1, dtype: object</code></pre><pre><code class="python">type(df)</code><
 
 
 
-<pre><code class="python">df.index</code></pre>
-<pre><code>Index([&#39;一&#39;, &#39;二&#39;, &#39;三&#39;, &#39;四&#39;, &#39;五&#39;], dtype=&#39;object&#39;)</code></pre><pre><code class="python">df.columns</code></pre>
-<pre><code>Index([&#39;col1&#39;, &#39;col2&#39;, &#39;col3&#39;], dtype=&#39;object&#39;)</code></pre><pre><code class="python">df.values</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>index<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>Index([&#39;一&#39;, &#39;二&#39;, &#39;三&#39;, &#39;四&#39;, &#39;五&#39;], dtype=&#39;object&#39;)</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>columns<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>Index([&#39;col1&#39;, &#39;col2&#39;, &#39;col3&#39;], dtype=&#39;object&#39;)</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>values<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>array([[&#39;a&#39;, 5, 1.3],
        [&#39;b&#39;, 6, 2.5],
        [&#39;c&#39;, 7, 3.6],
        [&#39;d&#39;, 8, 4.6],
-       [&#39;e&#39;, 9, 5.8]], dtype=object)</code></pre><pre><code class="python">df.shape</code></pre>
-<pre><code>(5, 3)</code></pre><pre><code class="python">df.mean() </code></pre>
+       [&#39;e&#39;, 9, 5.8]], dtype=object)</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>shape<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>(5, 3)</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>col2    7.00
 col3    3.56
-dtype: float64</code></pre><pre><code class="python">df1 = pd.DataFrame({&#39;A&#39;:[1,2,3]},index=[1,2,3])
-df2 = pd.DataFrame({&#39;A&#39;:[1,2,3]},index=[3,1,2])
-df1-df2</code></pre>
+dtype: float64</code></pre><pre class="line-numbers language-python"><code class="language-python">df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'A'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'A'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+df1<span class="token operator">-</span>df2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -944,7 +945,7 @@ df1-df2</code></pre>
 
 
 
-<pre><code class="python">df.drop(index=&#39;五&#39;,columns=&#39;col1&#39;)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'五'</span><span class="token punctuation">,</span>columns<span class="token operator">=</span><span class="token string">'col1'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -994,9 +995,9 @@ df1-df2</code></pre>
 
 
 
-<pre><code class="python">df[&#39;col1&#39;]=[1,2,3,4,5]
-del df[&#39;col1&#39;]
-df</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'col1'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span>
+<span class="token keyword">del</span> df<span class="token punctuation">[</span><span class="token string">'col1'</span><span class="token punctuation">]</span>
+df<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1051,14 +1052,14 @@ df</code></pre>
 
 
 
-<pre><code class="python">df[&#39;col1&#39;]=[1,2,3,4,5]
-df.pop(&#39;col1&#39;)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'col1'</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span>
+df<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token string">'col1'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <pre><code>一    1
 二    2
 三    3
 四    4
 五    5
-Name: col1, dtype: int64</code></pre><pre><code class="python">df</code></pre>
+Name: col1, dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1113,8 +1114,8 @@ Name: col1, dtype: int64</code></pre><pre><code class="python">df</code></pre>
 
 
 
-<pre><code class="python">df1[&#39;B&#39;]=list(&#39;abc&#39;)
-df1</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df1<span class="token punctuation">[</span><span class="token string">'B'</span><span class="token punctuation">]</span><span class="token operator">=</span>list<span class="token punctuation">(</span><span class="token string">'abc'</span><span class="token punctuation">)</span>
+df1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1159,7 +1160,7 @@ df1</code></pre>
 
 
 
-<pre><code class="python">df1.assign(C=pd.Series(list(&#39;def&#39;)))</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df1<span class="token punctuation">.</span>assign<span class="token punctuation">(</span>C<span class="token operator">=</span>pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>list<span class="token punctuation">(</span><span class="token string">'def'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1208,7 +1209,7 @@ df1</code></pre>
 
 
 
-<pre><code class="python">df1</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1253,7 +1254,7 @@ df1</code></pre>
 
 
 
-<pre><code class="python">df.select_dtypes(include=[&#39;number&#39;]).head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>select_dtypes<span class="token punctuation">(</span>include<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'number'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1308,7 +1309,7 @@ df1</code></pre>
 
 
 
-<pre><code class="python">df.select_dtypes(include=[&#39;float&#39;]).head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>select_dtypes<span class="token punctuation">(</span>include<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'float'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1357,12 +1358,12 @@ df1</code></pre>
 
 
 
-<pre><code class="python">s = df.mean()
-s.name=&#39;to_DataFrame&#39;
-s</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">s <span class="token operator">=</span> df<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>name<span class="token operator">=</span><span class="token string">'to_DataFrame'</span>
+s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>col2    7.00
 col3    3.56
-Name: to_DataFrame, dtype: float64</code></pre><pre><code class="python">s.to_frame()</code></pre>
+Name: to_DataFrame, dtype: float64</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>to_frame<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1399,7 +1400,7 @@ Name: to_DataFrame, dtype: float64</code></pre><pre><code class="python">s.to_fr
 
 
 
-<pre><code class="python">s.to_frame().T</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>to_frame<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>T<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1434,8 +1435,8 @@ Name: to_DataFrame, dtype: float64</code></pre><pre><code class="python">s.to_fr
 
 
 
-<pre><code class="python">df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/table.csv&#39;)</code></pre>
-<pre><code class="python">df.head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1532,7 +1533,7 @@ Name: to_DataFrame, dtype: float64</code></pre><pre><code class="python">s.to_fr
 
 
 
-<pre><code class="python">df.tail()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>tail<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1629,7 +1630,7 @@ Name: to_DataFrame, dtype: float64</code></pre><pre><code class="python">s.to_fr
 
 
 
-<pre><code class="python">df.head(3)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1702,11 +1703,11 @@ Name: to_DataFrame, dtype: float64</code></pre><pre><code class="python">s.to_fr
 
 
 
-<pre><code class="python">df[&#39;Physics&#39;].nunique()</code></pre>
-<pre><code>7</code></pre><pre><code class="python">df[&#39;Physics&#39;].unique()</code></pre>
-<pre><code>array([&#39;A+&#39;, &#39;B+&#39;, &#39;B-&#39;, &#39;A-&#39;, &#39;B&#39;, &#39;A&#39;, &#39;C&#39;], dtype=object)</code></pre><pre><code class="python">df[&#39;Physics&#39;].count()</code></pre>
-<pre><code>35</code></pre><pre><code class="python">
-df[&#39;Physics&#39;].value_counts()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Physics'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>nunique<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>7</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Physics'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>unique<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>array([&#39;A+&#39;, &#39;B+&#39;, &#39;B-&#39;, &#39;A-&#39;, &#39;B&#39;, &#39;A&#39;, &#39;C&#39;], dtype=object)</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Physics'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>count<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>35</code></pre><pre class="line-numbers language-python"><code class="language-python">
+df<span class="token punctuation">[</span><span class="token string">'Physics'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <pre><code>B+    9
 B     8
 B-    6
@@ -1714,7 +1715,7 @@ A     4
 A-    3
 A+    3
 C     2
-Name: Physics, dtype: int64</code></pre><pre><code class="python">df.info()</code></pre>
+Name: Physics, dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 35 entries, 0 to 34
 Data columns (total 9 columns):
@@ -1728,7 +1729,7 @@ Weight     35 non-null int64
 Math       35 non-null float64
 Physics    35 non-null object
 dtypes: float64(1), int64(3), object(5)
-memory usage: 2.6+ KB</code></pre><pre><code class="python">df.describe()</code></pre>
+memory usage: 2.6+ KB</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>describe<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1816,7 +1817,7 @@ memory usage: 2.6+ KB</code></pre><pre><code class="python">df.describe()</code>
 
 
 
-<pre><code class="python">df.describe(percentiles=[.05, .25, .75, .95])</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>describe<span class="token punctuation">(</span>percentiles<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">.</span><span class="token number">05</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token number">75</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token number">95</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1918,42 +1919,42 @@ memory usage: 2.6+ KB</code></pre><pre><code class="python">df.describe()</code>
 
 
 
-<pre><code class="python">df[&#39;Physics&#39;].describe()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Physics'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>describe<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>count     35
 unique     7
 top       B+
 freq       9
-Name: Physics, dtype: object</code></pre><pre><code class="python">df[&#39;Math&#39;].idxmax()</code></pre>
-<pre><code>5</code></pre><pre><code class="python">df[&#39;Math&#39;].nlargest(3)</code></pre>
+Name: Physics, dtype: object</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Math'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>idxmax<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>5</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Math'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>nlargest<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>5     97.0
 28    95.5
 11    87.7
-Name: Math, dtype: float64</code></pre><pre><code class="python">df[&#39;Math&#39;].head()</code></pre>
+Name: Math, dtype: float64</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Math'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0    34.0
 1    32.5
 2    87.2
 3    80.4
 4    84.8
-Name: Math, dtype: float64</code></pre><pre><code class="python">df[&#39;Math&#39;].clip(33,80).head()</code></pre>
+Name: Math, dtype: float64</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Math'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clip<span class="token punctuation">(</span><span class="token number">33</span><span class="token punctuation">,</span><span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0    34.0
 1    33.0
 2    80.0
 3    80.0
 4    80.0
-Name: Math, dtype: float64</code></pre><pre><code class="python">df[&#39;Math&#39;].mad()</code></pre>
-<pre><code>16.924244897959188</code></pre><pre><code class="python">df[&#39;Address&#39;].head()</code></pre>
+Name: Math, dtype: float64</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Math'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>mad<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>16.924244897959188</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Address'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0    street_1
 1    street_2
 2    street_2
 3    street_2
 4    street_4
-Name: Address, dtype: object</code></pre><pre><code class="python">df[&#39;Address&#39;].replace([&#39;street_1&#39;,&#39;street_2&#39;],[&#39;one&#39;,&#39;two&#39;]).head()</code></pre>
+Name: Address, dtype: object</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Address'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'street_1'</span><span class="token punctuation">,</span><span class="token string">'street_2'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0         one
 1         two
 2         two
 3         two
 4    street_4
-Name: Address, dtype: object</code></pre><pre><code class="python">df.replace({&#39;Address&#39;:{&#39;street_1&#39;:&#39;one&#39;,&#39;street_2&#39;:&#39;two&#39;}}).head()</code></pre>
+Name: Address, dtype: object</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'Address'</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">'street_1'</span><span class="token punctuation">:</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'street_2'</span><span class="token punctuation">:</span><span class="token string">'two'</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2050,13 +2051,13 @@ Name: Address, dtype: object</code></pre><pre><code class="python">df.replace({&
 
 
 
-<pre><code class="python">df[&#39;Math&#39;].apply(lambda x:str(x)+&#39;!&#39;).head() </code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Math'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>apply<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span>str<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'!'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0    34.0!
 1    32.5!
 2    87.2!
 3    80.4!
 4    84.8!
-Name: Math, dtype: object</code></pre><pre><code class="python">df.apply(lambda x:x.apply(lambda x:str(x)+&#39;!&#39;)).head()</code></pre>
+Name: Math, dtype: object</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>apply<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span>x<span class="token punctuation">.</span>apply<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span>str<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'!'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2153,7 +2154,7 @@ Name: Math, dtype: object</code></pre><pre><code class="python">df.apply(lambda 
 
 
 
-<pre><code class="python">df.set_index(&#39;Math&#39;).head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>set_index<span class="token punctuation">(</span><span class="token string">'Math'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2255,7 +2256,7 @@ Name: Math, dtype: object</code></pre><pre><code class="python">df.apply(lambda 
 
 
 
-<pre><code class="python">df.set_index(&#39;Math&#39;).sort_index().head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>set_index<span class="token punctuation">(</span><span class="token string">'Math'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sort_index<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2357,7 +2358,7 @@ Name: Math, dtype: object</code></pre><pre><code class="python">df.apply(lambda 
 
 
 
-<pre><code class="python">df.sort_values(by=&#39;Class&#39;).head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span>by<span class="token operator">=</span><span class="token string">'Class'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2454,7 +2455,7 @@ Name: Math, dtype: object</code></pre><pre><code class="python">df.apply(lambda 
 
 
 
-<pre><code class="python">df.sort_values(by=[&#39;Address&#39;,&#39;Height&#39;]).head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span>by<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'Address'</span><span class="token punctuation">,</span><span class="token string">'Height'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2561,9 +2562,9 @@ Name: Math, dtype: object</code></pre><pre><code class="python">df.apply(lambda 
 <p>2.【练习二】现有一份关于科比的投篮数据集，请解决如下问题：</p>
 <p>（a）哪种action_type和combined_shot_type的组合是最多的？</p>
 <p>（b）在所有被记录的game_id中，遭遇到最多的opponent是一个支？</p>
-<pre><code class="python">#练习1-a
-df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/Game_of_Thrones_Script.csv&#39;)
-df.head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#练习1-a</span>
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/Game_of_Thrones_Script.csv'</span><span class="token punctuation">)</span>
+df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2642,12 +2643,12 @@ df.head()</code></pre>
 
 
 
-<pre><code class="python">df[&#39;Name&#39;].nunique()</code></pre>
-<pre><code>564</code></pre><pre><code class="python">#练习1-b
-df[&#39;Name&#39;].value_counts().index[0]</code></pre>
-<pre><code>&#39;tyrion lannister&#39;</code></pre><pre><code class="python">#练习1-c
-df_words = df.assign(Words=df[&#39;Sentence&#39;].apply(lambda x:len(x.split()))).sort_values(by=&#39;Name&#39;)
-df_words.head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Name'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>nunique<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>564</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#练习1-b</span>
+df<span class="token punctuation">[</span><span class="token string">'Name'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>index<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code>&#39;tyrion lannister&#39;</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#练习1-c</span>
+df_words <span class="token operator">=</span> df<span class="token punctuation">.</span>assign<span class="token punctuation">(</span>Words<span class="token operator">=</span>df<span class="token punctuation">[</span><span class="token string">'Sentence'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>apply<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span>len<span class="token punctuation">(</span>x<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span>by<span class="token operator">=</span><span class="token string">'Name'</span><span class="token punctuation">)</span>
+df_words<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2732,20 +2733,20 @@ df_words.head()</code></pre>
 
 
 
-<pre><code class="python">L_count = []
-N_words = list(zip(df_words[&#39;Name&#39;],df_words[&#39;Words&#39;]))
-for i in N_words:
-    if i == N_words[0]:
-        L_count.append(i[1])
-        last = i[0]
-    else:
-        L_count.append(L_count[-1]+i[1] if i[0]==last else i[1])
-        last = i[0]
-df_words[&#39;Count&#39;]=L_count
-df_words[&#39;Name&#39;][df_words[&#39;Count&#39;].idxmax()]</code></pre>
-<pre><code>&#39;tyrion lannister&#39;</code></pre><pre><code class="python">#练习2-a
-df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/Kobe_data.csv&#39;,index_col=&#39;shot_id&#39;)
-df.head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">L_count <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+N_words <span class="token operator">=</span> list<span class="token punctuation">(</span>zip<span class="token punctuation">(</span>df_words<span class="token punctuation">[</span><span class="token string">'Name'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>df_words<span class="token punctuation">[</span><span class="token string">'Words'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> N_words<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> i <span class="token operator">==</span> N_words<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        L_count<span class="token punctuation">.</span>append<span class="token punctuation">(</span>i<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        last <span class="token operator">=</span> i<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        L_count<span class="token punctuation">.</span>append<span class="token punctuation">(</span>L_count<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">+</span>i<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">if</span> i<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">==</span>last <span class="token keyword">else</span> i<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        last <span class="token operator">=</span> i<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+df_words<span class="token punctuation">[</span><span class="token string">'Count'</span><span class="token punctuation">]</span><span class="token operator">=</span>L_count
+df_words<span class="token punctuation">[</span><span class="token string">'Name'</span><span class="token punctuation">]</span><span class="token punctuation">[</span>df_words<span class="token punctuation">[</span><span class="token string">'Count'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>idxmax<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>&#39;tyrion lannister&#39;</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#练习2-a</span>
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/Kobe_data.csv'</span><span class="token punctuation">,</span>index_col<span class="token operator">=</span><span class="token string">'shot_id'</span><span class="token punctuation">)</span>
+df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2939,10 +2940,10 @@ df.head()</code></pre>
 
 
 
-<pre><code class="python">pd.Series(list(zip(df[&#39;action_type&#39;],df[&#39;combined_shot_type&#39;]))).value_counts().index[0]</code></pre>
-<pre><code>(&#39;Jump Shot&#39;, &#39;Jump Shot&#39;)</code></pre><pre><code class="python">#练习2-b
-pd.Series(list(list(zip(*(pd.Series(list(zip(df[&#39;game_id&#39;],df[&#39;opponent&#39;])))
-                          .unique()).tolist()))[1])).value_counts().index[0]</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>list<span class="token punctuation">(</span>zip<span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'action_type'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>df<span class="token punctuation">[</span><span class="token string">'combined_shot_type'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>index<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>(&#39;Jump Shot&#39;, &#39;Jump Shot&#39;)</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#练习2-b</span>
+pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>list<span class="token punctuation">(</span>list<span class="token punctuation">(</span>zip<span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">(</span>pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>list<span class="token punctuation">(</span>zip<span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'game_id'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>df<span class="token punctuation">[</span><span class="token string">'opponent'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                          <span class="token punctuation">.</span>unique<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>tolist<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>index<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>&#39;SAS&#39;</code></pre>
                 
             </div>

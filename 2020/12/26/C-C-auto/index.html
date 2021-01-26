@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -486,12 +487,12 @@
 <p>C++11 赋予 auto 关键字新的含义，使用它来做自动类型推导。也就是说，使用了 auto 关键字以后，编译器会在编译期间自动推导出变量的类型，这样我们就不用手动指明变量的数据类型了。</p>
 <p><strong>NOTE</strong>:<code>auto</code>类型是在<font color="red"><strong><em>编译期间</em></strong></font>由编译器推导的</p>
 </blockquote>
-<pre><code class="cpp">auto name = value;</code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">auto</span> name <span class="token operator">=</span> value<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>例如：</p>
-<pre><code class="cpp">auto n = 10;
-auto f = 12.8;
-auto p = &amp;n;
-auto url = &quot;http://c.biancheng.net/cplus/&quot;;</code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">auto</span> n <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">auto</span> f <span class="token operator">=</span> <span class="token number">12.8</span><span class="token punctuation">;</span>
+<span class="token keyword">auto</span> p <span class="token operator">=</span> <span class="token operator">&amp;</span>n<span class="token punctuation">;</span>
+<span class="token keyword">auto</span> url <span class="token operator">=</span> <span class="token string">"http://c.biancheng.net/cplus/"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>下面我们来解释一下：</p>
 <ul>
 <li>第 1 行中，10 是一个整数，默认是 int 类型，所以推导出变量 n 的类型是 int。</li>
@@ -500,11 +501,11 @@ auto url = &quot;http://c.biancheng.net/cplus/&quot;;</code></pre>
 <li>第 4 行中，由双引号<code>&quot;&quot;</code>包围起来的字符串是 const char* 类型，所以推导出变量 url 的类型是 const char*，也即一个常量指针。</li>
 </ul>
 <p>接下来，我们再来看一下 auto 和 const 的结合：</p>
-<pre><code class="cpp">int  x = 0;
-const  auto n = x;  //n 为 const int ，auto 被推导为 int
-auto f = n;      //f 为 const int，auto 被推导为 int（const 属性被抛弃）
-const auto &amp;r1 = x;  //r1 为 const int&amp; 类型，auto 被推导为 int
-auto &amp;r2 = r1;  //r1 为 const int&amp; 类型，auto 被推导为 const int 类型</code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span>  x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span>  <span class="token keyword">auto</span> n <span class="token operator">=</span> x<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//n 为 const int ，auto 被推导为 int</span>
+<span class="token keyword">auto</span> f <span class="token operator">=</span> n<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//f 为 const int，auto 被推导为 int（const 属性被抛弃）</span>
+<span class="token keyword">const</span> <span class="token keyword">auto</span> <span class="token operator">&amp;</span>r1 <span class="token operator">=</span> x<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//r1 为 const int&amp; 类型，auto 被推导为 int</span>
+<span class="token keyword">auto</span> <span class="token operator">&amp;</span>r2 <span class="token operator">=</span> r1<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//r1 为 const int&amp; 类型，auto 被推导为 const int 类型</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>最后我们来简单总结一下 auto 与 const 结合的用法：</p>
 <ul>
 <li>当类型不为引用时，auto 的推导结果将不保留表达式的 const 属性；</li>
@@ -518,13 +519,13 @@ auto &amp;r2 = r1;  //r1 为 const int&amp; 类型，auto 被推导为 const int
 <li><p>auto 不能作用于类的非静态成员变量（也就是没有 static 关键字修饰的成员变量）中。</p>
 </li>
 <li><p>auto 关键字不能定义数组，比如下面的例子就是错误的：</p>
-<pre><code class="cpp">char url[] = &quot;http://c.biancheng.net/&quot;;
-auto  str[] = url;  //arr 为数组，所以不能使用 auto
-auto temp = url;  // auto被转化为int*
-for(auto item: temp)  // error, because temp is not a array any more.
-{
-    // ...
-}</code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">char</span> url<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"http://c.biancheng.net/"</span><span class="token punctuation">;</span>
+<span class="token keyword">auto</span>  str<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> url<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//arr 为数组，所以不能使用 auto</span>
+<span class="token keyword">auto</span> temp <span class="token operator">=</span> url<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// auto被转化为int*</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> item<span class="token operator">:</span> temp<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// error, because temp is not a array any more.</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
 

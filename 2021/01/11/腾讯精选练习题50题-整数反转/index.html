@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -491,39 +492,39 @@
 <pre><code>输入：x = 120
 输出：21</code></pre><p><strong>示例 4：</strong></p>
 <pre><code>输入：x = 0
-输出：0</code></pre><pre><code class="java">
-/*
+输出：0</code></pre><pre class="line-numbers language-java"><code class="language-java">
+<span class="token comment" spellcheck="true">/*
  * @lc app=leetcode.cn id=7 lang=java
  *
  * [7] 整数反转
- */
+ */</span>
 
-// @lc code=start
-class Solution {
-    public int reverse(int x) {
-        int res=0;
-        while(x!=0){
-            //判断溢出
-            if(res&gt;0&amp;&amp;res&gt;(Integer.MAX_VALUE-x%10)/10){
-                    return 0;            
-            }
-            if(res&lt;0&amp;&amp;res&lt;(Integer.MIN_VALUE-x%10)/10){
-                    return 0 ;                
-            }
-            res = res*10 + x%10;
-            x/=10;
-        }
+<span class="token comment" spellcheck="true">// @lc code=start</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">reverse</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> res<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>x<span class="token operator">!=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//判断溢出</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>res<span class="token operator">></span><span class="token number">0</span><span class="token operator">&amp;&amp;</span>res<span class="token operator">></span><span class="token punctuation">(</span>Integer<span class="token punctuation">.</span>MAX_VALUE<span class="token operator">-</span>x<span class="token operator">%</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>            
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>res<span class="token operator">&lt;</span><span class="token number">0</span><span class="token operator">&amp;&amp;</span>res<span class="token operator">&lt;</span><span class="token punctuation">(</span>Integer<span class="token punctuation">.</span>MIN_VALUE<span class="token operator">-</span>x<span class="token operator">%</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> <span class="token number">0</span> <span class="token punctuation">;</span>                
+            <span class="token punctuation">}</span>
+            res <span class="token operator">=</span> res<span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> x<span class="token operator">%</span><span class="token number">10</span><span class="token punctuation">;</span>
+            x<span class="token operator">/=</span><span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-      //  System.out.println(43%10); 4
-       // System.out.println(-43%10); -4正负数一样 不需要单独考虑
-        return res;
+      <span class="token comment" spellcheck="true">//  System.out.println(43%10); 4</span>
+       <span class="token comment" spellcheck="true">// System.out.println(-43%10); -4正负数一样 不需要单独考虑</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
 
-    }
-}
-// @lc code=end
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// @lc code=end</span>
 
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -765,13 +766,13 @@ class Solution {
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi)/">
+                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="腾讯精选练习题50题-字符串转换整数 (atoi)">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="腾讯精选练习题50题-寻找两个正序数组的中位数">
                         
-                        <span class="card-title">腾讯精选练习题50题-字符串转换整数 (atoi)</span>
+                        <span class="card-title">腾讯精选练习题50题-寻找两个正序数组的中位数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -814,13 +815,13 @@ class Solution {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/">
+                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi)/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="腾讯精选练习题50题-最长回文子串">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="腾讯精选练习题50题-字符串转换整数 (atoi)">
                         
-                        <span class="card-title">腾讯精选练习题50题-最长回文子串</span>
+                        <span class="card-title">腾讯精选练习题50题-字符串转换整数 (atoi)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

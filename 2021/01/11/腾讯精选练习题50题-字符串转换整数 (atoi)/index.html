@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -514,100 +515,100 @@
 <li><code>0 &lt;= s.length &lt;= 200</code></li>
 <li><code>s</code> 由英文字母（大写和小写）、数字、<code>&#39; &#39;</code>、<code>&#39;+&#39;</code>、<code>&#39;-&#39;</code> 和 <code>&#39;.&#39;</code> 组成</li>
 </ul>
-<pre><code class="java">
+<pre class="line-numbers language-java"><code class="language-java">
 
-/*
+<span class="token comment" spellcheck="true">/*
  * @lc app=leetcode.cn id=8 lang=java
  *
  * [8] 字符串转换整数 (atoi)
- */
+ */</span>
 
-// @lc code=start
-class Solution {
+<span class="token comment" spellcheck="true">// @lc code=start</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
 
-    public int myAtoi(String s) {
-       int n = s.length();
-       int k=0;
-       while(k&lt;n&amp;&amp;s.charAt(k)==&#39; &#39;){
-        k++;
-       }
-       if(k==n){
-           return 0;
-       }
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">myAtoi</span><span class="token punctuation">(</span>String s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">int</span> n <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token keyword">int</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+       <span class="token keyword">while</span><span class="token punctuation">(</span>k<span class="token operator">&lt;</span>n<span class="token operator">&amp;&amp;</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token operator">==</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        k<span class="token operator">++</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+       <span class="token keyword">if</span><span class="token punctuation">(</span>k<span class="token operator">==</span>n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+           <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
 
-       int op = 1;//假设是正号
-       if(s.charAt(k)==&#39;-&#39;){
-           op=-1;
-           k++;
-       }else if(s.charAt(k)==&#39;+&#39;){k++;}
-/*
+       <span class="token keyword">int</span> op <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//假设是正号</span>
+       <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token operator">==</span><span class="token string">'-'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+           op<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+           k<span class="token operator">++</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token operator">==</span><span class="token string">'+'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>k<span class="token operator">++</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">/*
 算法1
 用long记录
 
 1、找到第一个非空的字符位置k，若k == n表示全都是空字符，直接返回0
 2、op记录截取后的整数的正负性，1表示正号，-1表示负号
-3、使用long类型的res来存储截取后的整数（一定是正整数，因为括号还没包括），在某一刻若res &gt; INT_MAX，则break，表示已经超出
-4、截取到res后，附上op的符号，若res &gt; INT_MAX或者res &lt; INT_MIN则分别返回INF_MAX或者INT_MIN
+3、使用long类型的res来存储截取后的整数（一定是正整数，因为括号还没包括），在某一刻若res > INT_MAX，则break，表示已经超出
+4、截取到res后，附上op的符号，若res > INT_MAX或者res &lt; INT_MIN则分别返回INF_MAX或者INT_MIN
 时间复杂度 O(n)
-*/
-    //    long res = 0;
-    //    while(k&lt;n&amp;&amp;s.charAt(k)&gt;=&#39;0&#39; &amp;&amp; s.charAt(k)&lt;=&#39;9&#39;){
-    //         res = res * 10 + s.charAt(k)-&#39;0&#39;;
-    //         k++;
+*/</span>
+    <span class="token comment" spellcheck="true">//    long res = 0;</span>
+    <span class="token comment" spellcheck="true">//    while(k&lt;n&amp;&amp;s.charAt(k)>='0' &amp;&amp; s.charAt(k)&lt;='9'){</span>
+    <span class="token comment" spellcheck="true">//         res = res * 10 + s.charAt(k)-'0';</span>
+    <span class="token comment" spellcheck="true">//         k++;</span>
 
-    //         if(res&gt;Integer.MAX_VALUE) break;
-    //    }
-    //    res= res*op;
-    //    if(res&gt;Integer.MAX_VALUE) res=Integer.MAX_VALUE;
-    //    if(res&lt;Integer.MIN_VALUE) res= Integer.MIN_VALUE;
-    //    return (int)res;
-/*
+    <span class="token comment" spellcheck="true">//         if(res>Integer.MAX_VALUE) break;</span>
+    <span class="token comment" spellcheck="true">//    }</span>
+    <span class="token comment" spellcheck="true">//    res= res*op;</span>
+    <span class="token comment" spellcheck="true">//    if(res>Integer.MAX_VALUE) res=Integer.MAX_VALUE;</span>
+    <span class="token comment" spellcheck="true">//    if(res&lt;Integer.MIN_VALUE) res= Integer.MIN_VALUE;</span>
+    <span class="token comment" spellcheck="true">//    return (int)res;</span>
+<span class="token comment" spellcheck="true">/*
 算法2
 用int记录
 
 1、找到第一个非空的字符位置k，若k == n表示全都是空字符，直接返回0
 2、op记录截取后的整数的正负性，1表示正号，-1表示负号
 3、使用int类型的res来存储截取后的整数（一定是正整数，因为括号还没包括），
-在某一刻若op是正数，(res * 10 + x) * op &gt; INT_MAX，即res * op &gt; (INT_MAX - x ) / 10，则返回INF_MAX，表示已经超出（其中x是正数）
-在某一刻若op是负数，(res * 10 + x) * op &lt; INT_MIN，即res * op &gt; (INT_MIN - x * (-1)) / 10，则返回INF_MIN，表示已经超出（其中x是负数）
-4、截取到res后，附上op的符号，若res &gt; INT_MAX或者res &lt; INT_MIN则分别返回INF_MAX或者INT_MIN
+在某一刻若op是正数，(res * 10 + x) * op > INT_MAX，即res * op > (INT_MAX - x ) / 10，则返回INF_MAX，表示已经超出（其中x是正数）
+在某一刻若op是负数，(res * 10 + x) * op &lt; INT_MIN，即res * op > (INT_MIN - x * (-1)) / 10，则返回INF_MIN，表示已经超出（其中x是负数）
+4、截取到res后，附上op的符号，若res > INT_MAX或者res &lt; INT_MIN则分别返回INF_MAX或者INT_MIN
 5、最后返回res
 时间复杂度 O(n)
-*/
-        int res=0;
-        while(k&lt;n&amp;&amp;s.charAt(k)&gt;=&#39;0&#39;&amp;&amp;s.charAt(k)&lt;=&#39;9&#39;){
-            int x = s.charAt(k)-&#39;0&#39;;
-            // if(op&gt;0&amp;&amp;res*op&gt;(Integer.MAX_VALUE-x)/10){
-            //     res =  Integer.MAX_VALUE;
-            //     break;
-            // }
-            // if(op&lt;0&amp;&amp;res*op&lt;(Integer.MIN_VALUE-x*(-1))/10){
-            //     res = Integer.MIN_VALUE;
-            //     break;
-            // }
-            ////为了防止overflow，需要检测一下数字是否大于计算机可以表达的最大值和最小值
-            //num = num * 10 + digt &gt; Integer.MAX_VALUE
-            //如果是负数就要检测是否num * 10 + digit &lt; Integer.MIN_VALUE
-            if(res&gt;(Integer.MAX_VALUE-x)/10){
-                return op==1?Integer.MAX_VALUE:Integer.MIN_VALUE;
-            }
+*/</span>
+        <span class="token keyword">int</span> res<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>k<span class="token operator">&lt;</span>n<span class="token operator">&amp;&amp;</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token operator">>=</span><span class="token string">'0'</span><span class="token operator">&amp;&amp;</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token operator">&lt;=</span><span class="token string">'9'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">int</span> x <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token operator">-</span><span class="token string">'0'</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// if(op>0&amp;&amp;res*op>(Integer.MAX_VALUE-x)/10){</span>
+            <span class="token comment" spellcheck="true">//     res =  Integer.MAX_VALUE;</span>
+            <span class="token comment" spellcheck="true">//     break;</span>
+            <span class="token comment" spellcheck="true">// }</span>
+            <span class="token comment" spellcheck="true">// if(op&lt;0&amp;&amp;res*op&lt;(Integer.MIN_VALUE-x*(-1))/10){</span>
+            <span class="token comment" spellcheck="true">//     res = Integer.MIN_VALUE;</span>
+            <span class="token comment" spellcheck="true">//     break;</span>
+            <span class="token comment" spellcheck="true">// }</span>
+            <span class="token comment" spellcheck="true">////为了防止overflow，需要检测一下数字是否大于计算机可以表达的最大值和最小值</span>
+            <span class="token comment" spellcheck="true">//num = num * 10 + digt > Integer.MAX_VALUE</span>
+            <span class="token comment" spellcheck="true">//如果是负数就要检测是否num * 10 + digit &lt; Integer.MIN_VALUE</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>res<span class="token operator">></span><span class="token punctuation">(</span>Integer<span class="token punctuation">.</span>MAX_VALUE<span class="token operator">-</span>x<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> op<span class="token operator">==</span><span class="token number">1</span><span class="token operator">?</span>Integer<span class="token punctuation">.</span>MAX_VALUE<span class="token operator">:</span>Integer<span class="token punctuation">.</span>MIN_VALUE<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
 
-            res = res*10+s.charAt(k) - &#39;0&#39;;
-            k++;
-            // int x = arr[k] - &#39;0&#39;;
-            // if (minus &gt; 0 &amp;&amp; res &gt; (Integer.MAX_VALUE - x) / 10) return Integer.MAX_VALUE;
-            // if (minus &lt; 0 &amp;&amp; -res &lt; (Integer.MIN_VALUE + x) / 10) return Integer.MIN_VALUE;
-            // if (-res * 10 - x == Integer.MIN_VALUE) return Integer.MIN_VALUE;
-            // res = res * 10 + x;
-            // k++;
+            res <span class="token operator">=</span> res<span class="token operator">*</span><span class="token number">10</span><span class="token operator">+</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token string">'0'</span><span class="token punctuation">;</span>
+            k<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// int x = arr[k] - '0';</span>
+            <span class="token comment" spellcheck="true">// if (minus > 0 &amp;&amp; res > (Integer.MAX_VALUE - x) / 10) return Integer.MAX_VALUE;</span>
+            <span class="token comment" spellcheck="true">// if (minus &lt; 0 &amp;&amp; -res &lt; (Integer.MIN_VALUE + x) / 10) return Integer.MIN_VALUE;</span>
+            <span class="token comment" spellcheck="true">// if (-res * 10 - x == Integer.MIN_VALUE) return Integer.MIN_VALUE;</span>
+            <span class="token comment" spellcheck="true">// res = res * 10 + x;</span>
+            <span class="token comment" spellcheck="true">// k++;</span>
 
-        }
-        return res*op;
-    }
-}
-// @lc code=end
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> res<span class="token operator">*</span>op<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// @lc code=end</span>
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -849,13 +850,13 @@ class Solution {
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">
+                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="腾讯精选练习题50题-寻找两个正序数组的中位数">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="腾讯精选练习题50题-整数反转">
                         
-                        <span class="card-title">腾讯精选练习题50题-寻找两个正序数组的中位数</span>
+                        <span class="card-title">腾讯精选练习题50题-整数反转</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -898,13 +899,13 @@ class Solution {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/">
+                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="腾讯精选练习题50题-整数反转">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="腾讯精选练习题50题-最长回文子串">
                         
-                        <span class="card-title">腾讯精选练习题50题-整数反转</span>
+                        <span class="card-title">腾讯精选练习题50题-最长回文子串</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

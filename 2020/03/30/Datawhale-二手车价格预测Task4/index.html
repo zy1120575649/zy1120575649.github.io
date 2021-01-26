@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -496,63 +497,63 @@
 <li><p>模型调参：<br>贪心调参方法；<br>网格调参方法；<br>贝叶斯调参方法</p>
 </li>
 </ol>
-<h2 id="2-代码示例"><a href="#2-代码示例" class="headerlink" title="2 代码示例"></a>2 代码示例</h2><h3 id="2-1读取数据"><a href="#2-1读取数据" class="headerlink" title="2.1读取数据"></a>2.1读取数据</h3><pre><code class="python">import pandas as pd
-import numpy as np
-import warnings
-warnings.filterwarnings(&#39;ignore&#39;)</code></pre>
-<pre><code class="python">def reduce_mem_usage(df):
-    &quot;&quot;&quot; iterate through all the columns of a dataframe and modify the data type
+<h2 id="2-代码示例"><a href="#2-代码示例" class="headerlink" title="2 代码示例"></a>2 代码示例</h2><h3 id="2-1读取数据"><a href="#2-1读取数据" class="headerlink" title="2.1读取数据"></a>2.1读取数据</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> warnings
+warnings<span class="token punctuation">.</span>filterwarnings<span class="token punctuation">(</span><span class="token string">'ignore'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">reduce_mem_usage</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""" iterate through all the columns of a dataframe and modify the data type
         to reduce memory usage.        
-    &quot;&quot;&quot;
-    start_mem = df.memory_usage().sum() 
-    print(&#39;Memory usage of dataframe is {:.2f} MB&#39;.format(start_mem))
+    """</span>
+    start_mem <span class="token operator">=</span> df<span class="token punctuation">.</span>memory_usage<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Memory usage of dataframe is {:.2f} MB'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>start_mem<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    for col in df.columns:
-        col_type = df[col].dtype
+    <span class="token keyword">for</span> col <span class="token keyword">in</span> df<span class="token punctuation">.</span>columns<span class="token punctuation">:</span>
+        col_type <span class="token operator">=</span> df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>dtype
 
-        if col_type != object:
-            c_min = df[col].min()
-            c_max = df[col].max()
-            if str(col_type)[:3] == &#39;int&#39;:
-                if c_min &gt; np.iinfo(np.int8).min and c_max &lt; np.iinfo(np.int8).max:
-                    df[col] = df[col].astype(np.int8)
-                elif c_min &gt; np.iinfo(np.int16).min and c_max &lt; np.iinfo(np.int16).max:
-                    df[col] = df[col].astype(np.int16)
-                elif c_min &gt; np.iinfo(np.int32).min and c_max &lt; np.iinfo(np.int32).max:
-                    df[col] = df[col].astype(np.int32)
-                elif c_min &gt; np.iinfo(np.int64).min and c_max &lt; np.iinfo(np.int64).max:
-                    df[col] = df[col].astype(np.int64)  
-            else:
-                if c_min &gt; np.finfo(np.float16).min and c_max &lt; np.finfo(np.float16).max:
-                    df[col] = df[col].astype(np.float16)
-                elif c_min &gt; np.finfo(np.float32).min and c_max &lt; np.finfo(np.float32).max:
-                    df[col] = df[col].astype(np.float32)
-                else:
-                    df[col] = df[col].astype(np.float64)
-        else:
-            df[col] = df[col].astype(&#39;category&#39;)
+        <span class="token keyword">if</span> col_type <span class="token operator">!=</span> object<span class="token punctuation">:</span>
+            c_min <span class="token operator">=</span> df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>min<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            c_max <span class="token operator">=</span> df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>max<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> str<span class="token punctuation">(</span>col_type<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'int'</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> c_min <span class="token operator">></span> np<span class="token punctuation">.</span>iinfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int8<span class="token punctuation">)</span><span class="token punctuation">.</span>min <span class="token operator">and</span> c_max <span class="token operator">&lt;</span> np<span class="token punctuation">.</span>iinfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int8<span class="token punctuation">)</span><span class="token punctuation">.</span>max<span class="token punctuation">:</span>
+                    df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int8<span class="token punctuation">)</span>
+                <span class="token keyword">elif</span> c_min <span class="token operator">></span> np<span class="token punctuation">.</span>iinfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int16<span class="token punctuation">)</span><span class="token punctuation">.</span>min <span class="token operator">and</span> c_max <span class="token operator">&lt;</span> np<span class="token punctuation">.</span>iinfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int16<span class="token punctuation">)</span><span class="token punctuation">.</span>max<span class="token punctuation">:</span>
+                    df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int16<span class="token punctuation">)</span>
+                <span class="token keyword">elif</span> c_min <span class="token operator">></span> np<span class="token punctuation">.</span>iinfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int32<span class="token punctuation">)</span><span class="token punctuation">.</span>min <span class="token operator">and</span> c_max <span class="token operator">&lt;</span> np<span class="token punctuation">.</span>iinfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int32<span class="token punctuation">)</span><span class="token punctuation">.</span>max<span class="token punctuation">:</span>
+                    df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int32<span class="token punctuation">)</span>
+                <span class="token keyword">elif</span> c_min <span class="token operator">></span> np<span class="token punctuation">.</span>iinfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int64<span class="token punctuation">)</span><span class="token punctuation">.</span>min <span class="token operator">and</span> c_max <span class="token operator">&lt;</span> np<span class="token punctuation">.</span>iinfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int64<span class="token punctuation">)</span><span class="token punctuation">.</span>max<span class="token punctuation">:</span>
+                    df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>int64<span class="token punctuation">)</span>  
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> c_min <span class="token operator">></span> np<span class="token punctuation">.</span>finfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float16<span class="token punctuation">)</span><span class="token punctuation">.</span>min <span class="token operator">and</span> c_max <span class="token operator">&lt;</span> np<span class="token punctuation">.</span>finfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float16<span class="token punctuation">)</span><span class="token punctuation">.</span>max<span class="token punctuation">:</span>
+                    df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float16<span class="token punctuation">)</span>
+                <span class="token keyword">elif</span> c_min <span class="token operator">></span> np<span class="token punctuation">.</span>finfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span><span class="token punctuation">.</span>min <span class="token operator">and</span> c_max <span class="token operator">&lt;</span> np<span class="token punctuation">.</span>finfo<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span><span class="token punctuation">.</span>max<span class="token punctuation">:</span>
+                    df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float64<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            df<span class="token punctuation">[</span>col<span class="token punctuation">]</span> <span class="token operator">=</span> df<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">'category'</span><span class="token punctuation">)</span>
 
-    end_mem = df.memory_usage().sum() 
-    print(&#39;Memory usage after optimization is: {:.2f} MB&#39;.format(end_mem))
-    print(&#39;Decreased by {:.1f}%&#39;.format(100 * (start_mem - end_mem) / start_mem))
-    return df</code></pre>
-<pre><code class="python">sample_feature = reduce_mem_usage(pd.read_csv(&#39;data_for_tree.csv&#39;))</code></pre>
+    end_mem <span class="token operator">=</span> df<span class="token punctuation">.</span>memory_usage<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span> 
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Memory usage after optimization is: {:.2f} MB'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>end_mem<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Decreased by {:.1f}%'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span><span class="token number">100</span> <span class="token operator">*</span> <span class="token punctuation">(</span>start_mem <span class="token operator">-</span> end_mem<span class="token punctuation">)</span> <span class="token operator">/</span> start_mem<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> df<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">sample_feature <span class="token operator">=</span> reduce_mem_usage<span class="token punctuation">(</span>pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'data_for_tree.csv'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>Memory usage of dataframe is 62099672.00 MB
 Memory usage after optimization is: 16520303.00 MB
-Decreased by 73.4%</code></pre><pre><code class="python">continuous_feature_names = [x for x in sample_feature.columns if x not in [&#39;price&#39;,&#39;brand&#39;,&#39;model&#39;,&#39;brand&#39;]]</code></pre>
-<h3 id="2-2线性回归-amp-五折交叉验证-amp-模拟真实业务情况"><a href="#2-2线性回归-amp-五折交叉验证-amp-模拟真实业务情况" class="headerlink" title="2.2线性回归 &amp; 五折交叉验证 &amp; 模拟真实业务情况"></a>2.2线性回归 &amp; 五折交叉验证 &amp; 模拟真实业务情况</h3><pre><code class="python">sample_feature = sample_feature.dropna().replace(&#39;-&#39;, 0).reset_index(drop=True)
-sample_feature[&#39;notRepairedDamage&#39;] = sample_feature[&#39;notRepairedDamage&#39;].astype(np.float32)
-train = sample_feature[continuous_feature_names + [&#39;price&#39;]]
+Decreased by 73.4%</code></pre><pre class="line-numbers language-python"><code class="language-python">continuous_feature_names <span class="token operator">=</span> <span class="token punctuation">[</span>x <span class="token keyword">for</span> x <span class="token keyword">in</span> sample_feature<span class="token punctuation">.</span>columns <span class="token keyword">if</span> x <span class="token operator">not</span> <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">,</span><span class="token string">'brand'</span><span class="token punctuation">,</span><span class="token string">'model'</span><span class="token punctuation">,</span><span class="token string">'brand'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="2-2线性回归-amp-五折交叉验证-amp-模拟真实业务情况"><a href="#2-2线性回归-amp-五折交叉验证-amp-模拟真实业务情况" class="headerlink" title="2.2线性回归 &amp; 五折交叉验证 &amp; 模拟真实业务情况"></a>2.2线性回归 &amp; 五折交叉验证 &amp; 模拟真实业务情况</h3><pre class="line-numbers language-python"><code class="language-python">sample_feature <span class="token operator">=</span> sample_feature<span class="token punctuation">.</span>dropna<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span>drop<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+sample_feature<span class="token punctuation">[</span><span class="token string">'notRepairedDamage'</span><span class="token punctuation">]</span> <span class="token operator">=</span> sample_feature<span class="token punctuation">[</span><span class="token string">'notRepairedDamage'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span>np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span>
+train <span class="token operator">=</span> sample_feature<span class="token punctuation">[</span>continuous_feature_names <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
 
-train_X = train[continuous_feature_names]
-train_y = train[&#39;price&#39;]</code></pre>
-<h4 id="简单建模"><a href="#简单建模" class="headerlink" title="简单建模"></a>简单建模</h4><pre><code class="python">from sklearn.linear_model import LinearRegression</code></pre>
-<pre><code class="python">model = LinearRegression(normalize=True)</code></pre>
-<pre><code class="python">model = model.fit(train_X, train_y)</code></pre>
+train_X <span class="token operator">=</span> train<span class="token punctuation">[</span>continuous_feature_names<span class="token punctuation">]</span>
+train_y <span class="token operator">=</span> train<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="简单建模"><a href="#简单建模" class="headerlink" title="简单建模"></a>简单建模</h4><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>linear_model <span class="token keyword">import</span> LinearRegression<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">model <span class="token operator">=</span> LinearRegression<span class="token punctuation">(</span>normalize<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">model <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_X<span class="token punctuation">,</span> train_y<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>查看训练的线性回归模型的截距（intercept）与权重(coef)：</p>
-<pre><code class="python">&#39;intercept:&#39;+ str(model.intercept_)
+<pre class="line-numbers language-python"><code class="language-python"><span class="token string">'intercept:'</span><span class="token operator">+</span> str<span class="token punctuation">(</span>model<span class="token punctuation">.</span>intercept_<span class="token punctuation">)</span>
 
-sorted(dict(zip(continuous_feature_names, model.coef_)).items(), key=lambda x:x[1], reverse=True)</code></pre>
+sorted<span class="token punctuation">(</span>dict<span class="token punctuation">(</span>zip<span class="token punctuation">(</span>continuous_feature_names<span class="token punctuation">,</span> model<span class="token punctuation">.</span>coef_<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span>x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>[(&#39;v_6&#39;, 3367064.3416419057),
  (&#39;v_8&#39;, 700675.560939892),
  (&#39;v_9&#39;, 170630.27723222843),
@@ -588,23 +589,23 @@ sorted(dict(zip(continuous_feature_names, model.coef_)).items(), key=lambda x:x[
  (&#39;v_5&#39;, -11022.986240482482),
  (&#39;v_4&#39;, -15121.731109861388),
  (&#39;v_2&#39;, -26098.29992056384),
- (&#39;v_1&#39;, -45556.18929727631)]</code></pre><pre><code class="python">from matplotlib import pyplot as plt</code></pre>
-<pre><code class="python">subsample_index = np.random.randint(low=0, high=len(train_y), size=50)</code></pre>
-<pre><code class="python">plt.scatter(train_X[&#39;v_9&#39;][subsample_index], train_y[subsample_index], color=&#39;black&#39;)
-plt.scatter(train_X[&#39;v_9&#39;][subsample_index], model.predict(train_X.loc[subsample_index]), color=&#39;blue&#39;)
-plt.xlabel(&#39;v_9&#39;)
-plt.ylabel(&#39;price&#39;)
-plt.legend([&#39;True Price&#39;,&#39;Predicted Price&#39;],loc=&#39;upper right&#39;)
-print(&#39;The predicted price is obvious different from true price&#39;)
-plt.show()</code></pre>
+ (&#39;v_1&#39;, -45556.18929727631)]</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> matplotlib <span class="token keyword">import</span> pyplot <span class="token keyword">as</span> plt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">subsample_index <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span>low<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> high<span class="token operator">=</span>len<span class="token punctuation">(</span>train_y<span class="token punctuation">)</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>train_X<span class="token punctuation">[</span><span class="token string">'v_9'</span><span class="token punctuation">]</span><span class="token punctuation">[</span>subsample_index<span class="token punctuation">]</span><span class="token punctuation">,</span> train_y<span class="token punctuation">[</span>subsample_index<span class="token punctuation">]</span><span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'black'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>train_X<span class="token punctuation">[</span><span class="token string">'v_9'</span><span class="token punctuation">]</span><span class="token punctuation">[</span>subsample_index<span class="token punctuation">]</span><span class="token punctuation">,</span> model<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>train_X<span class="token punctuation">.</span>loc<span class="token punctuation">[</span>subsample_index<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'blue'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'v_9'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'price'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'True Price'</span><span class="token punctuation">,</span><span class="token string">'Predicted Price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>loc<span class="token operator">=</span><span class="token string">'upper right'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'The predicted price is obvious different from true price'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>The predicted price is obvious different from true price</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_15_1.png" alt="png"></p>
-<pre><code class="python">import seaborn as sns
-print(&#39;It is clear to see the price shows a typical exponential distribution&#39;)
-plt.figure(figsize=(15,5))
-plt.subplot(1,2,1)
-sns.distplot(train_y)
-plt.subplot(1,2,2)
-sns.distplot(train_y[train_y &lt; np.quantile(train_y, 0.9)])</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> seaborn <span class="token keyword">as</span> sns
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'It is clear to see the price shows a typical exponential distribution'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>distplot<span class="token punctuation">(</span>train_y<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>distplot<span class="token punctuation">(</span>train_y<span class="token punctuation">[</span>train_y <span class="token operator">&lt;</span> np<span class="token punctuation">.</span>quantile<span class="token punctuation">(</span>train_y<span class="token punctuation">,</span> <span class="token number">0.9</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>It is clear to see the price shows a typical exponential distribution
 
 
@@ -612,14 +613,14 @@ sns.distplot(train_y[train_y &lt; np.quantile(train_y, 0.9)])</code></pre>
 
 
 &lt;matplotlib.axes._subplots.AxesSubplot at 0x1246a9f50&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_16_2.png" alt="png"></p>
-<pre><code class="python">train_y_ln = np.log(train_y + 1)</code></pre>
-<pre><code class="python">import seaborn as sns
-print(&#39;The transformed price seems like normal distribution&#39;)
-plt.figure(figsize=(15,5))
-plt.subplot(1,2,1)
-sns.distplot(train_y_ln)
-plt.subplot(1,2,2)
-sns.distplot(train_y_ln[train_y_ln &lt; np.quantile(train_y_ln, 0.9)])</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">train_y_ln <span class="token operator">=</span> np<span class="token punctuation">.</span>log<span class="token punctuation">(</span>train_y <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> seaborn <span class="token keyword">as</span> sns
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'The transformed price seems like normal distribution'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>distplot<span class="token punctuation">(</span>train_y_ln<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>distplot<span class="token punctuation">(</span>train_y_ln<span class="token punctuation">[</span>train_y_ln <span class="token operator">&lt;</span> np<span class="token punctuation">.</span>quantile<span class="token punctuation">(</span>train_y_ln<span class="token punctuation">,</span> <span class="token number">0.9</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>The transformed price seems like normal distribution
 
 
@@ -627,10 +628,10 @@ sns.distplot(train_y_ln[train_y_ln &lt; np.quantile(train_y_ln, 0.9)])</code></p
 
 
 &lt;matplotlib.axes._subplots.AxesSubplot at 0x1a2a8ca390&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_18_2.png" alt="png"></p>
-<pre><code class="python">model = model.fit(train_X, train_y_ln)
+<pre class="line-numbers language-python"><code class="language-python">model <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_X<span class="token punctuation">,</span> train_y_ln<span class="token punctuation">)</span>
 
-print(&#39;intercept:&#39;+ str(model.intercept_))
-sorted(dict(zip(continuous_feature_names, model.coef_)).items(), key=lambda x:x[1], reverse=True)</code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'intercept:'</span><span class="token operator">+</span> str<span class="token punctuation">(</span>model<span class="token punctuation">.</span>intercept_<span class="token punctuation">)</span><span class="token punctuation">)</span>
+sorted<span class="token punctuation">(</span>dict<span class="token punctuation">(</span>zip<span class="token punctuation">(</span>continuous_feature_names<span class="token punctuation">,</span> model<span class="token punctuation">.</span>coef_<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span>x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>intercept:18.75074946555847
 
 
@@ -672,33 +673,33 @@ sorted(dict(zip(continuous_feature_names, model.coef_)).items(), key=lambda x:x[
  (&#39;v_2&#39;, -0.9470842241656942),
  (&#39;v_10&#39;, -1.626146668976213),
  (&#39;v_8&#39;, -40.34300748761572),
- (&#39;v_6&#39;, -238.79036385506865)]</code></pre><pre><code class="python">plt.scatter(train_X[&#39;v_9&#39;][subsample_index], train_y[subsample_index], color=&#39;black&#39;)
-plt.scatter(train_X[&#39;v_9&#39;][subsample_index], np.exp(model.predict(train_X.loc[subsample_index])), color=&#39;blue&#39;)
-plt.xlabel(&#39;v_9&#39;)
-plt.ylabel(&#39;price&#39;)
-plt.legend([&#39;True Price&#39;,&#39;Predicted Price&#39;],loc=&#39;upper right&#39;)
-print(&#39;The predicted price seems normal after np.log transforming&#39;)
-plt.show()</code></pre>
+ (&#39;v_6&#39;, -238.79036385506865)]</code></pre><pre class="line-numbers language-python"><code class="language-python">plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>train_X<span class="token punctuation">[</span><span class="token string">'v_9'</span><span class="token punctuation">]</span><span class="token punctuation">[</span>subsample_index<span class="token punctuation">]</span><span class="token punctuation">,</span> train_y<span class="token punctuation">[</span>subsample_index<span class="token punctuation">]</span><span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'black'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>train_X<span class="token punctuation">[</span><span class="token string">'v_9'</span><span class="token punctuation">]</span><span class="token punctuation">[</span>subsample_index<span class="token punctuation">]</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>exp<span class="token punctuation">(</span>model<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>train_X<span class="token punctuation">.</span>loc<span class="token punctuation">[</span>subsample_index<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'blue'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'v_9'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'price'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'True Price'</span><span class="token punctuation">,</span><span class="token string">'Predicted Price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>loc<span class="token operator">=</span><span class="token string">'upper right'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'The predicted price seems normal after np.log transforming'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>The predicted price seems normal after np.log transforming</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_20_1.png" alt="png"></p>
 <h4 id="五折交叉验证"><a href="#五折交叉验证" class="headerlink" title="五折交叉验证"></a>五折交叉验证</h4><p>在使用训练集对参数进行训练的时候，经常会发现人们通常会将一整个训练集分为三个部分（比如mnist手写训练集）。一般分为：训练集（train_set），评估集（valid_set），测试集（test_set）这三个部分。这其实是为了保证训练效果而特意设置的。其中测试集很好理解，其实就是完全不参与训练的数据，仅仅用来观测测试效果的数据。而训练集和评估集则牵涉到下面的知识了。</p>
 <p>因为在实际的训练中，训练的结果对于训练集的拟合程度通常还是挺好的（初始条件敏感），但是对于训练集之外的数据的拟合程度通常就不那么令人满意了。因此我们通常并不会把所有的数据集都拿来训练，而是分出一部分来（这一部分不参加训练）对训练集生成的参数进行测试，相对客观的判断这些参数对训练集之外的数据的符合程度。这种思想就称为交叉验证（Cross Validation）</p>
-<pre><code class="python">from sklearn.model_selection import cross_val_score
-from sklearn.metrics import mean_absolute_error,  make_scorer</code></pre>
-<pre><code class="python">def log_transfer(func):
-    def wrapper(y, yhat):
-        result = func(np.log(y), np.nan_to_num(np.log(yhat)))
-        return result
-    return wrapper</code></pre>
-<pre><code class="python">scores = cross_val_score(model, X=train_X, y=train_y, verbose=1, cv = 5, scoring=make_scorer(log_transfer(mean_absolute_error)))</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> cross_val_score
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword">import</span> mean_absolute_error<span class="token punctuation">,</span>  make_scorer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">log_transfer</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> yhat<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        result <span class="token operator">=</span> func<span class="token punctuation">(</span>np<span class="token punctuation">.</span>log<span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>nan_to_num<span class="token punctuation">(</span>np<span class="token punctuation">.</span>log<span class="token punctuation">(</span>yhat<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> result
+    <span class="token keyword">return</span> wrapper<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">scores <span class="token operator">=</span> cross_val_score<span class="token punctuation">(</span>model<span class="token punctuation">,</span> X<span class="token operator">=</span>train_X<span class="token punctuation">,</span> y<span class="token operator">=</span>train_y<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> cv <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> scoring<span class="token operator">=</span>make_scorer<span class="token punctuation">(</span>log_transfer<span class="token punctuation">(</span>mean_absolute_error<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>[Parallel(n_jobs=1)]: Using backend SequentialBackend with 1 concurrent workers.
-[Parallel(n_jobs=1)]: Done   5 out of   5 | elapsed:    0.8s finished</code></pre><pre><code class="python">print(&#39;AVG:&#39;, np.mean(scores))</code></pre>
-<pre><code>AVG: 1.3658023920314182</code></pre><pre><code class="python">scores = cross_val_score(model, X=train_X, y=train_y_ln, verbose=1, cv = 5, scoring=make_scorer(mean_absolute_error))</code></pre>
+[Parallel(n_jobs=1)]: Done   5 out of   5 | elapsed:    0.8s finished</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'AVG:'</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>scores<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>AVG: 1.3658023920314182</code></pre><pre class="line-numbers language-python"><code class="language-python">scores <span class="token operator">=</span> cross_val_score<span class="token punctuation">(</span>model<span class="token punctuation">,</span> X<span class="token operator">=</span>train_X<span class="token punctuation">,</span> y<span class="token operator">=</span>train_y_ln<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> cv <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> scoring<span class="token operator">=</span>make_scorer<span class="token punctuation">(</span>mean_absolute_error<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>[Parallel(n_jobs=1)]: Using backend SequentialBackend with 1 concurrent workers.
-[Parallel(n_jobs=1)]: Done   5 out of   5 | elapsed:    0.8s finished</code></pre><pre><code class="python">print(&#39;AVG:&#39;, np.mean(scores))</code></pre>
-<pre><code>AVG: 0.19325301837047415</code></pre><pre><code class="python">scores = pd.DataFrame(scores.reshape(1,-1))
-scores.columns = [&#39;cv&#39; + str(x) for x in range(1, 6)]
-scores.index = [&#39;MAE&#39;]
-scores</code></pre>
+[Parallel(n_jobs=1)]: Done   5 out of   5 | elapsed:    0.8s finished</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'AVG:'</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>scores<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>AVG: 0.19325301837047415</code></pre><pre class="line-numbers language-python"><code class="language-python">scores <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>scores<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+scores<span class="token punctuation">.</span>columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'cv'</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+scores<span class="token punctuation">.</span>index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'MAE'</span><span class="token punctuation">]</span>
+scores<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -739,69 +740,69 @@ scores</code></pre>
 
 
 <h4 id="模拟真实业务情况"><a href="#模拟真实业务情况" class="headerlink" title="模拟真实业务情况"></a>模拟真实业务情况</h4><p>但在事实上，由于我们并不具有预知未来的能力，五折交叉验证在某些与时间相关的数据集上反而反映了不真实的情况。通过2018年的二手车价格预测2017年的二手车价格，这显然是不合理的，因此我们还可以采用时间顺序对数据集进行分隔。在本例中，我们选用靠前时间的4/5样本当作训练集，靠后时间的1/5当作验证集，最终结果与五折交叉验证差距不大。</p>
-<pre><code class="python">import datetime</code></pre>
-<pre><code class="python">sample_feature = sample_feature.reset_index(drop=True)</code></pre>
-<pre><code class="python">split_point = len(sample_feature) // 5 * 4</code></pre>
-<pre><code class="python">train = sample_feature.loc[:split_point].dropna()
-val = sample_feature.loc[split_point:].dropna()
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> datetime<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">sample_feature <span class="token operator">=</span> sample_feature<span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span>drop<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">split_point <span class="token operator">=</span> len<span class="token punctuation">(</span>sample_feature<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">5</span> <span class="token operator">*</span> <span class="token number">4</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">train <span class="token operator">=</span> sample_feature<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token punctuation">:</span>split_point<span class="token punctuation">]</span><span class="token punctuation">.</span>dropna<span class="token punctuation">(</span><span class="token punctuation">)</span>
+val <span class="token operator">=</span> sample_feature<span class="token punctuation">.</span>loc<span class="token punctuation">[</span>split_point<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>dropna<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-train_X = train[continuous_feature_names]
-train_y_ln = np.log(train[&#39;price&#39;] + 1)
-val_X = val[continuous_feature_names]
-val_y_ln = np.log(val[&#39;price&#39;] + 1)</code></pre>
-<pre><code class="python">model = model.fit(train_X, train_y_ln)</code></pre>
-<pre><code class="python">mean_absolute_error(val_y_ln, model.predict(val_X))</code></pre>
-<pre><code>0.19577667270300972</code></pre><h4 id="绘制学习率曲线与验证曲线"><a href="#绘制学习率曲线与验证曲线" class="headerlink" title="绘制学习率曲线与验证曲线"></a>绘制学习率曲线与验证曲线</h4><pre><code class="python">from sklearn.model_selection import learning_curve, validation_curve</code></pre>
-<pre><code class="python">? learning_curve</code></pre>
-<pre><code class="python">def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,n_jobs=1, train_size=np.linspace(.1, 1.0, 5 )):  
-    plt.figure()  
-    plt.title(title)  
-    if ylim is not None:  
-        plt.ylim(*ylim)  
-    plt.xlabel(&#39;Training example&#39;)  
-    plt.ylabel(&#39;score&#39;)  
-    train_sizes, train_scores, test_scores = learning_curve(estimator, X, y, cv=cv, n_jobs=n_jobs, train_sizes=train_size, scoring = make_scorer(mean_absolute_error))  
-    train_scores_mean = np.mean(train_scores, axis=1)  
-    train_scores_std = np.std(train_scores, axis=1)  
-    test_scores_mean = np.mean(test_scores, axis=1)  
-    test_scores_std = np.std(test_scores, axis=1)  
-    plt.grid()#区域  
-    plt.fill_between(train_sizes, train_scores_mean - train_scores_std,  
-                     train_scores_mean + train_scores_std, alpha=0.1,  
-                     color=&quot;r&quot;)  
-    plt.fill_between(train_sizes, test_scores_mean - test_scores_std,  
-                     test_scores_mean + test_scores_std, alpha=0.1,  
-                     color=&quot;g&quot;)  
-    plt.plot(train_sizes, train_scores_mean, &#39;o-&#39;, color=&#39;r&#39;,  
-             label=&quot;Training score&quot;)  
-    plt.plot(train_sizes, test_scores_mean,&#39;o-&#39;,color=&quot;g&quot;,  
-             label=&quot;Cross-validation score&quot;)  
-    plt.legend(loc=&quot;best&quot;)  
-    return plt  </code></pre>
-<pre><code class="python">plot_learning_curve(LinearRegression(), &#39;Liner_model&#39;, train_X[:1000], train_y_ln[:1000], ylim=(0.0, 0.5), cv=5, n_jobs=1)  </code></pre>
+train_X <span class="token operator">=</span> train<span class="token punctuation">[</span>continuous_feature_names<span class="token punctuation">]</span>
+train_y_ln <span class="token operator">=</span> np<span class="token punctuation">.</span>log<span class="token punctuation">(</span>train<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+val_X <span class="token operator">=</span> val<span class="token punctuation">[</span>continuous_feature_names<span class="token punctuation">]</span>
+val_y_ln <span class="token operator">=</span> np<span class="token punctuation">.</span>log<span class="token punctuation">(</span>val<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">model <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_X<span class="token punctuation">,</span> train_y_ln<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">mean_absolute_error<span class="token punctuation">(</span>val_y_ln<span class="token punctuation">,</span> model<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>val_X<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>0.19577667270300972</code></pre><h4 id="绘制学习率曲线与验证曲线"><a href="#绘制学习率曲线与验证曲线" class="headerlink" title="绘制学习率曲线与验证曲线"></a>绘制学习率曲线与验证曲线</h4><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> learning_curve<span class="token punctuation">,</span> validation_curve<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">? learning_curve<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">plot_learning_curve</span><span class="token punctuation">(</span>estimator<span class="token punctuation">,</span> title<span class="token punctuation">,</span> X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> ylim<span class="token operator">=</span>None<span class="token punctuation">,</span> cv<span class="token operator">=</span>None<span class="token punctuation">,</span>n_jobs<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> train_size<span class="token operator">=</span>np<span class="token punctuation">.</span>linspace<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">,</span> <span class="token number">5</span> <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
+    plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span><span class="token punctuation">)</span>  
+    plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span>title<span class="token punctuation">)</span>  
+    <span class="token keyword">if</span> ylim <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>  
+        plt<span class="token punctuation">.</span>ylim<span class="token punctuation">(</span><span class="token operator">*</span>ylim<span class="token punctuation">)</span>  
+    plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Training example'</span><span class="token punctuation">)</span>  
+    plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'score'</span><span class="token punctuation">)</span>  
+    train_sizes<span class="token punctuation">,</span> train_scores<span class="token punctuation">,</span> test_scores <span class="token operator">=</span> learning_curve<span class="token punctuation">(</span>estimator<span class="token punctuation">,</span> X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> cv<span class="token operator">=</span>cv<span class="token punctuation">,</span> n_jobs<span class="token operator">=</span>n_jobs<span class="token punctuation">,</span> train_sizes<span class="token operator">=</span>train_size<span class="token punctuation">,</span> scoring <span class="token operator">=</span> make_scorer<span class="token punctuation">(</span>mean_absolute_error<span class="token punctuation">)</span><span class="token punctuation">)</span>  
+    train_scores_mean <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>train_scores<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>  
+    train_scores_std <span class="token operator">=</span> np<span class="token punctuation">.</span>std<span class="token punctuation">(</span>train_scores<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>  
+    test_scores_mean <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>test_scores<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>  
+    test_scores_std <span class="token operator">=</span> np<span class="token punctuation">.</span>std<span class="token punctuation">(</span>test_scores<span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>  
+    plt<span class="token punctuation">.</span>grid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#区域  </span>
+    plt<span class="token punctuation">.</span>fill_between<span class="token punctuation">(</span>train_sizes<span class="token punctuation">,</span> train_scores_mean <span class="token operator">-</span> train_scores_std<span class="token punctuation">,</span>  
+                     train_scores_mean <span class="token operator">+</span> train_scores_std<span class="token punctuation">,</span> alpha<span class="token operator">=</span><span class="token number">0.1</span><span class="token punctuation">,</span>  
+                     color<span class="token operator">=</span><span class="token string">"r"</span><span class="token punctuation">)</span>  
+    plt<span class="token punctuation">.</span>fill_between<span class="token punctuation">(</span>train_sizes<span class="token punctuation">,</span> test_scores_mean <span class="token operator">-</span> test_scores_std<span class="token punctuation">,</span>  
+                     test_scores_mean <span class="token operator">+</span> test_scores_std<span class="token punctuation">,</span> alpha<span class="token operator">=</span><span class="token number">0.1</span><span class="token punctuation">,</span>  
+                     color<span class="token operator">=</span><span class="token string">"g"</span><span class="token punctuation">)</span>  
+    plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>train_sizes<span class="token punctuation">,</span> train_scores_mean<span class="token punctuation">,</span> <span class="token string">'o-'</span><span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'r'</span><span class="token punctuation">,</span>  
+             label<span class="token operator">=</span><span class="token string">"Training score"</span><span class="token punctuation">)</span>  
+    plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>train_sizes<span class="token punctuation">,</span> test_scores_mean<span class="token punctuation">,</span><span class="token string">'o-'</span><span class="token punctuation">,</span>color<span class="token operator">=</span><span class="token string">"g"</span><span class="token punctuation">,</span>  
+             label<span class="token operator">=</span><span class="token string">"Cross-validation score"</span><span class="token punctuation">)</span>  
+    plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span>loc<span class="token operator">=</span><span class="token string">"best"</span><span class="token punctuation">)</span>  
+    <span class="token keyword">return</span> plt  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">plot_learning_curve<span class="token punctuation">(</span>LinearRegression<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'Liner_model'</span><span class="token punctuation">,</span> train_X<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">,</span> train_y_ln<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ylim<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cv<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> n_jobs<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>&lt;module &#39;matplotlib.pyplot&#39; from &#39;/opt/anaconda3/lib/python3.7/site-packages/matplotlib/pyplot.py&#39;&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_40_1.png" alt="png"></p>
-<h4 id="多种模型对比"><a href="#多种模型对比" class="headerlink" title="多种模型对比"></a>多种模型对比</h4><pre><code class="python">train = sample_feature[continuous_feature_names + [&#39;price&#39;]].dropna()
+<h4 id="多种模型对比"><a href="#多种模型对比" class="headerlink" title="多种模型对比"></a>多种模型对比</h4><pre class="line-numbers language-python"><code class="language-python">train <span class="token operator">=</span> sample_feature<span class="token punctuation">[</span>continuous_feature_names <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span>dropna<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-train_X = train[continuous_feature_names]
-train_y = train[&#39;price&#39;]
-train_y_ln = np.log(train_y + 1)</code></pre>
-<h5 id="线性模型-amp-嵌入式特征选择"><a href="#线性模型-amp-嵌入式特征选择" class="headerlink" title="线性模型 &amp; 嵌入式特征选择"></a>线性模型 &amp; 嵌入式特征选择</h5><pre><code class="python">from sklearn.linear_model import LinearRegression
-from sklearn.linear_model import Ridge
-from sklearn.linear_model import Lasso</code></pre>
-<pre><code class="python">models = [LinearRegression(),
-          Ridge(),
-          Lasso()]</code></pre>
-<pre><code class="python">result = dict()
-for model in models:
-    model_name = str(model).split(&#39;(&#39;)[0]
-    scores = cross_val_score(model, X=train_X, y=train_y_ln, verbose=0, cv = 5, scoring=make_scorer(mean_absolute_error))
-    result[model_name] = scores
-    print(model_name + &#39; is finished&#39;)</code></pre>
+train_X <span class="token operator">=</span> train<span class="token punctuation">[</span>continuous_feature_names<span class="token punctuation">]</span>
+train_y <span class="token operator">=</span> train<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span>
+train_y_ln <span class="token operator">=</span> np<span class="token punctuation">.</span>log<span class="token punctuation">(</span>train_y <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="线性模型-amp-嵌入式特征选择"><a href="#线性模型-amp-嵌入式特征选择" class="headerlink" title="线性模型 &amp; 嵌入式特征选择"></a>线性模型 &amp; 嵌入式特征选择</h5><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>linear_model <span class="token keyword">import</span> LinearRegression
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>linear_model <span class="token keyword">import</span> Ridge
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>linear_model <span class="token keyword">import</span> Lasso<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">models <span class="token operator">=</span> <span class="token punctuation">[</span>LinearRegression<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          Ridge<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          Lasso<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">result <span class="token operator">=</span> dict<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> model <span class="token keyword">in</span> models<span class="token punctuation">:</span>
+    model_name <span class="token operator">=</span> str<span class="token punctuation">(</span>model<span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'('</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    scores <span class="token operator">=</span> cross_val_score<span class="token punctuation">(</span>model<span class="token punctuation">,</span> X<span class="token operator">=</span>train_X<span class="token punctuation">,</span> y<span class="token operator">=</span>train_y_ln<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> cv <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> scoring<span class="token operator">=</span>make_scorer<span class="token punctuation">(</span>mean_absolute_error<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    result<span class="token punctuation">[</span>model_name<span class="token punctuation">]</span> <span class="token operator">=</span> scores
+    <span class="token keyword">print</span><span class="token punctuation">(</span>model_name <span class="token operator">+</span> <span class="token string">' is finished'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>LinearRegression is finished
 Ridge is finished
-Lasso is finished</code></pre><pre><code class="python">result = pd.DataFrame(result)
-result.index = [&#39;cv&#39; + str(x) for x in range(1, 6)]
-result</code></pre>
+Lasso is finished</code></pre><pre class="line-numbers language-python"><code class="language-python">result <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+result<span class="token punctuation">.</span>index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'cv'</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+result<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -862,9 +863,9 @@ result</code></pre>
 
 
 
-<pre><code class="python">model = LinearRegression().fit(train_X, train_y_ln)
-print(&#39;intercept:&#39;+ str(model.intercept_))
-sns.barplot(abs(model.coef_), continuous_feature_names)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">model <span class="token operator">=</span> LinearRegression<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_X<span class="token punctuation">,</span> train_y_ln<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'intercept:'</span><span class="token operator">+</span> str<span class="token punctuation">(</span>model<span class="token punctuation">.</span>intercept_<span class="token punctuation">)</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>barplot<span class="token punctuation">(</span>abs<span class="token punctuation">(</span>model<span class="token punctuation">.</span>coef_<span class="token punctuation">)</span><span class="token punctuation">,</span> continuous_feature_names<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>intercept:18.747877090866396
 
 
@@ -873,9 +874,9 @@ sns.barplot(abs(model.coef_), continuous_feature_names)</code></pre>
 
 &lt;matplotlib.axes._subplots.AxesSubplot at 0x122af1510&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_48_2.png" alt="png"></p>
 <p>L2正则化在拟合过程中通常都倾向于让权值尽可能小，最后构造一个所有参数都比较小的模型。因为一般认为参数值小的模型比较简单，能适应不同的数据集，也在一定程度上避免了过拟合现象。可以设想一下对于一个线性回归方程，若参数很大，那么只要数据偏移一点点，就会对结果造成很大的影响；但如果参数足够小，数据偏移得多一点也不会对结果造成什么影响，专业一点的说法是『抗扰动能力强』</p>
-<pre><code class="python">model = Ridge().fit(train_X, train_y_ln)
-print(&#39;intercept:&#39;+ str(model.intercept_))
-sns.barplot(abs(model.coef_), continuous_feature_names)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">model <span class="token operator">=</span> Ridge<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_X<span class="token punctuation">,</span> train_y_ln<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'intercept:'</span><span class="token operator">+</span> str<span class="token punctuation">(</span>model<span class="token punctuation">.</span>intercept_<span class="token punctuation">)</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>barplot<span class="token punctuation">(</span>abs<span class="token punctuation">(</span>model<span class="token punctuation">.</span>coef_<span class="token punctuation">)</span><span class="token punctuation">,</span> continuous_feature_names<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>intercept:4.6717097880636445
 
 
@@ -884,9 +885,9 @@ sns.barplot(abs(model.coef_), continuous_feature_names)</code></pre>
 
 &lt;matplotlib.axes._subplots.AxesSubplot at 0x122afafd0&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_50_2.png" alt="png"></p>
 <p>L1正则化有助于生成一个稀疏权值矩阵，进而可以用于特征选择。如下图，我们发现power与userd_time特征非常重要。</p>
-<pre><code class="python">model = Lasso().fit(train_X, train_y_ln)
-print(&#39;intercept:&#39;+ str(model.intercept_))
-sns.barplot(abs(model.coef_), continuous_feature_names)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">model <span class="token operator">=</span> Lasso<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_X<span class="token punctuation">,</span> train_y_ln<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'intercept:'</span><span class="token operator">+</span> str<span class="token punctuation">(</span>model<span class="token punctuation">.</span>intercept_<span class="token punctuation">)</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>barplot<span class="token punctuation">(</span>abs<span class="token punctuation">(</span>model<span class="token punctuation">.</span>coef_<span class="token punctuation">)</span><span class="token punctuation">,</span> continuous_feature_names<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>intercept:8.672182402894254
 
 
@@ -894,68 +895,68 @@ sns.barplot(abs(model.coef_), continuous_feature_names)</code></pre>
 
 
 &lt;matplotlib.axes._subplots.AxesSubplot at 0x12483b050&gt;</code></pre><p><img src="/2020/03/30/Datawhale-%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask4/output_52_2.png" alt="png"></p>
-<h5 id="非线性模型"><a href="#非线性模型" class="headerlink" title="非线性模型"></a>非线性模型</h5><h4 id="模型调参"><a href="#模型调参" class="headerlink" title="模型调参"></a>模型调参</h4><pre><code class="python">## LGB的参数集合：
+<h5 id="非线性模型"><a href="#非线性模型" class="headerlink" title="非线性模型"></a>非线性模型</h5><h4 id="模型调参"><a href="#模型调参" class="headerlink" title="模型调参"></a>模型调参</h4><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">## LGB的参数集合：</span>
 
-objective = [&#39;regression&#39;, &#39;regression_l1&#39;, &#39;mape&#39;, &#39;huber&#39;, &#39;fair&#39;]
+objective <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'regression'</span><span class="token punctuation">,</span> <span class="token string">'regression_l1'</span><span class="token punctuation">,</span> <span class="token string">'mape'</span><span class="token punctuation">,</span> <span class="token string">'huber'</span><span class="token punctuation">,</span> <span class="token string">'fair'</span><span class="token punctuation">]</span>
 
-num_leaves = [3,5,10,15,20,40, 55]
-max_depth = [3,5,10,15,20,40, 55]
-bagging_fraction = []
-feature_fraction = []
-drop_rate = []</code></pre>
-<h5 id="贪心调参"><a href="#贪心调参" class="headerlink" title="贪心调参"></a>贪心调参</h5><pre><code class="python">best_obj = dict()
-for obj in objective:
-    model = LGBMRegressor(objective=obj)
-    score = np.mean(cross_val_score(model, X=train_X, y=train_y_ln, verbose=0, cv = 5, scoring=make_scorer(mean_absolute_error)))
-    best_obj[obj] = score
+num_leaves <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">]</span>
+max_depth <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">]</span>
+bagging_fraction <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+feature_fraction <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+drop_rate <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="贪心调参"><a href="#贪心调参" class="headerlink" title="贪心调参"></a>贪心调参</h5><pre class="line-numbers language-python"><code class="language-python">best_obj <span class="token operator">=</span> dict<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> obj <span class="token keyword">in</span> objective<span class="token punctuation">:</span>
+    model <span class="token operator">=</span> LGBMRegressor<span class="token punctuation">(</span>objective<span class="token operator">=</span>obj<span class="token punctuation">)</span>
+    score <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>cross_val_score<span class="token punctuation">(</span>model<span class="token punctuation">,</span> X<span class="token operator">=</span>train_X<span class="token punctuation">,</span> y<span class="token operator">=</span>train_y_ln<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> cv <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> scoring<span class="token operator">=</span>make_scorer<span class="token punctuation">(</span>mean_absolute_error<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    best_obj<span class="token punctuation">[</span>obj<span class="token punctuation">]</span> <span class="token operator">=</span> score
 
-best_leaves = dict()
-for leaves in num_leaves:
-    model = LGBMRegressor(objective=min(best_obj.items(), key=lambda x:x[1])[0], num_leaves=leaves)
-    score = np.mean(cross_val_score(model, X=train_X, y=train_y_ln, verbose=0, cv = 5, scoring=make_scorer(mean_absolute_error)))
-    best_leaves[leaves] = score
+best_leaves <span class="token operator">=</span> dict<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> leaves <span class="token keyword">in</span> num_leaves<span class="token punctuation">:</span>
+    model <span class="token operator">=</span> LGBMRegressor<span class="token punctuation">(</span>objective<span class="token operator">=</span>min<span class="token punctuation">(</span>best_obj<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span>x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> num_leaves<span class="token operator">=</span>leaves<span class="token punctuation">)</span>
+    score <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>cross_val_score<span class="token punctuation">(</span>model<span class="token punctuation">,</span> X<span class="token operator">=</span>train_X<span class="token punctuation">,</span> y<span class="token operator">=</span>train_y_ln<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> cv <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> scoring<span class="token operator">=</span>make_scorer<span class="token punctuation">(</span>mean_absolute_error<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    best_leaves<span class="token punctuation">[</span>leaves<span class="token punctuation">]</span> <span class="token operator">=</span> score
 
-best_depth = dict()
-for depth in max_depth:
-    model = LGBMRegressor(objective=min(best_obj.items(), key=lambda x:x[1])[0],
-                          num_leaves=min(best_leaves.items(), key=lambda x:x[1])[0],
-                          max_depth=depth)
-    score = np.mean(cross_val_score(model, X=train_X, y=train_y_ln, verbose=0, cv = 5, scoring=make_scorer(mean_absolute_error)))
-    best_depth[depth] = score</code></pre>
-<pre><code class="python">sns.lineplot(x=[&#39;0_initial&#39;,&#39;1_turning_obj&#39;,&#39;2_turning_leaves&#39;,&#39;3_turning_depth&#39;], y=[0.143 ,min(best_obj.values()), min(best_leaves.values()), min(best_depth.values())])</code></pre>
-<h5 id="Grid-Search-调参"><a href="#Grid-Search-调参" class="headerlink" title="Grid Search 调参"></a>Grid Search 调参</h5><pre><code class="python">from sklearn.model_selection import GridSearchCV</code></pre>
-<pre><code class="python">parameters = {&#39;objective&#39;: objective , &#39;num_leaves&#39;: num_leaves, &#39;max_depth&#39;: max_depth}
-model = LGBMRegressor()
-clf = GridSearchCV(model, parameters, cv=5)
-clf = clf.fit(train_X, train_y)
-clf.best_params_
-model = LGBMRegressor(objective=&#39;regression&#39;,
-                          num_leaves=55,
-                          max_depth=15)
-np.mean(cross_val_score(model, X=train_X, y=train_y_ln, verbose=0, cv = 5, scoring=make_scorer(mean_absolute_error)))</code></pre>
-<h5 id="贝叶斯调参"><a href="#贝叶斯调参" class="headerlink" title="贝叶斯调参"></a>贝叶斯调参</h5><pre><code class="python">from bayes_opt import BayesianOptimization</code></pre>
-<pre><code class="python">def rf_cv(num_leaves, max_depth, subsample, min_child_samples):
-    val = cross_val_score(
-        LGBMRegressor(objective = &#39;regression_l1&#39;,
-            num_leaves=int(num_leaves),
-            max_depth=int(max_depth),
-            subsample = subsample,
-            min_child_samples = int(min_child_samples)
-        ),
-        X=train_X, y=train_y_ln, verbose=0, cv = 5, scoring=make_scorer(mean_absolute_error)
-    ).mean()
-    return 1 - val</code></pre>
-<pre><code class="python">rf_bo = BayesianOptimization(
-    rf_cv,
-    {
-    &#39;num_leaves&#39;: (2, 100),
-    &#39;max_depth&#39;: (2, 100),
-    &#39;subsample&#39;: (0.1, 1),
-    &#39;min_child_samples&#39; : (2, 100)
-    }
-)
-rf_bo.maximize()
-1 - rf_bo.max[&#39;target&#39;]</code></pre>
+best_depth <span class="token operator">=</span> dict<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> depth <span class="token keyword">in</span> max_depth<span class="token punctuation">:</span>
+    model <span class="token operator">=</span> LGBMRegressor<span class="token punctuation">(</span>objective<span class="token operator">=</span>min<span class="token punctuation">(</span>best_obj<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span>x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                          num_leaves<span class="token operator">=</span>min<span class="token punctuation">(</span>best_leaves<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span>x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                          max_depth<span class="token operator">=</span>depth<span class="token punctuation">)</span>
+    score <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>cross_val_score<span class="token punctuation">(</span>model<span class="token punctuation">,</span> X<span class="token operator">=</span>train_X<span class="token punctuation">,</span> y<span class="token operator">=</span>train_y_ln<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> cv <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> scoring<span class="token operator">=</span>make_scorer<span class="token punctuation">(</span>mean_absolute_error<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    best_depth<span class="token punctuation">[</span>depth<span class="token punctuation">]</span> <span class="token operator">=</span> score<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">sns<span class="token punctuation">.</span>lineplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'0_initial'</span><span class="token punctuation">,</span><span class="token string">'1_turning_obj'</span><span class="token punctuation">,</span><span class="token string">'2_turning_leaves'</span><span class="token punctuation">,</span><span class="token string">'3_turning_depth'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0.143</span> <span class="token punctuation">,</span>min<span class="token punctuation">(</span>best_obj<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> min<span class="token punctuation">(</span>best_leaves<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> min<span class="token punctuation">(</span>best_depth<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="Grid-Search-调参"><a href="#Grid-Search-调参" class="headerlink" title="Grid Search 调参"></a>Grid Search 调参</h5><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> GridSearchCV<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">parameters <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'objective'</span><span class="token punctuation">:</span> objective <span class="token punctuation">,</span> <span class="token string">'num_leaves'</span><span class="token punctuation">:</span> num_leaves<span class="token punctuation">,</span> <span class="token string">'max_depth'</span><span class="token punctuation">:</span> max_depth<span class="token punctuation">}</span>
+model <span class="token operator">=</span> LGBMRegressor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+clf <span class="token operator">=</span> GridSearchCV<span class="token punctuation">(</span>model<span class="token punctuation">,</span> parameters<span class="token punctuation">,</span> cv<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
+clf <span class="token operator">=</span> clf<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_X<span class="token punctuation">,</span> train_y<span class="token punctuation">)</span>
+clf<span class="token punctuation">.</span>best_params_
+model <span class="token operator">=</span> LGBMRegressor<span class="token punctuation">(</span>objective<span class="token operator">=</span><span class="token string">'regression'</span><span class="token punctuation">,</span>
+                          num_leaves<span class="token operator">=</span><span class="token number">55</span><span class="token punctuation">,</span>
+                          max_depth<span class="token operator">=</span><span class="token number">15</span><span class="token punctuation">)</span>
+np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>cross_val_score<span class="token punctuation">(</span>model<span class="token punctuation">,</span> X<span class="token operator">=</span>train_X<span class="token punctuation">,</span> y<span class="token operator">=</span>train_y_ln<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> cv <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> scoring<span class="token operator">=</span>make_scorer<span class="token punctuation">(</span>mean_absolute_error<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="贝叶斯调参"><a href="#贝叶斯调参" class="headerlink" title="贝叶斯调参"></a>贝叶斯调参</h5><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> bayes_opt <span class="token keyword">import</span> BayesianOptimization<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">rf_cv</span><span class="token punctuation">(</span>num_leaves<span class="token punctuation">,</span> max_depth<span class="token punctuation">,</span> subsample<span class="token punctuation">,</span> min_child_samples<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    val <span class="token operator">=</span> cross_val_score<span class="token punctuation">(</span>
+        LGBMRegressor<span class="token punctuation">(</span>objective <span class="token operator">=</span> <span class="token string">'regression_l1'</span><span class="token punctuation">,</span>
+            num_leaves<span class="token operator">=</span>int<span class="token punctuation">(</span>num_leaves<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            max_depth<span class="token operator">=</span>int<span class="token punctuation">(</span>max_depth<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            subsample <span class="token operator">=</span> subsample<span class="token punctuation">,</span>
+            min_child_samples <span class="token operator">=</span> int<span class="token punctuation">(</span>min_child_samples<span class="token punctuation">)</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        X<span class="token operator">=</span>train_X<span class="token punctuation">,</span> y<span class="token operator">=</span>train_y_ln<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> cv <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> scoring<span class="token operator">=</span>make_scorer<span class="token punctuation">(</span>mean_absolute_error<span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">-</span> val<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">rf_bo <span class="token operator">=</span> BayesianOptimization<span class="token punctuation">(</span>
+    rf_cv<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+    <span class="token string">'num_leaves'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">'max_depth'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">'subsample'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">'min_child_samples'</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+rf_bo<span class="token punctuation">.</span>maximize<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token number">1</span> <span class="token operator">-</span> rf_bo<span class="token punctuation">.</span>max<span class="token punctuation">[</span><span class="token string">'target'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>

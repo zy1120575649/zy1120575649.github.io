@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -503,29 +504,29 @@
 <li>使用lxml解析</li>
 <li>实战：爬取丁香园-用户名和回复内容</li>
 </ol>
-<pre><code class="python"># 导入库
-from lxml import etree
-import requests
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 导入库</span>
+<span class="token keyword">from</span> lxml <span class="token keyword">import</span> etree
+<span class="token keyword">import</span> requests
 
-url = &quot;http://www.dxy.cn/bbs/thread/626626#626626&quot;</code></pre>
-<pre><code class="python">req = requests.get(url)
-html = req.text
-# html</code></pre>
-<pre><code class="python">tree = etree.HTML(html) 
-tree</code></pre>
-<pre><code>&lt;Element html at 0x110f226e0&gt;</code></pre><pre><code class="python">user = tree.xpath(&#39;&#39;)
-# print(user)
-content = tree.xpath(&#39;&#39;)</code></pre>
-<pre><code class="python">results = []
-for i in range(0, len(user)):
-    # print(user[i].strip()+&quot;:&quot;+content[i].xpath(&#39;string(.)&#39;).strip())
-    # print(&quot;*&quot;*80)
-    # 因为回复内容中有换行等标签，所以需要用string()来获取数据
-    results.append(user[i].strip() + &quot;:  &quot; + content[i].xpath(&#39;string(.)&#39;).strip())</code></pre>
-<pre><code class="python"># 打印爬取的结果
-for i,result in zip(range(0, len(user)),results):
-    print(&quot;user&quot;+ str(i+1) + &quot;-&quot; + result)
-    print(&quot;*&quot;*100)</code></pre>
+url <span class="token operator">=</span> <span class="token string">"http://www.dxy.cn/bbs/thread/626626#626626"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">req <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+html <span class="token operator">=</span> req<span class="token punctuation">.</span>text
+<span class="token comment" spellcheck="true"># html</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">tree <span class="token operator">=</span> etree<span class="token punctuation">.</span>HTML<span class="token punctuation">(</span>html<span class="token punctuation">)</span> 
+tree<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code>&lt;Element html at 0x110f226e0&gt;</code></pre><pre class="line-numbers language-python"><code class="language-python">user <span class="token operator">=</span> tree<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># print(user)</span>
+content <span class="token operator">=</span> tree<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">results <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># print(user[i].strip()+":"+content[i].xpath('string(.)').strip())</span>
+    <span class="token comment" spellcheck="true"># print("*"*80)</span>
+    <span class="token comment" spellcheck="true"># 因为回复内容中有换行等标签，所以需要用string()来获取数据</span>
+    results<span class="token punctuation">.</span>append<span class="token punctuation">(</span>user<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">":  "</span> <span class="token operator">+</span> content<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">'string(.)'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 打印爬取的结果</span>
+<span class="token keyword">for</span> i<span class="token punctuation">,</span>result <span class="token keyword">in</span> zip<span class="token punctuation">(</span>range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>results<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"user"</span><span class="token operator">+</span> str<span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"-"</span> <span class="token operator">+</span> result<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="学习正则表达式-re"><a href="#学习正则表达式-re" class="headerlink" title="学习正则表达式 re"></a>学习正则表达式 re</h2><p>re库的主要功能函数：</p>
 <p>re.search() 在一个字符串中搜索匹配正则表达式的第一个位置，返回match对象<br>re.search(pattern, string, flags=0)</p>
 <p>re.match() 从一个字符串的开始位置起匹配正则表达式，返回match对象<br>re.match(pattern, string, flags=0)</p>

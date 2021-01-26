@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -506,18 +507,18 @@
 <p>price - 汽车价格<br>v_0’, ‘v_1’, ‘v_2’, ‘v_3’, ‘v_4’, ‘v_5’, ‘v_6’, ‘v_7’, ‘v_8’, ‘v_9’, ‘v_10’, ‘v_11’, ‘v_12’, ‘v_13’,’v_14’ 【匿名特征，包含v0-14在内15个匿名特征】</p>
 <p>数字全都脱敏处理，都为label encoding形式，即数字形式</p>
 <h3 id="1-3-预测指标"><a href="#1-3-预测指标" class="headerlink" title="1.3 预测指标"></a>1.3 预测指标</h3><p>本赛题的评价标准为MAE(Mean Absolute Error)。</p>
-<h3 id="1-3-数据读取pandas"><a href="#1-3-数据读取pandas" class="headerlink" title="1.3 数据读取pandas"></a>1.3 数据读取pandas</h3><pre><code class="python">import pandas as pd
-import numpy as np
+<h3 id="1-3-数据读取pandas"><a href="#1-3-数据读取pandas" class="headerlink" title="1.3 数据读取pandas"></a>1.3 数据读取pandas</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
 
-## 1 载入训练集和测试集
-path = &#39;./tianchi/&#39;
-Train_data = pd.read_csv(path+&#39;used_car_train_20200313.csv&#39;, sep=&#39; &#39;)
-Test_data = pd.read_csv(path+&#39;used_car_testA_20200313.csv&#39;, sep=&#39; &#39;)
+<span class="token comment" spellcheck="true">## 1 载入训练集和测试集</span>
+path <span class="token operator">=</span> <span class="token string">'./tianchi/'</span>
+Train_data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>path<span class="token operator">+</span><span class="token string">'used_car_train_20200313.csv'</span><span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span>
+Test_data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>path<span class="token operator">+</span><span class="token string">'used_car_testA_20200313.csv'</span><span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span>
 
-print(&#39;Train data shape:&#39;,Train_data.shape)
-print(&#39;TestA data shape:&#39;,Test_data.shape)</code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Train data shape:'</span><span class="token punctuation">,</span>Train_data<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'TestA data shape:'</span><span class="token punctuation">,</span>Test_data<span class="token punctuation">.</span>shape<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>Train data shape: (150000, 31)
-TestA data shape: (50000, 30)</code></pre><pre><code class="python">Train_data.head()</code></pre>
+TestA data shape: (50000, 30)</code></pre><pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -686,66 +687,66 @@ TestA data shape: (50000, 30)</code></pre><pre><code class="python">Train_data.h
 
 
 
-<h3 id="1-4-分类指标评价计算"><a href="#1-4-分类指标评价计算" class="headerlink" title="1.4 分类指标评价计算"></a>1.4 分类指标评价计算</h3><pre><code class="python">## accuracy
-import numpy as np 
-from sklearn.metrics import accuracy_score
-y_pred = [0,1,0,1]
-y_true = [0,1,1,1]
-print(&#39;ACC:&#39;,accuracy_score(y_true,y_pred))</code></pre>
-<pre><code>ACC: 0.75</code></pre><pre><code class="python">## Precision,Recall,F1-score
-from sklearn import metrics
-y_pred = [0,1,0,0]
-y_true = [0,1,0,1]
-print(&#39;Precision:&#39;,metrics.precision_score(y_true,y_pred))
-print(&#39;Recall&#39;,metrics.recall_score(y_true,y_pred))
-print(&#39;F1-score:&#39;,metrics.f1_score(y_true,y_pred))</code></pre>
+<h3 id="1-4-分类指标评价计算"><a href="#1-4-分类指标评价计算" class="headerlink" title="1.4 分类指标评价计算"></a>1.4 分类指标评价计算</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">## accuracy</span>
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np 
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword">import</span> accuracy_score
+y_pred <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span>
+y_true <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'ACC:'</span><span class="token punctuation">,</span>accuracy_score<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span>y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>ACC: 0.75</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">## Precision,Recall,F1-score</span>
+<span class="token keyword">from</span> sklearn <span class="token keyword">import</span> metrics
+y_pred <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span>
+y_true <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Precision:'</span><span class="token punctuation">,</span>metrics<span class="token punctuation">.</span>precision_score<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span>y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Recall'</span><span class="token punctuation">,</span>metrics<span class="token punctuation">.</span>recall_score<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span>y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'F1-score:'</span><span class="token punctuation">,</span>metrics<span class="token punctuation">.</span>f1_score<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span>y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>Precision: 1.0
 Recall 0.5
-F1-score: 0.6666666666666666</code></pre><pre><code class="python"># AUC
-import numpy as np
-from sklearn.metrics import roc_auc_score
-y_true = np.array([0,0,1,1])
-y_scores=np.array([0.1,0.4,0.35,0.8])
-print(&#39;AUC score:&#39;,roc_auc_score(y_true,y_scores))</code></pre>
-<pre><code>AUC score: 0.75</code></pre><h3 id="1-5-回归指标评价计算"><a href="#1-5-回归指标评价计算" class="headerlink" title="1.5 回归指标评价计算"></a>1.5 回归指标评价计算</h3><pre><code class="python"># coding=utf-8
-import numpy as np
-from sklearn import metrics
+F1-score: 0.6666666666666666</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># AUC</span>
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword">import</span> roc_auc_score
+y_true <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y_scores<span class="token operator">=</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.1</span><span class="token punctuation">,</span><span class="token number">0.4</span><span class="token punctuation">,</span><span class="token number">0.35</span><span class="token punctuation">,</span><span class="token number">0.8</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'AUC score:'</span><span class="token punctuation">,</span>roc_auc_score<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span>y_scores<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>AUC score: 0.75</code></pre><h3 id="1-5-回归指标评价计算"><a href="#1-5-回归指标评价计算" class="headerlink" title="1.5 回归指标评价计算"></a>1.5 回归指标评价计算</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># coding=utf-8</span>
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> sklearn <span class="token keyword">import</span> metrics
 
-def mape(y_true,y_pred):
-    return np.mean(np.abs((y_pred - y_true)/y_true))
-y_true = np.array([1.0,5.0,4.0,3.0,2.0,5.0,-3.0])
-y_pred = np.array([1.0,4.5,3.8,3.2,3.0,4.8,-2.2])
+<span class="token keyword">def</span> <span class="token function">mape</span><span class="token punctuation">(</span>y_true<span class="token punctuation">,</span>y_pred<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>np<span class="token punctuation">.</span>abs<span class="token punctuation">(</span><span class="token punctuation">(</span>y_pred <span class="token operator">-</span> y_true<span class="token punctuation">)</span><span class="token operator">/</span>y_true<span class="token punctuation">)</span><span class="token punctuation">)</span>
+y_true <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1.0</span><span class="token punctuation">,</span><span class="token number">5.0</span><span class="token punctuation">,</span><span class="token number">4.0</span><span class="token punctuation">,</span><span class="token number">3.0</span><span class="token punctuation">,</span><span class="token number">2.0</span><span class="token punctuation">,</span><span class="token number">5.0</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">3.0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+y_pred <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1.0</span><span class="token punctuation">,</span><span class="token number">4.5</span><span class="token punctuation">,</span><span class="token number">3.8</span><span class="token punctuation">,</span><span class="token number">3.2</span><span class="token punctuation">,</span><span class="token number">3.0</span><span class="token punctuation">,</span><span class="token number">4.8</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">2.2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 
-#Mse
-print(&#39;MSE:&#39;,metrics.mean_squared_error(y_true,y_pred))
-print(&#39;RMSE:&#39;,np.sqrt(metrics.mean_squared_error(y_true,y_pred)))
-print(&#39;MAE:&#39;,metrics.mean_absolute_error(y_true,y_pred))
-print(&#39;MAPE:&#39;,mape(y_true,y_pred))</code></pre>
+<span class="token comment" spellcheck="true">#Mse</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'MSE:'</span><span class="token punctuation">,</span>metrics<span class="token punctuation">.</span>mean_squared_error<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span>y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'RMSE:'</span><span class="token punctuation">,</span>np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>metrics<span class="token punctuation">.</span>mean_squared_error<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span>y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'MAE:'</span><span class="token punctuation">,</span>metrics<span class="token punctuation">.</span>mean_absolute_error<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span>y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'MAPE:'</span><span class="token punctuation">,</span>mape<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span>y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>MSE: 0.2871428571428571
 RMSE: 0.5358571238146014
 MAE: 0.4142857142857143
-MAPE: 0.1461904761904762</code></pre><pre><code class="python">## R2-score
-from sklearn.metrics import r2_score
-y_true =[3,-0.5,2,7]
-y_pred =[2.5,0.0,2,8]
-print(&#39;R2-score:&#39;,r2_score(y_true,y_pred))</code></pre>
+MAPE: 0.1461904761904762</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">## R2-score</span>
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword">import</span> r2_score
+y_true <span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">]</span>
+y_pred <span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">2.5</span><span class="token punctuation">,</span><span class="token number">0.0</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'R2-score:'</span><span class="token punctuation">,</span>r2_score<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span>y_pred<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>R2-score: 0.9486081370449679</code></pre><h2 id="Task2-数据分析"><a href="#Task2-数据分析" class="headerlink" title="Task2-数据分析"></a>Task2-数据分析</h2><h2 id="2-1-目标"><a href="#2-1-目标" class="headerlink" title="2.1 目标"></a>2.1 目标</h2><p>1.熟悉数据集，了解数据集<br>2.了解变量间的互相关系以及变量与预测值之间的存在关系<br>3.引导我们进行数据吹以及特征工程的步骤<br>4.对数据进行一些图表或者文字总结。</p>
-<h2 id="2-2-内容步骤"><a href="#2-2-内容步骤" class="headerlink" title="2.2 内容步骤"></a>2.2 内容步骤</h2><h3 id="2-2-1-载入各种数据科学以及可视化库"><a href="#2-2-1-载入各种数据科学以及可视化库" class="headerlink" title="2.2.1 载入各种数据科学以及可视化库"></a>2.2.1 载入各种数据科学以及可视化库</h3><pre><code class="python">#coding:utf-8
-#导入warnings包，利用过滤器来实现忽略警告语句。
-import warnings
-warnings.filterwarnings(&#39;ignore&#39;)
+<h2 id="2-2-内容步骤"><a href="#2-2-内容步骤" class="headerlink" title="2.2 内容步骤"></a>2.2 内容步骤</h2><h3 id="2-2-1-载入各种数据科学以及可视化库"><a href="#2-2-1-载入各种数据科学以及可视化库" class="headerlink" title="2.2.1 载入各种数据科学以及可视化库"></a>2.2.1 载入各种数据科学以及可视化库</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#coding:utf-8</span>
+<span class="token comment" spellcheck="true">#导入warnings包，利用过滤器来实现忽略警告语句。</span>
+<span class="token keyword">import</span> warnings
+warnings<span class="token punctuation">.</span>filterwarnings<span class="token punctuation">(</span><span class="token string">'ignore'</span><span class="token punctuation">)</span>
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import missingno as msno</code></pre>
-<h3 id="2-2-2-载入数据"><a href="#2-2-2-载入数据" class="headerlink" title="2.2.2 载入数据"></a>2.2.2 载入数据</h3><pre><code class="python">## 1载入训练集和测试集
-path = &#39;./tianchi/&#39;
-Train_data = pd.read_csv(path+&#39;used_car_train_20200313.csv&#39;, sep=&#39; &#39;)
-Test_data = pd.read_csv(path+&#39;used_car_testA_20200313.csv&#39;, sep=&#39; &#39;)</code></pre>
-<pre><code class="python">## 2观察数据（head()+shape）
-Train_data.head().append(Train_data.tail())</code></pre>
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">import</span> seaborn <span class="token keyword">as</span> sns
+<span class="token keyword">import</span> missingno <span class="token keyword">as</span> msno<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-2-2-载入数据"><a href="#2-2-2-载入数据" class="headerlink" title="2.2.2 载入数据"></a>2.2.2 载入数据</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">## 1载入训练集和测试集</span>
+path <span class="token operator">=</span> <span class="token string">'./tianchi/'</span>
+Train_data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>path<span class="token operator">+</span><span class="token string">'used_car_train_20200313.csv'</span><span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span>
+Test_data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>path<span class="token operator">+</span><span class="token string">'used_car_testA_20200313.csv'</span><span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">## 2观察数据（head()+shape）</span>
+Train_data<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>Train_data<span class="token punctuation">.</span>tail<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1035,8 +1036,8 @@ Train_data.head().append(Train_data.tail())</code></pre>
 
 
 
-<pre><code class="python">Train_data.shape</code></pre>
-<pre><code>(150000, 31)</code></pre><pre><code class="python">Test_data.head().append(Test_data.tail())</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">.</span>shape<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>(150000, 31)</code></pre><pre class="line-numbers language-python"><code class="language-python">Test_data<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>Test_data<span class="token punctuation">.</span>tail<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1326,9 +1327,9 @@ Train_data.head().append(Train_data.tail())</code></pre>
 
 
 
-<pre><code class="python">Test_data.shape</code></pre>
-<pre><code>(50000, 30)</code></pre><h3 id="2-2-3-总览数据概况"><a href="#2-2-3-总览数据概况" class="headerlink" title="2.2.3 总览数据概况"></a>2.2.3 总览数据概况</h3><pre><code class="python">##1通过describe（）来熟悉数据的相关统计量
-Train_data.describe()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">Test_data<span class="token punctuation">.</span>shape<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>(50000, 30)</code></pre><h3 id="2-2-3-总览数据概况"><a href="#2-2-3-总览数据概况" class="headerlink" title="2.2.3 总览数据概况"></a>2.2.3 总览数据概况</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##1通过describe（）来熟悉数据的相关统计量</span>
+Train_data<span class="token punctuation">.</span>describe<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1570,7 +1571,7 @@ Train_data.describe()</code></pre>
 
 
 
-<pre><code class="python">Test_data.describe()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">Test_data<span class="token punctuation">.</span>describe<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1812,8 +1813,8 @@ Train_data.describe()</code></pre>
 
 
 
-<pre><code class="python">##2通过info（）来熟悉数据类型
-Train_data.info()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##2通过info（）来熟悉数据类型</span>
+Train_data<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 150000 entries, 0 to 149999
 Data columns (total 31 columns):
@@ -1851,7 +1852,7 @@ Data columns (total 31 columns):
  29  v_13               150000 non-null  float64
  30  v_14               150000 non-null  float64
 dtypes: float64(20), int64(10), object(1)
-memory usage: 35.5+ MB</code></pre><pre><code class="python">Test_data.info()</code></pre>
+memory usage: 35.5+ MB</code></pre><pre class="line-numbers language-python"><code class="language-python">Test_data<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 50000 entries, 0 to 49999
 Data columns (total 30 columns):
@@ -1888,8 +1889,8 @@ Data columns (total 30 columns):
  28  v_13               50000 non-null  float64
  29  v_14               50000 non-null  float64
 dtypes: float64(20), int64(9), object(1)
-memory usage: 11.4+ MB</code></pre><h3 id="2-2-4-判断数据缺失和异常"><a href="#2-2-4-判断数据缺失和异常" class="headerlink" title="2.2.4 判断数据缺失和异常"></a>2.2.4 判断数据缺失和异常</h3><pre><code class="python">##1查看每列的存在nan情况
-Train_data.isnull().sum()</code></pre>
+memory usage: 11.4+ MB</code></pre><h3 id="2-2-4-判断数据缺失和异常"><a href="#2-2-4-判断数据缺失和异常" class="headerlink" title="2.2.4 判断数据缺失和异常"></a>2.2.4 判断数据缺失和异常</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##1查看每列的存在nan情况</span>
+Train_data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <pre><code>SaleID                  0
 name                    0
 regDate                 0
@@ -1921,7 +1922,7 @@ v_11                    0
 v_12                    0
 v_13                    0
 v_14                    0
-dtype: int64</code></pre><pre><code class="python">Test_data.isnull().sum()</code></pre>
+dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">Test_data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>SaleID                  0
 name                    0
 regDate                 0
@@ -1952,23 +1953,23 @@ v_11                    0
 v_12                    0
 v_13                    0
 v_14                    0
-dtype: int64</code></pre><pre><code class="python">#nan可视化
-missing = Train_data.isnull().sum()
-missing = missing[missing &gt; 0]
-missing.sort_values(inplace = True)
-missing.plot.bar()</code></pre>
+dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#nan可视化</span>
+missing <span class="token operator">=</span> Train_data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span>
+missing <span class="token operator">=</span> missing<span class="token punctuation">[</span>missing <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">]</span>
+missing<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span>inplace <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+missing<span class="token punctuation">.</span>plot<span class="token punctuation">.</span>bar<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x118cbff10&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_27_1.png" alt="png"></p>
-<pre><code class="python">#可视化看下缺省值
-msno.matrix(Train_data.sample(250))</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#可视化看下缺省值</span>
+msno<span class="token punctuation">.</span>matrix<span class="token punctuation">(</span>Train_data<span class="token punctuation">.</span>sample<span class="token punctuation">(</span><span class="token number">250</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x118b63910&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_28_1.png" alt="png"></p>
-<pre><code class="python">msno.bar(Train_data.sample(1000))</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">msno<span class="token punctuation">.</span>bar<span class="token punctuation">(</span>Train_data<span class="token punctuation">.</span>sample<span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x106d80290&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_29_1.png" alt="png"></p>
-<pre><code class="python">msno.matrix(Test_data.sample(250))</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">msno<span class="token punctuation">.</span>matrix<span class="token punctuation">(</span>Test_data<span class="token punctuation">.</span>sample<span class="token punctuation">(</span><span class="token number">250</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11f6e36d0&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_30_1.png" alt="png"></p>
-<pre><code class="python">msno.bar(Test_data.sample(1000))</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">msno<span class="token punctuation">.</span>bar<span class="token punctuation">(</span>Test_data<span class="token punctuation">.</span>sample<span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11880d6d0&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_31_1.png" alt="png"></p>
-<pre><code class="python">##2查看异常值检测
-Train_data.info()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##2查看异常值检测</span>
+Train_data<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 150000 entries, 0 to 149999
 Data columns (total 31 columns):
@@ -2006,15 +2007,15 @@ Data columns (total 31 columns):
  29  v_13               150000 non-null  float64
  30  v_14               150000 non-null  float64
 dtypes: float64(20), int64(10), object(1)
-memory usage: 35.5+ MB</code></pre><pre><code class="python">Train_data[&#39;notRepairedDamage&#39;].value_counts()</code></pre>
+memory usage: 35.5+ MB</code></pre><pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">[</span><span class="token string">'notRepairedDamage'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0.0    111361
 -       24324
 1.0     14315
-Name: notRepairedDamage, dtype: int64</code></pre><pre><code class="python">Train_data[&#39;notRepairedDamage&#39;].replace(&#39;-&#39;,np.nan,inplace=True)</code></pre>
-<pre><code class="python">Train_data[&#39;notRepairedDamage&#39;].value_counts()</code></pre>
+Name: notRepairedDamage, dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">[</span><span class="token string">'notRepairedDamage'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">,</span>np<span class="token punctuation">.</span>nan<span class="token punctuation">,</span>inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">[</span><span class="token string">'notRepairedDamage'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0.0    111361
 1.0     14315
-Name: notRepairedDamage, dtype: int64</code></pre><pre><code class="python">Train_data.isnull().sum()</code></pre>
+Name: notRepairedDamage, dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>SaleID                   0
 name                     0
 regDate                  0
@@ -2046,12 +2047,12 @@ v_11                     0
 v_12                     0
 v_13                     0
 v_14                     0
-dtype: int64</code></pre><pre><code class="python">Test_data[&#39;notRepairedDamage&#39;].value_counts()</code></pre>
+dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">Test_data<span class="token punctuation">[</span><span class="token string">'notRepairedDamage'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0.0    37249
 -       8031
 1.0     4720
-Name: notRepairedDamage, dtype: int64</code></pre><pre><code class="python">Test_data[&#39;notRepairedDamage&#39;].replace(&#39;-&#39;,np.nan,inplace=True)</code></pre>
-<pre><code class="python">Test_data.isnull().sum()</code></pre>
+Name: notRepairedDamage, dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">Test_data<span class="token punctuation">[</span><span class="token string">'notRepairedDamage'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">,</span>np<span class="token punctuation">.</span>nan<span class="token punctuation">,</span>inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">Test_data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>SaleID                  0
 name                    0
 regDate                 0
@@ -2082,17 +2083,17 @@ v_11                    0
 v_12                    0
 v_13                    0
 v_14                    0
-dtype: int64</code></pre><pre><code class="python">Train_data[&quot;seller&quot;].value_counts()</code></pre>
+dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">[</span><span class="token string">"seller"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0    149999
 1         1
-Name: seller, dtype: int64</code></pre><pre><code class="python">Train_data[&quot;offerType&quot;].value_counts()</code></pre>
+Name: seller, dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">[</span><span class="token string">"offerType"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0    150000
-Name: offerType, dtype: int64</code></pre><pre><code class="python">del Train_data[&quot;seller&quot;]
-del Train_data[&quot;offerType&quot;]
-del Test_data[&quot;seller&quot;]
-del Test_data[&quot;offerType&quot;]
-##删除完毕
-Train_data.isnull().sum()</code></pre>
+Name: offerType, dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">del</span> Train_data<span class="token punctuation">[</span><span class="token string">"seller"</span><span class="token punctuation">]</span>
+<span class="token keyword">del</span> Train_data<span class="token punctuation">[</span><span class="token string">"offerType"</span><span class="token punctuation">]</span>
+<span class="token keyword">del</span> Test_data<span class="token punctuation">[</span><span class="token string">"seller"</span><span class="token punctuation">]</span>
+<span class="token keyword">del</span> Test_data<span class="token punctuation">[</span><span class="token string">"offerType"</span><span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true">##删除完毕</span>
+Train_data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>SaleID                   0
 name                     0
 regDate                  0
@@ -2122,7 +2123,7 @@ v_11                     0
 v_12                     0
 v_13                     0
 v_14                     0
-dtype: int64</code></pre><h3 id="2-2-5-了解预测值的分布"><a href="#2-2-5-了解预测值的分布" class="headerlink" title="2.2.5 了解预测值的分布"></a>2.2.5 了解预测值的分布</h3><pre><code class="python">Train_data[&#39;price&#39;]</code></pre>
+dtype: int64</code></pre><h3 id="2-2-5-了解预测值的分布"><a href="#2-2-5-了解预测值的分布" class="headerlink" title="2.2.5 了解预测值的分布"></a>2.2.5 了解预测值的分布</h3><pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0         1850
 1         3600
 2         6222
@@ -2134,7 +2135,7 @@ dtype: int64</code></pre><h3 id="2-2-5-了解预测值的分布"><a href="#2-2-5
 149997    7500
 149998    4999
 149999    4700
-Name: price, Length: 150000, dtype: int64</code></pre><pre><code class="python">Train_data[&#39;price&#39;].value_counts()</code></pre>
+Name: price, Length: 150000, dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>500      2337
 1500     2158
 1200     1922
@@ -2146,25 +2147,25 @@ Name: price, Length: 150000, dtype: int64</code></pre><pre><code class="python">
 8801        1
 37920       1
 8188        1
-Name: price, Length: 3763, dtype: int64</code></pre><pre><code class="python">##1总体分布概况
-import scipy.stats as st
-y = Train_data[&#39;price&#39;]
-plt.figure(1);plt.title(&#39;Johnson SU&#39;)
-sns.distplot(y,kde=False,fit=st.johnsonsu)
-plt.figure(2);plt.title(&#39;Normal&#39;)
-sns.distplot(y,kde=False,fit=st.norm)
-plt.figure(3);plt.title(&#39;Log Normal&#39;)
-sns.distplot(y,kde=False,fit=st.lognorm)</code></pre>
+Name: price, Length: 3763, dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##1总体分布概况</span>
+<span class="token keyword">import</span> scipy<span class="token punctuation">.</span>stats <span class="token keyword">as</span> st
+y <span class="token operator">=</span> Train_data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Johnson SU'</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>distplot<span class="token punctuation">(</span>y<span class="token punctuation">,</span>kde<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>fit<span class="token operator">=</span>st<span class="token punctuation">.</span>johnsonsu<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Normal'</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>distplot<span class="token punctuation">(</span>y<span class="token punctuation">,</span>kde<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>fit<span class="token operator">=</span>st<span class="token punctuation">.</span>norm<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Log Normal'</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>distplot<span class="token punctuation">(</span>y<span class="token punctuation">,</span>kde<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>fit<span class="token operator">=</span>st<span class="token punctuation">.</span>lognorm<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x119904b50&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_46_1.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_46_2.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_46_3.png" alt="png"></p>
-<pre><code class="python">##2查看skewness 和 kurtosis
-sns.distplot(Train_data[&#39;price&#39;]);
-print(&quot;Skewness: %f&quot; % Train_data[&#39;price&#39;].skew())
-print(&quot;Kurtosis: %f&quot; % Train_data[&#39;price&#39;].kurt())</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##2查看skewness 和 kurtosis</span>
+sns<span class="token punctuation">.</span>distplot<span class="token punctuation">(</span>Train_data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Skewness: %f"</span> <span class="token operator">%</span> Train_data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>skew<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Kurtosis: %f"</span> <span class="token operator">%</span> Train_data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>kurt<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>Skewness: 3.346487
 Kurtosis: 18.995183</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_47_1.png" alt="png"></p>
-<pre><code class="python">Train_data.skew(),Train_data.kurt()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">.</span>skew<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>Train_data<span class="token punctuation">.</span>kurt<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>(SaleID               6.017846e-17
  name                 5.576058e-01
  regDate              2.849508e-02
@@ -2224,28 +2225,28 @@ Kurtosis: 18.995183</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E
  v_12                    0.268937
  v_13                   -0.438274
  v_14                    2.393526
- dtype: float64)</code></pre><pre><code class="python">sns.distplot(Train_data.skew(),color=&#39;blue&#39;,axlabel=&#39;Skewness&#39;)</code></pre>
+ dtype: float64)</code></pre><pre class="line-numbers language-python"><code class="language-python">sns<span class="token punctuation">.</span>distplot<span class="token punctuation">(</span>Train_data<span class="token punctuation">.</span>skew<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>color<span class="token operator">=</span><span class="token string">'blue'</span><span class="token punctuation">,</span>axlabel<span class="token operator">=</span><span class="token string">'Skewness'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1197c88d0&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_49_1.png" alt="png"></p>
-<pre><code class="python">sns.distplot(Train_data.kurt(),color=&#39;orange&#39;,axlabel=&#39;Kurtness&#39;)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">sns<span class="token punctuation">.</span>distplot<span class="token punctuation">(</span>Train_data<span class="token punctuation">.</span>kurt<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>color<span class="token operator">=</span><span class="token string">'orange'</span><span class="token punctuation">,</span>axlabel<span class="token operator">=</span><span class="token string">'Kurtness'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a301f4c10&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_50_1.png" alt="png"></p>
-<pre><code class="python">##3查看预测值的具体频数
-plt.hist(Train_data[&#39;price&#39;],orientation = &#39;vertical&#39;,histtype=&#39;bar&#39;,color=&#39;red&#39;)
-plt.show()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##3查看预测值的具体频数</span>
+plt<span class="token punctuation">.</span>hist<span class="token punctuation">(</span>Train_data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>orientation <span class="token operator">=</span> <span class="token string">'vertical'</span><span class="token punctuation">,</span>histtype<span class="token operator">=</span><span class="token string">'bar'</span><span class="token punctuation">,</span>color<span class="token operator">=</span><span class="token string">'red'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_51_0.png" alt="png"></p>
-<pre><code class="python">#log变换
-plt.hist(np.log(Train_data[&#39;price&#39;]),orientation = &#39;vertical&#39;,histtype=&#39;bar&#39;,color=&#39;red&#39;)
-plt.show()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#log变换</span>
+plt<span class="token punctuation">.</span>hist<span class="token punctuation">(</span>np<span class="token punctuation">.</span>log<span class="token punctuation">(</span>Train_data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>orientation <span class="token operator">=</span> <span class="token string">'vertical'</span><span class="token punctuation">,</span>histtype<span class="token operator">=</span><span class="token string">'bar'</span><span class="token punctuation">,</span>color<span class="token operator">=</span><span class="token string">'red'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_52_0.png" alt="png"></p>
-<h3 id="2-2-6-特征分为类别特征和数字特征，并对类别特征查看unique分布"><a href="#2-2-6-特征分为类别特征和数字特征，并对类别特征查看unique分布" class="headerlink" title="2.2.6 特征分为类别特征和数字特征，并对类别特征查看unique分布"></a>2.2.6 特征分为类别特征和数字特征，并对类别特征查看unique分布</h3><pre><code class="python">#分离预测值
-Y_train = Train_data[&#39;price&#39;]</code></pre>
-<pre><code class="python">number_features = [&#39;power&#39;,&#39;kilometer&#39;,&#39;v_0&#39;,&#39;v_1&#39;,&#39;v_2&#39;,&#39;v_3&#39;,&#39;v_4&#39;,&#39;v_5&#39;,&#39;v_6&#39;,&#39;v_7&#39;,&#39;v_8&#39;,&#39;v_9&#39;,&#39;v_10&#39;,&#39;v_11&#39;,&#39;v_12&#39;,&#39;v_13&#39;,&#39;v_14&#39;]
+<h3 id="2-2-6-特征分为类别特征和数字特征，并对类别特征查看unique分布"><a href="#2-2-6-特征分为类别特征和数字特征，并对类别特征查看unique分布" class="headerlink" title="2.2.6 特征分为类别特征和数字特征，并对类别特征查看unique分布"></a>2.2.6 特征分为类别特征和数字特征，并对类别特征查看unique分布</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#分离预测值</span>
+Y_train <span class="token operator">=</span> Train_data<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">number_features <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">,</span><span class="token string">'kilometer'</span><span class="token punctuation">,</span><span class="token string">'v_0'</span><span class="token punctuation">,</span><span class="token string">'v_1'</span><span class="token punctuation">,</span><span class="token string">'v_2'</span><span class="token punctuation">,</span><span class="token string">'v_3'</span><span class="token punctuation">,</span><span class="token string">'v_4'</span><span class="token punctuation">,</span><span class="token string">'v_5'</span><span class="token punctuation">,</span><span class="token string">'v_6'</span><span class="token punctuation">,</span><span class="token string">'v_7'</span><span class="token punctuation">,</span><span class="token string">'v_8'</span><span class="token punctuation">,</span><span class="token string">'v_9'</span><span class="token punctuation">,</span><span class="token string">'v_10'</span><span class="token punctuation">,</span><span class="token string">'v_11'</span><span class="token punctuation">,</span><span class="token string">'v_12'</span><span class="token punctuation">,</span><span class="token string">'v_13'</span><span class="token punctuation">,</span><span class="token string">'v_14'</span><span class="token punctuation">]</span>
 
-categorical_features = [&#39;name&#39;,&#39;model&#39;,&#39;brand&#39;,&#39;bodyType&#39;,&#39;fuelType&#39;,&#39;gearbox&#39;,&#39;notRepairedDamage&#39;,&#39;regionCode&#39;]</code></pre>
-<pre><code class="python">#特征nunique分布
-for cat_fea in categorical_features:
-    print(cat_fea + &quot;的特征分布如下：&quot;)
-    print(&quot;{}特征有个{}不同的值&quot;.format(cat_fea,Train_data[cat_fea].nunique()))
-    print(Train_data[cat_fea].value_counts())</code></pre>
+categorical_features <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token string">'model'</span><span class="token punctuation">,</span><span class="token string">'brand'</span><span class="token punctuation">,</span><span class="token string">'bodyType'</span><span class="token punctuation">,</span><span class="token string">'fuelType'</span><span class="token punctuation">,</span><span class="token string">'gearbox'</span><span class="token punctuation">,</span><span class="token string">'notRepairedDamage'</span><span class="token punctuation">,</span><span class="token string">'regionCode'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#特征nunique分布</span>
+<span class="token keyword">for</span> cat_fea <span class="token keyword">in</span> categorical_features<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>cat_fea <span class="token operator">+</span> <span class="token string">"的特征分布如下："</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"{}特征有个{}不同的值"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>cat_fea<span class="token punctuation">,</span>Train_data<span class="token punctuation">[</span>cat_fea<span class="token punctuation">]</span><span class="token punctuation">.</span>nunique<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>Train_data<span class="token punctuation">[</span>cat_fea<span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>name的特征分布如下：
 name特征有个99662不同的值
 708       282
@@ -2361,11 +2362,11 @@ regionCode特征有个7905不同的值
 4239      1
 5931      1
 7267      1
-Name: regionCode, Length: 7905, dtype: int64</code></pre><pre><code class="python">#特征nunique分布
-for cat_fea in categorical_features:
-    print(cat_fea + &quot;的特征分布如下：&quot;)
-    print(&quot;{}特征有个{}不同的值&quot;.format(cat_fea,Test_data[cat_fea].nunique()))
-    print(Test_data[cat_fea].value_counts())</code></pre>
+Name: regionCode, Length: 7905, dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#特征nunique分布</span>
+<span class="token keyword">for</span> cat_fea <span class="token keyword">in</span> categorical_features<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>cat_fea <span class="token operator">+</span> <span class="token string">"的特征分布如下："</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"{}特征有个{}不同的值"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>cat_fea<span class="token punctuation">,</span>Test_data<span class="token punctuation">[</span>cat_fea<span class="token punctuation">]</span><span class="token punctuation">.</span>nunique<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>Test_data<span class="token punctuation">[</span>cat_fea<span class="token punctuation">]</span><span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>name的特征分布如下：
 name特征有个37453不同的值
 55       97
@@ -2481,9 +2482,9 @@ regionCode特征有个6971不同的值
 7230      1
 826       1
 112       1
-Name: regionCode, Length: 6971, dtype: int64</code></pre><h3 id="2-2-7-数字特征分析"><a href="#2-2-7-数字特征分析" class="headerlink" title="2.2.7 数字特征分析"></a>2.2.7 数字特征分析</h3><pre><code class="python">number_features = [&#39;power&#39;,&#39;kilometer&#39;,&#39;v_0&#39;,&#39;v_1&#39;,&#39;v_2&#39;,&#39;v_3&#39;,&#39;v_4&#39;,&#39;v_5&#39;,&#39;v_6&#39;,&#39;v_7&#39;,&#39;v_8&#39;,&#39;v_9&#39;,&#39;v_10&#39;,&#39;v_11&#39;,&#39;v_12&#39;,&#39;v_13&#39;,&#39;v_14&#39;]
-number_features.append(&#39;price&#39;)</code></pre>
-<pre><code class="python">number_features</code></pre>
+Name: regionCode, Length: 6971, dtype: int64</code></pre><h3 id="2-2-7-数字特征分析"><a href="#2-2-7-数字特征分析" class="headerlink" title="2.2.7 数字特征分析"></a>2.2.7 数字特征分析</h3><pre class="line-numbers language-python"><code class="language-python">number_features <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">,</span><span class="token string">'kilometer'</span><span class="token punctuation">,</span><span class="token string">'v_0'</span><span class="token punctuation">,</span><span class="token string">'v_1'</span><span class="token punctuation">,</span><span class="token string">'v_2'</span><span class="token punctuation">,</span><span class="token string">'v_3'</span><span class="token punctuation">,</span><span class="token string">'v_4'</span><span class="token punctuation">,</span><span class="token string">'v_5'</span><span class="token punctuation">,</span><span class="token string">'v_6'</span><span class="token punctuation">,</span><span class="token string">'v_7'</span><span class="token punctuation">,</span><span class="token string">'v_8'</span><span class="token punctuation">,</span><span class="token string">'v_9'</span><span class="token punctuation">,</span><span class="token string">'v_10'</span><span class="token punctuation">,</span><span class="token string">'v_11'</span><span class="token punctuation">,</span><span class="token string">'v_12'</span><span class="token punctuation">,</span><span class="token string">'v_13'</span><span class="token punctuation">,</span><span class="token string">'v_14'</span><span class="token punctuation">]</span>
+number_features<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">'price'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">number_features<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>[&#39;power&#39;,
  &#39;kilometer&#39;,
  &#39;v_0&#39;,
@@ -2501,7 +2502,7 @@ number_features.append(&#39;price&#39;)</code></pre>
  &#39;v_12&#39;,
  &#39;v_13&#39;,
  &#39;v_14&#39;,
- &#39;price&#39;]</code></pre><pre><code class="python">Train_data.head()</code></pre>
+ &#39;price&#39;]</code></pre><pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2671,10 +2672,10 @@ number_features.append(&#39;price&#39;)</code></pre>
 
 
 
-<pre><code class="python">##1相关性分析
-price_numeric= Train_data[number_features]
-correlation= price_numeric.corr()
-print(correlation[&#39;price&#39;].sort_values(ascending = False),&#39;\n&#39;)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##1相关性分析</span>
+price_numeric<span class="token operator">=</span> Train_data<span class="token punctuation">[</span>number_features<span class="token punctuation">]</span>
+correlation<span class="token operator">=</span> price_numeric<span class="token punctuation">.</span>corr<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>correlation<span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span>ascending <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>price        1.000000
 v_12         0.692823
 v_8          0.685798
@@ -2693,17 +2694,17 @@ v_10        -0.246175
 v_11        -0.275320
 kilometer   -0.440519
 v_3         -0.730946
-Name: price, dtype: float64 </code></pre><pre><code class="python">f , ax = plt.subplots(figsize=(7,7))
-plt.title(&#39;Correlation of Numeric Features with Price&#39;,y=1,size=16)
-sns.heatmap(correlation,square= True, vmax=0.8)</code></pre>
+Name: price, dtype: float64 </code></pre><pre class="line-numbers language-python"><code class="language-python">f <span class="token punctuation">,</span> ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Correlation of Numeric Features with Price'</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>size<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>heatmap<span class="token punctuation">(</span>correlation<span class="token punctuation">,</span>square<span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> vmax<span class="token operator">=</span><span class="token number">0.8</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11979ed50&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_63_1.png" alt="png"></p>
-<pre><code class="python">
-## 2查看几个特征的偏度和峰值
-for col in number_features:
-    print(&#39;{:15}&#39;.format(col),
-          &#39;Skewness:{:05.2f}&#39;.format(Train_data[col].skew()),
-          &#39;   &#39;,
-          &#39;Kurtosis:{:06.2f}&#39;.format(Train_data[col].kurt()))</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">
+<span class="token comment" spellcheck="true">## 2查看几个特征的偏度和峰值</span>
+<span class="token keyword">for</span> col <span class="token keyword">in</span> number_features<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'{:15}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>col<span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token string">'Skewness:{:05.2f}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>Train_data<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>skew<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token string">'   '</span><span class="token punctuation">,</span>
+          <span class="token string">'Kurtosis:{:06.2f}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>Train_data<span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">.</span>kurt<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>power           Skewness:65.86     Kurtosis:5733.45
 kilometer       Skewness:-1.53     Kurtosis:001.14
 v_0             Skewness:-1.32     Kurtosis:003.99
@@ -2721,23 +2722,23 @@ v_11            Skewness:03.03     Kurtosis:012.57
 v_12            Skewness:00.37     Kurtosis:000.27
 v_13            Skewness:00.27     Kurtosis:-00.44
 v_14            Skewness:-1.19     Kurtosis:002.39
-price           Skewness:03.35     Kurtosis:019.00</code></pre><pre><code class="python">##3每个数字特征的分布可视化
-f = pd.melt(Train_data,value_vars=number_features)
-g = sns.FacetGrid(f,col=&quot;variable&quot;,col_wrap=2,sharex=False,sharey= False)
-g=g.map(sns.distplot,&quot;value&quot;)</code></pre>
+price           Skewness:03.35     Kurtosis:019.00</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##3每个数字特征的分布可视化</span>
+f <span class="token operator">=</span> pd<span class="token punctuation">.</span>melt<span class="token punctuation">(</span>Train_data<span class="token punctuation">,</span>value_vars<span class="token operator">=</span>number_features<span class="token punctuation">)</span>
+g <span class="token operator">=</span> sns<span class="token punctuation">.</span>FacetGrid<span class="token punctuation">(</span>f<span class="token punctuation">,</span>col<span class="token operator">=</span><span class="token string">"variable"</span><span class="token punctuation">,</span>col_wrap<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>sharex<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>sharey<span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span>
+g<span class="token operator">=</span>g<span class="token punctuation">.</span>map<span class="token punctuation">(</span>sns<span class="token punctuation">.</span>distplot<span class="token punctuation">,</span><span class="token string">"value"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_65_0.png" alt="png"></p>
-<pre><code class="python">##4数字特征相互之间的关系可视化
-sns.set()
-columns=[&#39;price&#39;,&#39;v_12&#39;,&#39;v_8&#39;,&#39;v_0&#39;,&#39;power&#39;,&#39;v_5&#39;,&#39;v_2&#39;,&#39;v_6&#39;,&#39;v_1&#39;,&#39;v_14&#39;]
-sns.pairplot(Train_data[columns],size = 2,kind=&#39;scatter&#39;,diag_kind=&#39;kde&#39;)
-plt.show()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##4数字特征相互之间的关系可视化</span>
+sns<span class="token punctuation">.</span>set<span class="token punctuation">(</span><span class="token punctuation">)</span>
+columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">,</span><span class="token string">'v_12'</span><span class="token punctuation">,</span><span class="token string">'v_8'</span><span class="token punctuation">,</span><span class="token string">'v_0'</span><span class="token punctuation">,</span><span class="token string">'power'</span><span class="token punctuation">,</span><span class="token string">'v_5'</span><span class="token punctuation">,</span><span class="token string">'v_2'</span><span class="token punctuation">,</span><span class="token string">'v_6'</span><span class="token punctuation">,</span><span class="token string">'v_1'</span><span class="token punctuation">,</span><span class="token string">'v_14'</span><span class="token punctuation">]</span>
+sns<span class="token punctuation">.</span>pairplot<span class="token punctuation">(</span>Train_data<span class="token punctuation">[</span>columns<span class="token punctuation">]</span><span class="token punctuation">,</span>size <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span>kind<span class="token operator">=</span><span class="token string">'scatter'</span><span class="token punctuation">,</span>diag_kind<span class="token operator">=</span><span class="token string">'kde'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_66_0.png" alt="png"></p>
-<pre><code class="python">Train_data.columns</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">.</span>columns<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>Index([&#39;SaleID&#39;, &#39;name&#39;, &#39;regDate&#39;, &#39;model&#39;, &#39;brand&#39;, &#39;bodyType&#39;, &#39;fuelType&#39;,
        &#39;gearbox&#39;, &#39;power&#39;, &#39;kilometer&#39;, &#39;notRepairedDamage&#39;, &#39;regionCode&#39;,
        &#39;creatDate&#39;, &#39;price&#39;, &#39;v_0&#39;, &#39;v_1&#39;, &#39;v_2&#39;, &#39;v_3&#39;, &#39;v_4&#39;, &#39;v_5&#39;, &#39;v_6&#39;,
        &#39;v_7&#39;, &#39;v_8&#39;, &#39;v_9&#39;, &#39;v_10&#39;, &#39;v_11&#39;, &#39;v_12&#39;, &#39;v_13&#39;, &#39;v_14&#39;],
-      dtype=&#39;object&#39;)</code></pre><pre><code class="python">Y_train</code></pre>
+      dtype=&#39;object&#39;)</code></pre><pre class="line-numbers language-python"><code class="language-python">Y_train<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0         1850
 1         3600
 2         6222
@@ -2749,42 +2750,42 @@ plt.show()</code></pre>
 149997    7500
 149998    4999
 149999    4700
-Name: price, Length: 150000, dtype: int64</code></pre><pre><code class="python">##5多变量互相回归关系可视化
-fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6), (ax7, ax8), (ax9, ax10)) = plt.subplots(nrows=5, ncols=2, figsize=(24, 20))
-# [&#39;v_12&#39;, &#39;v_8&#39; , &#39;v_0&#39;, &#39;power&#39;, &#39;v_5&#39;,  &#39;v_2&#39;, &#39;v_6&#39;, &#39;v_1&#39;, &#39;v_14&#39;]
-v_12_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_12&#39;]],axis = 1)
-sns.regplot(x=&#39;v_12&#39;,y = &#39;price&#39;, data = v_12_scatter_plot,scatter= True, fit_reg=True, ax=ax1)
+Name: price, Length: 150000, dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##5多变量互相回归关系可视化</span>
+fig<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>ax1<span class="token punctuation">,</span> ax2<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>ax3<span class="token punctuation">,</span> ax4<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>ax5<span class="token punctuation">,</span> ax6<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>ax7<span class="token punctuation">,</span> ax8<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>ax9<span class="token punctuation">,</span> ax10<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span>nrows<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> ncols<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># ['v_12', 'v_8' , 'v_0', 'power', 'v_5',  'v_2', 'v_6', 'v_1', 'v_14']</span>
+v_12_scatter_plot <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>Y_train<span class="token punctuation">,</span>Train_data<span class="token punctuation">[</span><span class="token string">'v_12'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>axis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>regplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'v_12'</span><span class="token punctuation">,</span>y <span class="token operator">=</span> <span class="token string">'price'</span><span class="token punctuation">,</span> data <span class="token operator">=</span> v_12_scatter_plot<span class="token punctuation">,</span>scatter<span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> fit_reg<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax1<span class="token punctuation">)</span>
 
-v_8_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_8&#39;]],axis = 1)
-sns.regplot(x=&#39;v_8&#39;,y = &#39;price&#39;,data = v_8_scatter_plot,scatter= True, fit_reg=True, ax=ax2)
+v_8_scatter_plot <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>Y_train<span class="token punctuation">,</span>Train_data<span class="token punctuation">[</span><span class="token string">'v_8'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>axis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>regplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'v_8'</span><span class="token punctuation">,</span>y <span class="token operator">=</span> <span class="token string">'price'</span><span class="token punctuation">,</span>data <span class="token operator">=</span> v_8_scatter_plot<span class="token punctuation">,</span>scatter<span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> fit_reg<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax2<span class="token punctuation">)</span>
 
-v_0_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_0&#39;]],axis = 1)
-sns.regplot(x=&#39;v_0&#39;,y = &#39;price&#39;,data = v_0_scatter_plot,scatter= True, fit_reg=True, ax=ax3)
+v_0_scatter_plot <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>Y_train<span class="token punctuation">,</span>Train_data<span class="token punctuation">[</span><span class="token string">'v_0'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>axis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>regplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'v_0'</span><span class="token punctuation">,</span>y <span class="token operator">=</span> <span class="token string">'price'</span><span class="token punctuation">,</span>data <span class="token operator">=</span> v_0_scatter_plot<span class="token punctuation">,</span>scatter<span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> fit_reg<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax3<span class="token punctuation">)</span>
 
-power_scatter_plot = pd.concat([Y_train,Train_data[&#39;power&#39;]],axis = 1)
-sns.regplot(x=&#39;power&#39;,y = &#39;price&#39;,data = power_scatter_plot,scatter= True, fit_reg=True, ax=ax4)
+power_scatter_plot <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>Y_train<span class="token punctuation">,</span>Train_data<span class="token punctuation">[</span><span class="token string">'power'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>axis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>regplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'power'</span><span class="token punctuation">,</span>y <span class="token operator">=</span> <span class="token string">'price'</span><span class="token punctuation">,</span>data <span class="token operator">=</span> power_scatter_plot<span class="token punctuation">,</span>scatter<span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> fit_reg<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax4<span class="token punctuation">)</span>
 
-v_5_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_5&#39;]],axis = 1)
-sns.regplot(x=&#39;v_5&#39;,y = &#39;price&#39;,data = v_5_scatter_plot,scatter= True, fit_reg=True, ax=ax5)
+v_5_scatter_plot <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>Y_train<span class="token punctuation">,</span>Train_data<span class="token punctuation">[</span><span class="token string">'v_5'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>axis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>regplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'v_5'</span><span class="token punctuation">,</span>y <span class="token operator">=</span> <span class="token string">'price'</span><span class="token punctuation">,</span>data <span class="token operator">=</span> v_5_scatter_plot<span class="token punctuation">,</span>scatter<span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> fit_reg<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax5<span class="token punctuation">)</span>
 
-v_2_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_2&#39;]],axis = 1)
-sns.regplot(x=&#39;v_2&#39;,y = &#39;price&#39;,data = v_2_scatter_plot,scatter= True, fit_reg=True, ax=ax6)
+v_2_scatter_plot <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>Y_train<span class="token punctuation">,</span>Train_data<span class="token punctuation">[</span><span class="token string">'v_2'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>axis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>regplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'v_2'</span><span class="token punctuation">,</span>y <span class="token operator">=</span> <span class="token string">'price'</span><span class="token punctuation">,</span>data <span class="token operator">=</span> v_2_scatter_plot<span class="token punctuation">,</span>scatter<span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> fit_reg<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax6<span class="token punctuation">)</span>
 
-v_6_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_6&#39;]],axis = 1)
-sns.regplot(x=&#39;v_6&#39;,y = &#39;price&#39;,data = v_6_scatter_plot,scatter= True, fit_reg=True, ax=ax7)
+v_6_scatter_plot <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>Y_train<span class="token punctuation">,</span>Train_data<span class="token punctuation">[</span><span class="token string">'v_6'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>axis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>regplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'v_6'</span><span class="token punctuation">,</span>y <span class="token operator">=</span> <span class="token string">'price'</span><span class="token punctuation">,</span>data <span class="token operator">=</span> v_6_scatter_plot<span class="token punctuation">,</span>scatter<span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> fit_reg<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax7<span class="token punctuation">)</span>
 
-v_1_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_1&#39;]],axis = 1)
-sns.regplot(x=&#39;v_1&#39;,y = &#39;price&#39;,data = v_1_scatter_plot,scatter= True, fit_reg=True, ax=ax8)
+v_1_scatter_plot <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>Y_train<span class="token punctuation">,</span>Train_data<span class="token punctuation">[</span><span class="token string">'v_1'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>axis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>regplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'v_1'</span><span class="token punctuation">,</span>y <span class="token operator">=</span> <span class="token string">'price'</span><span class="token punctuation">,</span>data <span class="token operator">=</span> v_1_scatter_plot<span class="token punctuation">,</span>scatter<span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> fit_reg<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax8<span class="token punctuation">)</span>
 
-v_14_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_14&#39;]],axis = 1)
-sns.regplot(x=&#39;v_14&#39;,y = &#39;price&#39;,data = v_14_scatter_plot,scatter= True, fit_reg=True, ax=ax9)
+v_14_scatter_plot <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>Y_train<span class="token punctuation">,</span>Train_data<span class="token punctuation">[</span><span class="token string">'v_14'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>axis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>regplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'v_14'</span><span class="token punctuation">,</span>y <span class="token operator">=</span> <span class="token string">'price'</span><span class="token punctuation">,</span>data <span class="token operator">=</span> v_14_scatter_plot<span class="token punctuation">,</span>scatter<span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> fit_reg<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax9<span class="token punctuation">)</span>
 
-v_13_scatter_plot = pd.concat([Y_train,Train_data[&#39;v_13&#39;]],axis = 1)
-sns.regplot(x=&#39;v_13&#39;,y = &#39;price&#39;,data = v_13_scatter_plot,scatter= True, fit_reg=True, ax=ax10)</code></pre>
+v_13_scatter_plot <span class="token operator">=</span> pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>Y_train<span class="token punctuation">,</span>Train_data<span class="token punctuation">[</span><span class="token string">'v_13'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>axis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>regplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'v_13'</span><span class="token punctuation">,</span>y <span class="token operator">=</span> <span class="token string">'price'</span><span class="token punctuation">,</span>data <span class="token operator">=</span> v_13_scatter_plot<span class="token punctuation">,</span>scatter<span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> fit_reg<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> ax<span class="token operator">=</span>ax10<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a35942d10&gt;</code></pre><p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_69_1.png" alt="png"></p>
-<h3 id="2-2-8-类别特征分析"><a href="#2-2-8-类别特征分析" class="headerlink" title="2.2.8 类别特征分析"></a>2.2.8 类别特征分析</h3><pre><code class="python">##1unique分布
-for fea in categorical_features:
-    print(Train_data[fea].nunique())</code></pre>
+<h3 id="2-2-8-类别特征分析"><a href="#2-2-8-类别特征分析" class="headerlink" title="2.2.8 类别特征分析"></a>2.2.8 类别特征分析</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##1unique分布</span>
+<span class="token keyword">for</span> fea <span class="token keyword">in</span> categorical_features<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>Train_data<span class="token punctuation">[</span>fea<span class="token punctuation">]</span><span class="token punctuation">.</span>nunique<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>99662
 248
 40
@@ -2792,7 +2793,7 @@ for fea in categorical_features:
 7
 2
 2
-7905</code></pre><pre><code class="python">categorical_features</code></pre>
+7905</code></pre><pre class="line-numbers language-python"><code class="language-python">categorical_features<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>[&#39;name&#39;,
  &#39;model&#39;,
  &#39;brand&#39;,
@@ -2800,71 +2801,71 @@ for fea in categorical_features:
  &#39;fuelType&#39;,
  &#39;gearbox&#39;,
  &#39;notRepairedDamage&#39;,
- &#39;regionCode&#39;]</code></pre><pre><code class="python">##2类别特征箱形图可视化
-categorical_features = [&#39;model&#39;,
- &#39;brand&#39;,
- &#39;bodyType&#39;,
- &#39;fuelType&#39;,
- &#39;gearbox&#39;,
- &#39;notRepairedDamage&#39;]
-for c in categorical_features:
-    Train_data[c]=Train_data[c].astype(&#39;category&#39;)
-    if Train_data[c].isnull().any():
-        Train_data[c] = Train_data[c].cat.add_categories([&#39;MISSING&#39;])
-        Train_data[c]=Train_data[c].fillna(&#39;MISSING&#39;)
-def boxplot(x,y,**kwargs):
-    sns.boxplot(x=x,y=y)
-    x=plt.xticks(rotation=90)
-f = pd.melt(Train_data,id_vars=[&#39;price&#39;],value_vars=categorical_features)
-g = sns.FacetGrid(f,col=&quot;variable&quot;,col_wrap=2,sharex=False,sharey= False,size=5)
-g = g.map(boxplot,&quot;value&quot;,&quot;price&quot;)</code></pre>
+ &#39;regionCode&#39;]</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##2类别特征箱形图可视化</span>
+categorical_features <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'model'</span><span class="token punctuation">,</span>
+ <span class="token string">'brand'</span><span class="token punctuation">,</span>
+ <span class="token string">'bodyType'</span><span class="token punctuation">,</span>
+ <span class="token string">'fuelType'</span><span class="token punctuation">,</span>
+ <span class="token string">'gearbox'</span><span class="token punctuation">,</span>
+ <span class="token string">'notRepairedDamage'</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> c <span class="token keyword">in</span> categorical_features<span class="token punctuation">:</span>
+    Train_data<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token operator">=</span>Train_data<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">'category'</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> Train_data<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>any<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        Train_data<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">=</span> Train_data<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">.</span>cat<span class="token punctuation">.</span>add_categories<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'MISSING'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        Train_data<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token operator">=</span>Train_data<span class="token punctuation">[</span>c<span class="token punctuation">]</span><span class="token punctuation">.</span>fillna<span class="token punctuation">(</span><span class="token string">'MISSING'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">boxplot</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span><span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sns<span class="token punctuation">.</span>boxplot<span class="token punctuation">(</span>x<span class="token operator">=</span>x<span class="token punctuation">,</span>y<span class="token operator">=</span>y<span class="token punctuation">)</span>
+    x<span class="token operator">=</span>plt<span class="token punctuation">.</span>xticks<span class="token punctuation">(</span>rotation<span class="token operator">=</span><span class="token number">90</span><span class="token punctuation">)</span>
+f <span class="token operator">=</span> pd<span class="token punctuation">.</span>melt<span class="token punctuation">(</span>Train_data<span class="token punctuation">,</span>id_vars<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>value_vars<span class="token operator">=</span>categorical_features<span class="token punctuation">)</span>
+g <span class="token operator">=</span> sns<span class="token punctuation">.</span>FacetGrid<span class="token punctuation">(</span>f<span class="token punctuation">,</span>col<span class="token operator">=</span><span class="token string">"variable"</span><span class="token punctuation">,</span>col_wrap<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>sharex<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>sharey<span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span>size<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
+g <span class="token operator">=</span> g<span class="token punctuation">.</span>map<span class="token punctuation">(</span>boxplot<span class="token punctuation">,</span><span class="token string">"value"</span><span class="token punctuation">,</span><span class="token string">"price"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_73_0.png" alt="png"></p>
-<pre><code class="python">Train_data.columns</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">Train_data<span class="token punctuation">.</span>columns<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>Index([&#39;SaleID&#39;, &#39;name&#39;, &#39;regDate&#39;, &#39;model&#39;, &#39;brand&#39;, &#39;bodyType&#39;, &#39;fuelType&#39;,
        &#39;gearbox&#39;, &#39;power&#39;, &#39;kilometer&#39;, &#39;notRepairedDamage&#39;, &#39;regionCode&#39;,
        &#39;creatDate&#39;, &#39;price&#39;, &#39;v_0&#39;, &#39;v_1&#39;, &#39;v_2&#39;, &#39;v_3&#39;, &#39;v_4&#39;, &#39;v_5&#39;, &#39;v_6&#39;,
        &#39;v_7&#39;, &#39;v_8&#39;, &#39;v_9&#39;, &#39;v_10&#39;, &#39;v_11&#39;, &#39;v_12&#39;, &#39;v_13&#39;, &#39;v_14&#39;],
-      dtype=&#39;object&#39;)</code></pre><pre><code class="python">###3类别特征的小提琴图可视化
-catg_list = categorical_features
-target= &#39;price&#39;
-for catg in catg_list :
-    sns.violinplot(x=catg,y=target,data=Train_data)
-    plt.show()</code></pre>
+      dtype=&#39;object&#39;)</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">###3类别特征的小提琴图可视化</span>
+catg_list <span class="token operator">=</span> categorical_features
+target<span class="token operator">=</span> <span class="token string">'price'</span>
+<span class="token keyword">for</span> catg <span class="token keyword">in</span> catg_list <span class="token punctuation">:</span>
+    sns<span class="token punctuation">.</span>violinplot<span class="token punctuation">(</span>x<span class="token operator">=</span>catg<span class="token punctuation">,</span>y<span class="token operator">=</span>target<span class="token punctuation">,</span>data<span class="token operator">=</span>Train_data<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_0.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_1.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_2.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_3.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_4.png" alt="png"></p>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_75_5.png" alt="png"></p>
-<pre><code class="python">categorical_features = [&#39;model&#39;,
- &#39;brand&#39;,
- &#39;bodyType&#39;,
- &#39;fuelType&#39;,
- &#39;gearbox&#39;,
- &#39;notRepairedDamage&#39;]</code></pre>
-<pre><code class="python">##4类别特征的柱形图可视化
-def bar_plot(x, y, **kwargs):
-    sns.barplot(x=x, y=y)
-    x=plt.xticks(rotation=90)
+<pre class="line-numbers language-python"><code class="language-python">categorical_features <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'model'</span><span class="token punctuation">,</span>
+ <span class="token string">'brand'</span><span class="token punctuation">,</span>
+ <span class="token string">'bodyType'</span><span class="token punctuation">,</span>
+ <span class="token string">'fuelType'</span><span class="token punctuation">,</span>
+ <span class="token string">'gearbox'</span><span class="token punctuation">,</span>
+ <span class="token string">'notRepairedDamage'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##4类别特征的柱形图可视化</span>
+<span class="token keyword">def</span> <span class="token function">bar_plot</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sns<span class="token punctuation">.</span>barplot<span class="token punctuation">(</span>x<span class="token operator">=</span>x<span class="token punctuation">,</span> y<span class="token operator">=</span>y<span class="token punctuation">)</span>
+    x<span class="token operator">=</span>plt<span class="token punctuation">.</span>xticks<span class="token punctuation">(</span>rotation<span class="token operator">=</span><span class="token number">90</span><span class="token punctuation">)</span>
 
-f = pd.melt(Train_data, id_vars=[&#39;price&#39;], value_vars=categorical_features)
-g = sns.FacetGrid(f, col=&quot;variable&quot;,  col_wrap=2, sharex=False, sharey=False, size=5)
-g = g.map(bar_plot, &quot;value&quot;, &quot;price&quot;)</code></pre>
+f <span class="token operator">=</span> pd<span class="token punctuation">.</span>melt<span class="token punctuation">(</span>Train_data<span class="token punctuation">,</span> id_vars<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'price'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> value_vars<span class="token operator">=</span>categorical_features<span class="token punctuation">)</span>
+g <span class="token operator">=</span> sns<span class="token punctuation">.</span>FacetGrid<span class="token punctuation">(</span>f<span class="token punctuation">,</span> col<span class="token operator">=</span><span class="token string">"variable"</span><span class="token punctuation">,</span>  col_wrap<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> sharex<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> sharey<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
+g <span class="token operator">=</span> g<span class="token punctuation">.</span>map<span class="token punctuation">(</span>bar_plot<span class="token punctuation">,</span> <span class="token string">"value"</span><span class="token punctuation">,</span> <span class="token string">"price"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_77_0.png" alt="png"></p>
-<pre><code class="python">##5类别特征的每个类别频数可视化(count_plot)
-def count_plot(x,  **kwargs):
-    sns.countplot(x=x)
-    x=plt.xticks(rotation=90)
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">##5类别特征的每个类别频数可视化(count_plot)</span>
+<span class="token keyword">def</span> <span class="token function">count_plot</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>  <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sns<span class="token punctuation">.</span>countplot<span class="token punctuation">(</span>x<span class="token operator">=</span>x<span class="token punctuation">)</span>
+    x<span class="token operator">=</span>plt<span class="token punctuation">.</span>xticks<span class="token punctuation">(</span>rotation<span class="token operator">=</span><span class="token number">90</span><span class="token punctuation">)</span>
 
-f = pd.melt(Train_data,  value_vars=categorical_features)
-g = sns.FacetGrid(f, col=&quot;variable&quot;,  col_wrap=2, sharex=False, sharey=False, size=5)
-g = g.map(count_plot, &quot;value&quot;)</code></pre>
+f <span class="token operator">=</span> pd<span class="token punctuation">.</span>melt<span class="token punctuation">(</span>Train_data<span class="token punctuation">,</span>  value_vars<span class="token operator">=</span>categorical_features<span class="token punctuation">)</span>
+g <span class="token operator">=</span> sns<span class="token punctuation">.</span>FacetGrid<span class="token punctuation">(</span>f<span class="token punctuation">,</span> col<span class="token operator">=</span><span class="token string">"variable"</span><span class="token punctuation">,</span>  col_wrap<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> sharex<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> sharey<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
+g <span class="token operator">=</span> g<span class="token punctuation">.</span>map<span class="token punctuation">(</span>count_plot<span class="token punctuation">,</span> <span class="token string">"value"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/2020/03/24/Datawhale%20%E4%BA%8C%E6%89%8B%E8%BD%A6%E4%BB%B7%E6%A0%BC%E9%A2%84%E6%B5%8BTask1&Task2/output_78_0.png" alt="png"></p>
-<h3 id="2-2-9-用pandas-profiling生成数据报告"><a href="#2-2-9-用pandas-profiling生成数据报告" class="headerlink" title="2.2.9 用pandas_profiling生成数据报告"></a>2.2.9 用pandas_profiling生成数据报告</h3><pre><code class="python">import pandas_profiling
-###刚开始这个地方一直报错，终于解决了！！！！原因是我安装命令写错了
-##错误的写成了pip install pandas profilling 正确的应该是pip install pandas_profiling</code></pre>
-<pre><code class="python">pfr = pandas_profiling.ProfileReport(Train_data)
-pfr.to_file(&quot;./tianchi/example.html&quot;)</code></pre>
+<h3 id="2-2-9-用pandas-profiling生成数据报告"><a href="#2-2-9-用pandas-profiling生成数据报告" class="headerlink" title="2.2.9 用pandas_profiling生成数据报告"></a>2.2.9 用pandas_profiling生成数据报告</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> pandas_profiling
+<span class="token comment" spellcheck="true">###刚开始这个地方一直报错，终于解决了！！！！原因是我安装命令写错了</span>
+<span class="token comment" spellcheck="true">##错误的写成了pip install pandas profilling 正确的应该是pip install pandas_profiling</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">pfr <span class="token operator">=</span> pandas_profiling<span class="token punctuation">.</span>ProfileReport<span class="token punctuation">(</span>Train_data<span class="token punctuation">)</span>
+pfr<span class="token punctuation">.</span>to_file<span class="token punctuation">(</span><span class="token string">"./tianchi/example.html"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
                 
             </div>

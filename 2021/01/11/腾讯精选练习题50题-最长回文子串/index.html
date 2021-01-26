@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -493,131 +494,131 @@
 <li><code>1 &lt;= s.length &lt;= 1000</code></li>
 <li><code>s</code> 仅由数字和英文字母（大写和/或小写）组成</li>
 </ul>
-<pre><code class="java">
-/*
+<pre class="line-numbers language-java"><code class="language-java">
+<span class="token comment" spellcheck="true">/*
  * @lc app=leetcode.cn id=5 lang=java
  *
  * [5] 最长回文子串
- */
+ */</span>
 
-// @lc code=start
-class Solution {
-    public String longestPalindrome(String s) {
-     //动态规划做法
-        //特判
-        int len =s.length();
-        if(len&lt;2){
-            return s;
-        }
-        int maxLen = 1;
-        int begin = 0;
+<span class="token comment" spellcheck="true">// @lc code=start</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> String <span class="token function">longestPalindrome</span><span class="token punctuation">(</span>String s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token comment" spellcheck="true">//动态规划做法</span>
+        <span class="token comment" spellcheck="true">//特判</span>
+        <span class="token keyword">int</span> len <span class="token operator">=</span>s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>len<span class="token operator">&lt;</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> s<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> maxLen <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> begin <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-        boolean[][] dp = new boolean[len][len];
-        char[] charArray = s.toCharArray();
+        <span class="token keyword">boolean</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> dp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">boolean</span><span class="token punctuation">[</span>len<span class="token punctuation">]</span><span class="token punctuation">[</span>len<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> charArray <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">toCharArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        for (int i = 0; i &lt; len; i++) {
-            dp[i][i]=true;
-        }
-        for (int j = 1; j &lt; len; j++) {
-            for (int i = 0; i &lt;j; i++) {
-                if(charArray[i]!=charArray[j]){
-                    dp[i][j]=false;
-                }else{
-                    if(j-i&lt;3){
-                        dp[i][j]=true;
-                    }else{
-                        dp[i][j]=dp[i+1][j-1];
-                    }
-                }
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span>j<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>charArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span>charArray<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>j<span class="token operator">-</span>i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                        dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+                        dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>dp<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
 
-                if(dp[i][j] &amp;&amp; j-i+1&gt;maxLen){
-                    maxLen=j-i+1;
-                    begin = i;
-                }
-            }
-        }
-        return s.substring(begin, begin+maxLen);
+                <span class="token keyword">if</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> j<span class="token operator">-</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token operator">></span>maxLen<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    maxLen<span class="token operator">=</span>j<span class="token operator">-</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+                    begin <span class="token operator">=</span> i<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> s<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>begin<span class="token punctuation">,</span> begin<span class="token operator">+</span>maxLen<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    }
-}
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-</code></pre>
-<pre><code class="java">/*
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
  * @lc app=leetcode.cn id=5 lang=java
  *
  * [5] 最长回文子串
- */
+ */</span>
 
-// @lc code=start
-class Solution {
-    public String longestPalindrome(String s) {
+<span class="token comment" spellcheck="true">// @lc code=start</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> String <span class="token function">longestPalindrome</span><span class="token punctuation">(</span>String s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-        // //特判
-        // int len =s.length();
-        // if(len&lt;2){
-        //     return s;
-        // }
-        // int maxLen = 1;
-        // int begin = 0;
+        <span class="token comment" spellcheck="true">// //特判</span>
+        <span class="token comment" spellcheck="true">// int len =s.length();</span>
+        <span class="token comment" spellcheck="true">// if(len&lt;2){</span>
+        <span class="token comment" spellcheck="true">//     return s;</span>
+        <span class="token comment" spellcheck="true">// }</span>
+        <span class="token comment" spellcheck="true">// int maxLen = 1;</span>
+        <span class="token comment" spellcheck="true">// int begin = 0;</span>
 
-        // boolean[][] dp = new boolean[len][len];
-        // char[] charArray = s.toCharArray();
+        <span class="token comment" spellcheck="true">// boolean[][] dp = new boolean[len][len];</span>
+        <span class="token comment" spellcheck="true">// char[] charArray = s.toCharArray();</span>
 
-        // for (int i = 0; i &lt; len; i++) {
-        //     dp[i][i]=true;
-        // }
-        // for (int j = 1; j &lt; len; j++) {
-        //     for (int i = 0; i &lt;j; i++) {
-        //         if(charArray[i]!=charArray[j]){
-        //             dp[i][j]=false;
-        //         }else{
-        //             if(j-i&lt;3){
-        //                 dp[i][j]=true;
-        //             }else{
-        //                 dp[i][j]=dp[i+1][j-1];
-        //             }
-        //         }
+        <span class="token comment" spellcheck="true">// for (int i = 0; i &lt; len; i++) {</span>
+        <span class="token comment" spellcheck="true">//     dp[i][i]=true;</span>
+        <span class="token comment" spellcheck="true">// }</span>
+        <span class="token comment" spellcheck="true">// for (int j = 1; j &lt; len; j++) {</span>
+        <span class="token comment" spellcheck="true">//     for (int i = 0; i &lt;j; i++) {</span>
+        <span class="token comment" spellcheck="true">//         if(charArray[i]!=charArray[j]){</span>
+        <span class="token comment" spellcheck="true">//             dp[i][j]=false;</span>
+        <span class="token comment" spellcheck="true">//         }else{</span>
+        <span class="token comment" spellcheck="true">//             if(j-i&lt;3){</span>
+        <span class="token comment" spellcheck="true">//                 dp[i][j]=true;</span>
+        <span class="token comment" spellcheck="true">//             }else{</span>
+        <span class="token comment" spellcheck="true">//                 dp[i][j]=dp[i+1][j-1];</span>
+        <span class="token comment" spellcheck="true">//             }</span>
+        <span class="token comment" spellcheck="true">//         }</span>
 
-        //         if(dp[i][j] &amp;&amp; j-i+1&gt;maxLen){
-        //             maxLen=j-i+1;
-        //             begin = i;
-        //         }
-        //     }
-        // }
-        // return s.substring(begin, begin+maxLen);
-//从中心扩散的方法
-        String res= &quot;&quot;;
-        for (int i = 0; i &lt; s.length(); i++) {
+        <span class="token comment" spellcheck="true">//         if(dp[i][j] &amp;&amp; j-i+1>maxLen){</span>
+        <span class="token comment" spellcheck="true">//             maxLen=j-i+1;</span>
+        <span class="token comment" spellcheck="true">//             begin = i;</span>
+        <span class="token comment" spellcheck="true">//         }</span>
+        <span class="token comment" spellcheck="true">//     }</span>
+        <span class="token comment" spellcheck="true">// }</span>
+        <span class="token comment" spellcheck="true">// return s.substring(begin, begin+maxLen);</span>
+<span class="token comment" spellcheck="true">//从中心扩散的方法</span>
+        String res<span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-          //奇数
-            int l = i-1;
-            int r = i+1;
-            while(l&gt;=0&amp;&amp;r&lt;s.length()&amp;&amp;s.charAt(l)==s.charAt(r)){
-                l--;
-                r++;
-            }
-            if(r-l-1&gt;res.length()){
-                res=s.substring(l+1, r);
-            }
+          <span class="token comment" spellcheck="true">//奇数</span>
+            <span class="token keyword">int</span> l <span class="token operator">=</span> i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> r <span class="token operator">=</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>l<span class="token operator">>=</span><span class="token number">0</span><span class="token operator">&amp;&amp;</span>r<span class="token operator">&lt;</span>s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token operator">==</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                l<span class="token operator">--</span><span class="token punctuation">;</span>
+                r<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>r<span class="token operator">-</span>l<span class="token operator">-</span><span class="token number">1</span><span class="token operator">></span>res<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                res<span class="token operator">=</span>s<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>l<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
 
-                        //偶数
-             l =i;
-             r= i+1;
-            while(l&gt;=0&amp;&amp;r&lt;s.length()&amp;&amp;s.charAt(l)==s.charAt(r)){
-                l--;
-                r++;
-            }
-            if(r-l-1&gt;res.length()){
-                res=s.substring(l+1, r);
-            }
-        }
-        return res;
+                        <span class="token comment" spellcheck="true">//偶数</span>
+             l <span class="token operator">=</span>i<span class="token punctuation">;</span>
+             r<span class="token operator">=</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>l<span class="token operator">>=</span><span class="token number">0</span><span class="token operator">&amp;&amp;</span>r<span class="token operator">&lt;</span>s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token operator">==</span>s<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                l<span class="token operator">--</span><span class="token punctuation">;</span>
+                r<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>r<span class="token operator">-</span>l<span class="token operator">-</span><span class="token number">1</span><span class="token operator">></span>res<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                res<span class="token operator">=</span>s<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>l<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
 
-    }
-}
-// @lc code=end
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// @lc code=end</span>
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>参考链接：</p>
 <p><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/</a></p>
 
@@ -861,13 +862,13 @@ class Solution {
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/">
+                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi)/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="腾讯精选练习题50题-整数反转">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="腾讯精选练习题50题-字符串转换整数 (atoi)">
                         
-                        <span class="card-title">腾讯精选练习题50题-整数反转</span>
+                        <span class="card-title">腾讯精选练习题50题-字符串转换整数 (atoi)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

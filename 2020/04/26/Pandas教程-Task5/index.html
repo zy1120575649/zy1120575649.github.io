@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -482,10 +483,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code class="python">import numpy as np
-import pandas as pd
-df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/table.csv&#39;)
-df.head()</code></pre>
+                <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span><span class="token punctuation">)</span>
+df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -581,10 +582,10 @@ df.head()</code></pre>
 
 
 
-<h2 id="一、append与assign"><a href="#一、append与assign" class="headerlink" title="一、append与assign"></a>一、append与assign</h2><pre><code class="python">#1. append方法
-#（a）利用序列添加行（必须指定name）
-df_append = df.loc[:3,[&#39;Gender&#39;,&#39;Height&#39;]].copy()
-df_append</code></pre>
+<h2 id="一、append与assign"><a href="#一、append与assign" class="headerlink" title="一、append与assign"></a>一、append与assign</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#1. append方法</span>
+<span class="token comment" spellcheck="true">#（a）利用序列添加行（必须指定name）</span>
+df_append <span class="token operator">=</span> df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'Gender'</span><span class="token punctuation">,</span><span class="token string">'Height'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+df_append<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -634,8 +635,8 @@ df_append</code></pre>
 
 
 
-<pre><code class="python">s = pd.Series({&#39;Gender&#39;:&#39;F&#39;,&#39;Height&#39;:188},name=&#39;new_row&#39;)
-df_append.append(s)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'Gender'</span><span class="token punctuation">:</span><span class="token string">'F'</span><span class="token punctuation">,</span><span class="token string">'Height'</span><span class="token punctuation">:</span><span class="token number">188</span><span class="token punctuation">}</span><span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">'new_row'</span><span class="token punctuation">)</span>
+df_append<span class="token punctuation">.</span>append<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -690,9 +691,9 @@ df_append.append(s)</code></pre>
 
 
 
-<pre><code class="python">#（b）用DataFrame添加表
-df_temp = pd.DataFrame({&#39;Gender&#39;:[&#39;F&#39;,&#39;M&#39;],&#39;Height&#39;:[188,176]},index=[&#39;new_1&#39;,&#39;new_2&#39;])
-df_append.append(df_temp)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#（b）用DataFrame添加表</span>
+df_temp <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'Gender'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'F'</span><span class="token punctuation">,</span><span class="token string">'M'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token string">'Height'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">188</span><span class="token punctuation">,</span><span class="token number">176</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'new_1'</span><span class="token punctuation">,</span><span class="token string">'new_2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+df_append<span class="token punctuation">.</span>append<span class="token punctuation">(</span>df_temp<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -752,10 +753,10 @@ df_append.append(df_temp)</code></pre>
 
 
 
-<pre><code class="python">#2. assign方法
-#该方法主要用于添加列，列名直接由参数指定
-s = pd.Series(list(&#39;abcd&#39;),index=range(4))
-df_append.assign(Letter=s)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#2. assign方法</span>
+<span class="token comment" spellcheck="true">#该方法主要用于添加列，列名直接由参数指定</span>
+s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>list<span class="token punctuation">(</span><span class="token string">'abcd'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>index<span class="token operator">=</span>range<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+df_append<span class="token punctuation">.</span>assign<span class="token punctuation">(</span>Letter<span class="token operator">=</span>s<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -809,11 +810,11 @@ df_append.assign(Letter=s)</code></pre>
 
 
 
-<h2 id="二、combine与update"><a href="#二、combine与update" class="headerlink" title="二、combine与update"></a>二、combine与update</h2><pre><code class="python">#1. comine方法
-#comine和update都是用于表的填充函数，可以根据某种规则填充
-df_combine_1 = df.loc[:1,[&#39;Gender&#39;,&#39;Height&#39;]].copy()
-df_combine_2 = df.loc[10:11,[&#39;Gender&#39;,&#39;Height&#39;]].copy()
-df_combine_1.combine(df_combine_2,lambda x,y:print(x,y))</code></pre>
+<h2 id="二、combine与update"><a href="#二、combine与update" class="headerlink" title="二、combine与update"></a>二、combine与update</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#1. comine方法</span>
+<span class="token comment" spellcheck="true">#comine和update都是用于表的填充函数，可以根据某种规则填充</span>
+df_combine_1 <span class="token operator">=</span> df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'Gender'</span><span class="token punctuation">,</span><span class="token string">'Height'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+df_combine_2 <span class="token operator">=</span> df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">:</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'Gender'</span><span class="token punctuation">,</span><span class="token string">'Height'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+df_combine_1<span class="token punctuation">.</span>combine<span class="token punctuation">(</span>df_combine_2<span class="token punctuation">,</span><span class="token keyword">lambda</span> x<span class="token punctuation">,</span>y<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>0       M
 1       F
 10    NaN
@@ -880,17 +881,17 @@ Name: Height, dtype: float64</code></pre><div>
 
 
 
-<pre><code class="python">#2. update方法
-#（a）三个特点
-#①返回的框索引只会与被调用框的一致（默认使用左连接，下一节会介绍）
-#②第二个框中的nan元素不会起作用
-#③没有返回值，直接在df上操作
-df1 = pd.DataFrame({&#39;A&#39;: [1, 2, 3],
-                    &#39;B&#39;: [400, 500, 600]})
-df2 = pd.DataFrame({&#39;B&#39;: [4, 5, 6],
-                    &#39;C&#39;: [7, 8, 9]})
-df1.update(df2)
-df1</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#2. update方法</span>
+<span class="token comment" spellcheck="true">#（a）三个特点</span>
+<span class="token comment" spellcheck="true">#①返回的框索引只会与被调用框的一致（默认使用左连接，下一节会介绍）</span>
+<span class="token comment" spellcheck="true">#②第二个框中的nan元素不会起作用</span>
+<span class="token comment" spellcheck="true">#③没有返回值，直接在df上操作</span>
+df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'A'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    <span class="token string">'B'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">600</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'B'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    <span class="token string">'C'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+df1<span class="token punctuation">.</span>update<span class="token punctuation">(</span>df2<span class="token punctuation">)</span>
+df1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -934,20 +935,20 @@ df1</code></pre>
 
 
 
-<h2 id="三、concat方法"><a href="#三、concat方法" class="headerlink" title="三、concat方法"></a>三、concat方法</h2><pre><code class="python">#concat方法可以在两个维度上拼接，默认纵向凭借（axis=0），拼接方式默认外连接
-#所谓外连接，就是取拼接方向的并集，而&#39;inner&#39;时取拼接方向（若使用默认的纵向拼接，则为列的交集）的交集
-#下面举一些例子说明其参数：
-df1 = pd.DataFrame({&#39;A&#39;: [&#39;A0&#39;, &#39;A1&#39;],
-                    &#39;B&#39;: [&#39;B0&#39;, &#39;B1&#39;]},
-                    index = [0,1])
-df2 = pd.DataFrame({&#39;A&#39;: [&#39;A2&#39;, &#39;A3&#39;],
-                    &#39;B&#39;: [&#39;B2&#39;, &#39;B3&#39;]},
-                    index = [2,3])
-df3 = pd.DataFrame({&#39;A&#39;: [&#39;A1&#39;, &#39;A3&#39;],
-                    &#39;D&#39;: [&#39;D1&#39;, &#39;D3&#39;],
-                    &#39;E&#39;: [&#39;E1&#39;, &#39;E3&#39;]},
-                    index = [1,3])</code></pre>
-<pre><code class="python">pd.concat([df1,df2])</code></pre>
+<h2 id="三、concat方法"><a href="#三、concat方法" class="headerlink" title="三、concat方法"></a>三、concat方法</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#concat方法可以在两个维度上拼接，默认纵向凭借（axis=0），拼接方式默认外连接</span>
+<span class="token comment" spellcheck="true">#所谓外连接，就是取拼接方向的并集，而'inner'时取拼接方向（若使用默认的纵向拼接，则为列的交集）的交集</span>
+<span class="token comment" spellcheck="true">#下面举一些例子说明其参数：</span>
+df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'A'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'A0'</span><span class="token punctuation">,</span> <span class="token string">'A1'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    <span class="token string">'B'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'B0'</span><span class="token punctuation">,</span> <span class="token string">'B1'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'A'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'A2'</span><span class="token punctuation">,</span> <span class="token string">'A3'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    <span class="token string">'B'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'B2'</span><span class="token punctuation">,</span> <span class="token string">'B3'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+df3 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'A'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'A1'</span><span class="token punctuation">,</span> <span class="token string">'A3'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    <span class="token string">'D'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'D1'</span><span class="token punctuation">,</span> <span class="token string">'D3'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    <span class="token string">'E'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'E1'</span><span class="token punctuation">,</span> <span class="token string">'E3'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>df1<span class="token punctuation">,</span>df2<span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -997,7 +998,7 @@ df3 = pd.DataFrame({&#39;A&#39;: [&#39;A1&#39;, &#39;A3&#39;],
 
 
 
-<pre><code class="python">pd.concat([df1,df2],axis=1)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>df1<span class="token punctuation">,</span>df2<span class="token punctuation">]</span><span class="token punctuation">,</span>axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1057,7 +1058,7 @@ df3 = pd.DataFrame({&#39;A&#39;: [&#39;A1&#39;, &#39;A3&#39;],
 
 
 
-<pre><code class="python">pd.concat([df3,df1],join=&#39;inner&#39;)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">pd<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>df3<span class="token punctuation">,</span>df1<span class="token punctuation">]</span><span class="token punctuation">,</span>join<span class="token operator">=</span><span class="token string">'inner'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1101,22 +1102,22 @@ df3 = pd.DataFrame({&#39;A&#39;: [&#39;A1&#39;, &#39;A3&#39;],
 
 
 
-<h2 id="四、merge与join"><a href="#四、merge与join" class="headerlink" title="四、merge与join"></a>四、merge与join</h2><pre><code class="python">#1. merge函数
-#merge函数的作用是将两个pandas对象横向合并，遇到重复的索引项时会使用笛卡尔积，默认inner连接，可选left、outer、right连接
-#所谓左连接，就是指以第一个表索引为基准，右边的表中如果不再左边的则不加入，如果在左边的就以笛卡尔积的方式加入
-#merge/join与concat的不同之处在于on参数，可以指定某一个对象为key来进行连接
-left = pd.DataFrame({&#39;key1&#39;: [&#39;K0&#39;, &#39;K0&#39;, &#39;K1&#39;, &#39;K2&#39;],
-                     &#39;key2&#39;: [&#39;K0&#39;, &#39;K1&#39;, &#39;K0&#39;, &#39;K1&#39;],
-                      &#39;A&#39;: [&#39;A0&#39;, &#39;A1&#39;, &#39;A2&#39;, &#39;A3&#39;],
-                      &#39;B&#39;: [&#39;B0&#39;, &#39;B1&#39;, &#39;B2&#39;, &#39;B3&#39;]}) 
-right = pd.DataFrame({&#39;key1&#39;: [&#39;K0&#39;, &#39;K1&#39;, &#39;K1&#39;, &#39;K2&#39;],
-                      &#39;key2&#39;: [&#39;K0&#39;, &#39;K0&#39;, &#39;K0&#39;, &#39;K0&#39;],
-                      &#39;C&#39;: [&#39;C0&#39;, &#39;C1&#39;, &#39;C2&#39;, &#39;C3&#39;],
-                      &#39;D&#39;: [&#39;D0&#39;, &#39;D1&#39;, &#39;D2&#39;, &#39;D3&#39;]})
-right2 = pd.DataFrame({&#39;key1&#39;: [&#39;K0&#39;, &#39;K1&#39;, &#39;K1&#39;, &#39;K2&#39;],
-                      &#39;key2&#39;: [&#39;K0&#39;, &#39;K0&#39;, &#39;K0&#39;, &#39;K0&#39;],
-                      &#39;C&#39;: [&#39;C0&#39;, &#39;C1&#39;, &#39;C2&#39;, &#39;C3&#39;]})</code></pre>
-<pre><code class="python">pd.merge(left, right, on=&#39;key1&#39;)</code></pre>
+<h2 id="四、merge与join"><a href="#四、merge与join" class="headerlink" title="四、merge与join"></a>四、merge与join</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#1. merge函数</span>
+<span class="token comment" spellcheck="true">#merge函数的作用是将两个pandas对象横向合并，遇到重复的索引项时会使用笛卡尔积，默认inner连接，可选left、outer、right连接</span>
+<span class="token comment" spellcheck="true">#所谓左连接，就是指以第一个表索引为基准，右边的表中如果不再左边的则不加入，如果在左边的就以笛卡尔积的方式加入</span>
+<span class="token comment" spellcheck="true">#merge/join与concat的不同之处在于on参数，可以指定某一个对象为key来进行连接</span>
+left <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'key1'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K1'</span><span class="token punctuation">,</span> <span class="token string">'K2'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                     <span class="token string">'key2'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K1'</span><span class="token punctuation">,</span> <span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K1'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                      <span class="token string">'A'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'A0'</span><span class="token punctuation">,</span> <span class="token string">'A1'</span><span class="token punctuation">,</span> <span class="token string">'A2'</span><span class="token punctuation">,</span> <span class="token string">'A3'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                      <span class="token string">'B'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'B0'</span><span class="token punctuation">,</span> <span class="token string">'B1'</span><span class="token punctuation">,</span> <span class="token string">'B2'</span><span class="token punctuation">,</span> <span class="token string">'B3'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span> 
+right <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'key1'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K1'</span><span class="token punctuation">,</span> <span class="token string">'K1'</span><span class="token punctuation">,</span> <span class="token string">'K2'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                      <span class="token string">'key2'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K0'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                      <span class="token string">'C'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'C0'</span><span class="token punctuation">,</span> <span class="token string">'C1'</span><span class="token punctuation">,</span> <span class="token string">'C2'</span><span class="token punctuation">,</span> <span class="token string">'C3'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                      <span class="token string">'D'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'D0'</span><span class="token punctuation">,</span> <span class="token string">'D1'</span><span class="token punctuation">,</span> <span class="token string">'D2'</span><span class="token punctuation">,</span> <span class="token string">'D3'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+right2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'key1'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K1'</span><span class="token punctuation">,</span> <span class="token string">'K1'</span><span class="token punctuation">,</span> <span class="token string">'K2'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                      <span class="token string">'key2'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K0'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                      <span class="token string">'C'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'C0'</span><span class="token punctuation">,</span> <span class="token string">'C1'</span><span class="token punctuation">,</span> <span class="token string">'C2'</span><span class="token punctuation">,</span> <span class="token string">'C3'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">pd<span class="token punctuation">.</span>merge<span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">,</span> on<span class="token operator">=</span><span class="token string">'key1'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1201,16 +1202,16 @@ right2 = pd.DataFrame({&#39;key1&#39;: [&#39;K0&#39;, &#39;K1&#39;, &#39;K1&#39;
 
 
 
-<pre><code class="python">#2. join函数
-#join函数作用是将多个pandas对象横向拼接，
-#遇到重复的索引项时会使用笛卡尔积，默认左连接，可选inner、outer、right连接
-left = pd.DataFrame({&#39;A&#39;: [&#39;A0&#39;, &#39;A1&#39;, &#39;A2&#39;],
-                     &#39;B&#39;: [&#39;B0&#39;, &#39;B1&#39;, &#39;B2&#39;]},
-                    index=[&#39;K0&#39;, &#39;K1&#39;, &#39;K2&#39;])
-right = pd.DataFrame({&#39;C&#39;: [&#39;C0&#39;, &#39;C2&#39;, &#39;C3&#39;],
-                      &#39;D&#39;: [&#39;D0&#39;, &#39;D2&#39;, &#39;D3&#39;]},
-                    index=[&#39;K0&#39;, &#39;K2&#39;, &#39;K3&#39;])
-left.join(right)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#2. join函数</span>
+<span class="token comment" spellcheck="true">#join函数作用是将多个pandas对象横向拼接，</span>
+<span class="token comment" spellcheck="true">#遇到重复的索引项时会使用笛卡尔积，默认左连接，可选inner、outer、right连接</span>
+left <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'A'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'A0'</span><span class="token punctuation">,</span> <span class="token string">'A1'</span><span class="token punctuation">,</span> <span class="token string">'A2'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                     <span class="token string">'B'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'B0'</span><span class="token punctuation">,</span> <span class="token string">'B1'</span><span class="token punctuation">,</span> <span class="token string">'B2'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K1'</span><span class="token punctuation">,</span> <span class="token string">'K2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+right <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'C'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'C0'</span><span class="token punctuation">,</span> <span class="token string">'C2'</span><span class="token punctuation">,</span> <span class="token string">'C3'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                      <span class="token string">'D'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'D0'</span><span class="token punctuation">,</span> <span class="token string">'D2'</span><span class="token punctuation">,</span> <span class="token string">'D3'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'K0'</span><span class="token punctuation">,</span> <span class="token string">'K2'</span><span class="token punctuation">,</span> <span class="token string">'K3'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+left<span class="token punctuation">.</span>join<span class="token punctuation">(</span>right<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {

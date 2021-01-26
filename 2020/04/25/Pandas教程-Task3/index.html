@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -482,10 +483,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code class="python">import numpy as np
-import pandas as pd
-df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/table.csv&#39;,index_col=&#39;ID&#39;)
-df.head()</code></pre>
+                <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span><span class="token punctuation">,</span>index_col<span class="token operator">=</span><span class="token string">'ID'</span><span class="token punctuation">)</span>
+df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -588,8 +589,8 @@ df.head()</code></pre>
 
 <h2 id="一、SAC过程"><a href="#一、SAC过程" class="headerlink" title="一、SAC过程"></a>一、SAC过程</h2><h3 id="1-内涵"><a href="#1-内涵" class="headerlink" title="1. 内涵"></a>1. 内涵</h3><p>SAC指的是分组操作中的split-apply-combine过程<br>其中split指基于某一些规则，将数据拆成若干组，apply是指对每一组独立地使用函数，combine指将每一组的结果组合成某一类数据结构</p>
 <h3 id="2-apply过程"><a href="#2-apply过程" class="headerlink" title="2. apply过程"></a>2. apply过程</h3><p>在该过程中，我们实际往往会遇到四类问题：<br>整合（Aggregation）——即分组计算统计量（如求均值、求每组元素个数）<br>变换（Transformation）——即分组对每个单元的数据进行操作（如元素标准化）<br>过滤（Filtration）——即按照某些规则筛选出一些组（如选出组内某一指标小于50的组）<br>综合问题——即前面提及的三种问题的混合</p>
-<h2 id="二、groupby函数"><a href="#二、groupby函数" class="headerlink" title="二、groupby函数"></a>二、groupby函数</h2><pre><code class="python">grouped_single = df.groupby(&#39;School&#39;)</code></pre>
-<pre><code class="python">grouped_single.get_group(&#39;S_1&#39;).head()</code></pre>
+<h2 id="二、groupby函数"><a href="#二、groupby函数" class="headerlink" title="二、groupby函数"></a>二、groupby函数</h2><pre class="line-numbers language-python"><code class="language-python">grouped_single <span class="token operator">=</span> df<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token string">'School'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">grouped_single<span class="token punctuation">.</span>get_group<span class="token punctuation">(</span><span class="token string">'S_1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -691,8 +692,8 @@ df.head()</code></pre>
 
 
 
-<pre><code class="python">grouped_mul = df.groupby([&#39;School&#39;,&#39;Class&#39;])
-grouped_mul.get_group((&#39;S_2&#39;,&#39;C_4&#39;))</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">grouped_mul <span class="token operator">=</span> df<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'School'</span><span class="token punctuation">,</span><span class="token string">'Class'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+grouped_mul<span class="token punctuation">.</span>get_group<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'S_2'</span><span class="token punctuation">,</span><span class="token string">'C_4'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -794,11 +795,11 @@ grouped_mul.get_group((&#39;S_2&#39;,&#39;C_4&#39;))</code></pre>
 
 
 
-<pre><code class="python">grouped_single.size()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">grouped_single<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>School
 S_1    15
 S_2    20
-dtype: int64</code></pre><pre><code class="python">grouped_mul.size()</code></pre>
+dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">grouped_mul<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>School  Class
 S_1     C_1      5
         C_2      5
@@ -807,12 +808,12 @@ S_2     C_1      5
         C_2      5
         C_3      5
         C_4      5
-dtype: int64</code></pre><pre><code class="python">grouped_single.ngroups</code></pre>
-<pre><code>2</code></pre><pre><code class="python">grouped_mul.ngroups
-</code></pre>
-<pre><code>7</code></pre><pre><code class="python">for name,group in grouped_single:
-    print(name)
-    display(group.head())</code></pre>
+dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">grouped_single<span class="token punctuation">.</span>ngroups<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>2</code></pre><pre class="line-numbers language-python"><code class="language-python">grouped_mul<span class="token punctuation">.</span>ngroups
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>7</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">for</span> name<span class="token punctuation">,</span>group <span class="token keyword">in</span> grouped_single<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+    display<span class="token punctuation">(</span>group<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>S_1</code></pre><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1012,7 +1013,7 @@ dtype: int64</code></pre><pre><code class="python">grouped_single.ngroups</code>
 
 
 
-<pre><code class="python">df.set_index([&#39;Gender&#39;,&#39;School&#39;]).groupby(level=1,axis=0).get_group(&#39;S_1&#39;).head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>set_index<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Gender'</span><span class="token punctuation">,</span><span class="token string">'School'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>groupby<span class="token punctuation">(</span>level<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get_group<span class="token punctuation">(</span><span class="token string">'S_1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1106,8 +1107,8 @@ dtype: int64</code></pre><pre><code class="python">grouped_single.ngroups</code>
 
 
 
-<pre><code class="python">print([attr for attr in dir(grouped_single) if not attr.startswith(&#39;_&#39;)])</code></pre>
-<pre><code>[&#39;Address&#39;, &#39;Class&#39;, &#39;Gender&#39;, &#39;Height&#39;, &#39;Math&#39;, &#39;Physics&#39;, &#39;School&#39;, &#39;Weight&#39;, &#39;agg&#39;, &#39;aggregate&#39;, &#39;all&#39;, &#39;any&#39;, &#39;apply&#39;, &#39;backfill&#39;, &#39;bfill&#39;, &#39;boxplot&#39;, &#39;corr&#39;, &#39;corrwith&#39;, &#39;count&#39;, &#39;cov&#39;, &#39;cumcount&#39;, &#39;cummax&#39;, &#39;cummin&#39;, &#39;cumprod&#39;, &#39;cumsum&#39;, &#39;describe&#39;, &#39;diff&#39;, &#39;dtypes&#39;, &#39;expanding&#39;, &#39;ffill&#39;, &#39;fillna&#39;, &#39;filter&#39;, &#39;first&#39;, &#39;get_group&#39;, &#39;groups&#39;, &#39;head&#39;, &#39;hist&#39;, &#39;idxmax&#39;, &#39;idxmin&#39;, &#39;indices&#39;, &#39;last&#39;, &#39;mad&#39;, &#39;max&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;min&#39;, &#39;ndim&#39;, &#39;ngroup&#39;, &#39;ngroups&#39;, &#39;nth&#39;, &#39;nunique&#39;, &#39;ohlc&#39;, &#39;pad&#39;, &#39;pct_change&#39;, &#39;pipe&#39;, &#39;plot&#39;, &#39;prod&#39;, &#39;quantile&#39;, &#39;rank&#39;, &#39;resample&#39;, &#39;rolling&#39;, &#39;sem&#39;, &#39;shift&#39;, &#39;size&#39;, &#39;skew&#39;, &#39;std&#39;, &#39;sum&#39;, &#39;tail&#39;, &#39;take&#39;, &#39;transform&#39;, &#39;tshift&#39;, &#39;var&#39;]</code></pre><pre><code class="python">grouped_single.head(2)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">[</span>attr <span class="token keyword">for</span> attr <span class="token keyword">in</span> dir<span class="token punctuation">(</span>grouped_single<span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token operator">not</span> attr<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">'_'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>[&#39;Address&#39;, &#39;Class&#39;, &#39;Gender&#39;, &#39;Height&#39;, &#39;Math&#39;, &#39;Physics&#39;, &#39;School&#39;, &#39;Weight&#39;, &#39;agg&#39;, &#39;aggregate&#39;, &#39;all&#39;, &#39;any&#39;, &#39;apply&#39;, &#39;backfill&#39;, &#39;bfill&#39;, &#39;boxplot&#39;, &#39;corr&#39;, &#39;corrwith&#39;, &#39;count&#39;, &#39;cov&#39;, &#39;cumcount&#39;, &#39;cummax&#39;, &#39;cummin&#39;, &#39;cumprod&#39;, &#39;cumsum&#39;, &#39;describe&#39;, &#39;diff&#39;, &#39;dtypes&#39;, &#39;expanding&#39;, &#39;ffill&#39;, &#39;fillna&#39;, &#39;filter&#39;, &#39;first&#39;, &#39;get_group&#39;, &#39;groups&#39;, &#39;head&#39;, &#39;hist&#39;, &#39;idxmax&#39;, &#39;idxmin&#39;, &#39;indices&#39;, &#39;last&#39;, &#39;mad&#39;, &#39;max&#39;, &#39;mean&#39;, &#39;median&#39;, &#39;min&#39;, &#39;ndim&#39;, &#39;ngroup&#39;, &#39;ngroups&#39;, &#39;nth&#39;, &#39;nunique&#39;, &#39;ohlc&#39;, &#39;pad&#39;, &#39;pct_change&#39;, &#39;pipe&#39;, &#39;plot&#39;, &#39;prod&#39;, &#39;quantile&#39;, &#39;rank&#39;, &#39;resample&#39;, &#39;rolling&#39;, &#39;sem&#39;, &#39;shift&#39;, &#39;size&#39;, &#39;skew&#39;, &#39;std&#39;, &#39;sum&#39;, &#39;tail&#39;, &#39;take&#39;, &#39;transform&#39;, &#39;tshift&#39;, &#39;var&#39;]</code></pre><pre class="line-numbers language-python"><code class="language-python">grouped_single<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1198,7 +1199,7 @@ dtype: int64</code></pre><pre><code class="python">grouped_single.ngroups</code>
 
 
 
-<pre><code class="python">grouped_single.first()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">grouped_single<span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1263,8 +1264,8 @@ dtype: int64</code></pre><pre><code class="python">grouped_single.ngroups</code>
 
 
 
-<pre><code class="python">df.groupby(np.random.choice([&#39;a&#39;,&#39;b&#39;,&#39;c&#39;],df.shape[0])).get_group(&#39;a&#39;).head()
-#相当于将np.random.choice([&#39;a&#39;,&#39;b&#39;,&#39;c&#39;],df.shape[0])当做新的一列进行分组</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>df<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get_group<span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#相当于将np.random.choice(['a','b','c'],df.shape[0])当做新的一列进行分组</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1366,7 +1367,7 @@ dtype: int64</code></pre><pre><code class="python">grouped_single.ngroups</code>
 
 
 
-<pre><code class="python">df[:5].groupby(lambda x:print(x)).head(0)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>1101
 1102
 1103
@@ -1417,16 +1418,16 @@ dtype: int64</code></pre><pre><code class="python">grouped_single.ngroups</code>
 
 
 
-<pre><code class="python">df.groupby(lambda x:&#39;奇数行&#39; if not df.index.get_loc(x)%2==1 else &#39;偶数行&#39;).groups</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span><span class="token string">'奇数行'</span> <span class="token keyword">if</span> <span class="token operator">not</span> df<span class="token punctuation">.</span>index<span class="token punctuation">.</span>get_loc<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">1</span> <span class="token keyword">else</span> <span class="token string">'偶数行'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>groups<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>{&#39;偶数行&#39;: Int64Index([1102, 1104, 1201, 1203, 1205, 1302, 1304, 2101, 2103, 2105, 2202,
              2204, 2301, 2303, 2305, 2402, 2404],
             dtype=&#39;int64&#39;, name=&#39;ID&#39;),
  &#39;奇数行&#39;: Int64Index([1101, 1103, 1105, 1202, 1204, 1301, 1303, 1305, 2102, 2104, 2201,
              2203, 2205, 2302, 2304, 2401, 2403, 2405],
-            dtype=&#39;int64&#39;, name=&#39;ID&#39;)}</code></pre><pre><code class="python">math_score = df.set_index([&#39;Gender&#39;,&#39;School&#39;])[&#39;Math&#39;].sort_index()
-grouped_score = df.set_index([&#39;Gender&#39;,&#39;School&#39;]).sort_index().\
-            groupby(lambda x:(x,&#39;均分及格&#39; if math_score[x].mean()&gt;=60 else &#39;均分不及格&#39;))
-for name,_ in grouped_score:print(name)</code></pre>
+            dtype=&#39;int64&#39;, name=&#39;ID&#39;)}</code></pre><pre class="line-numbers language-python"><code class="language-python">math_score <span class="token operator">=</span> df<span class="token punctuation">.</span>set_index<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Gender'</span><span class="token punctuation">,</span><span class="token string">'School'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'Math'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>sort_index<span class="token punctuation">(</span><span class="token punctuation">)</span>
+grouped_score <span class="token operator">=</span> df<span class="token punctuation">.</span>set_index<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Gender'</span><span class="token punctuation">,</span><span class="token string">'School'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sort_index<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>\
+            groupby<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span><span class="token string">'均分及格'</span> <span class="token keyword">if</span> math_score<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">>=</span><span class="token number">60</span> <span class="token keyword">else</span> <span class="token string">'均分不及格'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> name<span class="token punctuation">,</span>_ <span class="token keyword">in</span> grouped_score<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>((&#39;F&#39;, &#39;S_1&#39;), &#39;均分及格&#39;)
 ((&#39;F&#39;, &#39;S_2&#39;), &#39;均分及格&#39;)
 ((&#39;M&#39;, &#39;S_1&#39;), &#39;均分及格&#39;)

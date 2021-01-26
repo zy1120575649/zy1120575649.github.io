@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -483,10 +484,10 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>第4章 变形</p>
-<pre><code class="python">import numpy as np
-import pandas as pd
-df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/table.csv&#39;)
-df.head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/table.csv'</span><span class="token punctuation">)</span>
+df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -583,10 +584,10 @@ df.head()</code></pre>
 
 
 
-<pre><code class="python">#1. pivot¶
-#一般状态下，数据在DataFrame会以压缩（stacked）状态存放，例如上面的Gender，
-#两个类别被叠在一列中，pivot函数可将某一列作为新的cols
-df.pivot(index=&#39;ID&#39;,columns=&#39;Gender&#39;,values=&#39;Height&#39;).head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#1. pivot¶</span>
+<span class="token comment" spellcheck="true">#一般状态下，数据在DataFrame会以压缩（stacked）状态存放，例如上面的Gender，</span>
+<span class="token comment" spellcheck="true">#两个类别被叠在一列中，pivot函数可将某一列作为新的cols</span>
+df<span class="token punctuation">.</span>pivot<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'ID'</span><span class="token punctuation">,</span>columns<span class="token operator">=</span><span class="token string">'Gender'</span><span class="token punctuation">,</span>values<span class="token operator">=</span><span class="token string">'Height'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -646,14 +647,14 @@ df.pivot(index=&#39;ID&#39;,columns=&#39;Gender&#39;,values=&#39;Height&#39;).he
 
 
 
-<pre><code class="python">#2. pivot_table
-#由于功能更多，速度上自然是比不上原来的pivot函数
-%timeit df.pivot(index=&#39;ID&#39;,columns=&#39;Gender&#39;,values=&#39;Height&#39;)
-%timeit pd.pivot_table(df,index=&#39;ID&#39;,columns=&#39;Gender&#39;,values=&#39;Height&#39;)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#2. pivot_table</span>
+<span class="token comment" spellcheck="true">#由于功能更多，速度上自然是比不上原来的pivot函数</span>
+<span class="token operator">%</span>timeit df<span class="token punctuation">.</span>pivot<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'ID'</span><span class="token punctuation">,</span>columns<span class="token operator">=</span><span class="token string">'Gender'</span><span class="token punctuation">,</span>values<span class="token operator">=</span><span class="token string">'Height'</span><span class="token punctuation">)</span>
+<span class="token operator">%</span>timeit pd<span class="token punctuation">.</span>pivot_table<span class="token punctuation">(</span>df<span class="token punctuation">,</span>index<span class="token operator">=</span><span class="token string">'ID'</span><span class="token punctuation">,</span>columns<span class="token operator">=</span><span class="token string">'Gender'</span><span class="token punctuation">,</span>values<span class="token operator">=</span><span class="token string">'Height'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>3.15 ms ± 336 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
-14 ms ± 663 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre><pre><code class="python">#3. crosstab（交叉表）
-#交叉表是一种特殊的透视表，典型的用途如分组统计，如现在想要统计关于街道和性别分组的频数：¶
-pd.crosstab(index=df[&#39;Address&#39;],columns=df[&#39;Gender&#39;])</code></pre>
+14 ms ± 663 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#3. crosstab（交叉表）</span>
+<span class="token comment" spellcheck="true">#交叉表是一种特殊的透视表，典型的用途如分组统计，如现在想要统计关于街道和性别分组的频数：¶</span>
+pd<span class="token punctuation">.</span>crosstab<span class="token punctuation">(</span>index<span class="token operator">=</span>df<span class="token punctuation">[</span><span class="token string">'Address'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>columns<span class="token operator">=</span>df<span class="token punctuation">[</span><span class="token string">'Gender'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -718,11 +719,11 @@ pd.crosstab(index=df[&#39;Address&#39;],columns=df[&#39;Gender&#39;])</code></pr
 
 
 
-<pre><code class="python">#其他变形方法
-#1. melt
-#melt函数可以认为是pivot函数的逆操作，将unstacked状态的数据，压缩成stacked，使“宽”的DataFrame变“窄”
-df_m = df[[&#39;ID&#39;,&#39;Gender&#39;,&#39;Math&#39;]]
-df_m.head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#其他变形方法</span>
+<span class="token comment" spellcheck="true">#1. melt</span>
+<span class="token comment" spellcheck="true">#melt函数可以认为是pivot函数的逆操作，将unstacked状态的数据，压缩成stacked，使“宽”的DataFrame变“窄”</span>
+df_m <span class="token operator">=</span> df<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'ID'</span><span class="token punctuation">,</span><span class="token string">'Gender'</span><span class="token punctuation">,</span><span class="token string">'Math'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+df_m<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -783,7 +784,7 @@ df_m.head()</code></pre>
 
 
 
-<pre><code class="python">df.pivot(index=&#39;ID&#39;,columns=&#39;Gender&#39;,values=&#39;Math&#39;).head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>pivot<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'ID'</span><span class="token punctuation">,</span>columns<span class="token operator">=</span><span class="token string">'Gender'</span><span class="token punctuation">,</span>values<span class="token operator">=</span><span class="token string">'Math'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -843,16 +844,16 @@ df_m.head()</code></pre>
 
 
 
-<pre><code class="python">pivoted = df.pivot(index=&#39;ID&#39;,columns=&#39;Gender&#39;,values=&#39;Math&#39;)
-result = pivoted.reset_index().melt(id_vars=[&#39;ID&#39;],value_vars=[&#39;F&#39;,&#39;M&#39;],value_name=&#39;Math&#39;)\
-                     .dropna().set_index(&#39;ID&#39;).sort_index()
-#检验是否与展开前的df相同，可以分别将这些链式方法的中间步骤展开，看看是什么结果
-result.equals(df_m.set_index(&#39;ID&#39;))</code></pre>
-<pre><code>True</code></pre><pre><code class="python">#哑变量与因子化
-#1. Dummy Variable（哑变量）
-#这里主要介绍get_dummies函数，其功能主要是进行one-hot编码
-df_d = df[[&#39;Class&#39;,&#39;Gender&#39;,&#39;Weight&#39;]]
-df_d.head()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">pivoted <span class="token operator">=</span> df<span class="token punctuation">.</span>pivot<span class="token punctuation">(</span>index<span class="token operator">=</span><span class="token string">'ID'</span><span class="token punctuation">,</span>columns<span class="token operator">=</span><span class="token string">'Gender'</span><span class="token punctuation">,</span>values<span class="token operator">=</span><span class="token string">'Math'</span><span class="token punctuation">)</span>
+result <span class="token operator">=</span> pivoted<span class="token punctuation">.</span>reset_index<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>melt<span class="token punctuation">(</span>id_vars<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'ID'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>value_vars<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'F'</span><span class="token punctuation">,</span><span class="token string">'M'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>value_name<span class="token operator">=</span><span class="token string">'Math'</span><span class="token punctuation">)</span>\
+                     <span class="token punctuation">.</span>dropna<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>set_index<span class="token punctuation">(</span><span class="token string">'ID'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sort_index<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#检验是否与展开前的df相同，可以分别将这些链式方法的中间步骤展开，看看是什么结果</span>
+result<span class="token punctuation">.</span>equals<span class="token punctuation">(</span>df_m<span class="token punctuation">.</span>set_index<span class="token punctuation">(</span><span class="token string">'ID'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>True</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#哑变量与因子化</span>
+<span class="token comment" spellcheck="true">#1. Dummy Variable（哑变量）</span>
+<span class="token comment" spellcheck="true">#这里主要介绍get_dummies函数，其功能主要是进行one-hot编码</span>
+df_d <span class="token operator">=</span> df<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'Class'</span><span class="token punctuation">,</span><span class="token string">'Gender'</span><span class="token punctuation">,</span><span class="token string">'Weight'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+df_d<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -913,8 +914,8 @@ df_d.head()</code></pre>
 
 
 
-<pre><code class="python">pd.get_dummies(df_d[[&#39;Class&#39;,&#39;Gender&#39;]]).join(df_d[&#39;Weight&#39;]).head()
-#可选prefix参数添加前缀，prefix_sep添加分隔符</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">pd<span class="token punctuation">.</span>get_dummies<span class="token punctuation">(</span>df_d<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'Class'</span><span class="token punctuation">,</span><span class="token string">'Gender'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>df_d<span class="token punctuation">[</span><span class="token string">'Weight'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#可选prefix参数添加前缀，prefix_sep添加分隔符</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -999,11 +1000,11 @@ df_d.head()</code></pre>
 
 
 
-<pre><code class="python">#2. factorize方法
-#该方法主要用于自然数编码，并且缺失值会被记做-1，其中sort参数表示是否排序后赋值
-codes, uniques = pd.factorize([&#39;b&#39;, None, &#39;a&#39;, &#39;c&#39;, &#39;b&#39;], sort=True)
-display(codes)
-display(uniques)</code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#2. factorize方法</span>
+<span class="token comment" spellcheck="true">#该方法主要用于自然数编码，并且缺失值会被记做-1，其中sort参数表示是否排序后赋值</span>
+codes<span class="token punctuation">,</span> uniques <span class="token operator">=</span> pd<span class="token punctuation">.</span>factorize<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">,</span> None<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> sort<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+display<span class="token punctuation">(</span>codes<span class="token punctuation">)</span>
+display<span class="token punctuation">(</span>uniques<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>array([ 1, -1,  0,  2,  1])
 
 

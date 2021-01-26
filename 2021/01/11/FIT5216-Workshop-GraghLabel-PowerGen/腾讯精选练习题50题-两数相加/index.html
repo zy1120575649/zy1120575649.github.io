@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -478,14 +479,14 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code class="java">/*
+                <pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
  * @lc app=leetcode.cn id=2 lang=java
  *
  * [2] 两数相加
- */
+ */</span>
 
-// @lc code=start
-/**
+<span class="token comment" spellcheck="true">// @lc code=start</span>
+<span class="token comment" spellcheck="true">/**
  * Definition for singly-linked list.
  * public class ListNode {
  *     int val;
@@ -494,37 +495,37 @@
  *     ListNode(int val) { this.val = val; }
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
- */
-//2-&gt;4-&gt;3 9-&gt;1 结果就是1-&gt;6-&gt;3
-class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-    ListNode l3 = new ListNode(0);//虚拟头节点
-    ListNode cur= l3;//当前节点指向l3
-    int jin= 0;//进位为0
-    while(l1!=null||l2!=null){
-        int sum =0;//定义该位上的和
-        if(l1!=null){
-            sum=sum+l1.val;
-            l1=l1.next;
-        }//防止999999+999这种位数不同的情况 所以要判断
-        if(l2!=null){
-            sum+=l2.val;
-            l2=l2.next;
-        }
-        sum += jin;
-        cur.next= new ListNode(sum%10);
-        cur= cur.next;
-        jin = sum/10;
-    }
-    if(jin!=0){
-        cur.next = new ListNode(1);
-    }
-    return l3.next;
+ */</span>
+<span class="token comment" spellcheck="true">//2->4->3 9->1 结果就是1->6->3</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> ListNode <span class="token function">addTwoNumbers</span><span class="token punctuation">(</span>ListNode l1<span class="token punctuation">,</span> ListNode l2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ListNode l3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ListNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//虚拟头节点</span>
+    ListNode cur<span class="token operator">=</span> l3<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//当前节点指向l3</span>
+    <span class="token keyword">int</span> jin<span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//进位为0</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>l1<span class="token operator">!=</span>null<span class="token operator">||</span>l2<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> sum <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//定义该位上的和</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>l1<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            sum<span class="token operator">=</span>sum<span class="token operator">+</span>l1<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
+            l1<span class="token operator">=</span>l1<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token comment" spellcheck="true">//防止999999+999这种位数不同的情况 所以要判断</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>l2<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            sum<span class="token operator">+=</span>l2<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
+            l2<span class="token operator">=</span>l2<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        sum <span class="token operator">+=</span> jin<span class="token punctuation">;</span>
+        cur<span class="token punctuation">.</span>next<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ListNode</span><span class="token punctuation">(</span>sum<span class="token operator">%</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cur<span class="token operator">=</span> cur<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        jin <span class="token operator">=</span> sum<span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>jin<span class="token operator">!=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cur<span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ListNode</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> l3<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
 
-        }
+        <span class="token punctuation">}</span>
 
-    }
-/*这种方法就不需要最后判断最后一位有没有进位了
+    <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">/*这种方法就不需要最后判断最后一位有没有进位了
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode l3 = new ListNode(0);//虚拟头节点
@@ -543,11 +544,11 @@ class Solution {
         return l3.next;
     }
 }
-*/
-// @lc code=end
+*/</span>
+<span class="token comment" spellcheck="true">// @lc code=end</span>
 
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>

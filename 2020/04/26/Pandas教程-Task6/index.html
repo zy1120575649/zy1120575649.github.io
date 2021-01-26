@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -482,10 +483,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code class="python">import pandas as pd
-import numpy as np
-df = pd.read_csv(&#39;Documents/Pandas教程/joyful-pandas-master/data/table_missing.csv&#39;)
-df.head()</code></pre>
+                <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">'Documents/Pandas教程/joyful-pandas-master/data/table_missing.csv'</span><span class="token punctuation">)</span>
+df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -581,22 +582,22 @@ df.head()</code></pre>
 
 
 
-<h2 id="一、缺失观测及其类型"><a href="#一、缺失观测及其类型" class="headerlink" title="一、缺失观测及其类型"></a>一、缺失观测及其类型</h2><pre><code class="python">#1. 了解缺失信息
-#（a）isna和notna方法
-#对Series使用会返回布尔列表
-df[&#39;Physics&#39;].isna().head()</code></pre>
+<h2 id="一、缺失观测及其类型"><a href="#一、缺失观测及其类型" class="headerlink" title="一、缺失观测及其类型"></a>一、缺失观测及其类型</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#1. 了解缺失信息</span>
+<span class="token comment" spellcheck="true">#（a）isna和notna方法</span>
+<span class="token comment" spellcheck="true">#对Series使用会返回布尔列表</span>
+df<span class="token punctuation">[</span><span class="token string">'Physics'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>isna<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>0    False
 1    False
 2    False
 3     True
 4    False
-Name: Physics, dtype: bool</code></pre><pre><code class="python">df[&#39;Physics&#39;].notna().head()</code></pre>
+Name: Physics, dtype: bool</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Physics'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>notna<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0     True
 1     True
 2     True
 3    False
 4     True
-Name: Physics, dtype: bool</code></pre><pre><code class="python">df.isna().head()</code></pre>
+Name: Physics, dtype: bool</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>isna<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -693,7 +694,7 @@ Name: Physics, dtype: bool</code></pre><pre><code class="python">df.isna().head(
 
 
 
-<pre><code class="python">df.isna().sum()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>isna<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>School      0
 Class       4
 ID          6
@@ -703,7 +704,7 @@ Height      0
 Weight     13
 Math        5
 Physics     4
-dtype: int64</code></pre><pre><code class="python">df.info()</code></pre>
+dtype: int64</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 35 entries, 0 to 34
 Data columns (total 9 columns):
@@ -717,7 +718,7 @@ Weight     22 non-null float64
 Math       30 non-null float64
 Physics    31 non-null object
 dtypes: float64(3), int64(1), object(5)
-memory usage: 2.6+ KB</code></pre><pre><code class="python">df[df[&#39;Physics&#39;].isna()]</code></pre>
+memory usage: 2.6+ KB</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span>df<span class="token punctuation">[</span><span class="token string">'Physics'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>isna<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -802,50 +803,50 @@ memory usage: 2.6+ KB</code></pre><pre><code class="python">df[df[&#39;Physics&#
 
 
 
-<pre><code class="python">df[df.notna().all(1)]</code></pre>
-<h2 id="二、缺失数据的运算与分组"><a href="#二、缺失数据的运算与分组" class="headerlink" title="二、缺失数据的运算与分组"></a>二、缺失数据的运算与分组</h2><pre><code class="python">#1. 加号与乘号规则
-#使用加法时，缺失值为0
-s = pd.Series([2,3,np.nan,4])
-s.sum()</code></pre>
-<pre><code>9.0</code></pre><pre><code class="python">s.prod()</code></pre>
-<pre><code>24.0</code></pre><pre><code class="python">s.cumsum()</code></pre>
+<pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span>df<span class="token punctuation">.</span>notna<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>all<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="二、缺失数据的运算与分组"><a href="#二、缺失数据的运算与分组" class="headerlink" title="二、缺失数据的运算与分组"></a>二、缺失数据的运算与分组</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#1. 加号与乘号规则</span>
+<span class="token comment" spellcheck="true">#使用加法时，缺失值为0</span>
+s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span>np<span class="token punctuation">.</span>nan<span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>9.0</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>prod<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>24.0</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>cumsum<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0    2.0
 1    5.0
 2    NaN
 3    9.0
-dtype: float64</code></pre><pre><code class="python">s.cumprod()</code></pre>
+dtype: float64</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>cumprod<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0     2.0
 1     6.0
 2     NaN
 3    24.0
-dtype: float64</code></pre><pre><code class="python">s.pct_change()</code></pre>
+dtype: float64</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>pct_change<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0         NaN
 1    0.500000
 2    0.000000
 3    0.333333
-dtype: float64</code></pre><h2 id="三、填充与剔除"><a href="#三、填充与剔除" class="headerlink" title="三、填充与剔除"></a>三、填充与剔除</h2><pre><code class="python">#1. fillna方法
-#（a）值填充与前后向填充（分别与ffill方法和bfill方法等价）
-df[&#39;Physics&#39;].fillna(&#39;missing&#39;).head()</code></pre>
+dtype: float64</code></pre><h2 id="三、填充与剔除"><a href="#三、填充与剔除" class="headerlink" title="三、填充与剔除"></a>三、填充与剔除</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#1. fillna方法</span>
+<span class="token comment" spellcheck="true">#（a）值填充与前后向填充（分别与ffill方法和bfill方法等价）</span>
+df<span class="token punctuation">[</span><span class="token string">'Physics'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>fillna<span class="token punctuation">(</span><span class="token string">'missing'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>0         A+
 1         B+
 2         B+
 3    missing
 4         A-
-Name: Physics, dtype: object</code></pre><pre><code class="python">df[&#39;Physics&#39;].fillna(method=&#39;ffill&#39;).head()</code></pre>
+Name: Physics, dtype: object</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Physics'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>fillna<span class="token punctuation">(</span>method<span class="token operator">=</span><span class="token string">'ffill'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0    A+
 1    B+
 2    B+
 3    B+
 4    A-
-Name: Physics, dtype: object</code></pre><pre><code class="python">df[&#39;Physics&#39;].fillna(method=&#39;backfill&#39;).head()</code></pre>
+Name: Physics, dtype: object</code></pre><pre class="line-numbers language-python"><code class="language-python">df<span class="token punctuation">[</span><span class="token string">'Physics'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>fillna<span class="token punctuation">(</span>method<span class="token operator">=</span><span class="token string">'backfill'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0    A+
 1    B+
 2    B+
 3    A-
 4    A-
-Name: Physics, dtype: object</code></pre><h2 id="四、插值（interpolation）"><a href="#四、插值（interpolation）" class="headerlink" title="四、插值（interpolation）"></a>四、插值（interpolation）</h2><pre><code class="python">#1. 线性插值
-#（a）索引无关的线性插值
-#默认状态下，interpolate会对缺失的值进行线性插值¶</code></pre>
+Name: Physics, dtype: object</code></pre><h2 id="四、插值（interpolation）"><a href="#四、插值（interpolation）" class="headerlink" title="四、插值（interpolation）"></a>四、插值（interpolation）</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#1. 线性插值</span>
+<span class="token comment" spellcheck="true">#（a）索引无关的线性插值</span>
+<span class="token comment" spellcheck="true">#默认状态下，interpolate会对缺失的值进行线性插值¶</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>0     1.0
 1    10.0
 2    15.0
@@ -854,7 +855,7 @@ Name: Physics, dtype: object</code></pre><h2 id="四、插值（interpolation）
 5     NaN
 6     NaN
 7    28.0
-dtype: float64</code></pre><pre><code class="python">s.interpolate()</code></pre>
+dtype: float64</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>interpolate<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre><code>0     1.0
 1    10.0
 2    15.0
@@ -863,9 +864,9 @@ dtype: float64</code></pre><pre><code class="python">s.interpolate()</code></pre
 5     8.0
 6    18.0
 7    28.0
-dtype: float64</code></pre><pre><code class="python">s.index = np.sort(np.random.randint(50,300,8))
-s.interpolate()
-#值不变</code></pre>
+dtype: float64</code></pre><pre class="line-numbers language-python"><code class="language-python">s<span class="token punctuation">.</span>index <span class="token operator">=</span> np<span class="token punctuation">.</span>sort<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">,</span><span class="token number">300</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+s<span class="token punctuation">.</span>interpolate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#值不变</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>137     1.0
 148    10.0
 167    15.0
@@ -874,7 +875,7 @@ s.interpolate()
 283     8.0
 290    18.0
 299    28.0
-dtype: float64</code></pre><pre><code class="python"></code></pre>
+dtype: float64</code></pre><pre class="line-numbers language-python"><code class="language-python"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
                 
             </div>

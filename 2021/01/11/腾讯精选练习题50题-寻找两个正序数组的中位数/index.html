@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -480,53 +481,53 @@
             <div id="articleContent">
                 <p>给定两个大小为 m 和 n 的正序（从小到大）数组 <code>nums1</code> 和 <code>nums2</code>。请你找出并返回这两个正序数组的中位数。</p>
 <p><strong>进阶：</strong>你能设计一个时间复杂度为 <code>O(log (m+n))</code> 的算法解决此问题吗</p>
-<pre><code class="java">
-/*
+<pre class="line-numbers language-java"><code class="language-java">
+<span class="token comment" spellcheck="true">/*
  * @lc app=leetcode.cn id=4 lang=java
  *
  * [4] 寻找两个正序数组的中位数
- */
+ */</span>
 
-// @lc code=start
-class Solution {
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-     int total = nums1.length+nums2.length;
-     if(total%2==0){
-        int left= f(nums1,0,nums2,0,total/2);
-        int right=f(nums1,0,nums2,0,total/2+1);
-        return (left+right)/2.0;
-     }else{
-            return f(nums1,0,nums2,0,total/2+1);
-     }
-    }
-    //寻找第k小元素
-    static int f(int[] nums1,int i,int[] nums2,int j,int k){
-        //默认第一个数组是最小的
-        if(nums1.length-i &gt; nums2.length-j){
-            return f(nums2,j,nums1,i,k);
-        }
-        //当第一个数组已经用完
-        if(nums1.length==i){
-            return nums2[j+k-1];
-        }
-        // 当取第一个元素
-        if(k==1){
-            return Math.min(nums1[i],nums2[j]);
-        }
+<span class="token comment" spellcheck="true">// @lc code=start</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">double</span> <span class="token function">findMedianSortedArrays</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums1<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">int</span> total <span class="token operator">=</span> nums1<span class="token punctuation">.</span>length<span class="token operator">+</span>nums2<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+     <span class="token keyword">if</span><span class="token punctuation">(</span>total<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> left<span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span>nums1<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>nums2<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>total<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> right<span class="token operator">=</span><span class="token function">f</span><span class="token punctuation">(</span>nums1<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>nums2<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>total<span class="token operator">/</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>left<span class="token operator">+</span>right<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2.0</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span>nums1<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>nums2<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>total<span class="token operator">/</span><span class="token number">2</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//寻找第k小元素</span>
+    <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums1<span class="token punctuation">,</span><span class="token keyword">int</span> i<span class="token punctuation">,</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums2<span class="token punctuation">,</span><span class="token keyword">int</span> j<span class="token punctuation">,</span><span class="token keyword">int</span> k<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//默认第一个数组是最小的</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>nums1<span class="token punctuation">.</span>length<span class="token operator">-</span>i <span class="token operator">></span> nums2<span class="token punctuation">.</span>length<span class="token operator">-</span>j<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span>nums2<span class="token punctuation">,</span>j<span class="token punctuation">,</span>nums1<span class="token punctuation">,</span>i<span class="token punctuation">,</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//当第一个数组已经用完</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>nums1<span class="token punctuation">.</span>length<span class="token operator">==</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> nums2<span class="token punctuation">[</span>j<span class="token operator">+</span>k<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 当取第一个元素</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>k<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>nums1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>nums2<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        int si= Math.min(nums1.length, i+k/2);
-        int sj= j+k-k/2;
-        if(nums1[si-1]&gt;nums2[sj-1]){
-            return f(nums1,i,nums2,sj,k-(sj-j));
-        }else{
-            return f(nums1,si,nums2,j,k-(si-i));
-        }
-    }
+        <span class="token keyword">int</span> si<span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>nums1<span class="token punctuation">.</span>length<span class="token punctuation">,</span> i<span class="token operator">+</span>k<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> sj<span class="token operator">=</span> j<span class="token operator">+</span>k<span class="token operator">-</span>k<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>nums1<span class="token punctuation">[</span>si<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">></span>nums2<span class="token punctuation">[</span>sj<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span>nums1<span class="token punctuation">,</span>i<span class="token punctuation">,</span>nums2<span class="token punctuation">,</span>sj<span class="token punctuation">,</span>k<span class="token operator">-</span><span class="token punctuation">(</span>sj<span class="token operator">-</span>j<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span>nums1<span class="token punctuation">,</span>si<span class="token punctuation">,</span>nums2<span class="token punctuation">,</span>j<span class="token punctuation">,</span>k<span class="token operator">-</span><span class="token punctuation">(</span>si<span class="token operator">-</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-}
+<span class="token punctuation">}</span>
 
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>算法分析</strong></p>
 <p>给定两个有序的数组，找中位数<code>(n + m) / 2</code>，等价于找第<code>k</code>小的元素，<code>k = (n + m) / 2</code></p>
 <p>1、当一共有偶数个数时，找到第<code>total / 2</code>小<code>left</code>和第<code>total / 2 + 1</code>小<code>right</code>，结果是<code>(left + right / 2.0)</code><br>          2、当一共有奇数个数时，找到第<code>total / 2 + 1</code>小，即为结果</p>
@@ -826,13 +827,13 @@ class Solution {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi)/">
+                <a href="/2021/01/11/%E8%85%BE%E8%AE%AF%E7%B2%BE%E9%80%89%E7%BB%83%E4%B9%A0%E9%A2%9850%E9%A2%98-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="腾讯精选练习题50题-字符串转换整数 (atoi)">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="腾讯精选练习题50题-整数反转">
                         
-                        <span class="card-title">腾讯精选练习题50题-字符串转换整数 (atoi)</span>
+                        <span class="card-title">腾讯精选练习题50题-整数反转</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

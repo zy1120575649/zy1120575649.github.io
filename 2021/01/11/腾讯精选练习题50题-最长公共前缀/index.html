@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -504,57 +505,57 @@
 
 - `0 &lt;= strs.length &lt;= 200`
 - `0 &lt;= strs[i].length &lt;= 200`
-- `strs[i]` 仅由小写英文字母组成</code></pre><pre><code class="java">/*
+- `strs[i]` 仅由小写英文字母组成</code></pre><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
  * @lc app=leetcode.cn id=14 lang=java
  *
  * [14] 最长公共前缀(第一次自己调试成功的代码)
- */
+ */</span>
 
-// @lc code=start
-class Solution {
-    public String longestCommonPrefix(String[] strs) {
-        String res=&quot;&quot;;
-        int index = 0;
-        boolean flag= false;
-        int n = strs.length;
-        if(strs.length==0){
-            return res;
-        }
-        if(strs.length==1){
-            return strs[0];
-        }
-        //获取字符串数组中长度最小的字符串的长度
-        int len=strs[0].length();
-        for (int i = 0; i &lt; strs.length; i++) {
-            len = Math.min(len, strs[i].length());
-        }
+<span class="token comment" spellcheck="true">// @lc code=start</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> String <span class="token function">longestCommonPrefix</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> strs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        String res<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">boolean</span> flag<span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> n <span class="token operator">=</span> strs<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>strs<span class="token punctuation">.</span>length<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>strs<span class="token punctuation">.</span>length<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> strs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//获取字符串数组中长度最小的字符串的长度</span>
+        <span class="token keyword">int</span> len<span class="token operator">=</span>strs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> strs<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            len <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>len<span class="token punctuation">,</span> strs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        while(index&lt;len){
-            for (int i = 0; i &lt; n; i++) {
-                char s = strs[0].charAt(index);
-                if(s==strs[i].charAt(index)){
-                    flag=true;
-                }else{
-                    flag=false;
-                    break;
-                }
-            }
-            if(flag==true){
-                index++;
-            }else{
-                res = strs[0].substring(0, index);
-                break;
-            }
-            res= strs[0].substring(0, index);
-        }
+        <span class="token keyword">while</span><span class="token punctuation">(</span>index<span class="token operator">&lt;</span>len<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">char</span> s <span class="token operator">=</span> strs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span>strs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    flag<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+                    flag<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">;</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token operator">==</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                index<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+                res <span class="token operator">=</span> strs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            res<span class="token operator">=</span> strs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
 
-        return res;
-    }
-}
-// @lc code=end
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// @lc code=end</span>
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>算法<br>(暴力枚举) O(nm)<br>暴力枚举方法很简单：先找到所有字符串的最短长度 m，然后从长度 1 到 m 依次枚举判断是否所有字符串的前缀是否都相等。<br>注意输入可能为空数组。<br>时间复杂度<br>最坏情况下，对于 nn 个字符串，都需要遍历到最短长度，故总时间复杂度为 O(nm)。<br>空间复杂度<br>需要额外 O(m)O(m) 的空间存储答案。</p>
 
                 

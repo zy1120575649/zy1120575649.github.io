@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -483,66 +484,66 @@
 
 <h1 id="GraghLabel"><a href="#GraghLabel" class="headerlink" title="GraghLabel"></a>GraghLabel</h1><h2 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h2><p><img src="/2020/03/28/FIT5216-Workshop-GraghLabel-PowerGen/image-20200328111720203.png" alt="image-20200328111720203"></p>
 <p><img src="/2020/03/28/FIT5216-Workshop-GraghLabel-PowerGen/image-20200328111736614.png" alt="image-20200328111736614"></p>
-<h2 id="Answers"><a href="#Answers" class="headerlink" title="Answers"></a>Answers</h2><pre><code class="python">var 1..8:a;
-var 1..8:b;
-var 1..8:c;
-var 1..8:d;
-var 1..8:e;
-var 1..8:f;
-var 1..8:g;
-var 1..8:h;
+<h2 id="Answers"><a href="#Answers" class="headerlink" title="Answers"></a>Answers</h2><pre class="line-numbers language-python"><code class="language-python">var <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token number">8</span><span class="token punctuation">:</span>a<span class="token punctuation">;</span>
+var <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token number">8</span><span class="token punctuation">:</span>b<span class="token punctuation">;</span>
+var <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token number">8</span><span class="token punctuation">:</span>c<span class="token punctuation">;</span>
+var <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token number">8</span><span class="token punctuation">:</span>d<span class="token punctuation">;</span>
+var <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token number">8</span><span class="token punctuation">:</span>e<span class="token punctuation">;</span>
+var <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token number">8</span><span class="token punctuation">:</span>f<span class="token punctuation">;</span>
+var <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token number">8</span><span class="token punctuation">:</span>g<span class="token punctuation">;</span>
+var <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token number">8</span><span class="token punctuation">:</span>h<span class="token punctuation">;</span>
 
-constraint abs(a-b)&gt;1;
-constraint abs(a-c)&gt;1;
-constraint abs(a-d)&gt;1;
-constraint abs(b-e)&gt;1;
-constraint abs(b-f)&gt;1;
-constraint abs(b-c)&gt;1;
-constraint abs(c-e)&gt;1;
-constraint abs(c-f)&gt;1;
-constraint abs(c-d)&gt;1;
-constraint abs(c-g)&gt;1;
-constraint abs(d-f)&gt;1;
-constraint abs(d-g)&gt;1;
-constraint abs(e-h)&gt;1;
-constraint abs(e-f)&gt;1;
-constraint abs(f-h)&gt;1;
-constraint abs(f-g)&gt;1;
-constraint abs(g-h)&gt;1;
-include &quot;alldifferent.mzn&quot;;
-constraint alldifferent([a,b,c,d,e,f,g,h]);</code></pre>
+constraint abs<span class="token punctuation">(</span>a<span class="token operator">-</span>b<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>a<span class="token operator">-</span>c<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>a<span class="token operator">-</span>d<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>b<span class="token operator">-</span>e<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>b<span class="token operator">-</span>f<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>b<span class="token operator">-</span>c<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>c<span class="token operator">-</span>e<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>c<span class="token operator">-</span>f<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>c<span class="token operator">-</span>d<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>c<span class="token operator">-</span>g<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>d<span class="token operator">-</span>f<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>d<span class="token operator">-</span>g<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>e<span class="token operator">-</span>h<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>e<span class="token operator">-</span>f<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>f<span class="token operator">-</span>h<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>f<span class="token operator">-</span>g<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+constraint abs<span class="token punctuation">(</span>g<span class="token operator">-</span>h<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">1</span><span class="token punctuation">;</span>
+include <span class="token string">"alldifferent.mzn"</span><span class="token punctuation">;</span>
+constraint alldifferent<span class="token punctuation">(</span><span class="token punctuation">[</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">,</span>d<span class="token punctuation">,</span>e<span class="token punctuation">,</span>f<span class="token punctuation">,</span>g<span class="token punctuation">,</span>h<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="PowerGen"><a href="#PowerGen" class="headerlink" title="PowerGen"></a>PowerGen</h1><h2 id="Problem-Statement-1"><a href="#Problem-Statement-1" class="headerlink" title="Problem Statement"></a>Problem Statement</h2><p><img src="/2020/03/28/FIT5216-Workshop-GraghLabel-PowerGen/image-20200328111858984.png" alt="image-20200328111858984"></p>
 <p><img src="/2020/03/28/FIT5216-Workshop-GraghLabel-PowerGen/image-20200328111916857.png" alt="image-20200328111916857"></p>
-<h2 id="Answers-1"><a href="#Answers-1" class="headerlink" title="Answers"></a>Answers</h2><pre><code class="python">% power generation
-int: T;                 % decades
-array[1..T] of int: e;  % expected requirements
-array[1..T] of int: a;  % current production
+<h2 id="Answers-1"><a href="#Answers-1" class="headerlink" title="Answers"></a>Answers</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token operator">%</span> power generation
+int<span class="token punctuation">:</span> T<span class="token punctuation">;</span>                 <span class="token operator">%</span> decades
+array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span>T<span class="token punctuation">]</span> of int<span class="token punctuation">:</span> e<span class="token punctuation">;</span>  <span class="token operator">%</span> expected requirements
+array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span>T<span class="token punctuation">]</span> of int<span class="token punctuation">:</span> a<span class="token punctuation">;</span>  <span class="token operator">%</span> current production
 
-array[1..T] of var 0..infinity: N; % number of nuclear power plants built each decade
-array[1..T] of var 0..infinity: C; % number of coal power plants built each decade
-array[1..T] of var 0..infinity: S; % number of solar power plants built each decade
+array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span>T<span class="token punctuation">]</span> of var <span class="token number">0</span><span class="token punctuation">.</span><span class="token punctuation">.</span>infinity<span class="token punctuation">:</span> N<span class="token punctuation">;</span> <span class="token operator">%</span> number of nuclear power plants built each decade
+array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span>T<span class="token punctuation">]</span> of var <span class="token number">0</span><span class="token punctuation">.</span><span class="token punctuation">.</span>infinity<span class="token punctuation">:</span> C<span class="token punctuation">;</span> <span class="token operator">%</span> number of coal power plants built each decade
+array<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span>T<span class="token punctuation">]</span> of var <span class="token number">0</span><span class="token punctuation">.</span><span class="token punctuation">.</span>infinity<span class="token punctuation">:</span> S<span class="token punctuation">;</span> <span class="token operator">%</span> number of solar power plants built each decade
 
-var 0..infinity: cost;  % costs of building all new power plants
+var <span class="token number">0</span><span class="token punctuation">.</span><span class="token punctuation">.</span>infinity<span class="token punctuation">:</span> cost<span class="token punctuation">;</span>  <span class="token operator">%</span> costs of building all new power plants
 
-constraint forall ( i in 1..T ) (
-   sum ( j in max(1,i-5)..i ) ( N[j] * 4 ) + sum ( j in max(1,i-1)..i ) ( C[j] ) + sum ( j in max(1,i-2)..i ) ( S[j] ) &gt;= e[i] - a[i]
-);
+constraint forall <span class="token punctuation">(</span> i <span class="token keyword">in</span> <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span>T <span class="token punctuation">)</span> <span class="token punctuation">(</span>
+   sum <span class="token punctuation">(</span> j <span class="token keyword">in</span> max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token number">-5</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">.</span>i <span class="token punctuation">)</span> <span class="token punctuation">(</span> N<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">4</span> <span class="token punctuation">)</span> <span class="token operator">+</span> sum <span class="token punctuation">(</span> j <span class="token keyword">in</span> max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">.</span>i <span class="token punctuation">)</span> <span class="token punctuation">(</span> C<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token operator">+</span> sum <span class="token punctuation">(</span> j <span class="token keyword">in</span> max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token number">-2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">.</span>i <span class="token punctuation">)</span> <span class="token punctuation">(</span> S<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token operator">>=</span> e<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-constraint forall ( i in 1..T ) (
-   sum ( j in max(1,i-5)..i ) ( N[j] * 4 ) &lt;= 0.4 * ( a[i] + sum ( j in max(1,i-5)..i ) ( N[j] * 4 ) + sum ( j in max(1,i-1)..i ) ( C[j] ) + sum ( j in max(1,i-2)..i ) ( S[j] ) )
-);
+constraint forall <span class="token punctuation">(</span> i <span class="token keyword">in</span> <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span>T <span class="token punctuation">)</span> <span class="token punctuation">(</span>
+   sum <span class="token punctuation">(</span> j <span class="token keyword">in</span> max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token number">-5</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">.</span>i <span class="token punctuation">)</span> <span class="token punctuation">(</span> N<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">4</span> <span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">0.4</span> <span class="token operator">*</span> <span class="token punctuation">(</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> sum <span class="token punctuation">(</span> j <span class="token keyword">in</span> max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token number">-5</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">.</span>i <span class="token punctuation">)</span> <span class="token punctuation">(</span> N<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">4</span> <span class="token punctuation">)</span> <span class="token operator">+</span> sum <span class="token punctuation">(</span> j <span class="token keyword">in</span> max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">.</span>i <span class="token punctuation">)</span> <span class="token punctuation">(</span> C<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token operator">+</span> sum <span class="token punctuation">(</span> j <span class="token keyword">in</span> max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token number">-2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">.</span>i <span class="token punctuation">)</span> <span class="token punctuation">(</span> S<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-constraint forall ( i in 1..T ) (
-   sum ( j in max(1,i-2)..i ) ( S[j] ) &gt;= 0.2 * ( a[i] + sum ( j in max(1,i-5)..i ) ( N[j] * 4 ) + sum ( j in max(1,i-1)..i ) ( C[j] ) + sum ( j in max(1,i-2)..i ) ( S[j] ) )
-);
+constraint forall <span class="token punctuation">(</span> i <span class="token keyword">in</span> <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span>T <span class="token punctuation">)</span> <span class="token punctuation">(</span>
+   sum <span class="token punctuation">(</span> j <span class="token keyword">in</span> max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token number">-2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">.</span>i <span class="token punctuation">)</span> <span class="token punctuation">(</span> S<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0.2</span> <span class="token operator">*</span> <span class="token punctuation">(</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> sum <span class="token punctuation">(</span> j <span class="token keyword">in</span> max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token number">-5</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">.</span>i <span class="token punctuation">)</span> <span class="token punctuation">(</span> N<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">4</span> <span class="token punctuation">)</span> <span class="token operator">+</span> sum <span class="token punctuation">(</span> j <span class="token keyword">in</span> max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">.</span>i <span class="token punctuation">)</span> <span class="token punctuation">(</span> C<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token operator">+</span> sum <span class="token punctuation">(</span> j <span class="token keyword">in</span> max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token number">-2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">.</span>i <span class="token punctuation">)</span> <span class="token punctuation">(</span> S<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-constraint C[1] + sum ( i in 2..T ) ( C[i] + C[i-1] ) &lt;= 10;
+constraint C<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> sum <span class="token punctuation">(</span> i <span class="token keyword">in</span> <span class="token number">2</span><span class="token punctuation">.</span><span class="token punctuation">.</span>T <span class="token punctuation">)</span> <span class="token punctuation">(</span> C<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> C<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">10</span><span class="token punctuation">;</span>
 
-cost = sum ( i in 1..T ) ( N[i] * 10 + C[i] + S[i] * 2 );
+cost <span class="token operator">=</span> sum <span class="token punctuation">(</span> i <span class="token keyword">in</span> <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">.</span>T <span class="token punctuation">)</span> <span class="token punctuation">(</span> N<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> C<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> S<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">2</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-solve minimize cost;
+solve minimize cost<span class="token punctuation">;</span>
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>

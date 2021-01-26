@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -499,45 +500,45 @@
 <li><code>2 &lt;= n &lt;= 3 * 104</code></li>
 <li><code>0 &lt;= height[i] &lt;= 3 * 104</code></li>
 </ul>
-<pre><code class="java">/*
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
  * @lc app=leetcode.cn id=11 lang=java
  *
  * [11] 盛最多水的容器
- */
+ */</span>
 
-// @lc code=start
-class Solution {
-    public int maxArea(int[] height) {
-        // int n = height.length;
-        // int res =0;
-        // for (int i = 1; i &lt;= n-1; i++) {//暴力破解可能会超时
-        //     for (int j = 2; j &lt;=n; j++) {
-        //         if((j-i)*Math.min(height[i-1], height[j-1])&gt;res){
-        //             res = (j-i)*Math.min(height[i-1], height[j-1]);
-        //         }
-        //     }
-        // }
-        int n = height.length;
-        int res = 0;
-        int l = 0;int r = n-1;
-        while(l&lt;r){
-            res = Math.max(res, Math.min(height[l], height[r])*(r-l));
-            if(height[l]&lt;height[r]){
-                l++;
-            }else{
-                r--;
-            }
+<span class="token comment" spellcheck="true">// @lc code=start</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">maxArea</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> height<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// int n = height.length;</span>
+        <span class="token comment" spellcheck="true">// int res =0;</span>
+        <span class="token comment" spellcheck="true">// for (int i = 1; i &lt;= n-1; i++) {//暴力破解可能会超时</span>
+        <span class="token comment" spellcheck="true">//     for (int j = 2; j &lt;=n; j++) {</span>
+        <span class="token comment" spellcheck="true">//         if((j-i)*Math.min(height[i-1], height[j-1])>res){</span>
+        <span class="token comment" spellcheck="true">//             res = (j-i)*Math.min(height[i-1], height[j-1]);</span>
+        <span class="token comment" spellcheck="true">//         }</span>
+        <span class="token comment" spellcheck="true">//     }</span>
+        <span class="token comment" spellcheck="true">// }</span>
+        <span class="token keyword">int</span> n <span class="token operator">=</span> height<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> l <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token keyword">int</span> r <span class="token operator">=</span> n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>l<span class="token operator">&lt;</span>r<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            res <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>height<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">,</span> height<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span>r<span class="token operator">-</span>l<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>height<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token operator">&lt;</span>height<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                l<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+                r<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
 
-        }
-        return res;
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
 
-    }
-}
-// @lc code=end
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// @lc code=end</span>
 
 
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>双指针法</strong>(关键在如何证明)</p>
 <p>在暴力解法中，每固定一条直线，就要遍历剩下的所有直线，造成了大量元素的多次重复访问。那么我们有没有办法只扫描一次数组，就可以找到最大的面积呢？让我们来看看双指针算法是怎么做的。<br>1 .最开始的时候，如果我们用指针i和j指向最两端的直线，此时两条直线之间的距离就是最大的，即我们所求矩形面积的宽度(width)为最大。<br>          2.但是位于最两端的直线不一定是最高的，所以它们组成矩形的面积也就不一定是最大的。因此我们依然需要继续遍历整个数组，这时我们将指向数组两端的指针慢慢往里面收敛，直到找到面积最大值。<br>            3.对于此时i和j指向的直线，他们之间的宽度已经是最宽了。于是在收敛的过程中，如果遇到的高度比两端的柱子更低的话，由于之间的宽度更短，所以面积必定更小，我们就可以直接跳过，不予考虑。我们只需要考虑收敛时出现的那些高度更高的柱子。<br>        4.该方法在双指针向中间收敛的过程中，对数组中的每个元素只访问了一次，因此时间复杂度为O(n)</p>
 <p><a href="https://leetcode-cn.com/problems/container-with-most-water/solution/zhi-guan-de-shuang-zhi-zhen-fa-jie-shi-by-na-kong/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/container-with-most-water/solution/zhi-guan-de-shuang-zhi-zhen-fa-jie-shi-by-na-kong/</a></p>

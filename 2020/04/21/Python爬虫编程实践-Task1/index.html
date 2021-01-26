@@ -30,7 +30,8 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="大鱼海棠" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -531,19 +532,19 @@
 <li>定位所需的信息；</li>
 <li>得到并处理信息。</li>
 </ol>
-<pre><code class="python">import requests
-url = &#39;https://www.python.org/dev/peps/pep-0020/&#39;
-res = requests.get(url)
-text = res.text</code></pre>
-<pre><code class="python">## 爬取python之禅并存入txt文件
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> requests
+url <span class="token operator">=</span> <span class="token string">'https://www.python.org/dev/peps/pep-0020/'</span>
+res <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+text <span class="token operator">=</span> res<span class="token punctuation">.</span>text<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">## 爬取python之禅并存入txt文件</span>
 
-with open(&#39;zon_of_python.txt&#39;, &#39;w&#39;) as f:
-    f.write(text[text.find(&#39;&lt;pre&#39;)+28:text.find(&#39;&lt;/pre&gt;&#39;)-1])
-print(text[text.find(&#39;&lt;pre&#39;)+28:text.find(&#39;&lt;/pre&gt;&#39;)-1])</code></pre>
-<pre><code class="python">import urllib
-url = &#39;https://www.python.org/dev/peps/pep-0020/&#39;
-res = urllib.request.urlopen(url).read().decode(&#39;utf-8&#39;)
-print(res[res.find(&#39;&lt;pre&#39;)+28:res.find(&#39;&lt;/pre&gt;&#39;)-1])</code></pre>
+<span class="token keyword">with</span> open<span class="token punctuation">(</span><span class="token string">'zon_of_python.txt'</span><span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+    f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>text<span class="token punctuation">[</span>text<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'&lt;pre'</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">28</span><span class="token punctuation">:</span>text<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'&lt;/pre>'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>text<span class="token punctuation">[</span>text<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'&lt;pre'</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">28</span><span class="token punctuation">:</span>text<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'&lt;/pre>'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> urllib
+url <span class="token operator">=</span> <span class="token string">'https://www.python.org/dev/peps/pep-0020/'</span>
+res <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">[</span>res<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'&lt;pre'</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">28</span><span class="token punctuation">:</span>res<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'&lt;/pre>'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <pre><code>Beautiful is better than ugly.
 Explicit is better than implicit.
 Simple is better than complex.
