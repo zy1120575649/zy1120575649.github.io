@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zy1120575649.github.io/"/>
-  <updated>2021-01-13T11:04:39.262Z</updated>
+  <updated>2021-06-29T17:55:31.540Z</updated>
   <id>https://zy1120575649.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记录</title>
+    <link href="https://zy1120575649.github.io/2021/06/30/%E6%98%9F%E6%9C%9F%E4%B8%89/"/>
+    <id>https://zy1120575649.github.io/2021/06/30/%E6%98%9F%E6%9C%9F%E4%B8%89/</id>
+    <published>2021-06-29T17:09:35.000Z</published>
+    <updated>2021-06-29T17:55:31.540Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;6.26  第一次加上微信，他给我发了路上拍的风景照片，&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2021/06/30/%E6%98%9F%E6%9C%9F%E4%B8%89/image-20210630011514927.png&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="韩东睿" scheme="https://zy1120575649.github.io/categoriesl/%E9%9F%A9%E4%B8%9C%E7%9D%BF/"/>
+    
+    
+      <category term="韩东睿" scheme="https://zy1120575649.github.io/tags/%E9%9F%A9%E4%B8%9C%E7%9D%BF/"/>
+    
+  </entry>
   
   <entry>
     <title>腾讯精选练习题50题-最长公共前缀</title>
@@ -563,29 +591,6 @@
       <category term="DataWhale" scheme="https://zy1120575649.github.io/tags/DataWhale/"/>
     
       <category term="Pandas" scheme="https://zy1120575649.github.io/tags/Pandas/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python爬虫编程实践-Task1</title>
-    <link href="https://zy1120575649.github.io/2020/04/21/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task1/"/>
-    <id>https://zy1120575649.github.io/2020/04/21/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-Task1/</id>
-    <published>2020-04-21T02:54:09.000Z</published>
-    <updated>2020-04-21T02:55:42.425Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;HTTP是一个客户端（用户）和服务器端（网站）之间进行请求和应答的标准。通过使用网页浏览器、网络爬虫或者其他工具，客户端可以向服务器上的指定端口（默认端口为80）发起一个HTTP请求。这个客户端成为客户代理（user agent）。应答服务器上存储着一些资源码，比如HTML文件和图像。这个应答服务器成为源服务器（origin server）。在用户代理和源服务器中间可能存在多个“中间层”，比如代理服务器、网关或者隧道（tunnel）。尽管TCP/IP是互联网最流行的协议，但HTTP中并没有规定必须使用它或它支持的层。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Python爬虫编程实践" scheme="https://zy1120575649.github.io/categoriesl/Python%E7%88%AC%E8%99%AB%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/"/>
-    
-    
-      <category term="DataWhale" scheme="https://zy1120575649.github.io/tags/DataWhale/"/>
-    
-      <category term="Python爬虫" scheme="https://zy1120575649.github.io/tags/Python%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
